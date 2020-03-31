@@ -18,8 +18,15 @@ module.exports = {
                 text: '笔记',
                 ariaLabel: '笔记',
                 items: [
-                    { text: '文章', link: '/pages/folder1/test1.md' },
+                    { text: '文章', link: '/pages/folder1/排序算法.md' },
                     { text: '琐碎', link: '/pages/folder2/test4.md' },
+                ]
+            },
+            {
+                text: '好物私评',
+                ariaLabel: '好物私评',
+                items:[
+                    {text:'静电容键盘', link:'/pages/tested/静电容键盘.md'}
                 ]
             },
             { text: '功能演示', link: '/pages/folder1/test3.md' },
@@ -32,8 +39,8 @@ module.exports = {
                     collapsable: false, // 可选的, 默认值是 true,
                     sidebarDepth: 1,    // 可选的, 默认值是 1
                     children: [
-                        ['test1.md', '子菜单1'],
-                        ['test3.md', '子菜单2']
+                        ['排序算法.md', '排序算法'],
+                        ['VSCode小技巧.md', 'VSCode小技巧']
                     ]
                 },
                 {
