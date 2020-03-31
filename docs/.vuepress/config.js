@@ -1,6 +1,6 @@
 module.exports = {
-    title: '裂泉首页', // 显示在左上角的网页名称以及首页在浏览器标签显示的title名称
-    description: '裂泉的前端记录', // meta 中的描述文字，用于SEO
+    title: '北方酱Hoppou~', // 显示在左上角的网页名称以及首页在浏览器标签显示的title名称
+    description: '北方酱Hoppou~的个人注意', // meta 中的描述文字，用于SEO
     // 注入到当前页面的 HTML <head> 中的标签
     head: [
         ['link', { rel: 'icon', href: '/egg.png' }],  //浏览器的标签栏的网页图标
@@ -18,7 +18,7 @@ module.exports = {
                 text: '笔记',
                 ariaLabel: '笔记',
                 items: [
-                    { text: '文章', link: '/pages/folder1/排序算法.md' },
+                    { text: '文章', link: '/pages/folder1/test1.md' },
                     { text: '琐碎', link: '/pages/folder2/test4.md' },
                 ]
             },

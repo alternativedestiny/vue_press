@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /egg.png
-heroText: 裂泉的前端记录
+heroText: 北方酱Hoppou~的个人主页
 tagline: 一点一滴都是进步
 actionText: 马上进入 →
 actionLink: /pages/folder1/test1.md
