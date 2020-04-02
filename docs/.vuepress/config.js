@@ -9,48 +9,60 @@ module.exports = {
         lineNumbers: true
     },
     serviceWorker: true,
+    plugins: ['@vuepress/back-to-top'],
     themeConfig: {
         logo: '/egg.png',
         lastUpdated: 'lastUpdate', // string | boolean
+        plugins: ['@vuepress/back-to-top'],
+        smoothScroll: true,
+        // 导航栏
         nav: [
+            // nav1
             { text: '首页', link: '/' },
+            // nav2
             {
-                text: '笔记',
-                ariaLabel: '笔记',
+                text: '学习笔记',
+                ariaLabel: '编程方面的学习笔记',
                 items: [
-                    { text: '文章', link: '/pages/folder1/test1.md' },
-                    { text: '琐碎', link: '/pages/folder2/test4.md' },
+                    { text: '小技巧', link: '/pages/folder1/常用工具软件.md' },
+                    { text: '机器学习', link: '/pages/machine-learning/Keras学习笔记.md' },
+                    { text: '前端笔记', link: '/pages/front-end/Vue学习笔记.md' }
                 ]
             },
+            // nav3
             {
                 text: '好物私评',
                 ariaLabel: '好物私评',
-                items:[
-                    {text:'静电容键盘', link:'/pages/tested/静电容键盘.md'}
+                items: [
+                    { text: '静电容键盘', link: '/pages/tested/静电容键盘.md' }
                 ]
             },
-            { text: '功能演示', link: '/pages/folder1/test3.md' },
+            // nav4
+            { text: '功能演示', link: '' },
+            // nav5
             { text: 'Github', link: 'https://github.com/alternativedestiny' },
         ],
         sidebar: {
             '/pages/folder1/': [
-                {
-                    title: '测试菜单1',   // 必要的
-                    collapsable: false, // 可选的, 默认值是 true,
-                    sidebarDepth: 1,    // 可选的, 默认值是 1
-                    children: [
-                        ['排序算法.md', '排序算法'],
-                        ['VSCode小技巧.md', 'VSCode小技巧']
-                    ]
-                },
-                {
-                    title: '测试菜单2',
-                    collapsable: false, // 可选的, 默认值是 true,
-                    children: [
-                        ['test2.md', '子菜单1']
-                    ]
-                }
+                '常用工具软件',
+                '排序算法',
+                'VSCode小技巧'
             ],
+            '/pages/machine-learning/': [
+                'Keras学习笔记',
+                'LSTM学习笔记',
+                'K-Means聚类算法'
+            ],
+            '/pages/front-end/': [
+                'Vue学习笔记',
+                'electron打包web应用流程',
+                'HTTP学习笔记',
+                'JavaScript学习笔记',
+                'PHP读取数据库方法',
+                'TypeScript学习笔记',
+                'Vue-cli笔记',
+                'VuePress笔记'
+            ]
         }
     }
 }

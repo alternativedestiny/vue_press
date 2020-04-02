@@ -6,14 +6,11 @@ tagline: 一点一滴都是进步
 actionText: 马上进入 →
 actionLink: /pages/folder1/常用工具软件.md
 features:
-- title: 简洁至上
-  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-- title: Vue驱动
-  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
+- title: 技术基础
+  details: 基于 VuePress 的模板，感谢@[裂泉](https://juejin.im/post/5dce1e0e5188254eda3936c5)提供的模板与教程
+- title: 主要内容
+  details: 主要有基于 MarkDown 编写的编程方面的学习笔记以及亲身体验的产品评价
 - title: 高性能
   details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
+footer: 北方酱Hoppou~的个人主页
 ---
-<!-- 
-<ClientOnly>
-  <BottomData/>
-</ClientOnly> -->
