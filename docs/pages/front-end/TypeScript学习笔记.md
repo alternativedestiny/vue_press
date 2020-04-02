@@ -1,13 +1,5 @@
 # TypeScript 学习笔记
 
-- [1. TypeScript 数据类型](#1-typescript-数据类型)
-- [2. 接口 (Interfaces)](#2-接口-interfaces)
-- [3. 数组](#3-数组)
-- [4. 函数](#4-函数)
-- [5. 类型断言（Type Assertion）](#5-类型断言type-assertion)
-- [6. 声明文件](#6-声明文件)
-- [7. 参考](#7-参考)
-
 ## 1. TypeScript 数据类型
 
 1. 布尔型

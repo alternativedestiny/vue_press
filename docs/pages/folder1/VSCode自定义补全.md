@@ -2,7 +2,9 @@
 
 1. 设置 MarkDown 补全代码
    1. VSCode 首选项->用户代码片段->MarkDown
-      ![md](/images/markdown.gif)
+
+      ![md](../images/markdown.gif)
+
    2. 设置补全内容，如cpp代码块
 
       ```json
@@ -26,6 +28,7 @@
          }
       ```
 
-      ![json](images/json.gif)
+      ![json](../images/json.gif)
 3. 实现效果
-   ![cpp](images/cpp.gif)
+
+   ![cpp](../images/cpp.gif)

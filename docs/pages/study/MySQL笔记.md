@@ -1,8 +1,6 @@
 # MySQL笔记
 
-<!-- TOC -->autoauto- [安装](#安装)auto- [mysql使用](#mysql使用)auto    - [基本用法](#基本用法)auto    - [MySQL插入数据](#mysql插入数据)auto    - [MySQL查询](#mysql查询)auto    - [函数](#函数)auto    - [SQL性能优化](#sql性能优化)auto- [备注](#备注)auto- [Navicat可视化工具](#navicat可视化工具)autoauto<!-- /TOC -->
-
-## 安装
+## 1. 安装
 
 1. 下载[MySQL](https://dev.mysql.com/downloads/mysql/)
 
@@ -58,9 +56,9 @@
 
     net stop mysql
 
-## mysql使用
+## 2. mysql使用
 
-### 基本用法
+### 2.1. 基本用法
 
 1. 进入MySQL
 
@@ -97,7 +95,7 @@
     Bye
     ```
 
-### MySQL插入数据
+### 2.2. MySQL插入数据
 
 ```python
 import pymysql
@@ -124,7 +122,7 @@ db.commit()
 db.close()
 ```
 
-### MySQL查询
+### 2.3. MySQL查询
 
 1. 查找
 
@@ -140,7 +138,7 @@ db.close()
 
 3. 排序
 
-### 函数
+### 2.4. 函数
 
 1. 命令
     | 关键字           | 功能                         |
@@ -192,7 +190,7 @@ db.close()
     | now                 | 返回当前的日期和时间           |
     | formart             | 对字段的显示进行格式化         |
 
-### SQL性能优化
+### 2.5. SQL性能优化
 
 1. 减少数据访问
 2. 返回更少的数据
@@ -200,14 +198,14 @@ db.close()
 4. 减少数据库服务器CPU运算
 5. 利用更多的资源
 
-## 备注
+## 3. 备注
 
 1. MySQL大小写不敏感
 2. MySQL字符或英文的问题
    1. 错误提示`pymysql.err.InternalError: (1054, "Unknown column 'xxxxx' in 'field list'")`
    2. 解决方法：在SQL语句中将 %s 加引号改成 '%s'
 
-## Navicat可视化工具
+## 4. Navicat可视化工具
 
 1. [安装激活教程](https://www.jianshu.com/p/5f693b4c9468)
 2. 连接数据库并修改初始密码

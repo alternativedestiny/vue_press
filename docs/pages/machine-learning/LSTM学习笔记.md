@@ -1,8 +1,8 @@
 # LSTM 学习笔记
 
-## LSTM
+## 1. LSTM
 
-### 代码详解
+### 1.1. 代码详解
 
 ```python
 
@@ -94,4 +94,4 @@ y_train = scaler.inverse_transform(y_train)
 
 ```
 
-## Attention
+## 2. Attention

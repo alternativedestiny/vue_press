@@ -1,6 +1,6 @@
 # Ubuntu笔记
 
-## 新机配置
+## 1. 新机配置
 
 1. 调整分辨率
 2. 设置vim，修改`/etc/vim/vimrc.tiny`文件

@@ -1,6 +1,6 @@
 # K-Means 聚类算法
 
-## K-Means 简介
+## 1. K-Means 简介
 
 1. K-Means 原理: 对于给定的样本集，按照样本之间的距离大小，将样本集划分为K个簇。让簇内的点尽量紧密的连在一起，而让簇间的距离尽量的大
 2. 传统 K-Means 流程
@@ -21,7 +21,7 @@
    1. 用样本中的一部分样本(batch size)来做传统的K-Means
    2. 精度会有所下降, 一般会多跑几次, 选择最优
 
-## 源码
+## 2. 源码
 
 1. 基于sklearn的K-Means算法
 
@@ -59,6 +59,6 @@
 
    ![k-means1](../images/k-means1.png)
 
-## 参考
+## 3. 参考
 
 - [K-Means聚类算法原理](https://www.cnblogs.com/pinard/p/6164214.html)

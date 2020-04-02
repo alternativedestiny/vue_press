@@ -1,18 +1,18 @@
 # electron 打包web应用流程
 
-## 前言
+## 1. 前言
 
 Electron（最初名为Atom Shell）是GitHub开发的一个开源框架。 它允许使用Node.js（作为后端）和Chromium（作为前端）完成桌面GUI应用程序的开发。
 
 使用的方法均来自官方文档，能力强的人可根据备注的[官方文档][1]进行操作
 
-## 环境
+## 2. 环境
 
 - Windows 10
 - npm 5.6.0
 - node 8.11.3
 
-## 方法
+## 3. 方法
 
 1. 有一个可以运行的网页程序
 2. 创建一个空文件夹
@@ -123,6 +123,7 @@ Electron（最初名为Atom Shell）是GitHub开发的一个开源框架。 它�
     ```
 
 7. 导入或创建HTML项目到文件夹下，起始页面为index.html，项目文件如下图所示，style.css是html文件的样式，非必须
+
    ![项目文件](../images/2018-07-18-15-31-04.png)
 
 8. 运行项目，在控制台执行，就可以运行项目
@@ -139,9 +140,9 @@ Electron（最初名为Atom Shell）是GitHub开发的一个开源框架。 它�
 
 10. 修改exe文件，编辑icon等其他信息，官方推荐使用[rcedit](https://github.com/electron/rcedit)
 
-## 备注
+## 4. 备注
 
-- [electron官方文档](https://electronjs.org/docs)
+- [官方文档](https://electronjs.org/docs)
 - [官方文档——打造你第一个 Electron 应用](https://electronjs.org/docs/tutorial/first-app)
 - [官方文档——分发应用](https://electronjs.org/docs/tutorial/application-distribution)
 - [官方文档——应用程序打包](https://electronjs.org/docs/tutorial/application-packaging)

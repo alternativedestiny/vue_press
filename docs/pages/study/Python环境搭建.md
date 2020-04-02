@@ -1,8 +1,8 @@
-# 1. Python 环境搭建
+# Python 环境搭建
 
-## 1.1. Windows 环境搭建
+## 1. Windows 环境搭建
 
-### 1.1.1. Python 使用
+### 1.1. Python 使用
 
 1. Python下载
    [Python官方网站](https://www.python.org/)
@@ -55,7 +55,7 @@
    4. 在 `venv/Scripts` 下执行 `activate` 开启虚拟环境
    5. 退出虚拟环境 `deactivate`
 
-### 1.1.2. Miniconda 使用
+### 1.2. Miniconda 使用
 
 1. 从清华源下载安装[miniconda](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/)
 2. 默认设置下安装完成，官方不推荐添加到环境变量
@@ -83,15 +83,15 @@
 
     ```
 
-## 1.2. linux 环境搭建
+## 2. linux 环境搭建
 
-### 1.2.1. Miniconda 使用（Linux）
+### 2.1. Miniconda 使用（Linux）
 
 1. 安装virtualenv库 `sudo pip install virtualenv`
 2. 创建虚拟环境`virtualenv venv`
 3. 添加环境变量
 
-## 1.3. miniconda 环境配置(linux)
+## 3. miniconda 环境配置(linux)
 
 1. 安装miniconda：`bash miniconda3_xxx.sh`，根据提示一路yes
 2. 配置环境变量：

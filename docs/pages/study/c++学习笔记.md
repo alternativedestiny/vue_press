@@ -1,8 +1,8 @@
 # c++学习笔记
 
-## 获取长度的几种方法
+## 1. 获取长度的几种方法
 
-```c++
+```cpp
 #include<iostream>
 #include<string>
 
@@ -20,7 +20,7 @@ sizeof(a)/ sizeof(a[0]);  //数组长度
 
 - [参考链接](https://blog.csdn.net/z_qifa/article/details/77744482)
 
-## print的用法
+## 2. print的用法
 
 1. print类型
    - d：十进制带符号整数
@@ -34,25 +34,25 @@ sizeof(a)/ sizeof(a[0]);  //数组长度
 
 - [参考链接-printf格式化输出](https://blog.csdn.net/xiexievv/article/details/6831194)
 
-## 数据类型
+## 3. 数据类型
 
-### 数组
+### 3.1. 数组
 
 1. 数组定义
 
-```c++
+```cpp
 int num[n] = {1, 2, 3};
 ```
 
-### Array
+### 3.2. Array
 
 1. array：与数组一样，array对象的长度也是固定的，也是用栈（静态内存分配），而不是自由存储区，因此其效率与数组相同，但更方便，更安全。
 2. 基本操作
    1. 定义：`array<typeName, number> name = {};`
 
-### 字符串 String
+### 3.3. 字符串 String
 
-```c++
+```cpp
 // 头文件
 #include <string>
 
@@ -97,13 +97,13 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
 
 - [参考链接](https://blog.csdn.net/tengfei461807914/article/details/52203202)
 
-## 数据结构
+## 4. 数据结构
 
-### 类&对象
+### 4.1. 类&对象
 
 1. 类的定义
 
-    ```c++
+    ```cpp
     class Box{
         // 除了public还可以定义成private或protect
         public:
@@ -115,7 +115,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
 
 2. 访问数据成员
 
-    ```c++
+    ```cpp
     Box Box1;  // 声明Box1，类型为Box
 
     // 定义box1的长宽高
@@ -129,7 +129,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
 
 3. 类的成员函数
 
-    ```c++
+    ```cpp
     // 类内定义
     class Box(){
         public:
@@ -176,7 +176,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
       - 类的析构函数是类的一种特殊的成员函数，它会在每次删除所创建的对象时执行
       - 析构函数的名称与类的名称是完全相同的，只是在前面加了个波浪号（~）作为前缀，它不会返回任何值，也不能带有任何参数。析构函数有助于在跳出程序（比如关闭文件、释放内存等）前释放资源
 
-    ```c++
+    ```cpp
     class Line
     {
         public:
@@ -197,7 +197,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
     }
     ```
 
-### 链表
+### 4.2. 链表
 
 1. 单向链表：链表中最简单的一种是单向链表，它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个`空值`。
 2. 双向链表：一种更复杂的链表是“双向链表”或“双面链表”。每个节点有两个连接：一个指向前一个节点，（当此“连接”为第一个“连接”时，指向空值或者空列表）；而另一个指向下一个节点，（当此“连接”为最后一个“连接”时，指向空值或者空列表）。
@@ -209,7 +209,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
    2. 因为链表的每个节点都含有链域，所占用的空间较多。
 5. 链表操作
 
-    ```c++
+    ```cpp
     #include <stdio.h>
     #include <iostream>
 
@@ -492,14 +492,14 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
 - [链表操作](https://blog.csdn.net/Endeavor_G/article/details/80552680)
 - [c++数据结构链表](https://juejin.im/entry/58ad26bc570c35006bcde428)
 
-### Vector向量
+### 4.3. Vector向量
 
 1. vector：可以简单的认为，向量是一个能够存放任意类型的动态数组，vector的元素不仅仅可以是int、double、string还可以是`结构体`，结构体要定义为`全局`的
 2. 基本操作
    1. 头文件`#include<vector>`
    2. 创建vector对象：`vector<int> vec`
 
-        ```c++
+        ```cpp
         vector<int> vec;
         vector<int> vec(10,0);
         vector<int> vec = {1, 2, 3};
@@ -510,7 +510,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
    4. 使用下标访问元素`cout<<vec[0]<<endl`
    5. 访问元素
 
-        ```c++
+        ```cpp
         vector<int>::iterator i;
         // 使用迭代器访问
         for(it=vec.begin();it!=vec.end();it++){
@@ -531,14 +531,14 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
 - [参考链接1](https://blog.csdn.net/duan19920101/article/details/50617190)
 - [参考链接2](https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html)
 
-### Map
+### 4.4. Map
 
 1. Map：map是一类关联式容器。它的特点是增加和删除节点对迭代器的影响很小，除了那个操作节点，对其他的节点都没有什么影响。
 对于迭代器来说，可以修改实值，而不能修改key。
    1. 有点类似python3的字典
    2. Map使用
 
-       ```c++
+       ```cpp
        // 头文件
        #include<map>
 
@@ -578,7 +578,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
 - [c++ STL hashmap](https://blog.csdn.net/u010025211/article/details/46653519)
 - [散列表类的C++实现(探测散列表)](https://blog.csdn.net/Linux_ever/article/details/51143042)
 
-### 哈希/散列 HashTable/HashMap
+### 4.5. 哈希/散列 HashTable/HashMap
 
 1. 哈希表 hashmap
    1. 优点：大大减少数据存储和查询时间；缺点：消耗较多内存
@@ -607,7 +607,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
    3. 其他使用基本一样
 3. 使用
 
-    ```c++
+    ```cpp
     // hash_map
     #include <hash_map>
     __gnu_cxx::hash_map<int, int> hashMap;
@@ -617,7 +617,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
     unordered_map<int, int> hashMap;
     ```
 
-### 树 Tree
+### 4.6. 树 Tree
 
 1. 树是一种抽象数据类型（ADT）或是实现这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n>0）个有限节点组成一个具有层次关系的集合
    - 每个节点都只有有限个子节点或无子节点；
@@ -633,7 +633,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
    2. 广度优先遍历（层序遍历）：会先访问离根节点最近的节点
 3. 程序
 
-    ```c++
+    ```cpp
 
     #include <stdio.h>
     #include <string>
@@ -705,7 +705,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
     }
     ```
 
-### 堆&栈 Heap&Stack
+### 4.7. 堆&栈 Heap&Stack
 
 1. 特点：堆，FIFO；栈FILO。
 2. 操作
@@ -721,7 +721,7 @@ s1.compare(s2)  // 大于：1；小于：-1；等于：0
     s.top();  // 返回栈顶元素，不删除元素
     ```
 
-## 指针
+## 5. 指针
 
 1. `*`：间接寻址运算符，一元运算符，返回操作数所指定地址的变量的值
 2. `&`：取地址运算符，一元运算符，返回操作数的内存地址
@@ -747,21 +747,21 @@ cout << typeid(*p).name() << endl;  // i
 
 ```
 
-## 备注
+## 6. 备注
 
-### ASCII码转换
+### 6.1. ASCII码转换
 
-```c++
+```cpp
 string s = (char) (n + 64);
 int n = (int)('a')
 ```
 
-### 单引号`'`和双引号`"`
+### 6.2. 单引号`'`和双引号`"`
 
 1. 单引号是字符型，单引号引起的字符代表一个整数
 2. 双引号是字符串型，双引号的字符串指向一个无名数组起始字符的指针
 
-### 变量类型转换
+### 6.3. 变量类型转换
 
 1. String
    1. String->Int: `stoi(s)`

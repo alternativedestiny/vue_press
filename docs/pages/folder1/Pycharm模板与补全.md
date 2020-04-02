@@ -1,11 +1,11 @@
-# 1. Pycharm模板与补全
+# Pycharm模板与补全
 
-## 1.1. 环境
+## 1. 环境
 
 - windows10
 - pycharm2017.3.3 professional edition
 
-## 1.2. 模板
+## 2. 模板
 
 1. 打开File->Settings->Editor->File and Code Templates
 2. 选择Python Script，输入模板
@@ -40,7 +40,7 @@
 | \${YEAR} \${MONTH} ${DAY} | 年、月、日 |
 | \${HOUR} ${MINUTE}        | 时、分     |
 
-## 1.3. 补全
+## 3. 补全
 
 1. 打开File->Settings->Editor->Live Templates
 

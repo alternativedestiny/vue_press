@@ -1,6 +1,6 @@
 # Clion&MinGW的使用方法
 
-## 安装MinGW
+## 1. 安装MinGW
 
 1. 安装好[Clion](https://www.jetbrains.com/clion/)
 2. 安装MinGW

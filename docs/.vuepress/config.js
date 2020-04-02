@@ -13,8 +13,8 @@ module.exports = {
     themeConfig: {
         logo: '/egg.png',
         lastUpdated: 'lastUpdate', // string | boolean
-        plugins: ['@vuepress/back-to-top'],
-        smoothScroll: true,
+        // plugins: ['@vuepress/back-to-top'],
+        smoothScroll: false,
         // 导航栏
         nav: [
             // nav1
@@ -25,6 +25,7 @@ module.exports = {
                 ariaLabel: '编程方面的学习笔记',
                 items: [
                     { text: '小技巧', link: '/pages/folder1/常用工具软件.md' },
+                    { text: '编程笔记', link: '/pages/study/Python笔记.md' },
                     { text: '机器学习', link: '/pages/machine-learning/Keras学习笔记.md' },
                     { text: '前端笔记', link: '/pages/front-end/Vue学习笔记.md' }
                 ]
@@ -45,13 +46,39 @@ module.exports = {
         sidebar: {
             '/pages/folder1/': [
                 '常用工具软件',
+                '使用natapp发布个人网站',
+                '微软官方硬盘备份软件SyncToy',
+                'Pycharm模板与补全',
+                'VSCode小技巧',
+                'VSCode自定义补全'
+            ],
+            '/pages/study/': [
+                'Python笔记',
+                'Python代码块',
+                'Python环境搭建',
+                'c++学习笔记',
+                'Java学习笔记',
+                'MySQL笔记',
+                'Git学习笔记',
+                '力扣题解',
                 '排序算法',
-                'VSCode小技巧'
+                '使用Pyinstaller把Python程序打包成exe文件',
+                '用python实现crc校验',
+                'Clion&MinGW的使用方法',
+                'libsvm学习笔记',
+                'Linux学习笔记',
+                'Ubuntu笔记',
+                'TCP IP学习笔记'
             ],
             '/pages/machine-learning/': [
                 'Keras学习笔记',
                 'LSTM学习笔记',
-                'K-Means聚类算法'
+                'K-Means聚类算法',
+                '机器学习',
+                '聚类算法',
+                '谱聚类',
+                'DBSCAN密度聚类算法',
+                'sklearn中SVM程序'
             ],
             '/pages/front-end/': [
                 'Vue学习笔记',

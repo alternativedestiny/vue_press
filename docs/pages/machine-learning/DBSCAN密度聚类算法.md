@@ -1,6 +1,6 @@
 # DBSCAN 密度聚类算法
 
-## DBSCAN原理
+## 1. DBSCAN原理
 
 1. DBSCAN(Density-Based Spatial Clustering of Applications with Noise, 具有噪声的基于密度的聚类方法)
 2. 密度聚类原理: 通过将紧密相连的样本划分为一类, 这样就得到了一个聚类类别. 通过将所有各组紧密想来你的样本划为各个不同的类别, 就得到的最终的聚类结果
@@ -14,7 +14,7 @@
    2. 样本集较大时, 聚类收敛时间较长
    3. 调参相对复杂
 
-## 源码
+## 2. 源码
 
 1. 基于sklearn的DBSCAN
 

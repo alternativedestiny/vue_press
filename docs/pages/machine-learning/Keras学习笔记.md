@@ -1,6 +1,6 @@
 # Keras 学习笔记
 
-## 核心层
+## 1. 核心层
 
 1. 全连接层：神经网络中最常用的，实现对神经网络里的神经元激活
 
@@ -71,8 +71,8 @@
    Embedding(input_dim, output_dim, input_length)
    ```
 
-## 模型搭建
+## 2. 模型搭建
 
-## 备注
+## 3. 备注
 
 - [Keras入门](http://www.tensorflownews.com/2018/03/15/%e4%bd%bf%e7%94%a8keras%e8%bf%9b%e8%a1%8c%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%ef%bc%9a%ef%bc%88%e4%b8%80%ef%bc%89keras-%e5%85%a5%e9%97%a8/)

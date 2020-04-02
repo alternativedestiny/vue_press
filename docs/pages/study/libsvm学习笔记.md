@@ -1,6 +1,6 @@
 # libsvm学习笔记
 
-## libsvm安装
+## 1. libsvm安装
 
 1. 下载安装包，根据自己的系统和Python版本选择[下载链接](https://www.lfd.uci.edu/~gohlke/pythonlibs/#libsvm)
 2. 安装包
@@ -26,7 +26,7 @@
 
 4. 能正常运行不报错就是安装成功
 
-## libsvm训练结果参数
+## 2. libsvm训练结果参数
 
 - #iter 迭代次数
 - nu 核函数类型的参数
@@ -37,7 +37,7 @@
 - total nsv 支持向量总个数
 - accuracy 预测正确率
 
-## libsvm模型参数
+## 3. libsvm模型参数
 
 - svm_type svm模式
 - kernel_type 核函数
@@ -48,6 +48,6 @@
 - label 原始文件中的类别标识
 - nr_sv 每个类的数据个数
 
-## 参考资料
+## 4. 参考资料
 
 [libsvm for python 安装](https://blog.csdn.net/he99774/article/details/80388612)
