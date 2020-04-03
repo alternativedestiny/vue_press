@@ -20,13 +20,13 @@
     3. 解压文件
     4. 打开文件，在地址栏输入cmd进入控制台，运行
 
-    ```cmd
+    ```bash
     python setup.py install
     ```
 
 3. 在工程目录地址栏输入cmd进入控制台，开始打包xxx.py程序
 
-    ```cmd
+    ```bash
     pyinstaller xxx.py
     ```
 

@@ -202,7 +202,7 @@
    1. 设计源码（exp：d1.c & d2.c）
    2. Linux和其它使用gcc编译器的Unix
 
-     ```c++
+     ```cpp
      gcc -fpic -c d1.c d2.c /*编译.o为扩展名的中间目标文件*/
      gcc -shared -o d1.so d1.o /*创建动态库文件d1.so*/
      gcc -shared -o d2.so d2.o /*创建动态库文件d2.so*/
@@ -210,7 +210,7 @@
 
      或者可以一步到位
 
-     ```c++
+     ```cpp
      gcc -O -fpic -shared -o d1.so d1.c/*创建动态库文件d1.so*/
      gcc -O -fpic -shared -o d2.so d2.c/*创建动态库文件d2.so*/
      ```
@@ -219,7 +219,7 @@
    1. 调用库函数代码（main程序 main.c）
    2. 编译链接选项
 
-      ```cmd
+      ```bash
       # cp d1.so dll.so
       # cc -O -o main main.c ./dll.so
       # ./main  /*运行程序*/
@@ -228,7 +228,7 @@
    3. 动态库查找：动态库文件变更位置后程序无法正常运行，解决方法：带路径编译或更改环境变量
    4. 动态库更换：动态链接库取代静态库的好处之一是随时升级库的内容
 
-      ```cmd
+      ```bash
       # cp d2.so dll.so
       # ./main
       ```

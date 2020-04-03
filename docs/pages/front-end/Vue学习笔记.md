@@ -6,7 +6,7 @@
 
     安装vue，在项目目录下的cmd
 
-    ```cmd
+    ```bash
     npm init -y
     npm i vue
     ```
