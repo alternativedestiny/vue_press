@@ -24,7 +24,7 @@ module.exports = {
                 text: '学习笔记',
                 ariaLabel: '编程方面的学习笔记',
                 items: [
-                    { text: '小技巧', link: '/pages/folder1/常用工具软件.md' },
+                    { text: '小技巧', link: '/pages/skill/常用工具软件.md' },
                     { text: '编程笔记', link: '/pages/study/Python笔记.md' },
                     { text: '机器学习', link: '/pages/machine-learning/Keras学习笔记.md' },
                     { text: '前端笔记', link: '/pages/front-end/Vue学习笔记.md' }
@@ -44,7 +44,7 @@ module.exports = {
             { text: 'Github', link: 'https://github.com/alternativedestiny' },
         ],
         sidebar: {
-            '/pages/folder1/': [
+            '/pages/skill/': [
                 '常用工具软件',
                 '使用natapp发布个人网站',
                 '微软官方硬盘备份软件SyncToy',

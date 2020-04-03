@@ -62,7 +62,7 @@
 
 1. 进入MySQL
 
-    ```cmd
+    ```bash
     D:\mysql-8.0.17-winx64\bin>mysql -u root -p
     Enter password: ******
     ```

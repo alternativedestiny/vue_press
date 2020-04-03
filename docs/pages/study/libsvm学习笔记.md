@@ -5,7 +5,7 @@
 1. 下载安装包，根据自己的系统和Python版本选择[下载链接](https://www.lfd.uci.edu/~gohlke/pythonlibs/#libsvm)
 2. 安装包
 
-    ```cmd
+    ```bash
     pip install 安装包名
     ```
 

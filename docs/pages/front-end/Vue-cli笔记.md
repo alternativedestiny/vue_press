@@ -5,32 +5,32 @@
 1. 安装[Node](https://nodejs.org/zh-cn/)
 2. 配置cnpm
 
-    ``` BASH
+    ```bash
     npm install -g cnpm --registry=https://registry.npm.taobao.org
     ```
 
 3. 安装`Vue-cli`
 
-    ``` BASH
+    ```bash
     npm i -g @vue/cli
     ```
 
 4. 创建vue项目
 
-    ``` BASH
+    ```bash
     vue create my_project
     ```
 
 5. 启动项目
 
-    ``` BASH
+    ```bash
     cd my_project
     npm run serve
     ```
 
 6. 启动UI管理界面
 
-    ``` BASH
+    ```bash
     vue ui
     ```
 
