@@ -53,7 +53,7 @@
 
 8. f字符串（python3.6或更高）
 
-    ``` Python
+    ```python
     name = 'tom'
     age = 13
     print(f'{name} is {age} years old.')  # tom is 13 years old.
