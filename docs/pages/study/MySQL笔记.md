@@ -69,28 +69,28 @@
 
 2. 创建数据库
 
-    ```sql
+    ```bash
     mysql> create database test1;
     ```
 
 3. 创建表格：直接创建比较复杂，可以使用Navicat等工具
 4. 进入表格：use test1
 
-    ```sql
+    ```bash
     mysql> use test1
     Database changed
     ```
 
 5. 插入数据
 
-    ```sql
+    ```bash
     mysql> insert into table2(OCCUR_TIME) values ('ac');
     Query OK, 1 row affected (1.49 sec)
     ```
 
 6. 退出
 
-    ```sql
+    ```bash
     mysql> exit
     Bye
     ```

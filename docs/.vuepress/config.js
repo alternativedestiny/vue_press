@@ -1,19 +1,19 @@
 module.exports = {
     title: '北方酱Hoppou~', // 显示在左上角的网页名称以及首页在浏览器标签显示的title名称
-    description: '北方酱Hoppou~的个人注意', // meta 中的描述文字，用于SEO
+    description: '北方酱Hoppou~的个人主页', // meta 中的描述文字，用于SEO
     // 注入到当前页面的 HTML <head> 中的标签
     head: [
-        ['link', { rel: 'icon', href: '/egg.png' }],  //浏览器的标签栏的网页图标
+        ['link', { rel: 'icon', href: '/hoppou_nobg.jpg' }],  //浏览器的标签栏的网页图标
     ],
     markdown: {
         lineNumbers: true
     },
     serviceWorker: true,
-    plugins: ['@vuepress/back-to-top'],
+    // plugins: ['@vuepress/back-to-top'],
     themeConfig: {
-        logo: '/egg.png',
+        logo: '/hoppou_nobg.jpg',
         lastUpdated: 'lastUpdate', // string | boolean
-        // plugins: ['@vuepress/back-to-top'],
+        plugins: ['@vuepress/back-to-top'],
         smoothScroll: false,
         // 导航栏
         nav: [
@@ -22,6 +22,7 @@ module.exports = {
             // nav2
             {
                 text: '学习笔记',
+                link: '/pages/skill/常用工具软件.md',
                 ariaLabel: '编程方面的学习笔记',
                 items: [
                     { text: '小技巧', link: '/pages/skill/常用工具软件.md' },

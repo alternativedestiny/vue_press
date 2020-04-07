@@ -553,6 +553,8 @@ os.rename(old_name, new_name)
 
     # 增加一行数据
     df.loc['0'] = [1, 2, 3]
+    df = df.append({'a': 1, 'b': 2, 'c':3}, ignore_index=True)
+
     # 增加一列数据
     df['d'] = [1, 2, 3]
     ```
@@ -671,34 +673,37 @@ os.rename(old_name, new_name)
 
 ### 5.2. pandas 读写文件
 
-1. Python文件
+1. 读文件
+   1. read_csv & read_excel
 
-    ```python
-    # header:告诉pandas那些是数据的列名，没有则设为None
-    # encoding='gbk'防止出现乱码
+        ```python
+        # header:告诉pandas那些是数据的列名，没有则设为None
+        # encoding='gbk'防止出现乱码
 
-    # 读取csv文件，表头第0行，文件gbk编码，指定字段的数据类型
-    df = pd.read_csv('filename.csv', header=0, encoding='gbk', dtype={'id': int, 'name': string})
+        # 读取csv文件，表头第0行，文件gbk编码，指定字段的数据类型
+        df = pd.read_csv('filename.csv', header=0, encoding='gbk', dtype={'id': int, 'name': string})
 
-    # 读取excel文件，表头第0行，表sheet1，选择第0，1列数据
-    df1 = pd.read_excel('filename.xlsx', header=0, sheet_name='Sheet1', usecols=[0, 1])
+        # 读取excel文件，表头第0行，表sheet1，选择第0，1列数据
+        # 依赖xlrd，需要安装
+        # 读取‘sheet1’用 sheet_name=0 也可
+        df1 = pd.read_excel('filename.xlsx', header=0, sheet_name='Sheet1', usecols=[0, 1])
 
-    # 读取不同的数据类型dtype
-    ```
+        ```
 
-2. 读取设置
-   | 关键字                | 功能                          |
-   | --------------------- | ----------------------------- |
-   | na_values=[5]         | 5和5.0会被认为是NaN           |
-   | na_valuede=["Na","0"] | Na和0会被认为是NaN            |
-   | true_values=["yes"]   | yes被认为True                 |
-   | false_value=["no"]    | no被认为False                 |
-   | skiprows=[0,3]        | 跳过第0行和第3行              |
-   | MultiIndex            | 支持双列目录                  |
-   | sep=':'               | 支持':'等符号作为分隔符的数据 |
-   | chunksize=4           | 每4行数据为一组               |
+   2. 读取设置
+      | 关键字                | 功能                          |
+      | --------------------- | ----------------------------- |
+      | na_values=[5]         | 5和5.0会被认为是NaN           |
+      | na_valuede=["Na","0"] | Na和0会被认为是NaN            |
+      | true_values=["yes"]   | yes被认为True                 |
+      | false_value=["no"]    | no被认为False                 |
+      | skiprows=[0,3]        | 跳过第0行和第3行              |
+      | nrows                 | 读取的行数                    |
+      | MultiIndex            | 支持双列目录                  |
+      | sep=':'               | 支持':'等符号作为分隔符的数据 |
+      | chunksize=4           | 每4行数据为一组               |
 
-3. 输出CSV文件
+2. 输出CSV文件
    1. to_csv 用法
 
         ```python
@@ -709,12 +714,15 @@ os.rename(old_name, new_name)
         ```
 
    2. to_csv 部分配置
-      1. sep：分隔符，默认','
-      2. na_rep：缺失数据表示，默认空
-      3. float_format：浮点格式，可以设置小数位，比如：float_format='%.3f'
-      4. columns：根据列名选择写入的列，比如：columns=['col1', 'col2']
-      5. header：是否写入列名，默认'True'
-      6. index：是否写入目录，默认'True'
+
+        | 关键字       | 功能                                            |
+        | ------------ | ----------------------------------------------- |
+        | sep          | 分隔符，默认','                                 |
+        | na_rep       | 缺失数据表示，默认空                            |
+        | float_format | 浮点格式，保留小数位，比如：float_format='%.3f' |
+        | columns      | 选择写入的列，比如：columns=['col1', 'col2']    |
+        | header       | 是否写入列名，默认'True'                        |
+        | index        | 是否写入目录，默认'True'                        |
 
 ### 5.3. Pandas 其他
 
