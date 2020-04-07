@@ -671,7 +671,7 @@ os.rename(old_name, new_name)
 
 ### 5.2. pandas 读写文件
 
-1. python文件
+1. Python文件
 
     ```python
     # header:告诉pandas那些是数据的列名，没有则设为None
@@ -716,11 +716,11 @@ os.rename(old_name, new_name)
       5. header：是否写入列名，默认'True'
       6. index：是否写入目录，默认'True'
 
-### 5.3. pandas 其他
+### 5.3. Pandas 其他
 
 1. [pandas类SQL查询](https://juejin.im/post/5b5e5b2ee51d4517df1510c7)
 
-### 5.4. pandas 错误处理
+### 5.4. Pandas 错误处理
 
 1. [`read_csv mixed types`问题](https://www.jianshu.com/p/a70554726f26)
 2. `cannot convert the series to <class 'float'>`问题
@@ -753,7 +753,7 @@ os.rename(old_name, new_name)
         plt.plot([1, 2, 3], [7, 7, 7], 'k>', label='line 5', linewidth=2)  # 黑色右三角
         ```
 
-        ![plot](images/plot.png)
+        ![plot](../images/plot.png)
 
 2. scatter 散点图
    1. 带颜色区分的散点图
