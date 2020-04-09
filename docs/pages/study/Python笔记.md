@@ -144,7 +144,7 @@
     d['cherry']
     ```
 
-### 1.7. 日期处理
+### 1.7. 日期处理 (datetime & arrow)
 
 #### 1.7.1. datetime
 
@@ -690,18 +690,20 @@ os.rename(old_name, new_name)
 
         ```
 
-   2. 读取设置
-      | 关键字                | 功能                          |
-      | --------------------- | ----------------------------- |
-      | na_values=[5]         | 5和5.0会被认为是NaN           |
-      | na_valuede=["Na","0"] | Na和0会被认为是NaN            |
-      | true_values=["yes"]   | yes被认为True                 |
-      | false_value=["no"]    | no被认为False                 |
-      | skiprows=[0,3]        | 跳过第0行和第3行              |
-      | nrows                 | 读取的行数                    |
-      | MultiIndex            | 支持双列目录                  |
-      | sep=':'               | 支持':'等符号作为分隔符的数据 |
-      | chunksize=4           | 每4行数据为一组               |
+   2. 读取设置，[官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
+      | 关键字                   | 功能                          |
+      | ------------------------ | ----------------------------- |
+      | na_values=[5]            | 5和5.0会被认为是NaN           |
+      | na_valuede=["Na","0"]    | Na和0会被认为是NaN            |
+      | true_values=["yes"]      | yes被认为True                 |
+      | false_value=["no"]       | no被认为False                 |
+      | skiprows=[0,3]           | 跳过第0行和第3行              |
+      | nrows                    | 读取的行数                    |
+      | MultiIndex               | 支持双列目录                  |
+      | sep=':'                  | 支持':'等符号作为分隔符的数据 |
+      | chunksize=4              | 每4行数据为一组               |
+      | skip_blank_lines=True    | 是否跳过空行，默认True        |
+      | usecols=['col1', 'col2'] | 选择要读取的列                |
 
 2. 输出CSV文件
    1. to_csv 用法

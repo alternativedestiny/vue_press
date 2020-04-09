@@ -45,4 +45,4 @@
 
 2. 效果
 
-   ![dbscan1](../images/dbscan1.png
+   ![dbscan1](../images/dbscan1.png)

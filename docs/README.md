@@ -4,7 +4,7 @@ heroImage: /hoppou.jpg
 heroText: 北方酱Hoppou~的个人主页
 tagline: 一点一滴都是进步
 actionText: 马上进入 →
-actionLink: /pages/folder1/常用工具软件.md
+actionLink: /pages/skill/常用工具软件.md
 features:
 - title: 技术基础
   details: 基于 VuePress 的模板

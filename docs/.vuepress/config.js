@@ -9,12 +9,11 @@ module.exports = {
         lineNumbers: true
     },
     serviceWorker: true,
-    // plugins: ['@vuepress/back-to-top'],
+    plugins: ['@vuepress/back-to-top'],
     themeConfig: {
         logo: '/hoppou_nobg.jpg',
         lastUpdated: 'lastUpdate', // string | boolean
-        plugins: ['@vuepress/back-to-top'],
-        smoothScroll: false,
+        smoothScroll: true,
         // 导航栏
         nav: [
             // nav1
