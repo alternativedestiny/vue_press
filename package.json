@@ -13,7 +13,9 @@
   "license": "ISC",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.4.0",
-    "vuepress": "^1.4.0"
+    "vuepress": "^1.4.0",
+    "vuepress-plugin-auto-sidebar": "^1.4.1",
+    "vuepress-plugin-autobar": "github:boboidream/vuepress-bar"
   },
   "dependencies": {
     "vue-waterfall-plugin": "^1.0.4",

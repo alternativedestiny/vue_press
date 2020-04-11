@@ -1,9 +1,17 @@
 # 关于我
 
-## UP 美图
+## 本网页使用到的技术
 
-![1](../images/IMG_0449.jpg)
-![2](../images/IMG_0469.jpg)
-![3](../images/IMG_0470.jpg)
+供大家交流使用，同时感谢各位作者
 
-## 致谢
+1. vuepress 教程及模板
+
+    感谢`@裂泉`提供的[教程](https://juejin.im/post/5dce1e0e5188254eda3936c5)
+
+2. 关于右下角那只喵
+
+    感谢`@demonQ`开发的[插件教程](https://juejin.im/post/5d5137066fb9a06b2a203214)
+
+---
+
+[hide](hide.md)

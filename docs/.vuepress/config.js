@@ -17,6 +17,7 @@ module.exports = {
         logo: '/hoppou_nobg.jpg',
         lastUpdated: 'lastUpdate', // string | boolean
         smoothScroll: false,
+        // sidebar: 'auto',
         // 导航栏
         nav: [
             // nav1
@@ -24,35 +25,25 @@ module.exports = {
             // nav2
             {
                 text: '学习笔记',
-                ariaLabel: '编程方面的学习笔记',
                 items: [
-                    { text: '小技巧', link: '/pages/skill/常用工具软件.md' },
-                    { text: '编程笔记', link: '/pages/study/Python笔记.md' },
-                    { text: '机器学习', link: '/pages/machine-learning/Keras学习笔记.md' },
-                    { text: '前端笔记', link: '/pages/front-end/Vue学习笔记.md' }
+                    { text: '编程笔记', link: '/pages/study/Python笔记' },
+                    { text: '机器学习', link: '/pages/machine-learning/K-Means聚类算法' },
+                    { text: '前端笔记', link: '/pages/front-end/Vue学习笔记' },
+                    { text: '软件技巧', link: '/pages/skill/常用工具软件' }
                 ]
             },
             // nav3
             {
                 text: '好物私评',
-                ariaLabel: '好物私评',
                 items: [
                     { text: '静电容键盘', link: '/pages/tested/静电容键盘.md' }
                 ]
             },
             // nav4
-            { text: '功能演示', link: '/pages/others/test.md' },
+            // { text: '功能演示', link: '/pages/others/' },
             // nav5
-            {
-                text: '关于',
-                link: '/pages/others/aboutme.md',
-                ariaLabel: '作者、网站、技术等方面',
-                items: [
-                    { text: '关于我', link: '/pages/others/aboutme.md' },
-                    { text: '网站相关', link: '/pages/others/网页技术.md' }
-                ]
-            },
-            { text: 'Github', link: 'https://github.com/alternativedestiny' },
+            { text: '关于', link: '/pages/others/aboutme.md' },
+            { text: 'Github', link: 'https://github.com/alternativedestiny/vue_press' },
         ],
         sidebar: {
             '/pages/skill/': [
