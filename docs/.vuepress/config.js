@@ -9,11 +9,14 @@ module.exports = {
         lineNumbers: true
     },
     serviceWorker: true,
-    plugins: ['@vuepress/back-to-top'],
+    plugins: [
+        '@vuepress/back-to-top',
+        'vuepress-plugin-cat'
+    ],
     themeConfig: {
         logo: '/hoppou_nobg.jpg',
         lastUpdated: 'lastUpdate', // string | boolean
-        smoothScroll: true,
+        smoothScroll: false,
         // 导航栏
         nav: [
             // nav1
@@ -21,7 +24,6 @@ module.exports = {
             // nav2
             {
                 text: '学习笔记',
-                link: '/pages/skill/常用工具软件.md',
                 ariaLabel: '编程方面的学习笔记',
                 items: [
                     { text: '小技巧', link: '/pages/skill/常用工具软件.md' },
@@ -39,8 +41,17 @@ module.exports = {
                 ]
             },
             // nav4
-            { text: '功能演示', link: '' },
+            { text: '功能演示', link: '/pages/others/test.md' },
             // nav5
+            {
+                text: '关于',
+                link: '/pages/others/aboutme.md',
+                ariaLabel: '作者、网站、技术等方面',
+                items: [
+                    { text: '关于我', link: '/pages/others/aboutme.md' },
+                    { text: '网站相关', link: '/pages/others/网页技术.md' }
+                ]
+            },
             { text: 'Github', link: 'https://github.com/alternativedestiny' },
         ],
         sidebar: {

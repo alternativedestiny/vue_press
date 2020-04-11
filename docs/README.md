@@ -2,7 +2,7 @@
 home: true
 heroImage: /hoppou.jpg
 heroText: 北方酱Hoppou~的个人主页
-tagline: 一点一滴都是进步
+tagline: 穷则独善其身，达则兼济天下
 actionText: 马上进入 →
 actionLink: /pages/skill/常用工具软件.md
 features:

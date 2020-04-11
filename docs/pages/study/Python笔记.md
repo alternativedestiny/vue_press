@@ -792,6 +792,9 @@ os.rename(old_name, new_name)
     ```python
     # 按照等间隔数值设置坐标
     plt.xticks(np.arange(0, 25, 4))  # 范围0-25，分度值4
+
+    # 不显示坐标
+    plt.xticks([])
     ```
 
 3. 设置坐标限位

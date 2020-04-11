@@ -17,7 +17,7 @@
                     <div style="margin:auto;marginTop:30px;">
                         <div style="width:130px;height:40px;line-Height:40px;fontSize:15px;
                         backgroundColor:#f8a100;textAlign:center;borderRadius:5px;color:white;margin:auto;">
-                        <a href="www.baidu.com" style="color:white">点击一下</a>
+                        <a href="https://www.baidu.com" style="color:white">点击一下</a>
                         </div>
                     </div>
                     <div style="marginTop:30px;">
