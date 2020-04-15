@@ -645,6 +645,15 @@ os.rename(old_name, new_name)
 
         ```
 
+   2. 求标准差
+
+        ```python
+        # 计算每列数据标准差
+        df.std()
+        # 计算单列数据标准差
+        df['a'].std()
+        ```
+
 9. 数据排序
    1. Series排序
 
@@ -704,6 +713,14 @@ os.rename(old_name, new_name)
       | chunksize=4              | 每4行数据为一组               |
       | skip_blank_lines=True    | 是否跳过空行，默认True        |
       | usecols=['col1', 'col2'] | 选择要读取的列                |
+
+   3. 使用设置
+
+        ```python
+        # 跳过多行，但保留第一行表头
+        df = pd.read_csv(file, skiprows=range(1, 100))
+
+        ```
 
 2. 输出CSV文件
    1. to_csv 用法

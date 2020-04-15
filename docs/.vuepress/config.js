@@ -40,9 +40,9 @@ module.exports = {
                 ]
             },
             // nav4
-            // { text: '功能演示', link: '/pages/others/' },
+            { text: '功能演示', link: '/pages/others/test' },
             // nav5
-            { text: '关于', link: '/pages/others/aboutme.md' },
+            { text: '关于', link: '/pages/others/aboutme' },
             { text: 'Github', link: 'https://github.com/alternativedestiny/vue_press' },
         ],
         sidebar: {
