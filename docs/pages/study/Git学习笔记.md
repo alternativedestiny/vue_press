@@ -17,31 +17,33 @@ Git分区：工作区—暂存区—Git仓库
 
 1. 新文件初始化
 
-    ```git
+    ```bash
     git init
     ```
 
 2. 把工作目录的文件添加到暂存区域
 
-    ```git
+    ```bash
     git add xxx
+    # 添加目录下的所有文件
+    git add .
     ```
 
 3. 把暂存区域提交到Git仓库
 
-    ```git
+    ```bash
     git commit -m "声明"
     ```
 
     合并添加和提交
 
-    ```git
+    ```bash
     git commit -am "声明 "
     ```
 
 4. 把Git仓库文件还原到暂存区域
 
-    ```git
+    ```bash
     git reset
     ```
 
@@ -51,56 +53,56 @@ Git分区：工作区—暂存区—Git仓库
 
 5. 查询Git状态
 
-    ```git
+    ```bash
     git status
     ```
 
 6. 查看记录
 
-    ```git
+    ```bash
     git log
     ```
 
 7. 文件比较
 
-    ```git
+    ```bash
     git diff
     ```
 
 8. 更正最近一次提交
 
-    ```git
+    ```bash
     git commit --amend
     ```
 
     如果需要提交新的说明
 
-    ```git
+    ```bash
     git commit --amend -m
     ```
 
 9. 文件被删后，把暂存区文件还原到工作目录
 
-    ```git
+    ```bash
     git checkout -- xxx
     ```
 
     注意--前后各有一个空格
 10. 删除文件
 
-    ```git
+    ```bash
     git rm xxx
     ```
 
     然后执行
 
-    ```git
+    ```bash
     git reset --soft HEAD~
     ```
 
 11. 重命名文件
 
-    ```git
+    ```bash
     git mv name1 name2
     ```
 
@@ -108,32 +110,32 @@ Git分区：工作区—暂存区—Git仓库
 
 1. 创建分支
 
-    ```git
+    ```bash
     git branch 分支名
     ```
 
 2. 切换分支
 
-    ```git
+    ```bash
     git checkout 分支名
     ```
 
 3. 显示分支
 
-    ```git
+    ```bash
     git log --decorate --all --graph --oneline
     ```
 
 4. 合并分支
 
-    ```git
+    ```bash
     git merge 分支名
     ```
 
     将选定分支合并到HEAD所在分支
 5. 删除分支
 
-    ```git
+    ```bash
     git branch -d 分支名
     ```
 
@@ -151,7 +153,7 @@ Git分区：工作区—暂存区—Git仓库
 
 3. 创建一个文件夹，把要上传的文件放到该文件夹里，比如创建一个readme.txt文件，然后右键点击“Git Bash Here”弹出一个命令框，按照下面指令一步一步操作。# 后是注释，不要输入！
 
-    ```git
+    ```bash
     git init  # 初始化Git
     git add readme.txt  # 添加文件，注意替换文件名
     git commit -m "注释"  # 文件入库
@@ -163,7 +165,7 @@ Git分区：工作区—暂存区—Git仓库
 
 - origin 添加错误或需要更换origin执行下面指令，删除原有origin，然后重新添加就行
 
-    ```git
+    ```bash
     git remote rm origin
     ```
 
@@ -171,7 +173,7 @@ Git分区：工作区—暂存区—Git仓库
 
 1. 克隆项目到本地，在目标文件下
 
-    ```git
+    ```bash
     git clone xxx.git
     ```
 
