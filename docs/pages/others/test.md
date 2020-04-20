@@ -1,5 +1,4 @@
 <ClientOnly>
   <Test/>
-
   <MachineCheck/>
 </ClientOnly>

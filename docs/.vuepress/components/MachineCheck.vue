@@ -1,5 +1,5 @@
 <template>
-  <p id="app">访问来自： + {{ machine }}</p>
+  <p id="app">访问来自: {{ machine }}</p>
 </template>
 
 <script>
@@ -12,6 +12,8 @@ export default {
       m = "Android";
     } else if (navigator.userAgent.match(/iPhone/i)) {
       m = "iPhone";
+    } else if (navigator.userAgent.match(/iPad/i)) {
+      m = "iPad";
     } else {
       m = "其他设备";
     }

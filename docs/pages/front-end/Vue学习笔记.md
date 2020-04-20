@@ -114,6 +114,13 @@
     <div @click="click1">click</div>
     ```
 
+### 2.3. 指令合集
+
+| 指令          | 缩写      | 功能 |
+| ------------- | --------- | ---- |
+| v-on:click    | @click    | 点击 |
+| v-on:dblclick | @dblclick | 双击 |
+
 ## 3. 计算属性
 
 1. 计算属性

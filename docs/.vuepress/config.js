@@ -26,6 +26,7 @@ module.exports = {
             {
                 text: '学习笔记',
                 items: [
+                    { text: 'Python笔记', link: '/pages/Python/Python-01-环境' },
                     { text: '编程笔记', link: '/pages/study/Python笔记' },
                     { text: '机器学习', link: '/pages/machine-learning/K-Means聚类算法' },
                     { text: '前端笔记', link: '/pages/front-end/Vue学习笔记' },
@@ -46,6 +47,14 @@ module.exports = {
             { text: 'Github', link: 'https://github.com/alternativedestiny/vue_press' },
         ],
         sidebar: {
+            '/pages/Python/': [
+                'Python-01-环境',
+                'Python-02-数据类型',
+                'Python-03-文件处理',
+                'Python-04-Numpy',
+                'Python-05-Pandas',
+                'Python-06-Matplotlib'
+            ],
             '/pages/skill/': [
                 '常用工具软件',
                 '使用natapp发布个人网站',
