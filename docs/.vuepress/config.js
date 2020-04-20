@@ -27,7 +27,7 @@ module.exports = {
                 text: '学习笔记',
                 items: [
                     { text: 'Python笔记', link: '/pages/Python/Python-01-环境' },
-                    { text: '编程笔记', link: '/pages/study/Python笔记' },
+                    { text: '编程笔记', link: '/pages/study/Git学习笔记' },
                     { text: '机器学习', link: '/pages/machine-learning/K-Means聚类算法' },
                     { text: '前端笔记', link: '/pages/front-end/Vue学习笔记' },
                     { text: '软件技巧', link: '/pages/skill/常用工具软件' }
@@ -37,7 +37,7 @@ module.exports = {
             {
                 text: '好物私评',
                 items: [
-                    { text: '静电容键盘', link: '/pages/tested/静电容键盘.md' }
+                    { text: '静电容键盘', link: '/pages/tested/静电容键盘' }
                 ]
             },
             // nav4
@@ -55,18 +55,7 @@ module.exports = {
                 'Python-05-Pandas',
                 'Python-06-Matplotlib'
             ],
-            '/pages/skill/': [
-                '常用工具软件',
-                '使用natapp发布个人网站',
-                '微软官方硬盘备份软件SyncToy',
-                'Pycharm模板与补全',
-                'VSCode小技巧',
-                'VSCode自定义补全'
-            ],
             '/pages/study/': [
-                'Python笔记',
-                'Python代码块',
-                'Python环境搭建',
                 'c++学习笔记',
                 'Java学习笔记',
                 'MySQL笔记',
@@ -78,6 +67,7 @@ module.exports = {
                 'Clion&MinGW的使用方法',
                 'libsvm学习笔记',
                 'Linux学习笔记',
+                'NodeJS笔记',
                 'Ubuntu笔记',
                 'TCP IP学习笔记'
             ],
@@ -100,7 +90,15 @@ module.exports = {
                 'TypeScript学习笔记',
                 'Vue-cli笔记',
                 'VuePress笔记'
-            ]
+            ],
+            '/pages/skill/': [
+                '常用工具软件',
+                '使用natapp发布个人网站',
+                '微软官方硬盘备份软件SyncToy',
+                'Pycharm模板与补全',
+                'VSCode小技巧',
+                'VSCode自定义补全'
+            ],
         }
     }
 }
