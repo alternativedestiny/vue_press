@@ -4,14 +4,23 @@ module.exports = {
     // 注入到当前页面的 HTML <head> 中的标签
     head: [
         ['link', { rel: 'icon', href: '/hoppou_nobg.jpg' }],  //浏览器的标签栏的网页图标
+        // 公式相关的两项
+        ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css' }],
+        ['link', { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" }]
     ],
     markdown: {
-        lineNumbers: true
+        lineNumbers: true,
+        extendMarkdown: md => {
+            md.set({
+                html: true
+            })
+            md.use(require('markdown-it-katex'))
+        }
     },
     serviceWorker: true,
     plugins: [
-        '@vuepress/back-to-top',
-        'vuepress-plugin-cat'
+        '@vuepress/back-to-top', // 回到顶部按钮
+        'vuepress-plugin-cat',  // 那只猫
     ],
     themeConfig: {
         logo: '/hoppou_nobg.jpg',
@@ -53,7 +62,8 @@ module.exports = {
                 'Python-03-文件处理',
                 'Python-04-Numpy',
                 'Python-05-Pandas',
-                'Python-06-Matplotlib'
+                'Python-06-Matplotlib',
+                'Python代码块'
             ],
             '/pages/study/': [
                 'c++学习笔记',
@@ -79,7 +89,8 @@ module.exports = {
                 '聚类算法',
                 '谱聚类',
                 'DBSCAN密度聚类算法',
-                'sklearn中SVM程序'
+                'sklearn中SVM程序',
+                '预测评价指标'
             ],
             '/pages/front-end/': [
                 'Vue学习笔记',

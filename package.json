@@ -18,6 +18,7 @@
     "vuepress-plugin-autobar": "github:boboidream/vuepress-bar"
   },
   "dependencies": {
+    "markdown-it-katex": "^2.0.3",
     "vue-waterfall-plugin": "^1.0.4",
     "vuepress-plugin-cat": "^1.0.3"
   }
