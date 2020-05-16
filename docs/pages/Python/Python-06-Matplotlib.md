@@ -2,41 +2,62 @@
 
 ## 1. 绘图种类
 
-1. plot 基本图形
-   1. plot绘图
+1. plot 基本绘图
 
-        ```python
-        import matplotlib.pyplot as plt
+    ```python
+    import matplotlib.pyplot as plt
 
-        plt.figure()
-        plt.plot(x1, y1, x2, y2)
-        plt.show()
-        ```
+    plt.figure()
+    plt.plot(x1, y1, x2, y2)
+    plt.show()
+    ```
 
-   2. plot设置，更多设置参考[官方文档](https://matplotlib.org/3.2.0/api/_as_gen/matplotlib.pyplot.plot.html)
+2. plot设置，更多设置参考[官方文档](https://matplotlib.org/3.2.0/api/_as_gen/matplotlib.pyplot.plot.html)
 
-        ```python
-        plt.plot([1, 2, 3], [1, 1, 1], 'b-', label='line 1', linewidth=2)  # 蓝色直线
-        plt.plot([1, 2, 3], [2, 2, 2], 'g--', label='line 2', linewidth=2)  # 绿色虚线
-        plt.plot([1, 2, 3], [3, 3, 3], 'ro-.', label='line 3', linewidth=2)  # 红色带圈点划线
-        plt.plot([1, 2, 3], [4, 4, 4], 'cv:', label='line 4', linewidth=2)  # 蓝绿色倒三角点线
-        plt.plot([1, 2, 3], [5, 5, 5], 'm^', label='line 5', linewidth=2)  # 紫红色正三角
-        plt.plot([1, 2, 3], [6, 6, 6], 'y<', label='line 5', linewidth=2)  # 黄色左三角
-        plt.plot([1, 2, 3], [7, 7, 7], 'k>', label='line 5', linewidth=2)  # 黑色右三角
-        ```
+    ```python
+    plt.plot([1, 2, 3], [1, 1, 1], 'b-', label='line 1', linewidth=2)  # 蓝色直线
+    plt.plot([1, 2, 3], [2, 2, 2], 'g--', label='line 2', linewidth=2)  # 绿色虚线
+    plt.plot([1, 2, 3], [3, 3, 3], 'ro-.', label='line 3', linewidth=2)  # 红色带圈点划线
+    plt.plot([1, 2, 3], [4, 4, 4], 'cv:', label='line 4', linewidth=2)  # 蓝绿色倒三角点线
+    plt.plot([1, 2, 3], [5, 5, 5], 'm^', label='line 5', linewidth=2)  # 紫红色正三角
+    plt.plot([1, 2, 3], [6, 6, 6], 'y<', label='line 5', linewidth=2)  # 黄色左三角
+    plt.plot([1, 2, 3], [7, 7, 7], 'k>', label='line 5', linewidth=2)  # 黑色右三角
+    ```
 
-        ![plot](../images/plot.png)
+    <img src='../images/plot.png' width=600>
 
-2. scatter 散点图
+3. scatter 散点图
    1. 带颜色区分的散点图
 
-3. bar 柱状图
+4. bar 柱状图
+5. pie 饼图
+
+    ```python
+    import matplotlib.pyplot as plt
+
+    labels = 'a', 'b', 'c', 'd'
+    sizes = [15, 30, 45, 10]
+    explode = (0, 0.1, 0, 0)
+
+    plt.subplots()
+    # explode: 每个楔子偏离的距离
+    # autopct: 自动显示饼图百分比
+    plt.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+            shadow=True, startangle=90)
+    plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+    plt.show()
+    ```
+
+    <img src='../images/plt_pie.png' width=512>
 
 ## 2. 图片设置
 
+### 2.1. 坐标轴
+
 1. 坐标轴反向
 
-    ```py
+    ```python
     ax.invert_xaxis()  # x坐标轴反向
     ```
 
@@ -83,35 +104,36 @@
     plt.xticks(x_axis, rotation=15)  # 刻度倾斜
     ```
 
-6. 设置图例
-   1. plt.legend
+### 2.2. 图例
 
-        ```python
-        # 设置图例
-        plt.plot(x1, y1, label='a')
-        plt.plot(x2, y2, label='b')
-        plt.legend()
-        ```
+1. plt.legend
 
-   2. legend参数，更多配置参考[官方文档](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
-      1. 位置 `loc=string or code`
+     ```python
+     # 设置图例
+     plt.plot(x1, y1, label='a')
+     plt.plot(x2, y2, label='b')
+     plt.legend()
+     ```
 
-            | 位置string     | 位置code | 位置           |
-            | -------------- | -------- | -------------- |
-            | 'best'         | 0        | 自适应         |
-            | 'upper right'  | 1        | 右上↗          |
-            | 'upper left'   | 2        | 左上↖          |
-            | 'lower left'   | 3        | 左下↙          |
-            | 'lower right'  | 4        | 右下↘          |
-            | 'right'        | 5        | 右→            |
-            | 'center left'  | 6        | 左←            |
-            | 'center right' | 7        | 右→（同rigth） |
-            | 'lower center' | 8        | 下↓            |
-            | 'upper center' | 9        | 上↑            |
-            | 'cneter'       | 10       | 中心           |
+2. legend参数，更多配置参考[官方文档](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
+   1. 位置 `loc=string or code`
 
-      2. 标题 `title='图例'`
-      3. 标题大小 `title_fontsize='12'`
+         | 位置string     | 位置code | 位置           |
+         | -------------- | -------- | -------------- |
+         | 'best'         | 0        | 自适应         |
+         | 'upper right'  | 1        | 右上↗          |
+         | 'upper left'   | 2        | 左上↖          |
+         | 'lower left'   | 3        | 左下↙          |
+         | 'lower right'  | 4        | 右下↘          |
+         | 'right'        | 5        | 右→            |
+         | 'center left'  | 6        | 左←            |
+         | 'center right' | 7        | 右→（同rigth） |
+         | 'lower center' | 8        | 下↓            |
+         | 'upper center' | 9        | 上↑            |
+         | 'cneter'       | 10       | 中心           |
+
+   2. 标题 `title='图例'`
+   3. 标题大小 `title_fontsize='12'`
 
 ## 3. 图片显示/输出设置
 

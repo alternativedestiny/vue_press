@@ -27,6 +27,7 @@
     virtualenv 虚拟环境
     paramiko ssh工具
     jaydebeapi 通过java的jdbc来连接数据库
+    pulp 线性求解
 
     ```
 

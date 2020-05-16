@@ -1,6 +1,6 @@
 # 2. 数据类型
 
-## 数字(Number)
+## 1. 数字(Number)
 
 1. 保留4位小数位
 
@@ -11,7 +11,7 @@
     num = round(num, 4)
     ```
 
-## 字符串(String)
+## 2. 字符串(String)
 
 1. 类型转换：`str2 = str(str1)`
 2. 字符串拼接：`str3 = str1 + str2`
@@ -28,6 +28,8 @@
     # 多个分隔符分割，不同分隔符用‘|’隔开
     import re
     str2 = re.split(',|!', str1)
+    # 或者用r'[]'，不需要用‘|’隔开
+    str2 = re.split(r'[,!]', str1)
     ```
 
 5. 字符串转代码
@@ -61,7 +63,7 @@
     print(f'{a} + {b} = {a + b}')  # 1 + 2 = 3
     ```
 
-## 列表(List)
+## 3. 列表(List)
 
 1. 创建列表
 
@@ -115,11 +117,11 @@
     print(list1.index('banana'))  # 查询列表元素位置
     ```
 
-## 元组(Tupple)
+## 4. 元组(Tupple)
 
-## 集合(Set)
+## 5. 集合(Set)
 
-## 字典(Dictionary)
+## 6. 字典(Dictionary)
 
 1. 类似c++中的map，键唯一，值不唯一，如果出现相同的键，后面的会覆盖掉前面的
 
@@ -142,9 +144,9 @@
     d['cherry']
     ```
 
-## 日期处理 (datetime & arrow)
+## 7. 日期处理 (datetime & arrow)
 
-### datetime
+### 7.1. datetime
 
 1. 日期类型datetime
    1. datetime.date——日期，属性：year，month，day
@@ -221,7 +223,7 @@
         print((day2 - day1).seconds)  # 3600，与日期无关
         ```
 
-### Arrow (pip)
+### 7.2. Arrow (pip)
 
 1. 创建日期
 
