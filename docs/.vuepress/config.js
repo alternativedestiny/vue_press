@@ -21,6 +21,7 @@ module.exports = {
     plugins: [
         '@vuepress/back-to-top', // 回到顶部按钮
         'vuepress-plugin-cat',  // 那只猫
+        'vuepress-plugin-nprogress', // 顶部进度条
     ],
     themeConfig: {
         logo: '/hoppou_nobg.jpg',
@@ -63,7 +64,8 @@ module.exports = {
                 'Python-04-Numpy',
                 'Python-05-Pandas',
                 'Python-06-Matplotlib',
-                'Python代码块'
+                'Python代码块',
+                'Pycharm模板与补全',
             ],
             '/pages/study/': [
                 'c++学习笔记',
@@ -106,7 +108,6 @@ module.exports = {
                 '常用工具软件',
                 '使用natapp发布个人网站',
                 '微软官方硬盘备份软件SyncToy',
-                'Pycharm模板与补全',
                 'VSCode小技巧',
                 'VSCode自定义补全'
             ],

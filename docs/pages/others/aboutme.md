@@ -12,6 +12,8 @@
 
     感谢`@demonQ`开发的[插件教程](https://juejin.im/post/5d5137066fb9a06b2a203214)
 
+3. Markdown公式支持，使用Markdown-it-katex模块
+
 ---
 
 [hide](hide.md)

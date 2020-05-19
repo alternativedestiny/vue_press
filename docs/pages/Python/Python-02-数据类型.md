@@ -15,6 +15,22 @@
 
 1. 类型转换：`str2 = str(str1)`
 2. 字符串拼接：`str3 = str1 + str2`
+
+    ```python
+    # 推荐的字符串拼接方法
+    x = a + b
+    x = '%s, %s!' % (imperative, expletive)
+    x = '{}, {}!'.format(imperative, expletive)
+    x = 'name: %s; score: %d' % (name, n)
+    x = 'name: {}; score: {}'.format(name, n)
+
+    # 不推荐的方法
+    x = '%s%s' % (a, b)  # use + in this case
+    x = '{}{}'.format(a, b)  # use + in this case
+    x = imperative + ', ' + expletive + '!'
+    x = 'name: ' + name + '; score: ' + str(n)
+    ```
+
 3. 字符串截取：`str4 = str1[m:n]  # 负号表示从后算起`
 4. 字符串分割
 

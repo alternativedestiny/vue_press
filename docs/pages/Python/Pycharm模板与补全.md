@@ -1,11 +1,6 @@
 # Pycharm模板与补全
 
-## 1. 环境
-
-- windows10
-- pycharm2017.3.3 professional edition
-
-## 2. 模板
+## 1. 模板
 
 1. 打开File->Settings->Editor->File and Code Templates
 2. 选择Python Script，输入模板
@@ -30,17 +25,17 @@
 
 4. 系统变量
 
-| 变量名                    | 内容       |
-| ------------------------- | ---------- |
-| ${PROJECT_NAME}           | 项目名称   |
-| ${PRODUCT_NAME}           | IDE名称    |
-| ${FILE_NAME}              | 文件名     |
-| ${DATE}                   | 日期       |
-| ${USER}                   | 用户名     |
-| \${YEAR} \${MONTH} ${DAY} | 年、月、日 |
-| \${HOUR} ${MINUTE}        | 时、分     |
+    | 变量名                    | 内容       |
+    | ------------------------- | ---------- |
+    | ${PROJECT_NAME}           | 项目名称   |
+    | ${PRODUCT_NAME}           | IDE名称    |
+    | ${FILE_NAME}              | 文件名     |
+    | ${DATE}                   | 日期       |
+    | ${USER}                   | 用户名     |
+    | \${YEAR} \${MONTH} ${DAY} | 年、月、日 |
+    | \${HOUR} ${MINUTE}        | 时、分     |
 
-## 3. 补全
+## 2. 补全
 
 1. 打开File->Settings->Editor->Live Templates
 

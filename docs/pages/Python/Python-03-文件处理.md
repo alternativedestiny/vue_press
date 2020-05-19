@@ -6,7 +6,7 @@
 import os
 
 # 获取文件列表
-sources_path = "./substation"  # 路径
+sources_path = "./folder"  # 路径
 file_name = os.listdir(sources_path)  # 所有文件名
 
 # 创建文件夹/文件目录

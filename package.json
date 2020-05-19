@@ -15,7 +15,8 @@
     "@vuepress/plugin-back-to-top": "^1.4.0",
     "vuepress": "^1.4.0",
     "vuepress-plugin-auto-sidebar": "^1.4.1",
-    "vuepress-plugin-autobar": "github:boboidream/vuepress-bar"
+    "vuepress-plugin-autobar": "github:boboidream/vuepress-bar",
+    "vuepress-plugin-nprogress": "^1.1.6"
   },
   "dependencies": {
     "markdown-it-katex": "^2.0.3",
