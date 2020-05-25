@@ -46,7 +46,7 @@ os.rename(old_name, new_name)
     a = data[行起始:终止, 列起始:终止]
     ```
 
-3. 用pandas读写csv文件
+3. 用pandas读写csv文件，参考pandas笔记
 
 4. 备注
 
