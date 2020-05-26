@@ -62,7 +62,7 @@ os.rename(old_name, new_name)
 - wb+：以二进制读写模式打开 (参见 w+ )
 - ab+：以二进制读写模式打开 (参见 a+ )
 
-### 2.2. Excel(xls/xlsx) 文件读写
+### 2.2. Excel(xls/xlsx) 文件
 
 1. 使用 xlrd/xlwt
 
@@ -139,3 +139,15 @@ os.rename(old_name, new_name)
        ```
 
    - 参考[Python 玩转 Excel](https://mp.weixin.qq.com/s?__biz=MjM5NjMyMjUzNg==&mid=2448130701&idx=1&sn=10919f10f4006a18579d6bbc13a3f15c&chksm=b2f42f0a8583a61c9421711b7a542f2a1c8cfe114ace3ea1ba8cefc26bdde8eb36755a7404ae&scene=0#rd)
+
+### 2.3. txt 文件
+
+1. 打开文件
+
+    ```python
+    file = open('数据采样/分区修正.txt', encoding='utf-8')
+    lines = file.readlines()
+    for line in lines:
+        print(line)
+    file.close()
+    ```
