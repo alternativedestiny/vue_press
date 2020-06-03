@@ -79,6 +79,55 @@
     print(f'{a} + {b} = {a + b}')  # 1 + 2 = 3
     ```
 
+## 正则表达式（Regular Expression）
+
+1. 特殊字符，[参考链接](https://docs.python.org/zh-cn/3.8/library/re.html)
+
+    | 字符     | 匹配项                             |
+    | -------- | ---------------------------------- |
+    | .        | 匹配除了换行的任意字符             |
+    | ^        | 匹配字符串的开头                   |
+    | $        | 匹配字符串尾或着换行符的前一个字符 |
+    | *        | 对他前面的正则式匹配0到任意次      |
+    | +        | 对他前面的正则式匹配1到任意次      |
+    | ?        | 对他前面的正则式匹配0到1次         |
+    | *? +? ?? | ‘非贪婪’方式                       |
+    | {m}      | 对他前面的正则式指定匹配m个重复    |
+    | {m,n}    | 对正则式进行m到n次匹配             |
+    | \        | 转义字符                           |
+    | []       | 用于表示一个字符集                 |
+
+2. 使用
+   1. re.match(pattern, string, flags=0)：起始位置匹配
+
+        | 参数    | 描述                       |
+        | ------- | -------------------------- |
+        | pattern | 正则表达式                 |
+        | string  | 要匹配的字符串             |
+        | flags   | 标志位，大小写、多行匹配等 |
+
+        ```python
+        import re
+
+        # <re.Match object; span=(0, 2), match='ab'>
+        re.match(r'ab+', 'abc')
+        # <re.Match object; span=(0, 3), match='abb'>
+        re.match(r'ab+', 'abbc')
+        # None
+        re.match(r'ab+', 'acbab')
+        ```
+
+   2. re.search(pattern, string, flags=0)：匹配整个字符串
+
+        ```python
+        # <re.Match object; span=(0, 2), match='ab'>
+        re.match(r'ab+', 'abc')
+        # <re.Match object; span=(0, 3), match='abb'>
+        re.match(r'ab+', 'abbc')
+        # <re.Match object; span=(3, 5), match='ab'>
+        re.match(r'ab+', 'acbab')
+        ```
+
 ## 3. 列表(List)
 
 1. 创建列表

@@ -211,3 +211,44 @@ db.close()
 2. 连接数据库并修改初始密码
 
    ![navicat](../images/2019-09-17-20-31-35.png)
+
+## 5. MySQL密码重置
+
+1. 创建一个文本文件，比如abc.txt，写入下面的指令，新root密码为123456
+
+    ```txt
+    ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
+    ```
+
+2. 以管理员身份打开cmd
+   1. 停止mysql
+
+        ```bash
+        net stop mysql
+        ```
+
+        <img src='../images/stopmysql.png' width=400>
+
+   2. 执行重置命令，执行完成后，Ctrl+c退出
+
+        ```bash
+        mysqld --init-file="d:\\mysql-8.0.17-winx64\\abc.txt" --console
+        ```
+
+        <img src='../images/resetmysql.png' width=900>
+
+   3. 启动MySQL
+
+        ```bash
+        net start mysql
+        ```
+
+        <img src='../images/startmysql.png' width=400>
+
+   4. 用新的密码登录
+
+        ```bash
+        mysql -u root -p
+        ```
+
+        <img src='../images/loginmysql.png' width=500>

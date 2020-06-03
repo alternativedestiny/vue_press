@@ -1,6 +1,6 @@
 # 4. Numpy
 
-## 1. ndarray
+## 1. 数据类型 ndarray
 
 1. 创建数组
 
@@ -54,3 +54,9 @@
     np.pi  # pi
     np.sin()  # sin
     ```
+
+## 2. 拟合 polyfit
+
+1. 多项式拟合
+-[](https://blog.csdn.net/qq_38410730/article/details/105093434)
+2. 分段拟合

@@ -135,6 +135,16 @@
    2. 标题 `title='图例'`
    3. 标题大小 `title_fontsize='12'`
 
+### 2.3. 多图设置
+
+1. subplot(nrows, ncols, index, **kwargs)
+
+```python
+fig.subplot(1,2,1)
+```
+
+2. subplots
+
 ## 3. 图片显示/输出设置
 
 1. 中文编码问题

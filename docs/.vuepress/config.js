@@ -3,10 +3,19 @@ module.exports = {
     description: '北方酱Hoppou~的个人主页', // meta 中的描述文字，用于SEO
     // 注入到当前页面的 HTML <head> 中的标签
     head: [
-        ['link', { rel: 'icon', href: '/hoppou_nobg.jpg' }],  //浏览器的标签栏的网页图标
+        ['link', {
+            rel: 'icon',
+            href: '/hoppou_nobg.jpg'
+        }], //浏览器的标签栏的网页图标
         // 公式相关的两项
-        ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css' }],
-        ['link', { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" }]
+        ['link', {
+            rel: 'stylesheet',
+            href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css'
+        }],
+        ['link', {
+            rel: "stylesheet",
+            href: "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css"
+        }]
     ],
     markdown: {
         lineNumbers: true,
@@ -20,7 +29,7 @@ module.exports = {
     serviceWorker: true,
     plugins: [
         '@vuepress/back-to-top', // 回到顶部按钮
-        'vuepress-plugin-cat',  // 那只猫
+        'vuepress-plugin-cat', // 那只猫
         'vuepress-plugin-nprogress', // 顶部进度条
     ],
     themeConfig: {
@@ -31,30 +40,66 @@ module.exports = {
         // 导航栏
         nav: [
             // nav1
-            { text: '首页', link: '/' },
+            {
+                text: '首页',
+                link: '/'
+            },
             // nav2
             {
-                text: '学习笔记',
+                text: 'Python笔记',
                 items: [
-                    { text: 'Python笔记', link: '/pages/Python/Python-01-环境' },
-                    { text: '编程笔记', link: '/pages/study/Git学习笔记' },
-                    { text: '机器学习', link: '/pages/machine-learning/K-Means聚类算法' },
-                    { text: '前端笔记', link: '/pages/front-end/Vue学习笔记' },
-                    { text: '软件技巧', link: '/pages/skill/常用工具软件' }
+                    { text: 'Python 环境', link: '/pages/Python/Python-01-环境' },
+                    { text: 'Python 数据类型', link: '/pages/Python/Python-02-数据类型' },
+                    { text: 'Python 文件', link: '/pages/Python/Python-03-文件处理' },
+                    { text: 'Python Numpy', link: '/pages/Python/Python-04-Numpy' },
+                    { text: 'Python Pandas', link: '/pages/Python/Python-05-Pandas' },
+                    { text: 'Python Matplotlib', link: '/pages/Python/Python-06-Matplotlib' },
+                    { text: 'Python 代码块', link: '/pages/Python/Python代码块' },
+                    { text: 'Pycharm', link: '/pages/Python/Pycharm模板与补全' },
                 ]
+            },
+            {
+                text: '机器学习',
+                link: '/pages/machine-learning/K-Means聚类算法'
+            },
+            {
+                text: '学习笔记',
+                link: '/pages/study/Git学习笔记'
+            },
+            {
+                text: '机器学习',
+                link: '/pages/machine-learning/K-Means聚类算法'
+            },
+            {
+                text: '前端笔记',
+                link: '/pages/front-end/Vue学习笔记'
+            },
+            {
+                text: '软件技巧',
+                link: '/pages/skill/常用工具软件'
             },
             // nav3
-            {
-                text: '好物私评',
-                items: [
-                    { text: '静电容键盘', link: '/pages/tested/静电容键盘' }
-                ]
-            },
+            // {
+            //     text: '好物私评',
+            //     items: [{
+            //         text: '静电容键盘',
+            //         link: '/pages/tested/静电容键盘'
+            //     }]
+            // },
             // nav4
-            { text: '功能演示', link: '/pages/others/test' },
+            {
+                text: '功能演示',
+                link: '/pages/others/test'
+            },
             // nav5
-            { text: '关于', link: '/pages/others/aboutme' },
-            { text: 'Github', link: 'https://github.com/alternativedestiny/vue_press' },
+            {
+                text: '关于',
+                link: '/pages/others/aboutme'
+            },
+            {
+                text: 'Github',
+                link: 'https://github.com/alternativedestiny/vue_press'
+            },
         ],
         sidebar: {
             '/pages/Python/': [
@@ -66,6 +111,18 @@ module.exports = {
                 'Python-06-Matplotlib',
                 'Python代码块',
                 'Pycharm模板与补全',
+            ],
+            '/pages/machine-learning/': [
+                '层次聚类',
+                '机器学习',
+                '聚类算法',
+                '谱聚类',
+                '预测评价指标',
+                'DBSCAN密度聚类算法',
+                'K-Means聚类算法',
+                'Keras学习笔记',
+                'LSTM学习笔记',
+                'sklearn中SVM程序',
             ],
             '/pages/study/': [
                 'c++学习笔记',
@@ -82,17 +139,6 @@ module.exports = {
                 'NodeJS笔记',
                 'Ubuntu笔记',
                 'TCP IP学习笔记'
-            ],
-            '/pages/machine-learning/': [
-                'Keras学习笔记',
-                'LSTM学习笔记',
-                'K-Means聚类算法',
-                '机器学习',
-                '聚类算法',
-                '谱聚类',
-                'DBSCAN密度聚类算法',
-                'sklearn中SVM程序',
-                '预测评价指标'
             ],
             '/pages/front-end/': [
                 'Vue学习笔记',

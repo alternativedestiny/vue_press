@@ -14,22 +14,22 @@
 
 3. 安装库
 
-    ```bash
-    pip install
-    psutil  电脑监控信息读取
-    matplotlib  绘图
-    pillow->PIL  图片处理
-    pyserial  串口
-    scipy  科学计算库
-    pymysql  MySQL数据库
-    django  django网站框架
-    pandas 数据分析工具
-    virtualenv 虚拟环境
-    paramiko ssh工具
-    jaydebeapi 通过java的jdbc来连接数据库
-    pulp 线性求解
-
-    ```
+    | 库          | 功能                       |
+    | ----------- | -------------------------- |
+    | psutil      | 电脑监控信息读取           |
+    | matplotlib  | 绘图                       |
+    | pillow->PIL | 图片处理                   |
+    | pyserial    | 串口                       |
+    | scipy       | 科学计算库                 |
+    | sympy       | 科学（符号）计算库         |
+    | pymysql     | MySQL数据库                |
+    | django      | django网站框架             |
+    | pandas      | 数据分析工具               |
+    | virtualenv  | 虚拟环境                   |
+    | paramiko    | ssh工具                    |
+    | jaydebeapi  | 通过java的jdbc来连接数据库 |
+    | pulp        | 线性求解                   |
+    | pwlf        | 分段线性拟合               |
 
 4. 升级库
 

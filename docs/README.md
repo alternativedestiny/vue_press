@@ -7,9 +7,9 @@ actionText: 马上进入 →
 actionLink: /pages/skill/常用工具软件.md
 features:
 - title: 技术基础
-  details: 基于 VuePress 的模板
+  details: 基于 VuePress 的模板，基于 Markdown 的文本
 - title: 主要内容
-  details: 主要有基于 MarkDown 编写的编程方面的学习笔记以及亲身体验的产品评价
+  details: 主要是编程方面的学习笔记、常用软件以及亲身体验的产品评价
 - title: 高性能
   details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
 footer: 北方酱Hoppou~的个人主页

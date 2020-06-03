@@ -45,7 +45,7 @@
     index = [1, 2, 3, 4]  # 行名
     df = pd.DataFrame(index=index, columns=title)
 
-    # 创建IndexName
+    # 设置IndexName
     df.index.name = 'num'
 
     # 增加一行数据
@@ -109,7 +109,7 @@ df.sort_values(by='B')  # 按值排序
 
 ```
 
-### 1.4. 选择、查询数据(数据截取)
+### 1.4. 选择、查询数据
 
 ```python
 # 获取
@@ -207,86 +207,117 @@ df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
      df = DataFrame.sort_values(by=['col1'], ascending=False)  
      ```
 
-### 1.8. 数据合并(merge, concat)
+### 1.8. 数据合并
 
-```python
-# 数据左右合并，合并依据为key
-# how = inner, outer, left, right 默认inner
-# 需要注意，有时合并数据会造成意外的重复
-df3 = pd.merge(df1, df2, how='left', on='key1')  # 单个key
-df3 = pd.merge(df1, df2, how='left', on=['key1','key2'])  # 多key
+1. merge：列合并
 
-# 数据拼接，列不变，行叠加
-df3 = pd.concat([df1, df2])
-```
+     ```python
+     # 数据左右合并，合并依据为key
+     # how = inner, outer, left, right 默认inner
+     # 需要注意，有时合并数据会造成意外的重复
+     df3 = pd.merge(df1, df2, how='left', on='key1')  # 单个key
+     df3 = pd.merge(df1, df2, how='left', on=['key1','key2'])  # 多key
+     ```
+
+2. concat：行拼接
+
+     ```python
+     # 数据拼接，列不变，行叠加
+     df3 = pd.concat([df1, df2])
+     ```
+
+### 1.9. 画图
+
+1. df.plot
+
+     ```python
+     import pandas as pd
+     import matplotlib.pyplot as plt
+
+     df.plot()
+     plt.show()
+     ```
+
+2. 其他线形：bar, hist, box, kde, area, scatter, hexbin
+
+     ```python
+     # 比如散点图
+     df.plot.scatter(x='a', y='b', title='scatter')
+     # 或
+     df.plot(x='tm', y='p', kind='scatter', title='scatter')
+     ```
+
+3. 大部分matplotlib的设置都可以做为df.plot()的参数
 
 ## 2. pandas 读写文件
 
-1. 读文件
-   1. read_csv & read_excel
+### 2.1. 读文件
 
-        ```python
-        # header:告诉pandas那些是数据的列名，没有则设为None
-        # encoding='gbk'防止出现乱码
+1. read_csv & read_excel
 
-        # 读取csv文件，表头第0行，文件gbk编码，指定字段的数据类型
-        df = pd.read_csv('filename.csv', header=0, encoding='gbk', dtype={'id': int, 'name': string})
+     ```python
+     # header:告诉pandas那些是数据的列名，没有则设为None
+     # encoding='gbk'防止出现乱码
 
-        # 读取excel文件，表头第0行，表sheet1，选择第0，1列数据
-        # 依赖xlrd，需要安装
-        # 读取‘sheet1’用 sheet_name=0 也可
-        df1 = pd.read_excel('filename.xlsx', header=0, sheet_name='Sheet1', usecols=[0, 1])
+     # 读取csv文件，表头第0行，文件gbk编码，指定字段的数据类型
+     df = pd.read_csv('filename.csv', header=0, encoding='gbk', dtype={'id': int, 'name': string})
 
-        ```
+     # 读取excel文件，表头第0行，表sheet1，选择第0，1列数据
+     # 依赖xlrd，需要安装
+     # 读取‘sheet1’用 sheet_name=0 也可
+     df1 = pd.read_excel('filename.xlsx', header=0, sheet_name='Sheet1', usecols=[0, 1])
 
-   2. 读取设置，[官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
-      | 关键字                   | 功能                             |
-      | ------------------------ | -------------------------------- |
-      | na_values=[5]            | 5和5.0会被认为是NaN              |
-      | na_valuede=["Na","0"]    | Na和0会被认为是NaN               |
-      | true_values=["yes"]      | yes被认为True                    |
-      | false_value=["no"]       | no被认为False                    |
-      | skiprows=[0,3]           | 跳过第0行和第3行                 |
-      | nrows                    | 读取的行数                       |
-      | index_col=False          | 目录列，'False'表示没有目录      |
-      | MultiIndex               | 支持双列目录                     |
-      | sep=':'                  | 支持':'等符号作为分隔符的数据    |
-      | chunksize=4              | 每4行数据为一组                  |
-      | skip_blank_lines=True    | 是否跳过空行，默认True           |
-      | usecols=['col1', 'col2'] | 选择要读取的列                   |
-      | engine='python'          | 默认'c'，c更快，python功能更完善 |
+     ```
 
-   3. 使用设置
+2. 读取设置，[官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
+   | 关键字                   | 功能                             |
+   | ------------------------ | -------------------------------- |
+   | na_values=[5]            | 5和5.0会被认为是NaN              |
+   | na_valuede=["Na","0"]    | Na和0会被认为是NaN               |
+   | true_values=["yes"]      | yes被认为True                    |
+   | false_value=["no"]       | no被认为False                    |
+   | skiprows=[0,3]           | 跳过第0行和第3行                 |
+   | nrows                    | 读取的行数                       |
+   | index_col=False          | 目录列，'False'表示没有目录      |
+   | MultiIndex               | 支持双列目录                     |
+   | sep=':'                  | 支持':'等符号作为分隔符的数据    |
+   | chunksize=4              | 每4行数据为一组                  |
+   | skip_blank_lines=True    | 是否跳过空行，默认True           |
+   | usecols=['col1', 'col2'] | 选择要读取的列                   |
+   | engine='python'          | 默认'c'，c更快，python功能更完善 |
 
-        ```python
-        # 跳过多行，但保留第一行表头
-        df = pd.read_csv(file, skiprows=range(1, 100))
+3. 使用设置
 
-        # 多空格分割
-        df = pd.read_csv('filename.csv', sep='\\s+')
+     ```python
+     # 跳过多行，但保留第一行表头
+     df = pd.read_csv(file, skiprows=range(1, 100))
 
-        ```
+     # 多空格分割
+     df = pd.read_csv('filename.csv', sep='\\s+')
 
-2. 写文件
-   1. to_csv 用法
+     ```
 
-        ```python
-        # 将df存储为csv，index表示是否显示行名
-        df.to_csv('name.csv', index=False, sep=',', float_format='%.3f', columns=['col1', 'col2'])
-        # 会给数据添加引号，尽量不要用
-        df.to_csv('name.csv', index=False, delimiter=',')
-        ```
+### 2.2. 写文件
 
-   2. to_csv 部分配置
+1. to_csv 用法
 
-        | 关键字       | 功能                                            |
-        | ------------ | ----------------------------------------------- |
-        | sep          | 分隔符，默认','                                 |
-        | na_rep       | 缺失数据表示，默认空                            |
-        | float_format | 浮点格式，保留小数位，比如：float_format='%.3f' |
-        | columns      | 选择写入的列，比如：columns=['col1', 'col2']    |
-        | header       | 是否写入列名，默认'True'                        |
-        | index        | 是否写入目录，默认'True'                        |
+     ```python
+     # 将df存储为csv，index表示是否显示行名
+     df.to_csv('name.csv', index=False, sep=',', float_format='%.3f', columns=['col1', 'col2'])
+     # 会给数据添加引号，尽量不要用
+     df.to_csv('name.csv', index=False, delimiter=',')
+     ```
+
+2. to_csv 部分配置
+
+     | 关键字       | 功能                                            |
+     | ------------ | ----------------------------------------------- |
+     | sep          | 分隔符，默认','                                 |
+     | na_rep       | 缺失数据表示，默认空                            |
+     | float_format | 浮点格式，保留小数位，比如：float_format='%.3f' |
+     | columns      | 选择写入的列，比如：columns=['col1', 'col2']    |
+     | header       | 是否写入列名，默认'True'                        |
+     | index        | 是否写入目录，默认'True'                        |
 
 ## 3. Pandas 其他
 
