@@ -31,7 +31,12 @@
     x = 'name: ' + name + '; score: ' + str(n)
     ```
 
-3. 字符串截取：`str4 = str1[m:n]  # 负号表示从后算起`
+3. 字符串截取：
+
+    ```python
+    str4 = str1[m:n]  # 负号表示从后算起
+    ```
+
 4. 字符串分割
 
     ```python
@@ -139,7 +144,10 @@
     list2 = []
     # 创建全0列表
     import numpy as np
-    list1 = np.zeros(25, dtype=int)
+    list1 = np.zeros(25, dtype=int)  # ndarray
+    # 用list的写法
+    list1 = [0 for t in range(3)]  # [0, 0, 0]
+
     # 创建序列数组：5,6,7,8,9
     list2 = [x for x in np.arange(5, 10, 1)]
 
@@ -154,6 +162,7 @@
     len(list1)  # 4
     max(list1)  # 列表中最大值，仅限数字
     min(list1)  # 列表中最小值，仅限数字
+    sum(list1)  # 求和
     list(seq)  # 将元组转换成列表
     ```
 
