@@ -104,8 +104,12 @@ df.info()  # 显示数据的类型
 
 df.describe()  # 显示数据的快速统计摘要
 df.T  # 转置数据
-df.sort_index(axis=1, ascending=False)  # 按轴排序，降序
-df.sort_values(by='B')  # 按值排序
+new_df = df.sort_index(axis=1, ascending=False)  # 按轴排序，降序
+
+# 按值排序，注意这个函数不操作自身
+new_df = df.sort_values(by='B')
+# 除非使用inplace
+df.sort_values(by='B', inplace=True)
 
 ```
 
@@ -143,6 +147,7 @@ df[(df.a >= 10) | (df.b >= 10)]  # 或
 # 根据条件筛选多行数据
 list1 = ['a', 'b', 'c']
 df2 = df[df['name'].isin(list1)]  # 选择name列=a,b,c的数据
+df2 = df[~df['name'].isin(list1)]  # 选择name列非a,b,c的数据
 
 # 筛选含有指定字段的数据
 df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
@@ -259,7 +264,7 @@ df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
      # header:告诉pandas那些是数据的列名，没有则设为None
      # encoding='gbk'防止出现乱码
 
-     # 读取csv文件，表头第0行，文件gbk编码，指定字段的数据类型
+     # 读取csv文件，表头为第0行，文件gbk编码，指定字段的数据类型
      df = pd.read_csv('filename.csv', header=0, encoding='gbk', dtype={'id': int, 'name': string})
 
      # 读取excel文件，表头第0行，表sheet1，选择第0，1列数据
@@ -270,6 +275,7 @@ df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
      ```
 
 2. 读取设置，[官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
+
    | 关键字                   | 功能                             |
    | ------------------------ | -------------------------------- |
    | na_values=[5]            | 5和5.0会被认为是NaN              |
@@ -285,6 +291,7 @@ df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
    | skip_blank_lines=True    | 是否跳过空行，默认True           |
    | usecols=['col1', 'col2'] | 选择要读取的列                   |
    | engine='python'          | 默认'c'，c更快，python功能更完善 |
+   | parse_dates=['tm']       | 将'tm'列读取成datetime格式       |
 
 3. 使用设置
 
@@ -292,7 +299,7 @@ df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
      # 跳过多行，但保留第一行表头
      df = pd.read_csv(file, skiprows=range(1, 100))
 
-     # 多空格分割
+     # 多空格分割：去除字符串数据中两侧的空格
      df = pd.read_csv('filename.csv', sep='\\s+')
 
      ```

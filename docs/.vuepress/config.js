@@ -54,6 +54,7 @@ module.exports = {
                     { text: 'Python Numpy', link: '/pages/Python/Python-04-Numpy' },
                     { text: 'Python Pandas', link: '/pages/Python/Python-05-Pandas' },
                     { text: 'Python Matplotlib', link: '/pages/Python/Python-06-Matplotlib' },
+                    { text: 'Python SciPy', link: '/pages/Python/Python-07-SciPy' },
                     { text: 'Python 代码块', link: '/pages/Python/Python代码块' },
                     { text: 'Pycharm', link: '/pages/Python/Pycharm模板与补全' },
                 ]
@@ -65,10 +66,6 @@ module.exports = {
             {
                 text: '学习笔记',
                 link: '/pages/study/Git学习笔记'
-            },
-            {
-                text: '机器学习',
-                link: '/pages/machine-learning/K-Means聚类算法'
             },
             {
                 text: '前端笔记',
@@ -109,6 +106,7 @@ module.exports = {
                 'Python-04-Numpy',
                 'Python-05-Pandas',
                 'Python-06-Matplotlib',
+                'Python-07-SciPy',
                 'Python代码块',
                 'Pycharm模板与补全',
             ],

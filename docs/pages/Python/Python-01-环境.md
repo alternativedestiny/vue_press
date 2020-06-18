@@ -30,6 +30,7 @@
     | jaydebeapi  | 通过java的jdbc来连接数据库 |
     | pulp        | 线性求解                   |
     | pwlf        | 分段线性拟合               |
+    | pyecharts   | python + echarts           |
 
 4. 升级库
 
@@ -43,13 +44,22 @@
     ```bash
     # 在目标路径下进入cmd
     # 会连同下载所有依赖包
-    pip download 包名
+    pip download [options] [pakage]
+    # 比如下载linux版本numpy
+    pip download --only-binary=:all: --platform manylinux1_x86_64 --python-version 37 numpy
 
     # 离线安装
     pip install --no-index --find-links=file:路径 包名
     ```
 
-6. 创建虚拟环境
+    | 参数                         | 功能           |
+    | ---------------------------- | -------------- |
+    | --only-binary=:all:          | 不适用二进制包 |
+    | --platform manylinux1_x86_64 | linux 64位     |
+    | --python-version 37          | python3.7      |
+
+6. [whl离线库网站](https://www.lfd.uci.edu/~gohlke/pythonlibs/)
+7. 创建虚拟环境
    1. 安装virtualenv库 `pip install virtualenv`
    2. 在目标文件夹下进入cmd
    3. `virtualenv venv` 创建虚拟环境venv

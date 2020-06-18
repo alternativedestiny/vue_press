@@ -28,3 +28,26 @@ print(process_time())
 # 会计算sleep()时间
 print(perf_counter())
 ```
+
+## 2. 非通用型
+
+### 2.1. 分段线性拟合 piecewise linear fit
+
+1. 使用到的包`pwlf`
+2. [官方文档](https://jekel.me/piecewise_linear_fit_py/)
+3. 代码
+
+    ```python
+    import pwlf
+    import matplotlib.pyplot as plt
+    # 对数据 x,y 进行分段拟合
+    my_pwlf = pwlf.PiecewiseLinFit(x, y)
+    # 转折点，segments为分段数
+    breaks = my_pwlf.fit(segments)
+    # 拟合的结果值
+    y_hat = my_pwlf.predict(x)
+
+    # 显示结果
+    plt.plot(x, y)  # 原始数据
+    plt.plot(x, y_hat)  # 拟合后的多段直线
+    ```

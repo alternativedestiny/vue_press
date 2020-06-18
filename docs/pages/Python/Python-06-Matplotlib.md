@@ -51,6 +51,8 @@
 
     <img src='../images/plt_pie.png' width=512>
 
+6. step 阶梯图
+
 ## 2. 图片设置
 
 ### 2.1. 坐标轴
@@ -139,11 +141,53 @@
 
 1. subplot(nrows, ncols, index, **kwargs)
 
-```python
-fig.subplot(1,2,1)
-```
+    ```python
+    plt.subplot(2, 1, 1)  # 或 plt.subplot(211)
+    plt.plot(x1, y1)
+    plt.subplot(2, 1, 2)  # 或 plt.subplot(212)
+    plt.plot(x2, y2)
+    ```
 
 2. subplots
+
+    ```python
+    # 1. 类似subplot的分图功能
+    # 似乎只能2x2以上
+    fig, ax = plt.subplots(2, 2)
+    ax[0, 0].plot(x1, y1)
+    ax[1, 0].plot(x2, y2)
+    ```
+
+    ```python
+    # 2. 副坐标轴功能
+    fig, ax1 = plt.subplots()
+
+    ax1.plot(x1, y1, label='a')
+    ax1.set_ylabel('a')
+
+    # 设置ax2与ax1公用横坐标
+    ax2 = ax1.twinx()
+    ax2.plot(x2, y2, c='r', label='b')
+    ax2.set_ylim(0, 10)
+    ax2.set_ylabel('b')
+
+    plt.title('abc')
+    plt.show()
+    ```
+
+### 2.4. 辅助线
+
+1. 水平线
+
+    ```python
+    plt.hlines(y, xmin, xmax)
+    ```
+
+2. 竖直线
+
+    ```python
+    plt.vlines(x, ymin, ymax)
+    ```
 
 ## 3. 图片显示/输出设置
 

@@ -84,7 +84,7 @@
     print(f'{a} + {b} = {a + b}')  # 1 + 2 = 3
     ```
 
-## 正则表达式（Regular Expression）
+## 3. 正则表达式（Regular Expression）
 
 1. 特殊字符，[参考链接](https://docs.python.org/zh-cn/3.8/library/re.html)
 
@@ -133,7 +133,7 @@
         re.match(r'ab+', 'acbab')
         ```
 
-## 3. 列表(List)
+## 4. 列表(List)
 
 1. 创建列表
 
@@ -166,24 +166,35 @@
     list(seq)  # 将元组转换成列表
     ```
 
-3. 增删改查
+3. 增
 
     ```python
-    # 增
     list1.append('apple')  # 添加元素
     list1.count('apple')  # 统计某个元素出现次数
     list1.insert(1, 'cherry')  # 在位置1插入
 
-    # 删
+    # 两个list拼接
+    list3 = list1.extend(list2)
+    ```
+
+4. 删
+
+    ```python
     list1.pop()  # 移除列表中的一个元素，默认最后一个
     list1.remove('banana')  # 移除列表中第一个匹配项
+    ```
 
-    # 改
+5. 改
+
+    ```python
     list1.reverse()  # 反转列表
     list1.sort(cmp, key, reverse)  # 排序
     list1 += list2  # 拼接
+    ```
 
-    # 查
+6. 查
+
+    ```python
     print(list1[2])  # 第三个元素
     print(list1[-1])  # 最后一个元素
     print(list1[0:2])  # [0,2)的元素
@@ -191,11 +202,11 @@
     print(list1.index('banana'))  # 查询列表元素位置
     ```
 
-## 4. 元组(Tupple)
+## 5. 元组(Tupple)
 
-## 5. 集合(Set)
+## 6. 集合(Set)
 
-## 6. 字典(Dictionary)
+## 7. 字典(Dictionary)
 
 1. 类似c++中的map，键唯一，值不唯一，如果出现相同的键，后面的会覆盖掉前面的
 
@@ -218,9 +229,9 @@
     d['cherry']
     ```
 
-## 7. 日期处理 (datetime & arrow)
+## 8. 日期时间处理
 
-### 7.1. datetime
+### 8.1. datetime库
 
 1. 日期类型datetime
    1. datetime.date——日期，属性：year，month，day
@@ -229,9 +240,10 @@
    4. datetime.timedelta——时间间隔，精确到微秒
    5. datetime.tzinfo——时区信息对象的抽象基类。 datetime和time类使用它们来提供可自定义的时间调整概念（例如，考虑时区和/或夏时制）
    6. datetime.timezone——一个实现了 tzinfo 抽象基类的子类，用于表示相对于 世界标准时间（UTC）的偏移量。
+
 2. 创建日期
 
-    批量生成日期数据参考pandas
+    批量生成日期数据参考pandas笔记
 
     ```python
     # 导入datetime包
@@ -246,9 +258,15 @@
     print(date1.time())  # 00:00:00
     print(date1.day)  # 28
 
-    # 字符串转日期
+    # 字符串转日期，注意是strptime，不是strftime，p/f区分
     str1 = '2020-01-01 10:10:10'
     t = datetime.strptime(str1, '%Y-%m-%d %H:%M:%S')
+
+    # 日期格式化用strftime
+    day1 = datetime(2020, 6, 5)  # 2020-06-05 00:00:00
+    str2 = datetime.strftime(day1, '%H:%M:%S %m/%d/%Y')  # 00:00:00 06/05/2020
+    # 或
+    str2 = day1.strftime('%H:%M:%S %m/%d/%Y')  # 00:00:00 06/05/2020
 
     ```
 
@@ -297,7 +315,7 @@
         print((day2 - day1).seconds)  # 3600，与日期无关
         ```
 
-### 7.2. Arrow (pip)
+### 8.2. Arrow (pip)
 
 1. 创建日期
 
