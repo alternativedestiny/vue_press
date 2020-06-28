@@ -173,7 +173,27 @@ df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
      pd.date_range(start, periods=7, freq='4H').strftime("%Y-%m-%d %H:%M:%S").tolist()
      ```
 
-### 1.6. 数据计算
+### 1.6. 删除数据
+
+1. 清理无效数据
+
+     ```python
+     df[df.notnull()]
+     df.dropna()
+     ```
+
+2. 删除指定的行/列
+
+     ```python
+     # 删除行
+     df.drop([0, 1])  # 删除第0，1行
+
+     # 删除列
+     df.drop(['col1'], axis=1)  # 删除‘col1’列
+
+     ```
+
+### 1.7. 数据计算
 
    1. 求平均值
 
@@ -196,7 +216,7 @@ df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
         df['a'].std()
         ```
 
-### 1.7. 数据排序
+### 1.8. 数据排序
 
 1. Series排序
 
@@ -212,7 +232,7 @@ df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
      df = DataFrame.sort_values(by=['col1'], ascending=False)  
      ```
 
-### 1.8. 数据合并
+### 1.9. 数据合并
 
 1. merge：列合并
 
@@ -231,7 +251,66 @@ df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
      df3 = pd.concat([df1, df2])
      ```
 
-### 1.9. 画图
+### 1.10. 分组统计
+
+1. 分组 groupby
+
+     ```python
+     import pandas as pd
+
+     df = pd.DataFrame({
+     '姓名': ['小明', '小红', '小刚', '小强', '张三', '李四'],
+     '年级': [1, 1, 1, 1, 2, 2],
+     '班级': ['a', 'a', 'b', 'b', 'a', 'b'],
+     '语文': [85, 93, 79, 97, 80, 75],
+     '数学': [94, 92, 84, 84, 90, 66],
+     '英语': [90, 91, 90, 96, 80, 69]
+     })
+
+     # 分类统计，单个key
+     group1 = df.groupby('年级')
+     # 分类统计，多个key
+     group1 = df.groupby(['年级', '班级'])
+
+     # 统计
+     group1.max()
+     group1.mean()
+     ```
+
+2. 聚合 aggregation
+
+   可以使用聚合函数：mean/sum/size/count/std/var/sem/describe/first/last/nth/min/max
+   也可以使用自定义函数
+
+     ```python
+     print(group1['语文'].agg(['mean', 'max']))
+     #            mean  max
+     #  年级 班级
+     #  1  a     89   93
+     #     b     88   97
+     #  2  a     80   80
+     #     b     75   75
+
+     print(group1.agg({'数学': ['mean', 'max']}))
+     #       数学
+     #         mean max
+     #  年级 班级
+     #  1  a    93  94
+     #     b    84  84
+     #  2  a    90  90
+     #     b    66  66
+     ```
+
+3. 过滤 filteration
+
+     ```python
+
+     ```
+
+4. 变换 transformation
+5. 综合 apply
+
+### 1.11. 画图
 
 1. df.plot
 

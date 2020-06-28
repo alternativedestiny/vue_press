@@ -17,10 +17,11 @@ git init
 git add -A
 git commit -m 'deploy'
 
-# 如果发布到 https://<USERNAME>.github.io
+# 如果发布到 https://<USERNAME>.github.io，-f强制推送
 # git push -f https://gitee.com/hoppou/hoppou master
 # git push -f https://github.com/alternativedestiny/alternativedestiny.github.io master
-git push https://gitee.com/hoppou/hoppou master
-git push https://github.com/alternativedestiny/alternativedestiny.github.io master
+git push -f https://gitee.com/hoppou/hoppou master
+git push -f https://github.com/alternativedestiny/alternativedestiny.github.io master
 
 echo "*** push complete ***"
+sleep 5s

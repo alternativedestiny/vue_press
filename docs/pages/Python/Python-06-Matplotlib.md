@@ -2,7 +2,9 @@
 
 ## 1. 绘图种类
 
-1. plot 基本绘图
+### plot 折线绘图
+
+1. 代码
 
     ```python
     import matplotlib.pyplot as plt
@@ -26,11 +28,15 @@
 
     <img src='../images/plot.png' width=600>
 
-3. scatter 散点图
-   1. 带颜色区分的散点图
+### scatter 散点图
 
-4. bar 柱状图
-5. pie 饼图
+1. 带颜色区分的散点图
+
+### bar 柱状图
+
+### pie 饼图
+
+1. 代码
 
     ```python
     import matplotlib.pyplot as plt
@@ -51,7 +57,7 @@
 
     <img src='../images/plt_pie.png' width=512>
 
-6. step 阶梯图
+2. step 阶梯图
 
 ## 2. 图片设置
 
@@ -180,13 +186,15 @@
 1. 水平线
 
     ```python
-    plt.hlines(y, xmin, xmax)
+    # 水平虚线，高度为y，从(xmin,y)到(xmax,y)
+    plt.hlines(y, xmin, xmax, linestyle=':')
     ```
 
 2. 竖直线
 
     ```python
-    plt.vlines(x, ymin, ymax)
+    # 垂直虚线，从(x,ymin)到(x,ymax)
+    plt.vlines(x, ymin, ymax, linestyle=':')
     ```
 
 ## 3. 图片显示/输出设置
