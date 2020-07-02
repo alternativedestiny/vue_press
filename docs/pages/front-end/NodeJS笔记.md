@@ -53,6 +53,15 @@
     npm uninstall -g <package>
     ```
 
+3. 参数
+
+| 参数 | 全名            | 功能                                      |
+| ---- | --------------- | ----------------------------------------- |
+| -g   |                 | 全局安装                                  |
+| -S   | --save          | 安装到node_modules，添加到dependencies    |
+| -D   | --save-dev      | 安装到node_modules，添加到devDependencies |
+| -O   | --dave-optional | 添加到OptionalDependencies                |
+
 ## 2. yarn
 
 ### 2.1. 换源

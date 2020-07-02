@@ -1,6 +1,6 @@
 # JavaScript学习笔记
 
-## 1. JS数据类型
+## 1. JS数据
 
 - Undefined 未定义，声明但未初始化
 - Boolean 布尔值
@@ -141,7 +141,7 @@
         console.log(person[name]);
         ```
 
-### 6.2. Array 类型
+### 6.2. 数组 Array 类型
 
 1. 创建数组方法
 
@@ -212,7 +212,7 @@
     3. .reduce()——从数组的第一项开始，逐个遍历到最后
     4. .reduceRight()——从数组的最后一项开始，向前遍历到第一项
 
-### 6.3. Data 类型
+### 6.3. 日期 Date 类型
 
 1. Date类型
     - Date.parse()
@@ -225,7 +225,7 @@
 3. 日期格式化方法
 4. 日期时间组件
 
-### 6.4. RegExp 类型
+### 6.4. 正则 RegExp 类型
 
 1. ECMAScript 通过 RegExp 类型来支持正则表达式。
 
@@ -249,7 +249,7 @@
 4. RegExp 构造函数属性
 5. 模式的局限性
 
-### 6.5. Function 类型
+### 6.5. 函数 Function 类型
 
 1. 声明函数
 
