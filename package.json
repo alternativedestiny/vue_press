@@ -12,13 +12,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.5.2",
-    "vuepress": "^1.5.2",
-    "vuepress-plugin-auto-sidebar": "^1.5.0",
-    "vuepress-plugin-autobar": "github:boboidream/vuepress-bar",
-    "vuepress-plugin-nprogress": "^1.1.6"
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "vuepress": "^1.5.2"
   },
   "dependencies": {
+    "@vuepress/plugin-back-to-top": "^1.5.2",
+    "element": "^0.1.4",
+    "element-ui": "^2.13.2",
     "express": "^4.17.1",
     "markdown-it-katex": "^2.0.3",
     "vue-waterfall-plugin": "^1.0.7",

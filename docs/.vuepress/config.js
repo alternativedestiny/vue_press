@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 function getSideBar(path) {
+    // 只能用绝对路径
     path = 'D:/PersonalProject/vue_press/docs/pages/' + path + '/';
     let file_list = fs.readdirSync(path);
     for (let i = 0; i < file_list.length; i++) {
@@ -53,7 +54,7 @@ module.exports = {
     plugins: [
         '@vuepress/back-to-top', // 回到顶部按钮
         'vuepress-plugin-cat', // 那只猫
-        'vuepress-plugin-nprogress', // 顶部进度条
+        // 'vuepress-plugin-nprogress', // 顶部进度条
     ],
     themeConfig: {
         logo: '/hoppou_nobg.jpg',
@@ -78,8 +79,10 @@ module.exports = {
                     { text: 'Python Pandas', link: '/pages/Python/Python-05-Pandas' },
                     { text: 'Python Matplotlib', link: '/pages/Python/Python-06-Matplotlib' },
                     { text: 'Python SciPy', link: '/pages/Python/Python-07-SciPy' },
-                    { text: 'Python 代码块', link: '/pages/Python/Python代码块' },
-                    { text: 'Pycharm', link: '/pages/Python/Pycharm模板与补全' },
+                    { text: 'Python PyInstaller', link: '/pages/Python/Python-08-Pyinstaller' },
+                    { text: 'Python MySQL', link: '/pages/Python/Python-09-Mysql' },
+                    { text: 'Python Neo4j', link: '/pages/Python/Python-10-Neo4j' },
+                    { text: 'Python PyCharm', link: '/pages/Python/Python-Pycharm' },
                 ]
             },
             {
