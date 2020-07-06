@@ -15,6 +15,7 @@
      df.info()  # 信息
      len(df)  # 行数
      len(df.columns)  # 列数
+     columns = df.columns.to_list()  # 列名
 
      # 设置index标题
      df3.index.name = 'index_name'
@@ -64,6 +65,18 @@
    # 判断数据是否为nan，不能用==
    if df[] is np.nan
    ```
+
+5. index <-> column
+
+     ```python
+     # index-column互相转换
+
+     # index->column
+     df.reset_index(level=0, inplace=True)
+
+     # column->index
+     df.set_index('col', inplace=True)
+     ```
 
 ### 1.2. 数据格式转换
 

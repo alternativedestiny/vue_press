@@ -1,4 +1,4 @@
-# 9. SQL 使用 (MySQL)
+# 9. PyMySQL 数据库
 
 1. 读取数据
 

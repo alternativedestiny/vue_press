@@ -1,4 +1,4 @@
-# 8. 使用Pyinstaller把Python程序打包成exe文件
+# 8. Pyinstaller 打包
 
 ## 1. 前言
 

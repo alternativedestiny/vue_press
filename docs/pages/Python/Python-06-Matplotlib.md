@@ -218,3 +218,12 @@
     # 放在plt.show()前面，不支持jpg
     plt.savefig("Picture.png")
     ```
+
+## 动态图
+
+1. Animation
+
+    ```python
+    import matplotlib.animation as ani
+
+    ```
