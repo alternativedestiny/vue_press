@@ -1,8 +1,8 @@
 const fs = require('fs');
 
-function getSideBar(path) {
+function getSideBar(folder) {
     // 只能用绝对路径
-    path = 'D:/PersonalProject/vue_press/docs/pages/' + path + '/';
+    path = 'D:/PersonalProject/vue_press/docs/pages/' + folder + '/';
     let file_list = fs.readdirSync(path);
     for (let i = 0; i < file_list.length; i++) {
         file_list[i] = file_list[i].slice(0, -3);
@@ -10,17 +10,16 @@ function getSideBar(path) {
     return file_list;
 }
 
-// function getNav(path) {
-//     path = 'D:/PersonalProject/vue_press/docs/pages/' + path + '/';
-//     let file_list = fs.readdirSync(path);
-//     let nav_list = [];
-//     for (let i = 0; i < file_list.length; i++) {
-//         let name = file_list[i].split(/[.]|-/);
-//         nav_list[i] = "{ text: 'Python-" + name[name.length - 2] + "', link: '" + path + file_list[i] + "'},";
-//     }
-//     return nav_list;
-// }
-
+function getNav(folder) {
+    path = 'D:/PersonalProject/vue_press/docs/pages/' + folder + '/';
+    let file_list = fs.readdirSync(path);
+    let nav_text = [];
+    for (let i = 0; i < file_list.length; i++) {
+        // let name = file_list[i].split(/[.]|-/);
+        nav_text.push({ text: file_list[i].slice(0, -3), link: '/pages/' + folder + '/' + file_list[i].slice(0, -3) });
+    }
+    return nav_text;
+}
 
 module.exports = {
     title: '北方酱Hoppou~', // 显示在左上角的网页名称以及首页在浏览器标签显示的title名称
@@ -64,57 +63,36 @@ module.exports = {
         // 导航栏
         nav: [
             // nav1
-            {
-                text: '首页',
-                link: '/'
-            },
+            // {
+            //     text: '首页',
+            //     link: '/'
+            // },
             // nav2
             {
-                text: 'Python笔记',
-                items: [
-                    { text: 'Python 环境', link: '/pages/Python/Python-01-环境' },
-                    { text: 'Python 数据类型', link: '/pages/Python/Python-02-数据类型' },
-                    { text: 'Python 文件', link: '/pages/Python/Python-03-文件处理' },
-                    { text: 'Python Numpy', link: '/pages/Python/Python-04-Numpy' },
-                    { text: 'Python Pandas', link: '/pages/Python/Python-05-Pandas' },
-                    { text: 'Python Matplotlib', link: '/pages/Python/Python-06-Matplotlib' },
-                    { text: 'Python SciPy', link: '/pages/Python/Python-07-SciPy' },
-                    { text: 'Python PyInstaller', link: '/pages/Python/Python-08-Pyinstaller' },
-                    { text: 'Python MySQL', link: '/pages/Python/Python-09-Mysql' },
-                    { text: 'Python Neo4j', link: '/pages/Python/Python-10-Neo4j' },
-                    { text: 'Python PyCharm', link: '/pages/Python/Python-Pycharm' },
-                ]
+                text: 'Python',
+                items: getNav('Python')
             },
             {
                 text: '机器学习',
-                link: '/pages/machine-learning/K-Means聚类算法'
+                items: getNav('machine-learning')
             },
             {
-                text: '学习笔记',
-                link: '/pages/study/Git学习笔记'
+                text: '编程',
+                items: getNav('study')
             },
             {
-                text: '前端笔记',
-                link: '/pages/front-end/Vue学习笔记'
+                text: '前端',
+                items: getNav('front-end')
             },
             {
-                text: '软件技巧',
-                link: '/pages/skill/常用工具软件'
+                text: '软件',
+                items: getNav('skill')
             },
-            // nav3
-            // {
-            //     text: '好物私评',
-            //     items: [{
-            //         text: '静电容键盘',
-            //         link: '/pages/tested/静电容键盘'
-            //     }]
-            // },
-            // nav4
+
             {
                 text: '功能演示',
                 link: '/pages/others/test'
             },
-            // nav5
             {
                 text: '关于',
                 link: '/pages/others/aboutme'
