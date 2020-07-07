@@ -1,8 +1,6 @@
 # Python 代码块
 
-## 1. 通用型
-
-### 1.1. 可变进度百分比
+## 1. 可变进度百分比
 
 ```python
 import time
@@ -19,7 +17,7 @@ def rop(r, p, s='rate of process'):
         sys.stdout.write('\n')
 ```
 
-### 1.2. 程序计时
+## 2. 程序计时
 
 ```python
 from time import process_time, perf_counter
@@ -29,9 +27,7 @@ print(process_time())
 print(perf_counter())
 ```
 
-## 2. 非通用型
-
-### 2.1. 分段线性拟合 piecewise linear fit
+## 3. 分段线性拟合 piecewise linear fit
 
 1. 使用到的包`pwlf`
 2. [官方文档](https://jekel.me/piecewise_linear_fit_py/)
@@ -52,7 +48,7 @@ print(perf_counter())
     plt.plot(x, y_hat)  # 拟合后的多段直线
     ```
 
-### 2.2. crc校验
+## 4. crc校验
 
 1. 代码
 
@@ -82,3 +78,17 @@ print(perf_counter())
 2. 备注
    1. 输入16进制数据，输出为两个字节的校验码
     比如输入“55 66”，输出校验码“CABE”，输入每个字节用空格分开
+
+## 5. 多线程
+
+1. 多线程：适用于IO密集型，不适用于CPU密集型。
+2. 代码
+
+    ```python
+    import threading
+
+    # 创建多线程函数：target目标函数（线程内执行的函数），args目标函数参数
+    th = threading.Thread(target=check, args=(a, b, c))
+    # 开线程
+    th.start()
+    ```

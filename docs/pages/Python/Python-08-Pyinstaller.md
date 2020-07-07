@@ -32,7 +32,12 @@
 
 4. 打包完成后会出现三个文件夹，我们打包成功的程序在dist文件夹里面，在里面有个与项目同名文件，进去找到exe文件就可以执行。
 
-## 4. 备注
+## 4. Django 打包
+
+- [参考链接](https://blog.csdn.net/qq_34809033/article/details/81873896)
+- [参考链接2](https://www.cnblogs.com/daqi-work/p/11394968.html)
+
+## 5. 备注
 
 无
 

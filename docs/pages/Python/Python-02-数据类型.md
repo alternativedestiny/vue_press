@@ -1,6 +1,19 @@
 # 2. 数据类型
 
-## 1. 数字(Number)
+## 1. Python 命名规则
+
+1. 命名约定
+   1. 所谓“内部(Internal)”表示仅模块内可用, 或者, 在类内是保护或私有的.
+   2. 用单下划线(_)开头表示模块变量或函数是protected的(使用from module import *时不会包含).
+   3. 用双下划线(__)开头的实例变量或方法表示类内私有.
+   4. 将相关的类和顶级函数放在同一个模块里. 不像Java, 没必要限制一个类一个模块.
+   5. 对类名使用大写字母开头的单词(如CapWords, 即Pascal风格), 但是模块名应该用小写加下划线的方式(如lower_with_under.py). 尽管已经有很多现存的模块使用类似于CapWords.py这样的命名, 但现在已经不鼓励这样做, 因为如果模块名碰巧和类名一致, 这会让人困扰.
+2. 应避免的命名
+   1. 单字符名称, 除了计数器和迭代器.
+   2. 包/模块名中的连字符(-)
+   3. 双下划线开头并结尾的名称(Python保留, 例如__init__)
+
+## 2. 数字(Number)
 
 1. 保留4位小数位
 
@@ -11,7 +24,7 @@
     num = round(num, 4)
     ```
 
-## 2. 字符串(String)
+## 3. 字符串(String)
 
 1. 类型转换：`str2 = str(str1)`
 2. 字符串拼接：`str3 = str1 + str2`
@@ -84,7 +97,7 @@
     print(f'{a} + {b} = {a + b}')  # 1 + 2 = 3
     ```
 
-## 3. 正则表达式（Regular Expression）
+## 4. 正则表达式（Regular Expression）
 
 1. 特殊字符，[参考链接](https://docs.python.org/zh-cn/3.8/library/re.html)
 
@@ -133,7 +146,7 @@
         re.match(r'ab+', 'acbab')
         ```
 
-## 4. 列表(List)
+## 5. 列表(List)
 
 1. 创建列表
 
@@ -202,11 +215,11 @@
     print(list1.index('banana'))  # 查询列表元素位置
     ```
 
-## 5. 元组(Tupple)
+## 6. 元组(Tupple)
 
-## 6. 集合(Set)
+## 7. 集合(Set)
 
-## 7. 字典(Dictionary)
+## 8. 字典(Dictionary)
 
 1. 类似c++中的map，键唯一，值不唯一，如果出现相同的键，后面的会覆盖掉前面的
 
@@ -229,9 +242,9 @@
     d['cherry']
     ```
 
-## 8. 日期时间处理
+## 9. 日期时间处理
 
-### 8.1. datetime库
+### 9.1. datetime库
 
 1. 日期类型datetime
    1. datetime.date——日期，属性：year，month，day
@@ -315,7 +328,7 @@
         print((day2 - day1).seconds)  # 3600，与日期无关
         ```
 
-### 8.2. Arrow (pip)
+### 9.2. Arrow (pip)
 
 1. 创建日期
 
