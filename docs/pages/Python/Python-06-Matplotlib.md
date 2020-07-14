@@ -2,7 +2,7 @@
 
 ## 1. 绘图种类
 
-### plot 折线绘图
+### 1.1. plot 折线绘图
 
 1. 代码
 
@@ -28,13 +28,13 @@
 
     <img src='../images/plot.png' width=600>
 
-### scatter 散点图
+### 1.2. scatter 散点图
 
 1. 带颜色区分的散点图
 
-### bar 柱状图
+### 1.3. bar 柱状图
 
-### pie 饼图
+### 1.4. pie 饼图
 
 1. 代码
 
@@ -219,7 +219,7 @@
     plt.savefig("Picture.png")
     ```
 
-## 动态图
+## 4. 动态图
 
 1. Animation
 

@@ -255,11 +255,11 @@
 
 ``` js
 let app = new Vue({
-        el: '#app',
-        data: {
-            counter: 0
-        }
-    });
+    el: '#app',
+    data: {
+        counter: 0
+    }
+});
 ```
 
 ### 6.2. 事件处理
@@ -295,14 +295,14 @@ let app = new Vue({
 ```
 
 ``` js
-    let app = new Vue({
-        el: '#app',
-        methods:{
-            say:function (message) {
-                alert('say' + message)
-            }
+let app = new Vue({
+    el: '#app',
+    methods:{
+        say:function (message) {
+            alert('say' + message)
         }
-    });
+    }
+});
 ```
 
 ### 6.4. 事件修饰符
@@ -424,7 +424,7 @@ let app = new Vue({
 1. 单选
 
     ``` html
-        <div id="app">
+    <div id="app">
         <!-- 选择框 -->
         <select v-model='select'>
             <option disabled value="">请选择</option>
