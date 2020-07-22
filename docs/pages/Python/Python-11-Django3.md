@@ -155,15 +155,7 @@
             |_ img/
     ```
 
-2. 添加路径
-   > 在`mysite/settings.py`文件中寻找 TEMPLATES 选项，添加static文件
-
-    ```python
-    'DIRS': [os.path.join(BASE_DIR, 'templates'),
-             os.path.join(BASE_DIR, 'static').replace('\\', '/')],
-    ```
-
-    > 在`settings.py`最底部添加
+2. 添加路径：在`settings.py`最底部添加
 
     ```python
     STATIC_URL = '/static/'
@@ -178,23 +170,19 @@
 
 3. 修改HTML文件里面的路径
 
-    导入css
-
     ```html
+    <!-- 导入css -->
     <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    ```
 
-    导入js
-
-    ```html
+    <!-- 导入js -->
     <script src="/static/js/jquery-1.11.1.min.js"></script>
-    ```
 
-    插图
-
-    ```html
-    <img src="/static/img/4.jpg" alt=" " class="img-responsive" />
+    <!-- 插图 -->
+    <img src="/static/img/img1.jpg" alt=" " class="img-responsive" />
+    <!-- 或 -->
+    {% load static %}
+    <img src="{% static 'img/img1.jpg' %}" alt="hoppou">
     ```
 
 ## 5. 模型创建与扩展
@@ -275,14 +263,21 @@
     python manage.py createsuperuser
     ```
 
-6. 常用字段类型
+6. 常用字段类型，[参考](https://blog.csdn.net/Ka_Ka314/article/details/80828309)
 
-    | 字段          | 类型     |
-    | ------------- | -------- |
-    | CharField     | 字符串   |
-    | FloatField    | 浮点     |
-    | IntegerField  | 整数     |
-    | DateTimeField | 日期时间 |
+    | 字段             | 类型                        |
+    | ---------------- | --------------------------- |
+    | AutoField        | 自增ID                      |
+    | BooleanField     | bool变量                    |
+    | NullBooleanField | 支持null、true、false三种值 |
+    | TextField        | 大段文字                    |
+    | CharField        | 字符串                      |
+    | FloatField       | 浮点                        |
+    | IntegerField     | 整数                        |
+    | DateTimeField    | 日期时间                    |
+    | TimeField        | 时间                        |
+    | DateField        | 日期                        |
+    | FileField        | 一个上传文件的字段          |
 
 ### 5.2. makemigrations和migrate
 
