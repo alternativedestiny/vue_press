@@ -18,7 +18,7 @@
     import os
 
     file_list = []
-    for root, folder, files in os.walk('data_csv'):
+    for root, folder, files in os.walk('./folder'):
         for file_name in files:
             file_list.append(root + '/' + file_name)
     ```

@@ -6,19 +6,25 @@
 
 ### 1.1. 换源
 
-1. 临时换源
+1. 查看源
+
+    ```bash
+    npm config get registry
+    ```
+
+2. 临时换源
 
     ```bash
     npm --registry https://registry.npm.taobao.org install express
     ```
 
-2. 永久换源
+3. 永久换源
 
     ```bash
     npm config set registry https://registry.npm.taobao.org
     ```
 
-3. 安装cnpm
+4. 安装cnpm
 
     ```bash
     npm install -g cnpm --registry=https://registry.npm.taobao.org
@@ -68,13 +74,19 @@
 
 ### 2.1. 换源
 
-1. 临时
+1. 查看源
+
+    ```bash
+    yarn config get registry
+    ```
+
+2. 临时
 
     ```bash
     yarn save <package> --registry https://registry.npm.taobao.org/
     ```
 
-2. 永久
+3. 永久
 
     ```bash
     yarn config set registry https://registry.npm.taobao.org/

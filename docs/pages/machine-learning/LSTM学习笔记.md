@@ -18,7 +18,7 @@ from keras.callbacks import EarlyStopping
 from keras import losses
 
 # 读取数据
-file = 'substation_2019/哈密#1主变.csv'
+file = 'xxx.csv'
 df1 = pd.read_csv(file, decimal=',', header=0, low_memory=False, error_bad_lines=False)
 df_all = pd.DataFrame()
 df_all['t'] = pd.to_datetime(df1['tm1'])
