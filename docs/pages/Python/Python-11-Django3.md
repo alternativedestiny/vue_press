@@ -257,7 +257,7 @@
 
    3. 备注：Django每次更新模型都需要执行以上两步，需要注意的是Django模型增加内容需要设定变量的初始值，否则会在第一步出现问题
 
-5. 创建超级用户
+5. 创建超级用户，在命令行输入下面的指令，根据提示进行即可
 
     ```bash
     python manage.py createsuperuser
@@ -278,6 +278,16 @@
     | TimeField        | 时间                        |
     | DateField        | 日期                        |
     | FileField        | 一个上传文件的字段          |
+
+7. 字段设置
+
+    | 设置           | 功能                                |
+    | -------------- | ----------------------------------- |
+    | max_length=100 | 最大长度为100                       |
+    | default=''     | 默认值                              |
+    | blank=True     | 允许空白，默认False                 |
+    | null=True      | 将空值以NULL存储到数据库，默认False |
+    | unique=True    | 字段在表中拥有唯一值                |
 
 ### 5.2. makemigrations和migrate
 

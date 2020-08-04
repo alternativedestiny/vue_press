@@ -16,7 +16,7 @@ function getNav(folder) {
     let nav_text = [];
     for (let i = 0; i < file_list.length; i++) {
         // let name = file_list[i].split(/[.]|-/);
-        nav_text.push({
+        nav_text.push({ 
             text: file_list[i].slice(0, -3),
             link: '/pages/' + folder + '/' + file_list[i].slice(0, -3)
         });

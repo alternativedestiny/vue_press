@@ -2,49 +2,58 @@
 
 ## 1. 文件处理 os
 
-1. 遍历文件名
+### 1.1. 遍历文件名
 
-    ```python
-    import os
+```python
+import os
 
-    # 获取文件列表
-    sources_path = "./folder"  # 路径
-    file_name = os.listdir(sources_path)  # 所有文件名
-    ```
+# 获取文件列表
+sources_path = "./folder"  # 路径
+file_name = os.listdir(sources_path)  # 所有文件名
+```
 
-2. 遍历多层文件夹
+### 1.2. 遍历多层文件夹
 
-    ```python
-    import os
+```python
+import os
 
-    file_list = []
-    for root, folder, files in os.walk('./folder'):
-        for file_name in files:
-            file_list.append(root + '/' + file_name)
-    ```
+file_list = []
+for root, folder, files in os.walk('./folder'):
+    for file_name in files:
+        file_list.append(root + '/' + file_name)
+```
 
-3. 检测并创建文件夹
+### 1.3. 检测并创建文件夹
 
-    ```python
-    import os
+```python
+import os
 
-    # 创建文件夹/文件目录
-    path = 'abc/'
-    # 检测文件夹/文件是否存在，不存在就创建该文件夹
-    if not os.path.exists(path):
-        print('folder not exist')
-        os.makedirs(path)
-    else:
-        print('folder exist')
-    ```
+# 创建文件夹/文件目录
+path = 'abc/'
+# 检测文件夹/文件是否存在，不存在就创建该文件夹
+if not os.path.exists(path):
+    print('folder not exist')
+    os.makedirs(path)
+else:
+    print('folder exist')
+```
 
-4. 重命名
+### 1.4. 重命名
 
-    ```python
-    import os
-    # 重命名文件
-    os.rename(old_name, new_name)
-    ```
+```python
+import os
+# 重命名文件
+os.rename(old_name, new_name)
+```
+
+### 1.5. 用默认应用打开文件、文件夹
+
+```python
+import os
+os.startfile('file_path')  # 打开文件
+path = ''
+os.system("explorer.exe %s" % path)  # 打开文件夹
+```
 
 ## 2. 文件读写
 
@@ -70,7 +79,7 @@
     a = data[行起始:终止, 列起始:终止]
     ```
 
-3. 用pandas读写csv文件，参考pandas笔记
+3. 用pandas读写csv文件，参考[pandas笔记](Python-05-Pandas.md)
 
 4. 备注
 
