@@ -163,6 +163,7 @@
 ## VSCode 配置 Python 环境
 
 1. 安装 Python 插件
+
    <img src='../images/Python_vscode.png' width=400>
 
 2. 创建虚拟环境（用全局环境可以跳过）
@@ -170,11 +171,16 @@
    1. 打开一个 Python 项目
    2. `Ctrl+Shift+P` 打开命令面板
    3. 选择 `Python：选择解释器`(`Python: Select Interpreter`)
+
         <img src='../images/select interpreter.png' width=600>
+
    4. 用全局环境可以选择已经列出的环境，否则选择`Enter interpreter path`，然后选`find`在弹出的窗口中选择已创建的虚拟环境
+
         <img src='../images/interpreter path.png' width=600>
         <img src='../images/find.png' width=600>
+
 4. 添加配置：可以根据自己的项目配置Python、Django等
+
     <img src='../images/添加配置.gif' width=800>
 
 5. 然后就可以开始调试运行了
