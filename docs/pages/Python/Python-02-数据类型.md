@@ -215,6 +215,13 @@
     print(list1.index('banana'))  # 查询列表元素位置
     ```
 
+7. 枚举：同时遍历索引和元素
+
+    ```python
+    for i, item in enumerate(list1):
+        print(i, item)
+    ```
+
 ## 6. 元组(Tupple)
 
 ## 7. 集合(Set)
