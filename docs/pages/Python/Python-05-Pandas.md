@@ -1,5 +1,7 @@
 # 5. Pandas
 
+- [Pandas官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/index.html)
+
 ## 1. Pandas 数据结构
 
 1. pandas对象
@@ -33,6 +35,7 @@
                          'd': [0.98, 0.21, 0.74, 1.0]},
                          index=list('abcd'))
 
+     # 得到的数据表格为：
      |     | a    | b    | c    | d    |
      | --- | ---- | ---- | ---- | ---- |
      | a   | 1    | 0.53 | 0.67 | 0.98 |
@@ -47,6 +50,7 @@
      index = [1, 2, 3, 4]  # 行名
      df = pd.DataFrame(index=index, columns=title)
 
+     # 得到的数据表格为：
      |     | a   | b   | c   |
      | --- | --- | --- | --- |
      | 1   | nan | nan | nan |
@@ -312,28 +316,38 @@
 ### 3.6. 分组统计
 
 1. 分组 groupby
+    1. groupby 基础应用
 
-     ```python
-     import pandas as pd
+        ```python
+        import pandas as pd
 
-     df = pd.DataFrame({
-     '姓名': ['小明', '小红', '小刚', '小强', '张三', '李四'],
-     '年级': [1, 1, 1, 1, 2, 2],
-     '班级': ['a', 'a', 'b', 'b', 'a', 'b'],
-     '语文': [85, 93, 79, 97, 80, 75],
-     '数学': [94, 92, 84, 84, 90, 66],
-     '英语': [90, 91, 90, 96, 80, 69]
-     })
+        df = pd.DataFrame({
+        '姓名': ['小明', '小红', '小刚', '小强, '张三', 李四'],
+        '年级': [1, 1, 1, 1, 2, 2],
+        '班级': ['a', 'a', 'b', 'b', 'a', 'b'],
+        '语文': [85, 93, 79, 97, 80, 75],
+        '数学': [94, 92, 84, 84, 90, 66],
+        '英语': [90, 91, 90, 96, 80, 69]
+        })
 
-     # 分类统计，单个key
-     group1 = df.groupby('年级')
-     # 分类统计，多个key
-     group1 = df.groupby(['年级', '班级'])
+        # 分类统计，单个key
+        group1 = df.groupby('年级')
+        # 分类统计，多个key
+        group1 = df.groupby(['年级', '班级'])
 
-     # 统计
-     group1.max()
-     group1.mean()
-     ```
+        # 统计
+        group1.max()
+        group1.mean()
+        ```
+
+    2. 根据group将一个dataframe分成多个df
+
+        ```python
+        groups = df.groupby('年级')
+        for name, group in groups:
+             print(name)
+             print(group)
+        ```
 
 2. 聚合 aggregation
 
@@ -463,12 +477,13 @@
      | header       | 是否写入列名，默认'True'                        |
      | index        | 是否写入目录，默认'True'                        |
 
-## 6. Pandas 错误处理
+## 5. Pandas 错误处理
 
 1. [`read_csv mixed types`问题](https://www.jianshu.com/p/a70554726f26)
 2. `cannot convert the series to <class 'float'>`问题
    1. 原因：可能是某处变量调用忘了加限定，比如a[i]写成了a
 
-## 5. 参考
+## 6. 参考
 
 1. [pandas类SQL查询](https://juejin.im/post/5b5e5b2ee51d4517df1510c7)
+2. [Pandas分组](https://www.yiibai.com/pandas/python_pandas_groupby.html)

@@ -1,8 +1,6 @@
 # 1. Python 环境
 
-## 1. Windows 环境搭建
-
-### 1.1. Python 使用
+## 1.1. Python 使用
 
 1. Python下载
    [Python官方网站](https://www.python.org/)
@@ -12,10 +10,16 @@
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
     ```
 
+    国内常用源
+
+   - 清华源：<https://pypi.tuna.tsinghua.edu.cn/simple>
+   - 豆瓣源：<https://pypi.doubanio.com/simple/>
+   - 阿里源：<https://mirrors.aliyun.com/pypi/simple/>
+
 3. 安装库
 
-    | 库          | 功能                       |
-    | ----------- | -------------------------- |
+    | 库          | 功能                       | 文档                                                    |
+    | ----------- | -------------------------- | ------------------------------------------------------- |
     | psutil      | 电脑监控信息读取           |
     | matplotlib  | 绘图                       |
     | pillow->PIL | 图片处理                   |
@@ -31,6 +35,7 @@
     | pulp        | 线性求解                   |
     | pwlf        | 分段线性拟合               |
     | pyecharts   | python + echarts           |
+    | altair      | 数据可视化工具             | [文档](https://altair-viz.github.io/gallery/index.html) |
 
 4. 升级库
 
@@ -66,46 +71,18 @@
    4. 在 `venv/Scripts` 下执行 `activate` 开启虚拟环境
    5. 退出虚拟环境 `deactivate`
 
-### 1.2. Miniconda 使用
+## 1.2. Miniconda 使用
+
+### 1.2.1. 安装
 
 1. 从清华源下载安装[miniconda](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/)
-2. 默认设置下安装完成，官方不推荐添加到环境变量
-3. 进入安装目录下`C:\ProgramData\Miniconda3\Scripts`执行指令
+2. Linux安装
 
     ```bash
-    conda list  # 查看已安装的包
-    conda --version  # 查看版本
-    conda -V  # 同上
+    bash miniconda3_xxx.sh
     ```
 
-4. Miniconda [换清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)
-5. 创建虚拟环境
-
-    ```bash
-    # 创建一个名为test的包含python3的新环境
-    conda create --name test python=3
-    # 或者
-    conda create -n test python=3
-
-    # 列出所有环境
-    conda info --envs
-    # 或者
-    conda info -e
-
-    ```
-
-## 2. linux 环境搭建
-
-### 2.1. Miniconda 使用（Linux）
-
-1. 安装virtualenv库 `sudo pip install virtualenv`
-2. 创建虚拟环境`virtualenv venv`
-3. 添加环境变量
-
-## 3. miniconda 环境配置(linux)
-
-1. 安装miniconda：`bash miniconda3_xxx.sh`，根据提示一路yes
-2. 配置环境变量：
+3. 配置环境变量，默认不需要配置
 
      ```bash
      # 打开配置文件
@@ -119,7 +96,24 @@
      pip --version
      ```
 
-3. 换源
+4. 避免一开始就激活base环境，可以设置
+
+    ```bash
+    # 关闭base自动激活
+    conda config --set auto_activate_base false
+    # 打开base自动激活
+    conda config --set auto_activate_base true
+    ```
+
+5. 进入安装目录下 Windows：`C:\ProgramData\Miniconda3\Scripts` Linux：`\miniconda3\bin`执行指令
+
+    ```bash
+    conda list  # 查看已安装的包
+    conda --version  # 查看版本
+    conda -V  # 同上
+    ```
+
+6. Miniconda [换清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)
 
     ```bash
     # 清华源
@@ -130,37 +124,88 @@
     conda config --show-sources
     ```
 
-4. 安装文件
+7. 出现 `conda:command not found` 问题
 
-     ```bash
-     # 更新
-     conda upgrade --all
-     ```
+    ```bash
+    # 编辑.bashrc文件
+    vi ~/.bashrc
 
-5. 创建环境
-   1. 创建虚拟环境
+    # 再文件末尾加入一下内容，根据需要改变路径
+    export PATH=$PATH:/home/username/anaconda3/bin
+    ```
 
-        ```bash
-        # 配置完环境变量后会生成一个base的环境
+### 1.2.2. conda 创建虚拟环境
 
-        # 创建一个名为test的包含python3的新环境
-        conda create --name test python=3  
+1. 环境配置
 
-        #列出所有环境
-        conda info --envs
+    ```bash
+    # 安装 python3.7 并命名为该环境为 python37
+    conda create --name python37 python=3.7
+    # 或
+    conda create -n python37 python=3.7
+    # 克隆现有环境
+    conda create -n env --clone base
+
+    # 激活环境
+    conda activate python37
+    # 退出环境
+    conda deactivate
+
+    # 删除环境
+    conda remove -n python37 --all
+    ```
+
+   > 创建虚拟环境失败，出现`an unexpected error has occurred`问题，可能是源文件出现问题，需要删除`.condarc`文件
+
+2. 列出所有环境
+
+    ```bash
+    conda info --envs
+    # 或者
+    conda info -e
+    ```
+
+3. 安装 python 包
+
+    ```bash
+    conda install package-name
+    pip install package-name
+    ```
+
+4. 离线安装库文件
+   1. 下载离线包并创建需要安装的库文件列表 `requirements.txt`
+
+        > 最好把基础依赖包放在前面，避免某些包因缺少依赖包导致安装失败，`#`注释掉不需要安装的包
+
+        ```txt
+        six-1.15.0-py2.py3-none-any.whl
+        numpy-1.19.1-cp37-cp37m-manylinux1_x86_64.whl
+        scipy-1.5.2-cp37-cp37m-manylinux1_x86_64.whl
+        certifi-2020.6.20-py2.py3-none-any.whl
+        cycler-0.10.0-py2.py3-none-any.whl
+        pyparsing-2.4.7-py2.py3-none-any.whl
+        pytz-2020.1-py2.py3-none-any.whl
+        python_dateutil-2.8.1-py2.py3-none-any.whl
+        pandas-1.1.1-cp37-cp37m-manylinux1_x86_64.whl
+
+        # Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl
+        # kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl
+        # matplotlib-3.3.1-cp37-cp37m-manylinux1_x86_64.whl
+
+        pyDOE-0.3.8.zip
+        pwlf-2.0.4.tar.gz
         ```
 
-   2. 创建虚拟环境失败，出现`an unexpected error has occurred`问题，可能是源文件出现问题，需要删除`.condarc`文件
+   2. 批量安装库
 
-6. 环境激活与注销
+        ```bash
+        # 批量安装
+        pip install -r requirements.txt
+        # 忽略目录批量安装
+        pip install --no-index -r requirements.txt
+        ```
 
-     ```bash
-     conda active base  # 激活base环境
-     conda deactive  # 注销当前环境
-     conda env remove -n test  # 删除test环境
-     ```
-
-## VSCode 配置 Python 环境
+## 3. VSCode 配置 Python 环境
 
 1. 安装 Python 插件
 
