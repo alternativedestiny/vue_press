@@ -46,12 +46,12 @@
         git add -A
         git commit -m 'deploy'
 
-        # 如果发布到 https://<USERNAME>.github.io，-f强制推送
+        # 如果发布到 https://<USERNAME>.github.io，-f强制推送，选择性使用
         git push -f https://gitee.com/hoppou/hoppou master
         git push -f https://github.com/alternativedestiny/alternativedestiny.github.io master
 
         echo "*** push complete ***"
-        sleep 5s
+        sleep 5s  # 避免窗口立即关闭
 
         ```
 
