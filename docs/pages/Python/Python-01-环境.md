@@ -1,6 +1,6 @@
 # 1. Python 环境
 
-## 1.1. Python 使用
+## 1. Python 使用
 
 1. Python下载
    [Python官方网站](https://www.python.org/)
@@ -71,9 +71,9 @@
    4. 在 `venv/Scripts` 下执行 `activate` 开启虚拟环境
    5. 退出虚拟环境 `deactivate`
 
-## 1.2. Miniconda 使用
+## 2. Miniconda 使用
 
-### 1.2.1. 安装
+### 2.1. 安装
 
 1. 从清华源下载安装[miniconda](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/)
 2. Linux安装
@@ -134,7 +134,7 @@
     export PATH=$PATH:/home/username/anaconda3/bin
     ```
 
-### 1.2.2. conda 创建虚拟环境
+### 2.2. conda 创建虚拟环境
 
 1. 环境配置
 

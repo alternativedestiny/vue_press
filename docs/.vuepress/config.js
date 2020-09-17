@@ -77,6 +77,10 @@ module.exports = {
                 items: getNav('Python')
             },
             {
+                text: 'C++',
+                items: getNav('C++')
+            },
+            {
                 text: '机器学习',
                 items: getNav('machine-learning')
             },
@@ -108,6 +112,7 @@ module.exports = {
         ],
         sidebar: {
             '/pages/Python/': getSideBar('Python'),
+            '/pages/C++/': getSideBar('C++'),
             '/pages/machine-learning/': getSideBar('machine-learning'),
             '/pages/study/': getSideBar('study'),
             '/pages/front-end/': getSideBar('front-end'),
