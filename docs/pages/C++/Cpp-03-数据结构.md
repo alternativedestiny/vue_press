@@ -34,6 +34,8 @@
 
 ## 2. 链表
 
+### 2.1. 链表定义
+
 1. 单向链表：链表中最简单的一种是单向链表，它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个`空值`。
 2. 双向链表：一种更复杂的链表是“双向链表”或“双面链表”。每个节点有两个连接：一个指向前一个节点，（当此“连接”为第一个“连接”时，指向空值或者空列表）；而另一个指向下一个节点，（当此“连接”为最后一个“连接”时，指向空值或者空列表）。
 3. 优点：
@@ -42,7 +44,10 @@
 4. 缺点
    1. 查询链表只能通过指针顺序访问，效率相对低下，查询可能需要O(n)的时间复杂度。
    2. 因为链表的每个节点都含有链域，所占用的空间较多。
-5. 链表操作
+
+### 2.2. 链表操作
+
+1. 创建链表
 
     ```cpp
     #include <stdio.h>
@@ -72,42 +77,14 @@
         return head;
     }
 
-    // 修改链表节点值，n为第n个值
-    void change(LinkList *list, int n) {
-        LinkList *t = list;
-        int i = 0;
-        n++;
-        // 先查询
-        while (i < n && t != NULL) {
-            t = t->next;
-            i++;
-        }
-        // 再修改
-        if (t != NULL) {
-            puts("输入要修改的值");
-            scanf("%d", &t->score);
-        } else {
-            puts("节点不存在");
-        }
+    int main() {
+        LinkList *li = creat(5);  // 创建5个长度的链表
     }
+    ```
 
-    // 删除节点
-    void delet(LinkList *list, int n) {
-        LinkList *t = list, *in;
-        int i = 0;
-        while (i < n && t != NULL) {
-            in = t;
-            t = t->next;
-            i++;
-        }
-        if (t != NULL) {
-            in->next = t->next;
-            free(t);  // 放出被删除节点的空间
-        } else {
-            puts("节点不存在");
-        }
-    }
+2. 增
 
+    ```cpp
     // 插入链表节点
     void insert(LinkList *list, int n) {
         LinkList *t = list, *in;
@@ -126,7 +103,55 @@
             puts("节点不存在");
         }
     }
+    ```
 
+3. 删
+
+    ```cpp
+    // 删除节点
+    void delet(LinkList *list, int n) {
+        LinkList *t = list, *in;
+        int i = 0;
+        while (i < n && t != NULL) {
+            in = t;
+            t = t->next;
+            i++;
+        }
+        if (t != NULL) {
+            in->next = t->next;
+            free(t);  // 放出被删除节点的空间
+        } else {
+            puts("节点不存在");
+        }
+    }
+    ```
+
+4. 改
+
+    ```cpp
+    // 修改链表节点值，n为第n个值
+    void change(LinkList *list, int n) {
+        LinkList *t = list;
+        int i = 0;
+        n++;
+        // 先查询
+        while (i < n && t != NULL) {
+            t = t->next;
+            i++;
+        }
+        // 再修改
+        if (t != NULL) {
+            puts("输入要修改的值");
+            scanf("%d", &t->score);
+        } else {
+            puts("节点不存在");
+        }
+    }
+    ```
+
+5. 查
+
+    ```cpp
     // 输出链表
     void plot(LinkList *list) {
         LinkList *t = list;
@@ -139,19 +164,30 @@
         printf("长度%d \n", i);
     }
 
-    int main() {
-        LinkList *li = creat(5);  // 创建5个长度的链表
-        insert(li, 0);
-        plot(li);
-        change(li, 1);
-        delet(li, 5);
-        plot(li);
-
+    // 查找元素
+    void List::search(int a) {
+        Node *p = head;
+        if (p == nullptr) {
+            cout << "链表为空" << endl;
+            return;
+        }
+        int ad = 0, flag = 0;
+        while (p != nullptr) {
+            if (p->val == a) {
+                cout << "Find:" << a << " at:" << ad << endl;
+                flag = 1;
+            }
+            p = p->next;
+            ad++;
+        }
+        if (flag == 0) {
+            cout << "Not Found" << endl;
+        }
     }
 
     ```
 
-    ```c
+    ```cpp
     // 力扣编程及测试文件
 
     #include <iostream>

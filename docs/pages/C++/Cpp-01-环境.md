@@ -44,5 +44,5 @@
    2. 按 `f5` 依次选择环境 `C++(GDB/LDB)`，选择配置 `g++.exe`，系统就会自动生成配置和编译文件，然后就可以开始调试了
         <img src='../images/c_vscode.gif' width=800>
 
-3. 也有一种不用配置的方法，下载安装插件：C/C++ Compile Run，安装查
+3. 也有一种不用配置的方法，下载安装插件：C/C++ Compile Run，只需安装下面的插件即可, `f6`直接运行
         <img src='../images/C++CompileRun.png'>

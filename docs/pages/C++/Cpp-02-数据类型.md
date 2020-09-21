@@ -124,7 +124,7 @@
     // 末尾增加
     v2.push_back(4);
 
-    // 删除最后一位
+    // 删除并返回最后一位
     v2.pop_back();
 
     // 指定位置插入
@@ -132,17 +132,25 @@
     v2.insert(v2.begin() + 2, 10);  // 在位置2插入10
     ```
 
-## 4. 字符串 String & Char
+## 4. 字符串 CHar & String
 
 1. 创建字符串
+   1. Char
 
-    ```cpp
-    // 头文件
-    #include <string>
+        ```cpp
+        char s1[] = "abc";
+        char s2[4] = "abc"; // 结尾有'\0'
+        ```
 
-    string s1 = "what is your name"
-    string s2 = "is"
-    ```
+   2. String
+
+        ```cpp
+        // 头文件
+        #include <string>
+
+        string s1 = "what is your name"
+        string s2 = "is"
+        ```
 
 2. 增
 
