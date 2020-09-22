@@ -31,6 +31,7 @@
 | SandDance for VSCode                 | 数据可视化工具               | `体验`   |
 | Markdown Navigation                  | markdown目录，与大纲功能重叠 | `一般`   |
 | Mermaid Markdown Syntax Highlighting | Markdown结构图代码高亮       | `一般`   |
+| Remote-SSH                           | ssh工具                      | `推荐`   |
 
 ## 3. 快捷键
 
@@ -38,3 +39,34 @@
 2. 多行选中
    1. Alt + 左键：手动选择
    2. 中键移动：批量选择
+
+## Remote-SSH配置
+
+1. 远程服务器配置
+
+   ```bash
+   Host 虚拟机  # 服务器名
+   HostName 192.168.1.1  # IP
+   User root  # 用户名
+   ```
+
+2. 远程服务器需要关闭配置中的`Use Local Server`
+3. 配置免密登录
+   1. 本地打开`Git bash`, 用下面的命令生成密钥
+
+      ```bash
+      ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+      ```
+
+   2. 查看密钥
+
+      ```bash
+      cd ~/.ssh
+      cat id_rsa.pub
+      ```
+
+   3. 上传密钥到服务器, 然后就可以实现免密登录
+
+      ```bash
+      ssh-copy-id root@192.168.1.1
+      ```
