@@ -27,65 +27,87 @@
 ## 3. 字符串(String)
 
 1. 类型转换：`str2 = str(str1)`
-2. 字符串拼接：`str3 = str1 + str2`
+2. 增
+   1. 字符串拼接
 
-    ```python
-    # 推荐的字符串拼接方法
-    x = a + b
-    x = '%s, %s!' % (imperative, expletive)
-    x = '{}, {}!'.format(imperative, expletive)
-    x = 'name: %s; score: %d' % (name, n)
-    x = 'name: {}; score: {}'.format(name, n)
+        ```python
+        # 推荐的字符串拼接方法
+        x = a + b
+        x = '%s, %s!' % (imperative, expletive)
+        x = '{}, {}!'.format(imperative, expletive)
+        x = 'name: %s; score: %d' % (name, n)
+        x = 'name: {}; score: {}'.format(name, n)
 
-    # 不推荐的方法
-    x = '%s%s' % (a, b)  # use + in this case
-    x = '{}{}'.format(a, b)  # use + in this case
-    x = imperative + ', ' + expletive + '!'
-    x = 'name: ' + name + '; score: ' + str(n)
-    ```
+        # 不推荐的方法
+        x = '%s%s' % (a, b)  # use + in this case
+        x = '{}{}'.format(a, b)  # use + in this case
+        x = imperative + ', ' + expletive + '!'
+        x = 'name: ' + name + '; score: ' + str(n)
+        ```
 
-3. 字符串截取：
+3. 删
+   1. 删除字符串指定字符
 
-    ```python
-    str4 = str1[m:n]  # 负号表示从后算起
-    ```
+        ```python
+        # strip 方法
+        str1.strip('a')
+        # 去处字符串头尾 \r,\t,\n,空格 等字符
+        str1.strip()
+        # 去除字符串开头处指定字符
+        str1.lstrip()
+        # 去除字符串结尾处指定字符
+        str1.rstrip()
 
-4. 字符串分割
+        # replace 方法
+        str1.replace('a', '')
+        ```
 
-    ```python
-    # 根据指定字符分割，比如','
-    str2 = str1.split(',')
+4. 改
+   1. 字符串替换
 
-    # 多个空格分隔
-    str2 = str1.split()
+        ```python
+        str1.replace('a', 'b')  # 用'b'替换'a'
+        ```
 
-    # 多个分隔符分割，不同分隔符用‘|’隔开
-    import re
-    str2 = re.split(',|!', str1)
-    # 或者用r'[]'，不需要用‘|’隔开
-    str2 = re.split(r'[,!]', str1)
-    ```
+   2. 字符串分割
 
-5. 字符串转代码
+        ```python
+        # 根据指定字符分割，比如','
+        str2 = str1.split(',')
+
+        # 多个空格分隔
+        str2 = str1.split()
+
+        # 多个分隔符分割，不同分隔符用‘|’隔开
+        import re
+        str2 = re.split(',|!', str1)
+        # 或者用r'[]'，不需要用‘|’隔开
+        str2 = re.split(r'[,!]', str1)
+        # 多字符匹配可以使用正则, 比如多空格分割
+        str2 = re.split(' *', str1)
+        ```
+
+   3. 字符串截取：
+
+        ```python
+        str4 = str1[m:n]  # 负号表示从后算起
+        ```
+
+5. 查
+   1. 查询字符位置
+
+        ```python
+        str1.find('a')  # 返回a所在位置
+        ```
+
+6. 字符串转代码
 
     ```python
     str1 = "print('hello')"
     eval(str1)  # hello
     ```
 
-6. 字符串替换
-
-    ```python
-    str1.replace('a', 'b')  # 用'b'替换'a'
-    ```
-
-7. 查询字符位置
-
-    ```python
-    str1.find('a')  # 返回a所在位置
-    ```
-
-8. f字符串（python3.6或更高）
+7. f字符串（python3.6或更高）
 
     ```python
     name = 'tom'
@@ -129,8 +151,10 @@
 
         # <re.Match object; span=(0, 2), match='ab'>
         re.match(r'ab+', 'abc')
+
         # <re.Match object; span=(0, 3), match='abb'>
         re.match(r'ab+', 'abbc')
+
         # None
         re.match(r'ab+', 'acbab')
         ```
@@ -138,12 +162,22 @@
    2. re.search(pattern, string, flags=0)：匹配整个字符串
 
         ```python
+        import re
+
         # <re.Match object; span=(0, 2), match='ab'>
-        re.match(r'ab+', 'abc')
+        re.search(r'ab+', 'abc')
+
         # <re.Match object; span=(0, 3), match='abb'>
-        re.match(r'ab+', 'abbc')
+        re.search(r'ab+', 'abbc')
+
         # <re.Match object; span=(3, 5), match='ab'>
-        re.match(r'ab+', 'acbab')
+        re.search(r'ab+', 'acbab')
+
+        # 输出span
+        re.search(r'ab+', 'acbab').span()
+        # 输出match
+        re.search(r'ab+', 'acbab').group()
+
         ```
 
 ## 5. 列表(List)
