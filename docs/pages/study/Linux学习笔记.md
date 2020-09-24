@@ -2,12 +2,36 @@
 
 ## 1. 系统安装及配置（Ubuntu）
 
-1. 更换软件源
-   1. 备份原始源文件/etc/apt/sources.list
-        `sudo cp sources.list sources_backup.list`
-   2. 更换[清华源](https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/)
-   3. 更新软件列表
-        `sudo apt-get update`
+### 1.1. 更换软件源
+
+1. 备份原始源文件/etc/apt/sources.list
+      `sudo cp sources.list sources_backup.list`
+2. 更换[清华源](https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/)
+3. 更新软件列表
+      `sudo apt-get update`
+
+### 1.2. 配置ssh
+
+1. 查看有没有安装ssh, ubuntu默认安装了ssh-client
+
+   ```bash
+   dpkg -l | grep ssh
+   ```
+
+2. 如果没有安装
+
+   ```bash
+   # 连接其他机器
+   sudo apt-get install openssh-client
+   # 被其他机器连接
+   sudo apty-get install openssh-server
+   ```
+
+3. 查看ssh有没有开启
+
+   ```bash
+   ps -e | grep ssh
+   ```
 
 ## 2. 概念
 
@@ -74,29 +98,53 @@
    - 一般模式（默认）：移动光标、粘贴、拷贝、存盘、退出等
    - 编辑模式：在一般模式中键入`i, o, a, r`可进入编辑模式，在此模式下可完成文本输入操作，“Esc”返回一般模式
    - 指令模式：在一般模式下键入`: / ?`进入指令模式，执行查找、提婚、读取、存盘、离开等命令
-2. vi指令
 
-    | 命令               | 应用模式 | 功能                 |
-    | ------------------ | -------- | -------------------- |
-    | i                  | 一般模式 | 插入文本             |
-    | a                  | 一般模式 | 增加文本             |
-    | o                  | 一般模式 | 插入新的一行         |
-    | r                  | 一般模式 | 替换字符             |
-    | 0                  | 一般模式 | 移动到行首字符处     |
-    | $                  | 一般模式 | 移动到行尾字符处     |
-    | Ctrl+f or PageDown | 一般模式 | 向下翻页             |
-    | Ctrl+b or PageUp   | 一般模式 | 向上翻页             |
-    | x                  | 一般模式 | 删除本文             |
-    | Esc                | 编辑模式 | 退回到一般模式       |
-    | :w                 | 指令模式 | 存盘                 |
-    | :w!                | 指令模式 | 强行存盘             |
-    | :q                 | 指令模式 | 退出                 |
-    | :q!                | 指令模式 | 强制退出             |
-    | :wq                | 指令模式 | 存盘退出             |
-    | :w filename        | 指令模式 | 另存为“filename”文件 |
-    | /word              | 指令模式 | 向后寻找字符串“word” |
-    | ?word              | 指令模式 | 向前寻找字符串“word” |
-    | :set number        | 指令模式 | 打开行号显示         |
+2. vi退格和方向键不能使用的问题
+
+   ```bash
+   # 编辑vimrc.tiny文件
+   sudo vi /etc/vim/vimrc.tiny
+   # 修改 set compatible 为
+   set nocompatible
+   # 增加
+   set backspace=2
+   ```
+
+3. vi指令
+
+    | 命令        | 应用模式 | 功能                                        |
+    | ----------- | -------- | ------------------------------------------- |
+    | k           | 一般模式 | 上移                                        |
+    | j           | 一般模式 | 下移                                        |
+    | h           | 一般模式 | 左移                                        |
+    | l           | 一般模式 | 右移                                        |
+    | i           | 一般模式 | 插入文本                                    |
+    | a           | 一般模式 | 增加文本                                    |
+    | o           | 一般模式 | 插入新的一行                                |
+    | r           | 一般模式 | 替换字符                                    |
+    | 0           | 一般模式 | 移动到行首字符处                            |
+    | $           | 一般模式 | 移动到行尾字符处                            |
+    | Ctrl+f      | 一般模式 | 向下翻页                                    |
+    | Ctrl+b      | 一般模式 | 向上翻页                                    |
+    | Ctrl+d      | 一般模式 | 向下翻半页                                  |
+    | Ctrl+u      | 一般模式 | 向上翻半页                                  |
+    | x           | 一般模式 | 删除本文,相当于Del                          |
+    | X           | 一般模式 | 删除本文,相当于Backspace                    |
+    | dd          | 一般模式 | 删除当前行                                  |
+    | n dd        | 一般模式 | 删除指定行数                                |
+    | D           | 一般模式 | 删除光标后本行所有内容,包含光标所在的字符   |
+    | d0          | 一般模式 | 删除光标前本行所有内容,不包含光标所在的字符 |
+    | dw          | 一般模式 | 删除光标开始位置的字,包含光标所在的字符     |
+    | Esc         | 编辑模式 | 退回到一般模式                              |
+    | :w          | 指令模式 | 存盘                                        |
+    | :w!         | 指令模式 | 强行存盘                                    |
+    | :q          | 指令模式 | 退出                                        |
+    | :q!         | 指令模式 | 强制退出                                    |
+    | :wq         | 指令模式 | 存盘退出                                    |
+    | :w filename | 指令模式 | 另存为“filename”文件                        |
+    | /word       | 指令模式 | 向后寻找字符串“word”                        |
+    | ?word       | 指令模式 | 向前寻找字符串“word”                        |
+    | :set number | 指令模式 | 打开行号显示                                |
 
 ## 5. Shell脚本
 
@@ -106,15 +154,20 @@
    2. 使脚本文件可执行（需要设置脚本文件的权限，使其可执行）
 
       ```shell
-      chmod 775 脚本名
+      chmod 775 shell
       ```
 
       - 常见权限设置：775——每个人都能执行，700——只有文件所有者能执行
 
    3. 把脚本文件放置到shell能够到的地方，一般放在`/home/me/bin`下，因为这个文件默认在PATH配置中
-   4. 执行脚本——`./脚本名`
-3. find指令：find -name "xx*"
-4. grep指令：grep 要查的字符 文件
+3. 执行脚本
+   1. 工作目录执行 `./shell.sh`
+   2. 绝对路径执行 `/home/user/Desktop/Project/shell.sh`
+   3. sh执行 `sh shell.sh` 或 `bash shell.sh`
+   4. shell环境执行 `. shell.sh` 或 `source shell.sh`
+
+4. find指令：find -name "xx*"
+5. grep指令：grep 要查的字符 文件
 
 ## 6. 常用指令
 
@@ -403,6 +456,6 @@
 
 - [linux下core dump](https://www.cnblogs.com/Anker/p/6079580.html)
 
-## 9. 备注
+## 8. 备注
 
 - [教程地址](http://billie66.github.io/TLCL/book/index.html)
