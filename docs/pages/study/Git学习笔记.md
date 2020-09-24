@@ -51,9 +51,9 @@ Git分区：工作区—暂存区—Git仓库
     git reset
     ```
 
-    --mixed（默认）：快照回滚到暂存区域
-    --soft选项：只移动head指向
-    --hard选项：不仅移动head，还把暂存区文件还原到工作目录
+    --mixed（默认）：快照回滚到暂存区域, 即不删除工作空间改动代码, 撤销commit, 撤销add
+    --soft选项：只移动head指向, 即不删除工作空间改动代码, 撤销commit, 不撤销add
+    --hard选项：不仅移动head，还把暂存区文件还原到工作目录, 即删除工作空间代码, 撤销commit, 撤销add, 恢复到上次commit状态
 
 5. 查询Git状态
 
