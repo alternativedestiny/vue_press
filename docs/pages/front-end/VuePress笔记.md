@@ -66,7 +66,7 @@
 1. 用js代码生成导航栏和目录栏列表
 2. 文件目录
 
-    ```dir
+    ```bash
     vuepress_project/
         |_docs/
             |_.vuepress/
@@ -126,6 +126,15 @@
         }
     }
 
+    ```
+
+## 小技巧
+
+1. 调整内容显示宽度, 修改 docs->styles->palette.styl 文件, 增加如下内容
+
+    ```stylus
+    // 显示宽度由百分比调整, 根据需求修改
+    $contentWidth = 80%
     ```
 
 ## 4. 参考
