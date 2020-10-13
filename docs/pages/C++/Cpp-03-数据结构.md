@@ -32,7 +32,7 @@
     }
     ```
 
-## 2. 链表
+## 2. 链表 Linked list
 
 ### 2.1. 链表定义
 
@@ -363,7 +363,7 @@
 - [链表操作](https://blog.csdn.net/Endeavor_G/article/details/80552680)
 - [c++数据结构链表](https://juejin.im/entry/58ad26bc570c35006bcde428)
 
-## 3. Vector向量
+## 3. 向量 Vector
 
 1. vector：可以简单的认为，向量是一个能够存放任意类型的动态数组，vector的元素不仅仅可以是int、double、string还可以是`结构体`，结构体要定义为`全局`的
 2. 基本操作
@@ -402,7 +402,7 @@
 - [参考链接1](https://blog.csdn.net/duan19920101/article/details/50617190)
 - [参考链接2](https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html)
 
-## 4. Map
+## 4. 映射 Map
 
 1. Map：map是一类关联式容器。它的特点是增加和删除节点对迭代器的影响很小，除了那个操作节点，对其他的节点都没有什么影响。
 对于迭代器来说，可以修改实值，而不能修改key。

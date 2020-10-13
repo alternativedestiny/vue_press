@@ -1,8 +1,8 @@
 # 2. 数据类型
 
-## 1. 数字 & 数组
+## 1. 数字
 
-### 1.1. 数字
+### 1.1. 定义
 
 1. 整型
 
@@ -50,17 +50,63 @@
     | double      | 至少64位      |
     | long double | 80, 96或128位 |
 
-### 1.2. 数组
+### 1.2. 计算
 
-1. 数组定义
+1. 整数相除
 
     ```cpp
-    int num[] = {1, 2, 3};
-    int num[3] = {1, 2, 3};
-    float temperature[10];
+    int a = 5;
+    int b = 4;
+    int c = a / b;  // 1
+    double d = ((double)a / b); // 1.25
+    float e = ((float)a / b);   // 1.25
     ```
 
-2. 数组操作
+2. 浮点相除
+
+    ```cpp
+    #include "math.h"
+
+    float a = 3.2;
+    float b = 17.2;
+    // 浮点取整
+    int c = b / a;  // 5
+    // 浮点取余
+    float d = fmod(b, a);   // 1.2
+    // 浮点相除
+    float e = b / a;    // 5.375
+    ```
+
+3. 取整
+
+    ```cpp
+    #include "math.h"
+
+    // 向下取整
+    floor(10.3) // 10
+    floor(10.7) // 10
+    floor(-2.6) // -3
+    // 向上取整
+    ceil(10.3)  // 11
+    ceil(-2.6)  // -2
+    // 四舍五入
+    round(10.3) // 10
+    round(10.7) // 11
+    ```
+
+## 2. 数组
+
+### 2.1. 数组定义
+
+```cpp
+int num[] = {1, 2, 3};
+int num[3] = {1, 2, 3};
+float temperature[10];
+```
+
+### 2.2. 改查
+
+1. 改
 
     ```cpp
     // 单个查询
@@ -74,7 +120,11 @@
     num[0] = 10;
     ```
 
-## 2. Array
+2. 查
+
+### 2.3. 计算
+
+## 3. Array
 
 1. array(c++11新增)：与数组一样，array对象的长度也是固定的，也是用栈（静态内存分配），而不是自由存储区，因此其效率与数组相同，但更方便，更安全。
 2. 创建array: `array<typeName, number> name = {};`
@@ -94,10 +144,11 @@
     }
     ```
 
-## 3. vector
+## 4. Vector
 
-1. vector是一种动态数组, 使用new和delete来管理内存, 但这种工作是自动完成的.
-2. 创建vecotr
+### 4.1. 创建Vector
+
+1. 创建vecotr: 是一种动态数组, 使用new和delete来管理内存, 但这种工作是自动完成的.
 
     ```cpp
     #include <vector>
@@ -110,7 +161,7 @@
     vector<int> v4(v3);     // 创建v3的副本v4
     ```
 
-3. 属性
+2. 属性
 
     | 属性     | 内容     |
     | -------- | -------- |
@@ -118,41 +169,80 @@
     | .begin() | 初始位置 |
     | .end()   | 终止位置 |
 
-4. 操作vector
+### 4.2. 增删改查
+
+1. 增
 
     ```cpp
     // 末尾增加
-    v2.push_back(4);
-
-    // 删除并返回最后一位
-    v2.pop_back();
-
+    vec.push_back(4);
     // 指定位置插入
-    v2.insert(v2.begin(), 10);      // 在初始位置插入10
-    v2.insert(v2.begin() + 2, 10);  // 在位置2插入10
+    vec.insert(vec.begin(), 10);      // 在初始位置插入10
+    vec.insert(vec.begin() + 2, 10);  // 在位置2插入10
     ```
 
-## 4. 字符串 CHar & String
+2. 删
 
-1. 创建字符串
-   1. Char
+    ```cpp
+    // 删除并返回最后一位
+    vec.pop_back();
+    // 删除指定位置的元素
+    vec.erase(vec.begin() + 3); // 删除第3个元素
+    ```
 
-        ```cpp
-        char s1[] = "abc";
-        char s2[4] = "abc"; // 结尾有'\0'
-        ```
+3. 改
+4. 查
 
-   2. String
+    ```cpp
+    // 遍历: 普通方法
+    for (size_t i = 0; i < vec.size(); i++) {
+        cout << vec[i] << endl;
+    }
+    // 遍历: 迭代器
 
-        ```cpp
-        // 头文件
-        #include <string>
+    // 查询最大最小值及其位置
+    #include <algorithm>
+    float min = *min_element(vec.begin(), vec.end());   // 最小值
+    int min_position = min_element(vec.begin(), vec.end()) - vec.begin();   // 最小值所在位置
+    ```
 
-        string s1 = "what is your name"
-        string s2 = "is"
-        ```
+## 5. 字符串 Char & String
 
-2. 增
+### 5.1. 创建字符串
+
+1. Char
+
+     ```cpp
+     char c1[] = "abc";
+     char c2[4] = "abc"; // 结尾有'\0', 所以占4字节
+     char *c3 = "abc";
+     ```
+
+2. String
+
+     ```cpp
+     // 头文件
+     #include <string>
+     using namespace std;
+
+     string s1 = "what is your name"
+     string s2 = "is"
+     ```
+
+### 5.2. 访问
+
+1. 访问
+
+    ```cpp
+    // 访问
+    cout << s1[1] << endl;  // char
+    ```
+
+2. 遍历
+
+### 5.3. 增删改查
+
+1. 增
 
     ```cpp
     // 插入
@@ -169,16 +259,19 @@
     // 拷贝
     #include <string.h>
     strcpy(s1, s2)  // 把s2拷贝到s1中
+
+    // 格式化
+    sprintf(c1, "%s abc %d", c2, i);  // 字符串只能用char型
     ```
 
-3. 删
+2. 删
 
     ```cpp
     // 擦除
     s1.erase(int a, int b)  // 删除a之后的b个字符
     ```
 
-4. 改
+3. 改
 
     ```cpp
     // 替换
@@ -190,7 +283,7 @@
     s1.substr(int a)  // 截取第a个之后的字符串
     ```
 
-5. 查
+4. 查
 
     ```cpp
     // 查找
@@ -206,7 +299,7 @@
 
     ```
 
-6. 比较
+5. 比较
 
     ```cpp
     // 比较
@@ -214,9 +307,7 @@
     strcmp(s1, s2)  // 同上
     ```
 
-- [参考链接](https://blog.csdn.net/tengfei461807914/article/details/52203202)
-
-## 5. 日期时间
+## 6. 日期时间
 
 1. 创建时间格式
 
@@ -225,14 +316,40 @@
     time_t now = time(NULL);    // 获取系统当前时间
     ```
 
-## 6. 变量转换
+## 7. 变量转换
 
-1. String
-   1. String->Int: `stoi(s)`
-2. Int
+1. 数字 -> 字符串
    1. Int->Sting: `to_string(i)`
+2. 字符串 -> 数字
 
-## 7. 获取长度
+    ```cpp
+    #include <string>
+    using namespace std;
+
+    // c++ 11 以上限定
+    int i = stoi(str);
+    float f = stof(str);
+
+    // 更低版本的
+    string s1 = "123";
+    char *c1 = "12345";
+    int i = atoi(s1.c_str());
+    int j = atoi(c1);
+    ```
+
+3. char <-> string
+
+    ```cpp
+    // char -> string
+    char *c1 = "abc";
+    string str1 = c1;
+    // string ->char
+    char *c1 = str1.c_str();
+    ```
+
+- [参考链接](https://blog.csdn.net/tengfei461807914/article/details/52203202)
+
+## 8. 获取长度
 
 1. 总览
 
