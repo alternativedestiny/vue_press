@@ -1,4 +1,4 @@
-# 4. 输入输出
+# 6. 输入输出
 
 ## 1. iostream
 
@@ -99,7 +99,7 @@
 3. 读文件
 
     ```cpp
-    // 读取文件 fscanf
+    // fscanf, 遇到空格会换行
     char c1[10], c2[10];
     fscanf(file, "%s %s", &c1, &c2);
     // 按行读取
@@ -108,10 +108,11 @@
         cout << buffer << endl;
     }
 
-    // 读取文件 fread
+    // fread
     char buffer[256];
     fread(buffer, sizeof(char), 200, file);
-    // 按行读取
+
+    // fgets
     char buffer[256];
     while (fgets(buffer, 256, file) != NULL) {
         char *data = strtok(buffer, "\n");  // 去除换行符 #include <cstring>

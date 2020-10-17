@@ -94,6 +94,21 @@
     round(10.7) // 11
     ```
 
+4. 求绝对值
+
+    ```cpp
+    #include "math.h"
+
+    // 整型
+    int abs(int i);
+    // 复数
+    double cabs(struct complex znum);
+    // 浮点/双精度浮点
+    double fabs(double x);
+    // 长整型
+    long labs(long n);
+    ```
+
 ## 2. 数组
 
 ### 2.1. 数组定义
@@ -102,11 +117,20 @@
 int num[] = {1, 2, 3};
 int num[3] = {1, 2, 3};
 float temperature[10];
+
+sizeof(num)/sizeof(num[0]);  //数组长度
 ```
 
 ### 2.2. 改查
 
 1. 改
+
+    ```cpp
+    // 修改元素
+    num[0] = 10;
+    ```
+
+2. 查
 
     ```cpp
     // 单个查询
@@ -116,11 +140,12 @@ float temperature[10];
         cout << i << endl;
     }
 
-    // 修改元素
-    num[0] = 10;
-    ```
+    // 查询数组中的最大最小值
+    #include <algorithm>
 
-2. 查
+    int max = *max_element(num, num + sizeof(num)/sizeof(num[0]));   // 最大值
+    int max_p = max_element(num, num + sizeof(num)/sizeof(num[0])) - num;  // 最大值所在位置
+    ```
 
 ### 2.3. 计算
 
@@ -188,6 +213,8 @@ float temperature[10];
     vec.pop_back();
     // 删除指定位置的元素
     vec.erase(vec.begin() + 3); // 删除第3个元素
+    // 删除所有元素
+    vec.clear();
     ```
 
 3. 改
@@ -197,8 +224,12 @@ float temperature[10];
     // 遍历: 普通方法
     for (size_t i = 0; i < vec.size(); i++) {
         cout << vec[i] << endl;
+        // 注意: 即便i>vec.size(), vec[i]也是可以访问的
     }
-    // 遍历: 迭代器
+    // 遍历: 指针
+    for (size_t it = vec.begin(); it != vec.end(); it++){
+        cout << *it << endl;
+    }
 
     // 查询最大最小值及其位置
     #include <algorithm>
@@ -299,12 +330,30 @@ float temperature[10];
 
     ```
 
-5. 比较
+### 其他操作
+
+1. 比较
 
     ```cpp
     // 比较
     s1.compare(s2)  // 大于：1；小于：-1；等于：0
     strcmp(s1, s2)  // 同上
+    ```
+
+2. 分割 split [参考](https://www.zhihu.com/question/36642771/answer/865135551)
+
+    ```cpp
+    /* c++11以前没有通用的字符串分割程序 */
+    // 字符串分割函数: 要分割的字符串s_in, 分割结果s_out, 分隔符delimiter
+    void split(const string &s_in, vector<string> &s_out, const string &delimiter = " ") {
+        string::size_type lastPos = s_in.find_first_not_of(delimiter, 0);
+        string::size_type pos = s_in.find_first_of(delimiter, lastPos);
+        while (string::npos != pos || string::npos != lastPos) {
+            s_out.push_back(s_in.substr(lastPos, pos - lastPos));
+            lastPos = s_in.find_first_not_of(delimiter, pos);
+            pos = s_in.find_first_of(delimiter, lastPos);
+        }
+    }
     ```
 
 ## 6. 日期时间
@@ -316,25 +365,32 @@ float temperature[10];
     time_t now = time(NULL);    // 获取系统当前时间
     ```
 
-## 7. 变量转换
+## 7. 类型转换
 
 1. 数字 -> 字符串
-   1. Int->Sting: `to_string(i)`
+   1. `to_string(i)`, c++11以上
+   2. `sprintf`
+
+        ```cpp
+        char c[256];
+        float pi = 3.14;
+        sprintf(c, "Pi = %f", pi);  // 格式化字符串
+        ```
+
+   3. 常用
+
 2. 字符串 -> 数字
 
     ```cpp
-    #include <string>
-    using namespace std;
-
     // c++ 11 以上限定
     int i = stoi(str);
     float f = stof(str);
 
     // 更低版本的
     string s1 = "123";
-    char *c1 = "12345";
+    char *c1 = "123.45";
     int i = atoi(s1.c_str());
-    int j = atoi(c1);
+    int j = atof(c1);
     ```
 
 3. char <-> string
@@ -348,30 +404,3 @@ float temperature[10];
     ```
 
 - [参考链接](https://blog.csdn.net/tengfei461807914/article/details/52203202)
-
-## 8. 获取长度
-
-1. 总览
-
-    ```cpp
-    #include<iostream>
-    #include<string>
-
-    using namespace std;
-
-    xx.size()
-    xx.length()
-    sizeof(xx)  // 运算符，返回所占空间的字节数
-    strlen(xx)  // 函数，返回字符数组或字符串所占的字节数
-    ```
-
-2. 获取数组长度
-
-    ```cpp
-    int a[] = {1, 2, 3, 4}; // 数组
-    sizeof(a)/sizeof(a[0]);  //数组长度
-    ```
-
-3. 获取字符串长度
-
-- [参考链接](https://blog.csdn.net/z_qifa/article/details/77744482)

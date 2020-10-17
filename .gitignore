@@ -20,3 +20,6 @@ yarn-error.log*
 *.sln
 *.sw*
 d1s3.md
+
+# Build files
+docs/.vuepress/dist

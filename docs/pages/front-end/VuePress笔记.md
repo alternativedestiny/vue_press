@@ -128,16 +128,16 @@
 
     ```
 
-## 小技巧
+## 4. 调整显示宽度
 
-1. 调整内容显示宽度, 修改 docs->styles->palette.styl 文件, 增加如下内容
+1. 修改 docs->styles->palette.styl 文件, 增加如下内容
 
     ```stylus
     // 显示宽度由百分比调整, 根据需求修改
     $contentWidth = 80%
     ```
 
-## 4. 参考
+## 5. 参考
 
 - [VuePress中文官网](https://vuepress.vuejs.org/zh/)
 - [1小时搞定vuepress快速制作vue文档/博客+免费部署预览](https://juejin.im/post/5dce1e0e5188254eda3936c5#heading-9)
