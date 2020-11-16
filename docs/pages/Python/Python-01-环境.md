@@ -92,7 +92,7 @@
      # 生效
      source ~/.bashrc
      # 验证
-     conda --version
+     conda --version    # 或 -V
      pip --version
      ```
 

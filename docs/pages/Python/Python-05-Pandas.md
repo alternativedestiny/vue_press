@@ -167,6 +167,7 @@
     # 增加一行数据
     df.loc['0'] = [1, 2, 3]
     df = df.append({'a': 1, 'b': 2, 'c':3}, ignore_index=True)
+    df['col'] = 'abc'    # 增加一列完全相同的值
 
     # 增加一列数据
     df['d'] = [1, 2, 3]
@@ -185,10 +186,10 @@
 
      ```python
      # 删除行
-     df.drop([0, 1])  # 删除第0，1行
+     df = df.drop([0, 1])  # 删除第0，1行
 
      # 删除列
-     df.drop(['col1'], axis=1)  # 删除‘col1’列
+     df = df.drop(['col1'], axis=1)  # 删除'col1'列
 
      ```
 
@@ -429,20 +430,21 @@
 
    | 关键字                   | 功能                             |
    | ------------------------ | -------------------------------- |
-   | na_values=[5]            | 5和5.0会被认为是NaN              |
-   | na_valuede=["Na","0"]    | Na和0会被认为是NaN               |
-   | true_values=["yes"]      | yes被认为True                    |
+   | chunksize=4              | 每4行数据为一组                  |
+   | dtype = {'col' : str}    | 修改col类型到str                 |
+   | engine='python'          | 默认'c'，c更快，python功能更完善 |
    | false_value=["no"]       | no被认为False                    |
-   | skiprows=[0,3]           | 跳过第0行和第3行                 |
-   | nrows                    | 读取的行数                       |
    | index_col=False          | 目录列，'False'表示没有目录      |
    | MultiIndex               | 支持双列目录                     |
-   | sep=':'                  | 支持':'等符号作为分隔符的数据    |
-   | chunksize=4              | 每4行数据为一组                  |
-   | skip_blank_lines=True    | 是否跳过空行，默认True           |
-   | usecols=['col1', 'col2'] | 选择要读取的列                   |
-   | engine='python'          | 默认'c'，c更快，python功能更完善 |
+   | na_values=[5]            | 5和5.0会被认为是NaN              |
+   | na_valuede=["Na","0"]    | Na和0会被认为是NaN               |
+   | nrows                    | 读取的行数                       |
    | parse_dates=['tm']       | 将'tm'列读取成datetime格式       |
+   | sep=':'                  | 支持':'等符号作为分隔符的数据    |
+   | skiprows=[0,3]           | 跳过第0行和第3行                 |
+   | skip_blank_lines=True    | 是否跳过空行，默认True           |
+   | true_values=["yes"]      | yes被认为True                    |
+   | usecols=['col1', 'col2'] | 选择要读取的列                   |
 
 3. 使用设置
 

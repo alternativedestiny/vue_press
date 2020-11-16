@@ -3,7 +3,6 @@
 ## 1. 可变进度百分比
 
 ```python
-import time
 import sys
 
 # 输出进度百分比 rate_of_process

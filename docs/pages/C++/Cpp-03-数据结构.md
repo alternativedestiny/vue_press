@@ -32,6 +32,16 @@
     }
     ```
 
+3. 结构体排序
+
+    ```cpp
+    // 先定义一个排序依据: 按照book_id升序排列
+    bool comp(const Books &a, const Books &b) { return a.book_id < b.book_id; }
+
+    // 然后在排序中使用
+    sort(book_vec.begin(), book_vec.end(), comp);
+    ```
+
 ## 2. 链表 Linked list
 
 ### 2.1. 链表定义

@@ -288,6 +288,7 @@ sizeof(num)/sizeof(num[0]);  //数组长度
     string s = "station: " + to_string(i);
 
     // 拷贝
+    strncpy(c1, c2+3, 5);   // 截取c2第3个字符后的5个字符到c1中
     #include <string.h>
     strcpy(s1, s2)  // 把s2拷贝到s1中
 
@@ -310,8 +311,9 @@ sizeof(num)/sizeof(num[0]);  //数组长度
     s1.replace(int num1, int num2, string s, int num3, int num4)  // 用s的第num3后面的num4-1个字符替换num1后面的num2-1个字符
 
     // 字符串截取
-    s1.substr(int a, int b)  // 起始位a，长度b
-    s1.substr(int a)  // 截取第a个之后的字符串
+    strncpy(c1, c2+3, 5);   // 截取c2第3个字符后的5个字符到c1中
+    s2 = s1.substr(int a, int b)  // 起始位a，长度b
+    s2 = s1.substr(int a)  // 截取第a个之后的字符串
     ```
 
 4. 查
@@ -328,9 +330,13 @@ sizeof(num)/sizeof(num[0]);  //数组长度
 
     p = strchr(s1, s2); // 查找s2在s1中第一次出现的位置
 
+    // string 长度
+    strlen(c1);
+    s1.length();
+
     ```
 
-### 其他操作
+### 5.4. 其他操作
 
 1. 比较
 
@@ -358,49 +364,165 @@ sizeof(num)/sizeof(num[0]);  //数组长度
 
 ## 6. 日期时间
 
-1. 创建时间格式
+### 6.1. 时间格式
+
+1. time_t: 本质为长整型(long)
 
     ```cpp
-    #include <time.h>
-    time_t now = time(NULL);    // 获取系统当前时间
+    #include <time.h>   // 或 ctime
+    time_t now = time(0);   // 获取系统当前时间, 0或NULL
+    ```
+
+2. tm 结构
+
+    ```cpp
+    struct tm {
+        int tm_sec;   // 秒，正常范围从 0 到 59，但允许至 61
+        int tm_min;   // 分，范围从 0 到 59
+        int tm_hour;  // 小时，范围从 0 到 23
+        int tm_mday;  // 一月中的第几天，范围从 1 到 31
+        int tm_mon;   // 月，范围从 0 到 11
+        int tm_year;  // 自 1900 年起的年数
+        int tm_wday;  // 一周中的第几天，范围从 0 到 6，从星期日算起
+        int tm_yday;  // 一年中的第几天，范围从 0 到 365，从 1 月 1 日算起
+        int tm_isdst; // 夏令时
+    }
+    ```
+
+### 6.2. 时间转换
+
+1. time_t <-> tm
+
+    ```cpp
+    // time_t 转 tm
+    tm *ltm = localtime(&t);
+
+    // tm 转 time_t
+    time_t t = mktime(&tm1);
+    ```
+
+2. string 转 time_t
+
+    ```cpp
+    #include <string>
+    #include <ctime>
+
+    // string 转 time_t
+    time_t str_to_time(const string &str) {
+        char *c = (char *)str.data();  // string转char*
+        tm tm1;
+        int year, month, day, hour, minute, second;
+        sscanf(c, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
+        tm1.tm_year = year - 1900;  // 年份, 从1900年开始
+        tm1.tm_mon = month - 1;     // 月份, 范围0-11
+        tm1.tm_mday = day;
+        tm1.tm_hour = hour;
+        tm1.tm_min = minute;
+        tm1.tm_sec = second;
+        tm1.tm_isdst = 0;
+        time_t t = mktime(&tm1);
+        return t;
+    }
+    ```
+
+3. time_t 转 string
+
+    ```cpp
+    // time_t 转 string
+    string time_to_string(const time_t t) {
+        tm *ltm = localtime(&t);
+        char c[256];
+        sprintf(c, "%04d-%02d-%02d %02d:%02d:%02d", ltm->tm_year + 1900, ltm->tm_mon + 1, ltm->tm_mday, ltm->tm_hour,
+                ltm->tm_min, ltm->tm_sec);
+        string str = c;
+        return str;
+    }
     ```
 
 ## 7. 类型转换
 
-1. 数字 -> 字符串
-   1. `to_string(i)`, c++11以上
-   2. `sprintf`
+### 7.1. 数字 -> 字符串
 
-        ```cpp
-        char c[256];
-        float pi = 3.14;
-        sprintf(c, "Pi = %f", pi);  // 格式化字符串
-        ```
+1. `to_string(i)` (c++11)
+2. `sprintf`
 
-   3. 常用
+     ```cpp
+     char c[256];
+     float pi = 3.14;
+     sprintf(c, "Pi = %f", pi);  // 格式化字符串
+     ```
 
-2. 字符串 -> 数字
+3. 常用
+
+### 7.2. 字符串 -> 数字
+
+1. `stoi`和`stof` (c++11)
 
     ```cpp
     // c++ 11 以上限定
     int i = stoi(str);
     float f = stof(str);
+    ```
 
-    // 更低版本的
+2. `atoi`和`atof`
+
+    ```cpp
+    // c++11 以下
     string s1 = "123";
     char *c1 = "123.45";
     int i = atoi(s1.c_str());
     int j = atof(c1);
     ```
 
-3. char <-> string
+### 7.3. char <-> string
+
+```cpp
+// char -> string
+char *c1 = "abc";
+string str1 = c1;
+// string ->char
+char *c1 = str1.c_str();
+// string -> char*
+char *c1 = (char*)str1.data();
+```
+
+### 7.4. string <-> time_t
+
+1. str_to_time, [参考](https://blog.csdn.net/qq_34645629/article/details/84783092)
 
     ```cpp
-    // char -> string
-    char *c1 = "abc";
-    string str1 = c1;
-    // string ->char
-    char *c1 = str1.c_str();
+    #include <string>
+    #include <ctime>
+
+    // string -> time_t
+    time_t str_to_time(string &str) {
+        char *c = (char *)str.data();  // string转char*
+        tm tm1;
+        int year, month, day, hour, minute, second;
+        sscanf(c, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
+        tm1.tm_year = year - 1900;  // 年份, 从1900年开始
+        tm1.tm_mon = month - 1;     // 月份, 范围0-11
+        tm1.tm_mday = day;
+        tm1.tm_hour = hour;
+        tm1.tm_min = minute;
+        tm1.tm_sec = second;
+        tm1.tm_isdst = 0;
+        time_t t = mktime(&tm1);
+        return t;
+    }
+    ```
+
+2. time_to_str
+
+    ```cpp
+    string time_to_string(const time_t t) {
+        tm *ltm = localtime(&t);
+        char *c;
+        sprintf(c, "%04d-%02d-%02d %02d:%02d:%02d", ltm->tm_year + 1900, ltm->tm_mon + 1, ltm->tm_mday,
+                ltm->tm_hour, ltm->tm_min, ltm->tm_sec);
+        string str = c;
+        return str;
+    }
     ```
 
 - [参考链接](https://blog.csdn.net/tengfei461807914/article/details/52203202)

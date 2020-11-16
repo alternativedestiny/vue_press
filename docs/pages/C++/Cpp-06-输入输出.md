@@ -123,16 +123,16 @@
 4. 写文件, 推荐使用fprintf
 
     ```cpp
-    // 写入文件 fprintf
-    fprintf(file, "use fprintf write file.\r");
+    // 写入文件 fprintf, 推荐使用
+    fprintf(file, "use fprintf write file.\n");
     char c1[] = "pi=";
     float f1 = 3.14;
     fprintf(file, "%s%f", &c1, f1);
 
     // 写入文件 fwrite
-    char buffer[] = "use fwrite write file.\r";
+    char buffer[] = "use fwrite write file.\n";
     // 写入数据的地址, 块长度, 块数量, 写入的文件
-    fwrite(buffer, sizeof(char), sizeof(buffer)-1, file);
+    fwrite(buffer, sizeof(char), sizeof(buffer) - 1, file);
     ```
 
 ### 2.3. 参考
