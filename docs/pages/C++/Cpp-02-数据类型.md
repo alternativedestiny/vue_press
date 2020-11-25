@@ -311,7 +311,7 @@ sizeof(num)/sizeof(num[0]);  //数组长度
     s1.replace(int num1, int num2, string s, int num3, int num4)  // 用s的第num3后面的num4-1个字符替换num1后面的num2-1个字符
 
     // 字符串截取
-    strncpy(c1, c2+3, 5);   // 截取c2第3个字符后的5个字符到c1中
+    strncpy(c1, c2 + 3, 5);   // 截取c2第3个字符后的5个字符到c1中
     s2 = s1.substr(int a, int b)  // 起始位a，长度b
     s2 = s1.substr(int a)  // 截取第a个之后的字符串
     ```
@@ -321,6 +321,9 @@ sizeof(num)/sizeof(num[0]);  //数组长度
     ```cpp
     // 查找
     s1.find(s2)     // 返回起始位置或-1，大小写敏感
+    if (s1.find(s2) != string::npos){   // string::npos 常用作没有匹配到内容的判定结果
+        cout << "Can't find " << s2 << endl;
+    }
     s1.rfind(s2)    // 从后往前查找，其他同上
 
     s1.find_first_of(s2)    // 查找s2第一次出现的位置
@@ -526,3 +529,30 @@ char *c1 = (char*)str1.data();
     ```
 
 - [参考链接](https://blog.csdn.net/tengfei461807914/article/details/52203202)
+
+### 7.5. ASCII码转换
+
+1. 字符 <-> int
+
+    ```cpp
+    string s = (char) (n + 64);
+    int n = (int)('a')
+    ```
+
+## 8. 修饰符
+
+### 8.1. extern
+
+1. 声明extern关键字的全局变量和函数可以使得它们能够跨文件被访问
+2. extern "C": 在C++中使用C语言
+
+    ```cpp
+    extern "C"
+    {
+        #include "cExample.h" //C++中使用C的函数和变量
+    }
+    ```
+
+### 8.2. const
+
+### 8.3. static

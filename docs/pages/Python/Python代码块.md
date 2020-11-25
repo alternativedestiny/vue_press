@@ -91,3 +91,22 @@ print(perf_counter())
     # 开线程
     th.start()
     ```
+
+## 6. 系统识别
+
+1. 分辨系统为 Windows 或 linux
+
+```python
+import platform
+
+sys = platform.system()
+
+if sys == "Windows":
+    # ...
+elif sys == "Linux":
+    # ...
+else:
+    # ...
+
+print(f"Using {sys} platform.")
+```
