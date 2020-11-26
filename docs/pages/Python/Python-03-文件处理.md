@@ -59,22 +59,34 @@ os.system("explorer.exe %s" % path)  # 打开文件夹
 
 ### 2.1. Open
 
-1. 打开/关闭文件
+1. 读取文件文件
 
     ```python
     # 文件名, 模式(默认 r), 缓存
-    f = open(name, mode, buffering)
-    f.readline()
-
+    file = open('./test.txt', 'r')
+    for line in file:   # 按行读取
+        print(line, end='') # end=''避免输出两次换行
     # 关闭文件
-    f.close()
+    file.close()
     ```
 
     ```python
-    with open('filename.csv', 'w', newline='') as file:
+    # 会自动关闭文件(推荐)
+    with open('./test.txt', 'r') as file:
+        # 按行读取, 也可以用 for line in file.readlines():
+        for line in file:
+            print(line, end='') # end=''避免输出两次换行
     ```
 
-2. 参数
+2. 写文件
+
+    ```python
+    # w 写入, a追加, 文件不存在会自动创建
+    with open('./test.txt', 'w') as file:
+        file.write('123\n')
+    ```
+
+3. 参数
 
     | open参数  | 内容               |
     | --------- | ------------------ |
@@ -101,7 +113,7 @@ os.system("explorer.exe %s" % path)  # 打开文件夹
     | wb+      | 以二进制读写模式打开 (参见 w+ )                |
     | ab+      | 以二进制读写模式打开 (参见 a+ )                |
 
-3. 用numpy处理csv数据的方法
+4. 用numpy处理csv数据的方法
    1. 读取数据
 
     ```python
@@ -111,7 +123,7 @@ os.system("explorer.exe %s" % path)  # 打开文件夹
     a = data[行起始:终止, 列起始:终止]
     ```
 
-4. 用pandas读写csv文件，参考[pandas笔记](Python-05-Pandas.md)
+5. 用pandas读写csv文件，参考[pandas笔记](Python-05-Pandas.md)
 
 ### 2.2. Excel(xls/xlsx) 文件
 

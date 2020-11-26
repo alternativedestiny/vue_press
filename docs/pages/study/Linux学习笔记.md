@@ -477,6 +477,66 @@
 
 - [linux下core dump](https://www.cnblogs.com/Anker/p/6079580.html)
 
-## 8. 备注
+## 8. 用户和组
+
+### 创建用户和组
+
+1. 创建用户, 参考[添加删除用户和用户组](https://www.cnblogs.com/xd502djj/archive/2011/11/23/2260094.html)
+
+   ```bash
+   # 创建用户
+   adduser username  # 用户名
+   passwd 1234 # 密码
+
+   # 创建组
+   groupadd group
+
+   # 同时创建用户并添加到组
+   useradd -g group username
+   ```
+
+2. 给已有的用户添加组
+
+   ```bash
+   usermod -G group username  # 会把这个用户从其他组中删除
+   usermod -a group username
+   ```
+
+### 删除用户和组
+
+1. 关闭/释放用户
+
+   ```bash
+   # 临时关闭
+   passwd username -l
+   # 重新释放
+   passwd username -u
+   ```
+
+2. 永久删除用户/组
+
+   ```bash
+   userdel username
+   groupdel group
+   ```
+
+3. 从组中删除用户
+
+   ```bash
+   gpasswd -d username group
+   ```
+
+### 操作用户和组
+
+1. 查看用户/组列表
+
+   ```bash
+   # 查看用户
+   cat /etc/passwd
+   # 查看组, 分四个字段 用户组:用户组密码:GID:用户列表
+   cat /etc/group
+   ```
+
+## 9. 备注
 
 - [教程地址](http://billie66.github.io/TLCL/book/index.html)

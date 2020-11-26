@@ -7,6 +7,61 @@
 ### 1.2. Linux 安装
 
 1. 安装方法参考[Ubuntu18.04安装Java JDK8的三种方式](https://blog.csdn.net/zbj18314469395/article/details/86064849)
+   1. 安装openjdk
+
+        ```bash
+        sudo apt-get update
+        sudo apt-get install openjdk-8-jdk
+        ```
+
+   2. 安装Oracle jdk, 离线安装包的方式
+      1. 在[官网](https://www.oracle.com/java/technologies/javase-downloads.html)找到想要的jdk下载
+      2. 创建目录
+
+            ```bash
+            sudo mkdir /usr/lib/jvm
+            ```
+
+      3. 解压下载好的文件
+
+            ```bash
+            sudo tar -zxvf jdk-xxx-linux-x64.gz -C /usr/lib/jvm
+            ```
+
+      4. 修改环境变量
+
+            ```bash
+            sudo vi ~/.bashrc
+            ```
+
+            将下边几行添加到文件中
+
+            ```bashrc
+            export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_271
+            export JRE_HOME=${JAVA_HOME}/lib:${JRE_HOME}/lib
+            export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+            export PATH=${JAVA_HOME}/bin:$PATH
+            ```
+
+            生效文件
+
+            ```bash
+            source ~/.bashrc
+            ```
+
+2. 查看安装好的java版本
+
+    ```bash
+    java -version
+    ```
+
+3. 多版本java切换, 输入序号选择版本
+
+    ```bash
+    sudo update-alternatives --config java
+    ```
+
+    <img src='../images/java版本切换.png' width=800>
 
 ## 2. 基本语法
 
