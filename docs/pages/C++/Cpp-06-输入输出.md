@@ -12,7 +12,9 @@
     system("pause");
     ```
 
-### cerr
+### 1.2. cerr
+
+### 1.3. printf
 
 ## 2. 文件读写
 
@@ -58,7 +60,6 @@
         // 写文件
         fstream ofile(file_name, ios::app);  // 追加模式
         // ofile.seekg(0, ios::end);   // 定位到文件末尾, 也可以使用追加模式
-        ofile << "fstream file write." << endl;
         ofile << "fstream file write." << endl;
         ofile.close();  // 关闭文件
 

@@ -2,6 +2,8 @@
 
 ## 1. JS数据类型
 
+### 1.1. 基础数据类型
+
 - Undefined 未定义，声明但未初始化
 - Boolean 布尔值
   - 转换为True的值：true，非空字符串，非零数字，对象，N/A
@@ -10,6 +12,12 @@
 - Number 数值
 - Object 对象或null
 - Function 函数
+
+### 数组
+
+1. 数组
+2. 增删改查
+3. 二维数组
 
 ## 2. 定义变量
 
@@ -357,9 +365,11 @@
     3. Math.random()方法，生成一个≥0,<1的随机数
     4. 其他方法：绝对值、次幂、三角函数等
 
-## 7. 函数表达式
+## 7. 面向对象
 
-### 7.1. 函数的表达式
+## 8. 函数表达式
+
+### 8.1. 函数的表达式
 
 1. 定义函数的方式有两种：一种是函数声明，另一种是函数表达式
    1. 函数声明：
@@ -394,4 +404,80 @@
 2. 递归：递归函数是在一个函数通过名字调用自身的情况下构成的
 3. 闭包：是指有权访问另一个函数作用域中变量的函数。创建闭包的常见方式，就是在函数内部创建另一个函数。
 
-## 8. 未完待续
+## 9. 读写文件 (NodeJS)
+
+1. 读文件
+
+    ```js
+    const fs = require('fs')    // 头文件
+
+    let fname = 'abc.csv'
+    fs.readFile(fname, 'utf-8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        let list = data.split('\r\n');  // 按行分割
+        for (let xx in list) {
+            console.log(list[xx]);  // 按行输出
+        }
+    })
+    ```
+
+2. 写文件
+
+### 9.1. Json文件处理
+
+1. 读取Json文件
+
+    ```js
+    // 头文件
+    const fs = require("fs");
+
+    // 读取json配置文件
+    var index = fs.readFileSync("xxx.json", 'utf-8', function (err, data) {
+        if (err) {
+            console.log("Read file error!");
+            console.log(err.message);
+        } else {
+            console.log("Read file success.");
+            return data;
+        }
+    });
+    // json数据格式化
+    index = JSON.parse(index);
+    ```
+
+2. 写入Json文件
+
+    ```js
+    // 头文件
+    const fs = require("fs");
+
+    // 读取json配置文件
+    var json_data = fs.readFileSync("xxx.json", 'utf-8', function (err, data) {
+        if (err) {
+            console.log("Read file error!");
+            console.log(err.message);
+        } else {
+            console.log("Read file success.");
+            return data;
+        }
+    });
+    // json数据格式化
+    json_data = JSON.parse(json_data);
+
+    // 创建新数据
+    let new_data = {
+        key1: value1,
+        key2: value2,
+        key3: value3
+    };
+    json_data.push(new_data);   // 添加数据
+    var t = JSON.stringify(json_data, "", "\t");    // Json数据格式化
+    fs.writeFileSync("xxx.json", t);    // 写入文件
+    ```
+
+3. 路径问题, [参考](https://www.cnblogs.com/yinhaiying/p/10782303.html)
+
+## 10. 未完待续

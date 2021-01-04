@@ -266,7 +266,7 @@ sizeof(num)/sizeof(num[0]);  //数组长度
 
     ```cpp
     // 访问
-    cout << s1[1] << endl;  // char
+    cout << s1[1] << endl;  // char类型
     ```
 
 2. 遍历
