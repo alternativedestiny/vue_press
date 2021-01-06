@@ -320,16 +320,16 @@ sizeof(num)/sizeof(num[0]);  //数组长度
 
     ```cpp
     // 查找
-    s1.find(s2)     // 返回起始位置或-1，大小写敏感
+    s1.find(s2);     // 返回起始位置或-1，大小写敏感
     if (s1.find(s2) != string::npos){   // string::npos 常用作没有匹配到内容的判定结果
         cout << "Can't find " << s2 << endl;
     }
-    s1.rfind(s2)    // 从后往前查找，其他同上
+    s1.rfind(s2);    // 从后往前查找，其他同上
 
-    s1.find_first_of(s2)    // 查找s2第一次出现的位置
-    s1.find_last_of(s2)     // 查找s2最后一次出现的位置
-    s1.find_first_not_of(s2)    // 在s1中查找第一个不再s2中的字符
-    s1.find_last_not_of(s2) // 与上面相似
+    s1.find_first_of(s2);      // 查找s2第一次出现的位置
+    s1.find_last_of(s2);       // 查找s2最后一次出现的位置
+    s1.find_first_not_of(s2);  // 在s1中查找第一个不再s2中的字符
+    s1.find_last_not_of(s2);   // 与上面相似
 
     p = strchr(s1, s2); // 查找s2在s1中第一次出现的位置
 
@@ -347,6 +347,9 @@ sizeof(num)/sizeof(num[0]);  //数组长度
     // 比较
     s1.compare(s2)  // 大于：1；小于：-1；等于：0
     strcmp(s1, s2)  // 同上
+
+    // 比较两个字符串的前n个字符
+    strncmp(c1, c2, n);
     ```
 
 2. 分割 split [参考](https://www.zhihu.com/question/36642771/answer/865135551)

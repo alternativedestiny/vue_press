@@ -15,7 +15,9 @@
 | Auto Complete Tag                    | 配合上面的使用               | `前端`   |
 | background                           | 背景图片插件                 | `体验`   |
 | Beautify                             | 代码格式化插件               | `必备`   |
+| Code Runner                          | 代码运行                     | `推荐`   |
 | GitLens                              | git扩展                      | `必备`   |
+| LiveCode for python                  | 动态显示python变量的输出     | `推荐`   |
 | Markdown All in One                  | Markdown编辑                 | `必备`   |
 | Markdown Preview Enhanced            | Markdown预览                 | `必备`   |
 | markdown toc                         | 自动创建目录（需要设置eol）  | `一般`   |
@@ -40,7 +42,42 @@
    1. Alt + 左键：手动选择
    2. 中键移动：批量选择
 
-## 4. Remote-SSH配置
+## 4. 自定义补全
+
+1. 设置 MarkDown 补全代码
+   1. VSCode 首选项->用户代码片段->MarkDown
+
+      ![md](../images/markdown.gif)
+
+   2. 设置补全内容，如cpp代码块
+
+      ```json
+      "cpp": {
+         "prefix": "cpp",  //  触发词
+         "body": [  // 补全内容
+            "```c++",
+            "$1",  // 光标停留位置
+            "```"
+         ],
+         "description": "Add C++ code block"  // 注释
+      }
+      ```
+
+2. 打开自定义补全功能
+   1. 文件->首选项->设置->(右上角)打开设置，将下面这段设置写入setting.json文件
+
+      ```json
+      "[markdown]":  {
+            "editor.quickSuggestions": true
+         }
+      ```
+
+      ![json](../images/json.gif)
+3. 实现效果
+
+   ![cpp](../images/cpp.gif)
+
+## 5. Remote-SSH配置
 
 1. 远程服务器配置
 

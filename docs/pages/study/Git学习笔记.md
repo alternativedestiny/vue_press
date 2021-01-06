@@ -168,12 +168,19 @@ Git分区：工作区—暂存区—Git仓库
     git push -u origin master  # 上传项目文件，第一次会出现一个登陆窗口，需要登陆你的Github账户，之后就不会出现了。登陆之后出现下面这些文字表示上传成功
     ```
 
-### 5.2. 备注
+### 5.2. 远程仓库操作
 
-- origin 添加错误或需要更换origin执行下面指令，删除原有origin，然后重新添加就行
+1. 查看远程仓库地址
+
+    ```git
+    git remote -v
+    ```
+
+2. origin 添加错误或需要更换origin执行下面指令，删除原有origin，然后重新添加就行
 
     ```git
     git remote rm origin
+    git remote add origin 地址
     ```
 
 ## 6. 老瓶装新酒（新设备在已有项目的基础上继续更新）

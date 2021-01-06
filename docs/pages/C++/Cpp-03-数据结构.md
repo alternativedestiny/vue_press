@@ -414,46 +414,68 @@
 
 ## 4. 映射 Map
 
-1. Map：map是一类关联式容器。它的特点是增加和删除节点对迭代器的影响很小，除了那个操作节点，对其他的节点都没有什么影响。
-对于迭代器来说，可以修改实值，而不能修改key。
-   1. 有点类似python3的字典
-   2. Map使用
+1. Map：map是一类关联式容器。它的特点是增加和删除节点对迭代器的影响很小，除了那个操作节点，对其他的节点都没有什么影响。对于迭代器来说，可以修改实值，而不能修改key。
+2. Map使用
 
-       ```cpp
-       // 头文件
-       #include<map>
+    ```cpp
+    // 头文件
+    #include <map>
 
-       // 创建
-       map<string,int> MapName = {
-           {"a", 1},
-           {"b", 2},
-           {"c", 3}
-       };
+    // 创建
+    map<string, int> map_name = {
+        {"a", 1},
+        {"b", 2},
+        {"c", 3}
+    };
+    ```
 
-       // 插入
-       MapName["d"] = 4;
-       MapName.insert(pair<string,int> ("d",4));
-       MapName.insert(map<string,int>::value_type("d",4));
+3. 增删改查
 
-       // 查询
-       MapName["a"]
-       MapName.at("a");  // 返回对应值
+    ```cpp
+    // 插入
+    map_name["d"] = 4;
+    map_name.insert(pair<string,int> ("d",4));
+    map_name.insert(map<string,int>::value_type("d",4));
 
-       // 查找
-       MapName.find();  // 返回的是被查找元素的位置，没有则返回map.end()
-       MapName.count();  // 返回的是被查找元素的个数。如果有，返回1；否则，返回0。注意，map中不存在相同元素，所以返回值只能是1或0。
+    // 删除
+    map_name.erase("b");
+    map_name.clear();  // 清空
 
-       // 容量
-       MapName.empty();  // 判断是否为空
-       MapName.size();  // 返回大小
+    // 修改
+    map_name["b"] = 10; // 将b的值修改成0
 
-       // 删除
-       MapName.erase("b");
-       MapName.clear();  // 清空
+    // 查询
+    map_name["a"]
+    map_name.at("a");  // 返回对应值
 
-       // 顺序比较
-       MapName.key_comp("a","b")  // a在b前返回true
-       ```
+    // 查找
+    map_name.find();  // 返回的是被查找元素的位置，没有则返回map.end()
+    map_name.count();  // 返回的是被查找元素的个数。如果有，返回1；否则，返回0。注意，map中不存在相同元素，所以返回值只能是1或0。
+
+    // 容量
+    map_name.empty();  // 判断是否为空
+    map_name.size();  // 返回大小
+    ```
+
+4. 遍历
+
+    ```cpp
+    #include <map>
+
+    map<string, string> map_name;
+    map<string, string>::iterator iter;
+
+    for (iter = map_name.begin(); iter != map_name.end(); iter++) {
+        cout << iter->first << " = " << iter->second << endl;
+    }
+    ```
+
+5. 比较
+
+    ```cpp
+    // 顺序比较
+    map_name.key_comp("a","b")  // a在b前返回true
+    ```
 
 - [c++常见map用法](https://blog.csdn.net/shuzfan/article/details/53115922)
 - [c++ STL hashmap](https://blog.csdn.net/u010025211/article/details/46653519)

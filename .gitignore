@@ -5,6 +5,7 @@ node_modules
 .env.local
 .env.*.local
 .history
+.test
 
 # Log files
 npm-debug.log*

@@ -2,9 +2,21 @@
 
 ## 1. iostream
 
-### 1.1. cin & cout
+### 1.1. cin & cout 标准输入输出
 
-1. 避免控制台直接关闭
+1. 输入
+
+    ```cpp
+    cin>>变量1>>变量2>>...>>变量n;
+    ```
+
+2. 输出
+
+    ```cpp
+    cout<<表达式1<<表达式2<<...<<表达式n;
+    ```
+
+3. 避免控制台直接关闭
 
     ```cpp
     cin.get();
@@ -12,7 +24,11 @@
     system("pause");
     ```
 
-### 1.2. cerr
+4. 参考[C++中cout、cin和endl的用法](https://blog.csdn.net/Lee_Shuai/article/details/53313988)
+
+### 1.2. cerr 标准错误
+
+> cerr流对象是标准错误流, 指定为和显示器关联, 和cout作用差不多, 有点不同就是cout, 通常是传到显示器输出, 但可以被重定向输出到文件, 而cerr流中的信息只能在显示器输出
 
 ### 1.3. printf
 
@@ -139,3 +155,50 @@
 ### 2.3. 参考
 
 - [c++文件读写详解](https://blog.csdn.net/kingstar158/article/details/6859379)
+
+## 3. 输入输出格式化
+
+### 3.1. 输入格式化
+
+1. scanf 从控制台输入
+
+    ```cpp
+    #include <stdio.h>
+
+    using namespace std;
+
+    int main(int argc, char const *argv[])
+    {
+        int a, b;
+        cout << "请输入两个整数, 用空格隔开" << endl;   // 回车也可
+        scanf("%d %d", &a, &b);  // 等同于 cin >> a >> b;
+        printf("a = %d\n", a);
+        printf("b = %d\n", b);
+        return 0;
+    }
+    ```
+
+2. sscanf 从字符串中输入
+
+    ```cpp
+    #include <stdio.h>
+
+    using namespace std;
+
+    int main(int argc, char const *argv[])
+    {
+        char str[] = "pi = 3.14";
+        char variable[10];
+        float num;
+        sscanf(str, "%s = %f", &variable, &num);
+        cout << variable << endl; 
+        cout << num << endl; 
+        return 0;
+    }
+    ```
+
+3. fscanf 从文件中输入, 遇到空格和换行结束
+
+### 3.2. 输出格式化
+
+1. sprintf

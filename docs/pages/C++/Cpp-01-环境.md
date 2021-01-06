@@ -48,25 +48,31 @@
         }
         ```
 
-   2. 按 `f5` 依次选择环境 `C++(GDB/LDB)`，选择配置 `g++.exe`，系统就会自动生成配置和编译文件，然后就可以开始调试了
+   2. 按 `f5` 依次选择环境 `C++(GDB/LLDB)`，选择配置 `g++.exe`，系统就会自动生成配置和编译文件，然后就可以开始调试了
 
-     <img src='../images/c_vscode.gif' width=800>
+        <img src='../images/c_vscode.gif' width=800>
+
+   3. Debug出现相对路径文件无法读取的问题时, 需要修改launch.json文件, 将`"cwd"`后面的路径修改成`"${fileDirname}"`, 即
+
+        ```json
+        "cwd": "${fileDirname}",
+        ```
 
 3. 也有一种不用配置的方法，下载安装插件：C/C++ Compile Run，只需安装下面的插件即可, `f6`直接运行
 
-     <img src='../images/C++CompileRun.png'>
+    <img src='../images/C++CompileRun.png'>
 
 ## 3. Windows下命令行编译
 
 1. 编译成.o文件
 
-     ```bash
-     g++ -c test.cpp
-     ```
+    ```bash
+    g++ -c test.cpp
+    ```
 
 2. 编译成exe执行文件
 
-     ```bash
-     # 不命名的话会生成a.exe
-     g++ test.cpp -o test
-     ```
+    ```bash
+    # 不命名的话会生成a.exe
+    g++ test.cpp -o test
+    ```

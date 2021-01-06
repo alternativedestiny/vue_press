@@ -1,5 +1,14 @@
 # 关于我
 
+## 项目地址
+
+1. Github
+   - [vuepress项目地址](https://github.com/alternativedestiny/vue_press)
+   - [GitHub.io地址](https://github.com/alternativedestiny/alternativedestiny.github.io)
+2. Gitee
+   - [vuepress项目地址](https://gitee.com/hoppou/hoppou)
+   - [Gitee.io地址](https://gitee.com/hoppou/vue_press)
+
 ## 本网页使用到的技术
 
 供大家交流使用，同时感谢各位作者
