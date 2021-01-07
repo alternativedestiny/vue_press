@@ -58,9 +58,15 @@
         "cwd": "${fileDirname}",
         ```
 
-3. 也有一种不用配置的方法，下载安装插件：C/C++ Compile Run，只需安装下面的插件即可, `f6`直接运行
+3. 也有不用配置的方法, 可以直接运行c++程序, 但是不能调试
+
+   > 下载安装插件`C/C++ Compile Run`，只需安装下面的插件即可, `f6`直接运行
 
     <img src='../images/C++CompileRun.png'>
+
+    > 如果使用多种语言的话, 推荐`Code Runner`插件
+
+    <img src='../images/coderunner.png'>
 
 ## 3. Windows下命令行编译
 

@@ -178,7 +178,7 @@
     }
     ```
 
-2. sscanf 从字符串中输入
+2. sscanf 从字符串中输入, 参考[C语言函数sscanf()的用法](https://www.cnblogs.com/lyq105/archive/2009/11/28/1612677.html)
 
     ```cpp
     #include <stdio.h>
