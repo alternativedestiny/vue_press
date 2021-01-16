@@ -170,6 +170,7 @@
    2. 绝对路径执行 `/home/user/Desktop/Project/shell.sh`
    3. sh执行 `sh shell.sh` 或 `bash shell.sh`
    4. shell环境执行 `. shell.sh` 或 `source shell.sh`
+   5. bash执行`bash xx.sh`
 
 4. find指令：find -name "xx*"
 5. grep指令：grep 要查的字符 文件
@@ -465,6 +466,15 @@
       2. egrep：等同于grep -E，和grep最大的区别就是表现在转义符上比如grep 做次数匹配时\{n,m\}egrep则不需要直接{n，m}。egrep方便，简介。
       3. fgrep：等同于grep -f，但是不能使用正则表达式。所有的字符匹配功能均已消失。
    2. 参数说明 `grep [OPTIONS] PATTERN(模式) [file]`
+
+2. 压缩与解压
+
+    ```bash
+    # 压缩
+    tar zxvf filename.tar
+    # 解压
+    tar czvf filename.tar dirname
+    ```
 
 ### 7.4. coredump
 

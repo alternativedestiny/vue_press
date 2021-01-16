@@ -2,6 +2,14 @@
 
 ## 1. 安装
 
+### Windows 安装
+
+1. 下载安装[Docker](https://www.docker.com/)
+2. 更换国内源
+   > 在Docker Seting中修改Doker Engine的配置文件, 在"registry-mirrors"配置中添加国内镜像, 比如使用官方中国区`https://registry.docker-cn.com`
+
+    <img src='../images/docker_setting.png'>
+
 ### 1. 配置容器
 
 1. 创建并进入容器ubuntu

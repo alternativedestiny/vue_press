@@ -190,7 +190,7 @@
         char str[] = "pi = 3.14";
         char variable[10];
         float num;
-        sscanf(str, "%s = %f", &variable, &num);
+        sscanf(str, "%s = %f", variable, num);
         cout << variable << endl; 
         cout << num << endl; 
         return 0;
@@ -202,3 +202,8 @@
 ### 3.2. 输出格式化
 
 1. sprintf
+
+    ```cpp
+    // 格式化
+    sprintf(c1, "%s abc %d", c2, i);  // 字符串只能用char型
+    ```

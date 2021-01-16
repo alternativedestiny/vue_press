@@ -256,6 +256,13 @@
         print(i, item)
     ```
 
+8. 转换
+
+    ```python
+    # list 转 string
+    str1 = ",".join(list1)  # list1转字符串, 中间用','隔开, 也可使用空格等其他字符
+    ```
+
 ## 6. 元组(Tupple)
 
 ## 7. 集合(Set)

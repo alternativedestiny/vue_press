@@ -291,9 +291,6 @@ sizeof(num)/sizeof(num[0]);  //数组长度
     strncpy(c1, c2+3, 5);   // 截取c2第3个字符后的5个字符到c1中
     #include <string.h>
     strcpy(s1, s2)  // 把s2拷贝到s1中
-
-    // 格式化
-    sprintf(c1, "%s abc %d", c2, i);  // 字符串只能用char型
     ```
 
 2. 删

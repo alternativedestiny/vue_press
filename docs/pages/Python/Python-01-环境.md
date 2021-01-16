@@ -2,9 +2,11 @@
 
 ## 1. Python 使用
 
+### 1.1. 下载及安装
+
 1. Python下载
    [Python官方网站](https://www.python.org/)
-2. 更换清华源
+2. 更换清华源, 在命令行
 
     ```bash
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
@@ -16,10 +18,12 @@
    - 豆瓣源：<https://pypi.doubanio.com/simple/>
    - 阿里源：<https://mirrors.aliyun.com/pypi/simple/>
 
-3. 安装库
+### 1.2. 使用库
 
-    | 库          | 功能                       | 文档                                                    |
-    | ----------- | -------------------------- | ------------------------------------------------------- |
+1. 常用库
+
+    | 库          | 功能                       |
+    | ----------- | -------------------------- |
     | psutil      | 电脑监控信息读取           |
     | matplotlib  | 绘图                       |
     | pillow->PIL | 图片处理                   |
@@ -35,16 +39,16 @@
     | pulp        | 线性求解                   |
     | pwlf        | 分段线性拟合               |
     | pyecharts   | python + echarts           |
-    | altair      | 数据可视化工具             | [文档](https://altair-viz.github.io/gallery/index.html) |
+    | altair      | 数据可视化工具             |
 
-4. 升级库
+2. 升级库
 
     ```bash
     pip list --outdate  // 显示可升级库
     pip install --upgrade xxx  // 升级库
     ```
 
-5. 下载离线安装包
+3. 下载离线库
 
     ```bash
     # 在目标路径下进入cmd
@@ -63,13 +67,18 @@
     | --platform manylinux1_x86_64 | linux 64位     |
     | --python-version 37          | python3.7      |
 
-6. [whl离线库网站](https://www.lfd.uci.edu/~gohlke/pythonlibs/)
-7. 创建虚拟环境
+4. [whl离线库网站](https://www.lfd.uci.edu/~gohlke/pythonlibs/)
+
+### 1.3. 虚拟环境
+
+1. 创建虚拟环境
    1. 安装virtualenv库 `pip install virtualenv`
-   2. 在目标文件夹下进入cmd
-   3. `virtualenv venv` 创建虚拟环境venv
-   4. 在 `venv/Scripts` 下执行 `activate` 开启虚拟环境
+   2. cd到目标文件夹下
+   3. `virtualenv 虚拟环境名` 创建虚拟环境
+   4. 在 `虚拟环境名/Scripts` 下执行 `activate` 开启虚拟环境
    5. 退出虚拟环境 `deactivate`
+
+2. 虚拟环境管理
 
 ## 2. Miniconda 使用
 
