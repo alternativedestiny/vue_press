@@ -36,4 +36,11 @@
     apt-get install wget
     ```
 
-4. 安装
+4. 容器自启动
+
+    ```bash
+    # 先查询容器id
+    docker ps -a
+    # 将容器id放入自启动, 可以同时放多个容器id
+    docker update --restart=always 容器id
+    ```
