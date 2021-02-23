@@ -2,13 +2,19 @@
 
 ## 1. 创建项目
 
-1. 创建django项目
+1. 安装Django包
+
+    ```bash
+    pip install django
+    ```
+
+2. 创建django项目
 
     ```bash
     django-admin start mysite
     ```
 
-2. 项目目录，之后的路径默认在项目路径第一个`mysite/`之下
+3. 项目目录，之后的路径默认在项目路径第一个`mysite/`之下
 
     ```dir
     mysite/
@@ -22,9 +28,9 @@
         |_ manage.py            管理django的工具
     ```
 
-3. 启动项目
+4. 启动项目, 默认地址和端口为127.0.0.1:8000, 在浏览器输入地址后看到下面的页面说明项目启动成功
 
-    ```python
+    ```bash
     python manage.py runserver
     ```
 
@@ -87,7 +93,6 @@
 
         ```python
         from django.shortcuts import render
-
 
         # Create your views here.
         def index(request):
@@ -207,14 +212,11 @@
     from django.contrib import admin
     from .models import *  # 从models.py引入所有模型
 
-
     # Register your models here.
     class Model1Admin(admin.ModelAdmin):
         list_display = ('fields1')
 
-
     admin.site.register(Model1)
-
     ```
 
 3. 激活模型：在`mysite/settings.py`中的`INSTALLED_APPS`字段添加app
@@ -235,7 +237,8 @@
    1. makemigrations会在当前目录下生成一个migrations文件夹，该文件夹的内容就是数据库要执行的内容
 
         ```bash
-        python manage.py makemigrations  # 让 Django 知道我们在我们的模型有一些变更
+        # 在命令行输入下面的指令, 让 Django 知道我们在我们的模型有一些变更
+        python manage.py makemigrations
         ```
 
         > 正常会出现如下内容
@@ -246,7 +249,8 @@
    2. migrate就是执行之前生成的migrations文件，这一步才是操作数据库的一步
 
         ```bash
-        python manage.py migrate   # 创建表结构
+        # 在命令行输入下面的指令, 创建表结构
+        python manage.py migrate
         ```
 
         > 正常会出现如下内容
@@ -257,7 +261,7 @@
 
    3. 备注：Django每次更新模型都需要执行以上两步，需要注意的是Django模型增加内容需要设定变量的初始值，否则会在第一步出现问题
 
-5. 创建超级用户，在命令行输入下面的指令，根据提示进行即可
+5. 创建超级用户，在命令行输入下面的指令，根据提示进行账号密码等设置即可
 
     ```bash
     python manage.py createsuperuser
@@ -492,7 +496,11 @@
 
     这句后程序更加稳定。使用POST方法相同，只需把上面程序GET改成POST即可，但是需要注意csrf问题。
 
-## 8. CSRF认证的几种方法
+## 8. 前后端数据传递
+
+### 8.1. 后端数据传递到前端
+
+## 9. CSRF认证的几种方法
 
 1. 在登陆表单中添加CSRF方法：
 

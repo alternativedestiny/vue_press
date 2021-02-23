@@ -19,15 +19,16 @@
 | GitLens                              | git扩展                      | `必备`   |
 | LiveCode for python                  | 动态显示python变量的输出     | `推荐`   |
 | Markdown All in One                  | Markdown编辑                 | `必备`   |
+| markdown image                       | makrdown插入图片             | `推荐`   |
+| Markdown PDF                         | Markdown转pdf                | `一般`   |
 | Markdown Preview Enhanced            | Markdown预览                 | `必备`   |
 | markdown toc                         | 自动创建目录（需要设置eol）  | `一般`   |
 | markdown-formatter                   | markdown格式化工具           | `一般`   |
 | markdownlint                         | markdown格式检查工具         | `必备`   |
+| markmap                              | makrdown思维导图             | `推荐`   |
 | Open In Default Browser              | 调用浏览器打开html           | `前端`   |
 | Path Autocomplete                    | 路径自动补全                 | `一般`   |
 | Project Manager                      | 项目管理                     | `必备`   |
-| Paste Image                          | Markdown插入图片             | `一般`   |
-| Markdown PDF                         | Markdown转pdf                | `一般`   |
 | Seti                                 | 图标美化插件                 | `体验`   |
 | Excel Viewer                         | 查看excel、csv               | `一般`   |
 | SandDance for VSCode                 | 数据可视化工具               | `体验`   |

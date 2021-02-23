@@ -137,9 +137,9 @@
     $contentWidth = 80%
     ```
 
-## Gitalk
+## 5. Gitalk
 
-## 5. 参考
+## 6. 参考
 
 - [VuePress中文官网](https://vuepress.vuejs.org/zh/)
 - [1小时搞定vuepress快速制作vue文档/博客+免费部署预览](https://juejin.im/post/5dce1e0e5188254eda3936c5#heading-9)

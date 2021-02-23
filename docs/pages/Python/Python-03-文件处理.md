@@ -1,59 +1,59 @@
 # 3. 文件
 
-## 1. 文件处理 os
+## 1. 文件处理 os/pathlib
 
-### 1.1. 遍历文件名
+1. 遍历文件名
 
-```python
-import os
+    ```python
+    import os
 
-# 获取文件列表
-sources_path = "./folder"  # 路径
-file_name = os.listdir(sources_path)  # 所有文件名
-```
+    # 获取文件列表
+    sources_path = "./folder"  # 路径
+    file_name = os.listdir(sources_path)  # 所有文件名
+    ```
 
-### 1.2. 遍历多层文件夹
+2. 遍历多层文件夹
 
-```python
-import os
+    ```python
+    import os
 
-file_list = []
-for root, folder, files in os.walk('./folder'):
-    for file_name in files:
-        file_list.append(root + '/' + file_name)
-```
+    file_list = []
+    for root, folder, files in os.walk('./folder'):
+        for file_name in files:
+            file_list.append(root + '/' + file_name)
+    ```
 
-### 1.3. 检测并创建文件夹
+3. 检测并创建文件夹
 
-```python
-import os
+    ```python
+    import os
 
-# 创建文件夹/文件目录
-path = 'abc/'
-# 检测文件夹/文件是否存在，不存在就创建该文件夹
-if not os.path.exists(path):
-    print('folder not exist')
-    os.makedirs(path)
-else:
-    print('folder exist')
-```
+    # 创建文件夹/文件目录
+    path = 'abc/'
+    # 检测文件夹/文件是否存在，不存在就创建该文件夹
+    if not os.path.exists(path):
+        print('folder not exist')
+        os.makedirs(path)
+    else:
+        print('folder exist')
+    ```
 
-### 1.4. 重命名
+4. 重命名
 
-```python
-import os
-# 重命名文件
-os.rename(old_name, new_name)
-```
+    ```python
+    import os
+    # 重命名文件
+    os.rename(old_name, new_name)
+    ```
 
-### 1.5. 用默认应用打开文件、文件夹
+5. 用默认应用打开文件、文件夹
 
-```python
-import os
-os.startfile('file_path')  # 打开文件
-path = ''
-os.system("explorer.exe %s" % path)  # 打开文件夹
-```
+    ```python
+    import os
+    os.startfile('file_path')  # 打开文件
+    path = ''
+    os.system("explorer.exe %s" % path)  # 打开文件夹
+    ```
 
 ## 2. 文件读写
 

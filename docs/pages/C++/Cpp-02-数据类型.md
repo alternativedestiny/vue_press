@@ -119,6 +119,11 @@ int num[3] = {1, 2, 3};
 float temperature[10];
 
 sizeof(num)/sizeof(num[0]);  //数组长度
+
+// 字符串数组
+char *str_list[] = {"abc", "def"};
+cout << str_list[0] << endl;    // abc
+
 ```
 
 ### 2.2. 改查

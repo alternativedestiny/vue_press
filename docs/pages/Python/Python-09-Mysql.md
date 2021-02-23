@@ -1,6 +1,14 @@
-# 9. PyMySQL 数据库
+# 9. 数据库
 
-1. 读取数据
+## 1. MySQL
+
+1. 安装MySQL数据库的python包
+
+    ```bash
+    pip install pymysql
+    ```
+
+2. 读取数据
 
     ```python
     import pymysql
@@ -25,7 +33,7 @@
     database.close()
     ```
 
-2. 写入数据
+3. 写入数据
 
     ```python
     sql = "insert into table(col1, col2) values (%s, %s) % (num1, num2)"
@@ -35,4 +43,4 @@
     database.commit()
     ```
 
-3. 更多内容查看MySQL笔记
+4. 更多内容查看MySQL笔记

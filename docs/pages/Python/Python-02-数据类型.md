@@ -45,6 +45,18 @@
         x = 'name: ' + name + '; score: ' + str(n)
         ```
 
+   2. f字符串(python3.6或更高)
+
+        ```python
+        name = 'tom'
+        age = 13
+        print(f'{name} is {age} years old.')  # tom is 13 years old.
+
+        a = 1
+        b = 2
+        print(f'{a} + {b} = {a + b}')  # 1 + 2 = 3
+        ```
+
 3. 删
    1. 删除字符串指定字符
 
@@ -100,23 +112,17 @@
         str1.find('a')  # 返回a所在位置
         ```
 
+   2. 查询字符出现个数
+
+        ```python
+        str1.count('a') # 返回字符a出现的个数
+        ```
+
 6. 字符串转代码
 
     ```python
     str1 = "print('hello')"
     eval(str1)  # hello
-    ```
-
-7. f字符串（python3.6或更高）
-
-    ```python
-    name = 'tom'
-    age = 13
-    print(f'{name} is {age} years old.')  # tom is 13 years old.
-
-    a = 1
-    b = 2
-    print(f'{a} + {b} = {a + b}')  # 1 + 2 = 3
     ```
 
 ## 4. 正则表达式（Regular Expression）
