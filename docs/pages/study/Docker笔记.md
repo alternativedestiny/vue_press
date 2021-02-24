@@ -2,7 +2,7 @@
 
 ## 1. 安装
 
-### Windows 安装
+### 1.1. Windows 安装
 
 1. 下载安装[Docker](https://www.docker.com/)
 2. 更换国内源
@@ -10,33 +10,44 @@
 
     <img src='../images/docker_setting.png'>
 
-### 1. 配置容器
+### 1.2. 配置容器
 
-1. 创建并进入容器ubuntu
+1. 拉取(下载)容器
+
+    ```bash
+    # 自动下载最新的ubuntu
+    docker pull ubuntu
+    # 也可以指定版本
+    docker pull ubuntu:20.04
+    ```
+
+2. 创建并进入容器ubuntu
 
     ```bash
     docker run -it --name ubuntu1 ubuntu:18.04 /bin/bash
     ```
 
-2. 常用命令
+3. 常用命令
 
     | 命令                          | 功能             |
     | ----------------------------- | ---------------- |
     | docker start [container_name] | 运行容器         |
     | docker attach [container_id]  | 进入容器         |
+    | docker restart [container_id] | 重启容器         |
     | docker rm [container_name]    | 删除容器         |
     | docker images                 | 显示已抽取的镜像 |
     | docker ps                     | 显示运行中的镜像 |
     | docker ps -a                  | 显示所有镜像     |
+    | exit                          | 退出容器         |
 
-3. 安装wget
+4. 安装wget
 
     ```bash
     apt-get update
     apt-get install wget
     ```
 
-4. 容器自启动
+5. 容器自启动
 
     ```bash
     # 先查询容器id
