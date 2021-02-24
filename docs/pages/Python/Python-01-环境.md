@@ -4,15 +4,14 @@
 
 ### 1.1. 下载及安装
 
-1. Python下载
-   [Python官方网站](https://www.python.org/)
-2. 更换清华源, 在命令行
+1. 官网下载Python安装包, [Python官方网站](https://www.python.org/), linux下建议使用anaconda或miniconda
+2. Python默认源在国外, 下载速度慢且不稳定, 建议更换清华源, 在命令行输入以下指令添加清华源
 
     ```bash
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
     ```
 
-    国内常用源
+    其他常用国内源
 
    - 清华源：<https://pypi.tuna.tsinghua.edu.cn/simple>
    - 豆瓣源：<https://pypi.doubanio.com/simple/>
@@ -20,33 +19,24 @@
 
 ### 1.2. 使用库
 
-1. 常用库
+1. 安装库, 常使用pip指令
 
-    | 库          | 功能                       |
-    | ----------- | -------------------------- |
-    | altair      | 数据可视化工具             |
-    | django      | django网站框架             |
-    | jaydebeapi  | 通过java的jdbc来连接数据库 |
-    | matplotlib  | 绘图                       |
-    | nuitka      | python程序打包             |
-    | pandas      | 数据分析工具               |
-    | paramiko    | ssh工具                    |
-    | pillow->PIL | 图片处理                   |
-    | psutil      | 电脑监控信息读取           |
-    | pyserial    | 串口                       |
-    | pymysql     | MySQL数据库                |
-    | pulp        | 线性求解                   |
-    | pwlf        | 分段线性拟合               |
-    | pyecharts   | python + echarts           |
-    | scipy       | 科学计算库                 |
-    | sympy       | 科学（符号）计算库         |
-    | virtualenv  | 虚拟环境                   |
+    ```bash
+    # 查看pip版本
+    pip -V      # 或 pip --version
+
+    # 查看已经安装的库
+    pip list
+
+    # 在线安装库, pip会自动安装库的依赖
+    pip install xxx     # xxx为要安装的库
+    ```
 
 2. 升级库
 
     ```bash
-    pip list --outdate  // 显示可升级库
-    pip install --upgrade xxx  // 升级库
+    pip list --outdate          # 显示可升级库
+    pip install --upgrade xxx   # 升级库
     ```
 
 3. 下载离线库
@@ -79,34 +69,36 @@
    4. 在 `虚拟环境名/Scripts` 下执行 `activate` 开启虚拟环境
    5. 退出虚拟环境 `deactivate`
 
-2. 虚拟环境管理
-
-## 2. Miniconda 使用
+## 2. Anaconda / Miniconda 使用
 
 ### 2.1. 安装
 
-1. 从清华源下载安装[miniconda](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/)
-2. Linux安装
+1. Miniconda是Anaconda的精简版本, 只包含Python和一些最基本的库, 使用方法与Anaconda相同
+2. 从清华源下载安装[Miniconda](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/)
+3. Linux 安装, 将安装文件考入linux, 然后执行以下命令, 根据提示安装即可
 
     ```bash
     bash miniconda3_xxx.sh
     ```
 
-3. 配置环境变量，默认不需要配置
+   1. 配置环境变量，默认不需要配置
 
-     ```bash
-     # 打开配置文件
-     ~/miniconda3/bin$ sudo gedit ~/.bashrc
-     # 在末尾添加
-     export PATH=~/anaconda3/bin:$PATH
-     # 生效
-     source ~/.bashrc
-     # 验证
-     conda --version    # 或 -V
-     pip --version
-     ```
+        ```bash
+        # 打开配置文件
+        ~/miniconda3/bin$ sudo gedit ~/.bashrc
+        # 在末尾添加
+        export PATH=~/anaconda3/bin:$PATH
+        # 生效
+        source ~/.bashrc
+        # 验证
+        conda --version    # 或 -V
+        pip --version
+        ```
 
-4. 避免一开始就激活base环境，可以设置
+4. Windows 安装, 默认下一步即可(默认不添加环境变量), 可在安装过程中选择配置环境变量, 也可以自行配置环境变量. 根据安装路径添加环境变量, 重启生效
+   <img src='../images/Python-01-%E7%8E%AF%E5%A2%83-2021-02-24_24.png' width=600>
+
+5. 避免一开始就激活base环境，可以设置
 
     ```bash
     # 关闭base自动激活
@@ -115,26 +107,50 @@
     conda config --set auto_activate_base true
     ```
 
-5. 进入安装目录下 Windows：`C:\ProgramData\Miniconda3\Scripts` Linux：`\miniconda3\bin`执行指令
+6. 检测安装是否成功: 配置完环境变量可在任意路径执行下列命令; 未配置需要进入安装目录下 (Windows：`C:\ProgramData\Miniconda3\Scripts` Linux：`\miniconda3\bin`)执行指令
 
     ```bash
-    conda list  # 查看已安装的包
-    conda --version  # 查看版本
-    conda -V  # 同上
+    conda list          # 查看已安装的包
+    conda --version     # 查看版本, 或-V
     ```
 
-6. Miniconda [换清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)
+7. 配置[清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)
+   1. linux
 
-    ```bash
-    # 清华源
-    # 任意目录下编辑.condarc文件
-    vi ~/.condarc
-    # 添加清华源，参考清华源官网
-    # 显示源
-    conda config --show-sources
-    ```
+        ```bash
+        # 清华源
+        # 任意目录下编辑.condarc文件
+        vi ~/.condarc
+        ```
 
-7. 出现 `conda:command not found` 问题
+   2. windows
+
+        ```bash
+        # 先创建.condarc文件
+        # 文件一般在C:\Users\username目录下
+        conda config --set show_channel_urls yes
+        ```
+
+   3. 在.condarc中写入以下内容, 具体以[清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)为准
+
+        ```bash
+        channels:
+        - defaults
+        show_channel_urls: true
+        default_channels:
+        - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+        - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+        - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+        custom_channels:
+        conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+        msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+        bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+        menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+        pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+        simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+        ```
+
+8. 若出现 `conda:command not found` 问题
 
     ```bash
     # 编辑.bashrc文件
@@ -149,20 +165,21 @@
 1. 环境配置
 
     ```bash
-    # 安装 python3.7 并命名为该环境为 python37
-    conda create --name python37 python=3.7
+    # 创建一个 python3.7 的环境
+    conda create --name 环境名 python=3.7
     # 或
-    conda create -n python37 python=3.7
+    conda create -n 环境名 python=3.7
+    
     # 克隆现有环境
-    conda create -n env --clone base
+    conda create -n 环境名 --clone 现有环境名
 
     # 激活环境
-    conda activate python37
+    conda activate 环境名
     # 退出环境
     conda deactivate
 
     # 删除环境
-    conda remove -n python37 --all
+    conda remove -n 环境名 --all
     ```
 
    > 创建虚拟环境失败，出现`an unexpected error has occurred`问题，可能是源文件出现问题，需要删除`.condarc`文件
@@ -170,9 +187,7 @@
 2. 列出所有环境
 
     ```bash
-    conda info --envs
-    # 或者
-    conda info -e
+    conda info --envs   # 或 -e
     ```
 
 3. 安装 python 包
@@ -215,6 +230,12 @@
         pip install --no-index -r requirements.txt
         ```
 
+   3. 生成 requirements.txt 文件
+
+        ```bash
+        pip3 freeze >requirements.txt
+        ```
+
 ## 3. VSCode 配置 Python 环境
 
 1. 安装 Python 插件
@@ -239,3 +260,27 @@
     <img src='../images/添加配置.gif' width=800>
 
 5. 然后就可以开始调试运行了
+
+## 4. 备注
+
+1. 常用库
+
+    | 库          | 功能                       |
+    | ----------- | -------------------------- |
+    | altair      | 数据可视化工具             |
+    | django      | django网站框架             |
+    | jaydebeapi  | 通过java的jdbc来连接数据库 |
+    | matplotlib  | 绘图                       |
+    | nuitka      | python程序打包             |
+    | pandas      | 数据分析工具               |
+    | paramiko    | ssh工具                    |
+    | pillow->PIL | 图片处理                   |
+    | psutil      | 电脑监控信息读取           |
+    | pyserial    | 串口                       |
+    | pymysql     | MySQL数据库                |
+    | pulp        | 线性求解                   |
+    | pwlf        | 分段线性拟合               |
+    | pyecharts   | python + echarts           |
+    | scipy       | 科学计算库                 |
+    | sympy       | 科学（符号）计算库         |
+    | virtualenv  | 虚拟环境                   |

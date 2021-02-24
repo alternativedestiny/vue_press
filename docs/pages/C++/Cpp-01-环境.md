@@ -27,6 +27,11 @@
         <img src='../images/mingw_download.png'>
 
    3. 解压下载的压缩文件即可
+6. 根据自己的安装路径配置环境变量, 在系统变量中的path中添加mingw的路径, 最好重启一下使换进变量生效
+   <img src='../images/Cpp-01-%E7%8E%AF%E5%A2%83-2021-02-23_39.png' width=600>
+
+7. 在命令行中输入`gcc -v`, 显示出gcc版本表示安装成功
+   <img src='../images/Cpp-01-%E7%8E%AF%E5%A2%83-2021-02-23_31.png' width=600>
 
 ## 2. VSCode 配置
 
