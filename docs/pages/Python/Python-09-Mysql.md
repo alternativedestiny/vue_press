@@ -2,7 +2,7 @@
 
 ## 1. MySQL
 
-1. 安装MySQL数据库的python包
+1. 安装 MySQL 数据库的 python 包
 
     ```bash
     pip install pymysql
@@ -19,10 +19,10 @@
     # 创建游标
     cursor = database.cursor()
 
-    # sql语句：从table中抽取10组a，b，按a的降序排列
+    # sql 语句：从 table 中抽取 10 组 a，b，按 a 的降序排列
     sql = "select a,b from table order by a desc limit 10"
 
-    # 执行sql语句
+    # 执行 sql 语句
     cursor.execute(sql)
 
     # 获取数据
@@ -39,8 +39,8 @@
     sql = "insert into table(col1, col2) values (%s, %s) % (num1, num2)"
     cursor.excute(sql)
 
-    # 提交到数据库执行，多数据插入只用执行一次commit
+    # 提交到数据库执行，多数据插入只用执行一次 commit
     database.commit()
     ```
 
-4. 更多内容查看MySQL笔记
+4. 更多内容查看 MySQL 笔记

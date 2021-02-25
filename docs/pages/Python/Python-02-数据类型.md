@@ -3,19 +3,19 @@
 ## 1. Python 命名规则
 
 1. 命名约定
-   1. 所谓“内部(Internal)”表示仅模块内可用, 或者, 在类内是保护或私有的.
-   2. 用单下划线(_)开头表示模块变量或函数是protected的(使用from module import *时不会包含).
-   3. 用双下划线(__)开头的实例变量或方法表示类内私有.
-   4. 将相关的类和顶级函数放在同一个模块里. 不像Java, 没必要限制一个类一个模块.
-   5. 对类名使用大写字母开头的单词(如CapWords, 即Pascal风格), 但是模块名应该用小写加下划线的方式(如lower_with_under.py). 尽管已经有很多现存的模块使用类似于CapWords.py这样的命名, 但现在已经不鼓励这样做, 因为如果模块名碰巧和类名一致, 这会让人困扰.
+   1. 所谓“内部 (Internal)”表示仅模块内可用，或者，在类内是保护或私有的。
+   2. 用单下划线 (_) 开头表示模块变量或函数是 protected 的（使用 from module import *时不会包含）.
+   3. 用双下划线 (__) 开头的实例变量或方法表示类内私有。
+   4. 将相关的类和顶级函数放在同一个模块里。不像 Java, 没必要限制一个类一个模块。
+   5. 对类名使用大写字母开头的单词（如 CapWords, 即 Pascal 风格）, 但是模块名应该用小写加下划线的方式（如 lower_with_under.py). 尽管已经有很多现存的模块使用类似于 CapWords.py 这样的命名，但现在已经不鼓励这样做，因为如果模块名碰巧和类名一致，这会让人困扰。
 2. 应避免的命名
-   1. 单字符名称, 除了计数器和迭代器.
-   2. 包/模块名中的连字符(-)
-   3. 双下划线开头并结尾的名称(Python保留, 例如__init__)
+   1. 单字符名称，除了计数器和迭代器。
+   2. 包/模块名中的连字符 (-)
+   3. 双下划线开头并结尾的名称 (Python 保留，例如__init__)
 
-## 2. 数字(Number)
+## 2. 数字 (Number)
 
-1. 保留4位小数位
+1. 保留 4 位小数位
 
     ```python
     # 百分号
@@ -24,7 +24,7 @@
     num = round(num, 4)
     ```
 
-## 3. 字符串(String)
+## 3. 字符串 (String)
 
 1. 类型转换：`str2 = str(str1)`
 2. 增
@@ -45,7 +45,7 @@
         x = 'name: ' + name + '; score: ' + str(n)
         ```
 
-   2. f字符串(python3.6或更高)
+   2. f 字符串 (python3.6 或更高）
 
         ```python
         name = 'tom'
@@ -57,7 +57,7 @@
         print(f'{a} + {b} = {a + b}')  # 1 + 2 = 3
         ```
 
-   3. python 字符串没有插入(insert)功能, 可以通过字符串拼接实现
+   3. python 字符串没有插入 (insert) 功能，可以通过字符串拼接实现
 
     ```python
     str1 = 'abc123'
@@ -71,7 +71,7 @@
         ```python
         # strip 方法
         str1.strip('a')
-        # 去处字符串头尾 \r,\t,\n,空格 等字符
+        # 去处字符串头尾 \r,\t,\n, 空格 等字符
         str1.strip()
         # 去除字符串开头处指定字符
         str1.lstrip()
@@ -101,9 +101,9 @@
         # 多个分隔符分割，不同分隔符用‘|’隔开
         import re
         str2 = re.split(',|!', str1)
-        # 或者用r'[]'，不需要用‘|’隔开
+        # 或者用 r'[]'，不需要用‘|’隔开
         str2 = re.split(r'[,!]', str1)
-        # 多字符匹配可以使用正则, 比如多空格分割
+        # 多字符匹配可以使用正则，比如多空格分割
         str2 = re.split(' *', str1)
         ```
 
@@ -117,13 +117,13 @@
    1. 查询字符位置
 
         ```python
-        str1.find('a')  # 返回a所在位置
+        str1.find('a')  # 返回 a 所在位置
         ```
 
    2. 查询字符出现个数
 
         ```python
-        str1.count('a') # 返回字符a出现的个数
+        str1.count('a') # 返回字符 a 出现的个数
         ```
 
 6. 字符串转代码
@@ -142,12 +142,12 @@
     | .        | 匹配除了换行的任意字符             |
     | ^        | 匹配字符串的开头                   |
     | $        | 匹配字符串尾或着换行符的前一个字符 |
-    | *        | 对他前面的正则式匹配0到任意次      |
-    | +        | 对他前面的正则式匹配1到任意次      |
-    | ?        | 对他前面的正则式匹配0到1次         |
+    | *        | 对他前面的正则式匹配 0 到任意次      |
+    | +        | 对他前面的正则式匹配 1 到任意次      |
+    | ?        | 对他前面的正则式匹配 0 到 1 次         |
     | *? +? ?? | ‘非贪婪’方式                       |
-    | {m}      | 对他前面的正则式指定匹配m个重复    |
-    | {m,n}    | 对正则式进行m到n次匹配             |
+    | {m}      | 对他前面的正则式指定匹配 m 个重复    |
+    | {m,n}    | 对正则式进行 m 到 n 次匹配             |
     | \        | 转义字符                           |
     | []       | 用于表示一个字符集                 |
 
@@ -187,14 +187,14 @@
         # <re.Match object; span=(3, 5), match='ab'>
         re.search(r'ab+', 'acbab')
 
-        # 输出span
+        # 输出 span
         re.search(r'ab+', 'acbab').span()
-        # 输出match
+        # 输出 match
         re.search(r'ab+', 'acbab').group()
 
         ```
 
-## 5. 列表(List)
+## 5. 列表 (List)
 
 1. 创建列表
 
@@ -203,10 +203,10 @@
     list1 = ['apple', 'banana', 123, 456]
     # 创建空列表
     list2 = []
-    # 创建全0列表
+    # 创建全 0 列表
     import numpy as np
     list1 = np.zeros(25, dtype=int)  # ndarray
-    # 用list的写法
+    # 用 list 的写法
     list1 = [0 for t in range(3)]  # [0, 0, 0]
 
     # 创建序列数组：5,6,7,8,9
@@ -232,9 +232,9 @@
     ```python
     list1.append('apple')  # 添加元素
     list1.count('apple')  # 统计某个元素出现次数
-    list1.insert(1, 'cherry')  # 在位置1插入
+    list1.insert(1, 'cherry')  # 在位置 1 插入
 
-    # 两个list拼接
+    # 两个 list 拼接
     list3 = list1.extend(list2)
     ```
 
@@ -258,8 +258,8 @@
     ```python
     print(list1[2])  # 第三个元素
     print(list1[-1])  # 最后一个元素
-    print(list1[0:2])  # [0,2)的元素
-    print(list1[1:])  # 第2个及以后元素
+    print(list1[0:2])  # [0,2) 的元素
+    print(list1[1:])  # 第 2 个及以后元素
     print(list1.index('banana'))  # 查询列表元素位置
     ```
 
@@ -274,16 +274,16 @@
 
     ```python
     # list 转 string
-    str1 = ",".join(list1)  # list1转字符串, 中间用','隔开, 也可使用空格等其他字符
+    str1 = ",".join(list1)  # list1 转字符串，中间用','隔开，也可使用空格等其他字符
     ```
 
-## 6. 元组(Tupple)
+## 6. 元组 (Tupple)
 
-## 7. 集合(Set)
+## 7. 集合 (Set)
 
-## 8. 字典(Dictionary)
+## 8. 字典 (Dictionary)
 
-1. 类似c++中的map，键唯一，值不唯一，如果出现相同的键，后面的会覆盖掉前面的
+1. 类似 c++中的 map，键唯一，值不唯一，如果出现相同的键，后面的会覆盖掉前面的
 
     ```python
     d = {key1: value1, key2: value2}
@@ -306,26 +306,26 @@
 
 ## 9. 日期时间处理
 
-### 9.1. datetime库
+### 9.1. datetime 库
 
-1. 日期类型datetime
+1. 日期类型 datetime
    1. datetime.date——日期，属性：year，month，day
    2. datetime.time——时间，属性：hour，minute，second，microsecond，tzinfo
    3. datetime.datetime——日期时间
    4. datetime.timedelta——时间间隔，精确到微秒
-   5. datetime.tzinfo——时区信息对象的抽象基类。 datetime和time类使用它们来提供可自定义的时间调整概念（例如，考虑时区和/或夏时制）
+   5. datetime.tzinfo——时区信息对象的抽象基类。 datetime 和 time 类使用它们来提供可自定义的时间调整概念（例如，考虑时区和/或夏时制）
    6. datetime.timezone——一个实现了 tzinfo 抽象基类的子类，用于表示相对于 世界标准时间（UTC）的偏移量。
 
 2. 创建日期
 
-    批量生成日期数据参考pandas笔记
+    批量生成日期数据参考 pandas 笔记
 
     ```python
-    # 导入datetime包
+    # 导入 datetime 包
     from datetime import datetime
 
     date1 = datetime(2016, 2, 28, 0, 0, 0)
-    # 时间为00:00:00时，可以省略时间，即
+    # 时间为 00:00:00 时，可以省略时间，即
     print(datetime(2016, 2, 28))  # 2016-02-28 00:00:00
 
     print(date1)  # 2016-02-28 00:00:00
@@ -333,11 +333,11 @@
     print(date1.time())  # 00:00:00
     print(date1.day)  # 28
 
-    # 字符串转日期，注意是strptime，不是strftime，p/f区分
+    # 字符串转日期，注意是 strptime，不是 strftime，p/f 区分
     str1 = '2020-01-01 10:10:10'
     t = datetime.strptime(str1, '%Y-%m-%d %H:%M:%S')
 
-    # 日期格式化用strftime
+    # 日期格式化用 strftime
     day1 = datetime(2020, 6, 5)  # 2020-06-05 00:00:00
     str2 = datetime.strftime(day1, '%H:%M:%S %m/%d/%Y')  # 00:00:00 06/05/2020
     # 或
@@ -350,7 +350,7 @@
       1. 参数：weeks, days, hours, minutes, seconds
 
         ```python
-        # 导入timedelta模块
+        # 导入 timedelta 模块
         from datetime import timedelta
 
         date1 = datetime(2016, 2, 28, 0, 0, 0)
@@ -397,12 +397,12 @@
     ```python
     import arrow
 
-    # 方法1：直接创建日期格式
+    # 方法 1：直接创建日期格式
     a = arrow.Arrow(2019, 1, 1)
     print(a)  # 2019-01-01T00:00:00+00:00
     print(a.date(), a.time())  # 2019-01-01 00:00:00
 
-    # 方法2：字符串转日期
+    # 方法 2：字符串转日期
     t = '2019-01-01'
     a = arrow.get(t)
     print(a)  # 2019-01-01T00:00:00+00:00

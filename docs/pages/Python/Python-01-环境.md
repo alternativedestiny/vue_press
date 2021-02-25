@@ -4,8 +4,8 @@
 
 ### 1.1. 下载及安装
 
-1. 官网下载Python安装包, [Python官方网站](https://www.python.org/), linux下建议使用anaconda或miniconda
-2. Python默认源在国外, 下载速度慢且不稳定, 建议更换清华源, 在命令行输入以下指令添加清华源
+1. 官网下载 Python 安装包，[Python 官方网站](https://www.python.org/), linux 下建议使用 anaconda 或 miniconda
+2. Python 默认源在国外，下载速度慢且不稳定，建议更换清华源，在命令行输入以下指令添加清华源
 
     ```bash
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
@@ -19,17 +19,17 @@
 
 ### 1.2. 使用库
 
-1. 安装库, 常使用pip指令
+1. 安装库，常使用 pip 指令
 
     ```bash
-    # 查看pip版本
+    # 查看 pip 版本
     pip -V      # 或 pip --version
 
     # 查看已经安装的库
     pip list
 
-    # 在线安装库, pip会自动安装库的依赖
-    pip install xxx     # xxx为要安装的库
+    # 在线安装库，pip 会自动安装库的依赖
+    pip install xxx     # xxx 为要安装的库
     ```
 
 2. 升级库
@@ -42,29 +42,29 @@
 3. 下载离线库
 
     ```bash
-    # 在目标路径下进入cmd
+    # 在目标路径下进入 cmd
     # 会连同下载所有依赖包
     pip download [options] [pakage]
-    # 比如下载linux版本numpy
+    # 比如下载 linux 版本 numpy
     pip download --only-binary=:all: --platform manylinux1_x86_64 --python-version 37 numpy
 
     # 离线安装
-    pip install --no-index --find-links=file:路径 包名
+    pip install --no-index --find-links=file: 路径 包名
     ```
 
     | 参数                         | 功能           |
     | ---------------------------- | -------------- |
     | --only-binary=:all:          | 不适用二进制包 |
-    | --platform manylinux1_x86_64 | linux 64位     |
+    | --platform manylinux1_x86_64 | linux 64 位    |
     | --python-version 37          | python3.7      |
 
-4. [whl离线库网站](https://www.lfd.uci.edu/~gohlke/pythonlibs/)
+4. [whl 离线库网站](https://www.lfd.uci.edu/~gohlke/pythonlibs/)
 
 ### 1.3. 虚拟环境
 
 1. 创建虚拟环境
-   1. 安装virtualenv库 `pip install virtualenv`
-   2. cd到目标文件夹下
+   1. 安装 virtualenv 库 `pip install virtualenv`
+   2. cd 到目标文件夹下
    3. `virtualenv 虚拟环境名` 创建虚拟环境
    4. 在 `虚拟环境名/Scripts` 下执行 `activate` 开启虚拟环境
    5. 退出虚拟环境 `deactivate`
@@ -73,9 +73,9 @@
 
 ### 2.1. 安装
 
-1. Miniconda是Anaconda的精简版本, 只包含Python和一些最基本的库, 使用方法与Anaconda相同
-2. 从清华源下载安装[Miniconda](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/)
-3. Linux 安装, 将安装文件考入linux, 然后执行以下命令, 根据提示安装即可
+1. Miniconda 是 Anaconda 的精简版本，只包含 Python 和一些最基本的库，使用方法与 Anaconda 相同
+2. 从清华源下载安装 [Miniconda](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/)
+3. Linux 安装，将安装文件考入 linux, 然后执行以下命令，根据提示安装即可
 
     ```bash
     bash miniconda3_xxx.sh
@@ -95,43 +95,43 @@
         pip --version
         ```
 
-4. Windows 安装, 默认下一步即可(默认不添加环境变量), 可在安装过程中选择配置环境变量, 也可以自行配置环境变量. 根据安装路径添加环境变量, 重启生效
+4. Windows 安装，默认下一步即可（默认不添加环境变量）, 可在安装过程中选择配置环境变量，也可以自行配置环境变量。根据安装路径添加环境变量，重启生效
    <img src='../images/Python-01-%E7%8E%AF%E5%A2%83-2021-02-24_24.png' width=600>
 
-5. 避免一开始就激活base环境，可以设置
+5. 避免一开始就激活 base 环境，可以设置
 
     ```bash
-    # 关闭base自动激活
+    # 关闭 base 自动激活
     conda config --set auto_activate_base false
-    # 打开base自动激活
+    # 打开 base 自动激活
     conda config --set auto_activate_base true
     ```
 
-6. 检测安装是否成功: 配置完环境变量可在任意路径执行下列命令; 未配置需要进入安装目录下 (Windows：`C:\ProgramData\Miniconda3\Scripts` Linux：`\miniconda3\bin`)执行指令
+6. 检测安装是否成功：配置完环境变量可在任意路径执行下列命令；未配置需要进入安装目录下 (Windows：`C:\ProgramData\Miniconda3\Scripts` Linux：`\miniconda3\bin`) 执行指令
 
     ```bash
     conda list          # 查看已安装的包
-    conda --version     # 查看版本, 或-V
+    conda --version     # 查看版本，或-V
     ```
 
-7. 配置[清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)
+7. 配置 [清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)
    1. linux
 
         ```bash
         # 清华源
-        # 任意目录下编辑.condarc文件
+        # 任意目录下编辑。condarc 文件
         vi ~/.condarc
         ```
 
    2. windows
 
         ```bash
-        # 先创建.condarc文件
-        # 文件一般在C:\Users\username目录下
+        # 先创建。condarc 文件
+        # 文件一般在 C:\Users\username 目录下
         conda config --set show_channel_urls yes
         ```
 
-   3. 在.condarc中写入以下内容, 具体以[清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)为准
+   3. 在。condarc 中写入以下内容，具体以 [清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/) 为准
 
         ```bash
         channels:
@@ -153,7 +153,7 @@
 8. 若出现 `conda:command not found` 问题
 
     ```bash
-    # 编辑.bashrc文件
+    # 编辑。bashrc 文件
     vi ~/.bashrc
 
     # 再文件末尾加入一下内容，根据需要改变路径
@@ -255,9 +255,9 @@
         <img src='../images/interpreter path.png' width=600>
         <img src='../images/find.png' width=600>
 
-4. 添加配置：可以根据自己的项目配置Python、Django等
+4. 添加配置：可以根据自己的项目配置 Python、Django 等
 
-    <img src='../images/添加配置.gif' width=800>
+    <img src='../images/添加配置。gif' width=800>
 
 5. 然后就可以开始调试运行了
 
@@ -265,22 +265,22 @@
 
 1. 常用库
 
-    | 库          | 功能                       |
-    | ----------- | -------------------------- |
-    | altair      | 数据可视化工具             |
-    | django      | django网站框架             |
-    | jaydebeapi  | 通过java的jdbc来连接数据库 |
-    | matplotlib  | 绘图                       |
-    | nuitka      | python程序打包             |
-    | pandas      | 数据分析工具               |
-    | paramiko    | ssh工具                    |
-    | pillow->PIL | 图片处理                   |
-    | psutil      | 电脑监控信息读取           |
-    | pyserial    | 串口                       |
-    | pymysql     | MySQL数据库                |
-    | pulp        | 线性求解                   |
-    | pwlf        | 分段线性拟合               |
-    | pyecharts   | python + echarts           |
-    | scipy       | 科学计算库                 |
-    | sympy       | 科学（符号）计算库         |
-    | virtualenv  | 虚拟环境                   |
+    | 库          | 功能                           |
+    | ----------- | ------------------------------ |
+    | altair      | 数据可视化工具                 |
+    | django      | django 网站框架                |
+    | jaydebeapi  | 通过 java 的 jdbc 来连接数据库 |
+    | matplotlib  | 绘图                           |
+    | nuitka      | python 程序打包                |
+    | pandas      | 数据分析工具                   |
+    | paramiko    | ssh 工具                       |
+    | pillow->PIL | 图片处理                       |
+    | psutil      | 电脑监控信息读取               |
+    | pyserial    | 串口                           |
+    | pymysql     | MySQL 数据库                   |
+    | pulp        | 线性求解                       |
+    | pwlf        | 分段线性拟合                   |
+    | pyecharts   | python + echarts               |
+    | scipy       | 科学计算库                     |
+    | sympy       | 科学（符号）计算库             |
+    | virtualenv  | 虚拟环境                       |

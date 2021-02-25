@@ -6,7 +6,7 @@
 import sys
 
 # 输出进度百分比 rate_of_process
-# r:当前步数，p:总步数，s:文本
+# r: 当前步数，p: 总步数，s: 文本
 def rop(r, p, s='rate of process'):
     # \r 退格到行首
     str1 = s + ': ' + str(round((r / p) * 100, 2)) + '%'
@@ -20,9 +20,9 @@ def rop(r, p, s='rate of process'):
 
 ```python
 from time import process_time, perf_counter
-# 不会计算sleep()时间
+# 不会计算 sleep() 时间
 print(process_time())
-# 会计算sleep()时间
+# 会计算 sleep() 时间
 print(perf_counter())
 ```
 
@@ -37,7 +37,7 @@ print(perf_counter())
     import matplotlib.pyplot as plt
     # 对数据 x,y 进行分段拟合
     my_pwlf = pwlf.PiecewiseLinFit(x, y)
-    # 转折点，segments为分段数
+    # 转折点，segments 为分段数
     breaks = my_pwlf.fit(segments)
     # 拟合的结果值
     y_hat = my_pwlf.predict(x)
@@ -47,7 +47,7 @@ print(perf_counter())
     plt.plot(x, y_hat)  # 拟合后的多段直线
     ```
 
-## 4. crc校验
+## 4. crc 校验
 
 1. 代码
 
@@ -67,7 +67,6 @@ print(perf_counter())
 
         return s[2:6]
 
-
     if __name__ == "__main__":
         m = input()
         print(crc16(m))
@@ -75,18 +74,18 @@ print(perf_counter())
     ```
 
 2. 备注
-   1. 输入16进制数据，输出为两个字节的校验码
+   1. 输入 16 进制数据，输出为两个字节的校验码
     比如输入“55 66”，输出校验码“CABE”，输入每个字节用空格分开
 
 ## 5. 多线程
 
-1. 多线程：适用于IO密集型，不适用于CPU密集型。
+1. 多线程：适用于 IO 密集型，不适用于 CPU 密集型。
 2. 代码
 
     ```python
     import threading
 
-    # 创建多线程函数：target目标函数（线程内执行的函数），args目标函数参数
+    # 创建多线程函数：target 目标函数（线程内执行的函数），args 目标函数参数
     th = threading.Thread(target=check, args=(a, b, c))
     # 开线程
     th.start()

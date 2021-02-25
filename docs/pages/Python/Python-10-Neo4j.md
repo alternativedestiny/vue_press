@@ -2,8 +2,8 @@
 
 ## 1. 安装配置
 
-1. 从[neo4j官网](https://neo4j.com/)下载安装包
-2. 配置JDK环境，比如 neo4j v4.0.3 需要jdk11
+1. 从 [neo4j 官网](https://neo4j.com/) 下载安装包
+2. 配置 JDK 环境，比如 neo4j v4.0.3 需要 jdk11
 3. 离线安装包解压即可
 4. 启动数据库
    1. 在`../neo4j-community-4.0.3/bin`安装目录下打开命令行
@@ -51,10 +51,10 @@
     password='123456'
     )
 
-    # 简写1
+    # 简写 1
     neo = Graph('localhost', auth=('neo4j', '123456'))
 
-    # 简写2
+    # 简写 2
     neo = Graph('localhost', password='123456')
     ```
 
@@ -90,7 +90,7 @@
 ## 3. 增
 
 1. 创建节点与属性
-    1. py2neo写法
+    1. py2neo 写法
 
         ```python
         # 建立节点
@@ -111,7 +111,7 @@
         > (:person {age: 21, name: 'Bos'})
         > (Alice)-[:knows {time: '2020-07-03'}]->(Bos)
 
-    2. cypher写法
+    2. cypher 写法
 
         ```python
         neo.run('create(p:person{name:"Alice", age:16})')
@@ -147,7 +147,7 @@
 1. 删除节点
 
     ```python
-    # 删除节点2
+    # 删除节点 2
     neo.delete(neo.nodes[2])
     neo.begin().commit()
     ```
@@ -172,7 +172,7 @@
 
 1. 查询节点
 
-   1. 通过nodes的id查询
+   1. 通过 nodes 的 id 查询
 
         ```python
         from py2neo import Graph
@@ -188,9 +188,8 @@
         ```
 
         > (_1:person {age: 21, name: 'Bob'})
-        > (_1:person {age: 21, name: 'Bob'})
 
-   2. 通过Cypher语言查询
+   2. 通过 Cypher 语言查询
 
         ```python
         n = neo.run("MATCH (a:person) RETURN a.name,a.age LIMIT 4").data()
@@ -201,7 +200,7 @@
         > {'a.name': 'amy', 'a.age': 21}
         > {'a.name': 'Bob', 'a.age': 21}
 
-   3. 通过NodeMatcher查询
+   3. 通过 NodeMatcher 查询
 
         ```python
         matcher = NodeMatcher(neo)

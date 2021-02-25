@@ -1,10 +1,10 @@
 # 5. Pandas
 
-- [Pandas官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/index.html)
+- [Pandas 官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/index.html)
 
 ## 1. Pandas 数据结构
 
-1. pandas对象
+1. pandas 对象
 
      | 名称      | 维数 | 描述                               |
      | --------- | ---- | ---------------------------------- |
@@ -15,9 +15,9 @@
 
      | 类型           | 简介             |
      | -------------- | ---------------- |
-     | float64        | 64位浮点数       |
-     | float32        | 32位浮点数       |
-     | int32          | 32为整数         |
+     | float64        | 64 位浮点数       |
+     | float32        | 32 位浮点数       |
+     | int32          | 32 为整数         |
      | datetime64[ns] | 日期时间格式     |
      | category       | 分类             |
      | object         | 对象，无明确类型 |
@@ -45,7 +45,7 @@
      ```
 
      ```python
-     # 创建一个空DataFrame，utf-8编码
+     # 创建一个空 DataFrame，utf-8 编码
      title = ['a', 'b', 'c']  # 列名
      index = [1, 2, 3, 4]  # 行名
      df = pd.DataFrame(index=index, columns=title)
@@ -68,7 +68,7 @@
      import pandas as pd
 
      start = '2020-01-01'
-     data = pd.date_range(start, periods=3, freq='4H').tolist()  # 转换成list
+     data = pd.date_range(start, periods=3, freq='4H').tolist()  # 转换成 list
      ```
 
      | 参数    | 简介         |
@@ -80,10 +80,10 @@
 
 ### 2.1. 数据格式转换
 
-   1. astype 转换成其他类型：数据格式不对可能会造成多种问题，比如计算、绘图(这些操作均不会改变原数据)
+   1. astype 转换成其他类型：数据格式不对可能会造成多种问题，比如计算、绘图（这些操作均不会改变原数据）
 
         ```python
-        # 由其他类型转换成float
+        # 由其他类型转换成 float
         a = df.iloc[:, 0].astype('float')
         ```
 
@@ -101,7 +101,7 @@
         ```
 
    4. to_timedelta 相对日期
-   5. tolist() Series转list(DataFram)
+   5. tolist() Series 转 list(DataFram)
 
         ```python
         list1 = Series.tolist()
@@ -117,14 +117,14 @@
      # index
      index = data.index
 
-     # 设置index标题
+     # 设置 index 标题
      df.index.name = 'index_name'
 
-     # 添加/替换index
-     df.index = list('abcd')  # 将index设置成[a,b,c,d]
+     # 添加/替换 index
+     df.index = list('abcd')  # 将 index 设置成 [a,b,c,d]
 
-     # 将现有数据设置成index
-     data.set_index('a', inplace=True)  # 将a列设成index
+     # 将现有数据设置成 index
+     data.set_index('a', inplace=True)  # 将 a 列设成 index
      ```
 
 2. 列操作
@@ -142,7 +142,7 @@
      # 调整列的顺序
      df[['new_col2', 'new_col1']]
 
-     # 重置index，让index变成0，1，2....
+     # 重置 index，让 index 变成 0，1，2....
      df.reset_index(drop=True, inplace=True)
      ```
 
@@ -186,7 +186,7 @@
 
      ```python
      # 删除行
-     df = df.drop([0, 1])  # 删除第0，1行
+     df = df.drop([0, 1])  # 删除第 0，1 行
 
      # 删除列
      df = df.drop(['col1'], axis=1)  # 删除'col1'列
@@ -198,21 +198,21 @@
 1. 排序
 
      ```python
-     # 升序排列，替换原Series
+     # 升序排列，替换原 Series
      sr = Series.sort_values(inplace=True)
 
-     # 降序排列，不替换原df
+     # 降序排列，不替换原 df
      df = DataFrame.sort_values(by=['col1'], ascending=False)  
      ```
 
 2. merge：合并，列增加
 
      ```python
-     # 数据左右合并，合并依据为key
-     # how = inner, outer, left, right 默认inner
+     # 数据左右合并，合并依据为 key
+     # how = inner, outer, left, right 默认 inner
      # 需要注意，有时合并数据会造成意外的重复
-     df3 = pd.merge(df1, df2, how='left', on='key1')  # 单个key
-     df3 = pd.merge(df1, df2, how='left', on=['key1','key2'])  # 多key
+     df3 = pd.merge(df1, df2, how='left', on='key1')  # 单个 key
+     df3 = pd.merge(df1, df2, how='left', on=['key1','key2'])  # 多 key
      ```
 
 3. concat：拼接，行增加
@@ -224,21 +224,21 @@
 
 ### 3.4. 查
 
-1. 检测数据是否有空值(Nan)
+1. 检测数据是否有空值 (Nan)
 
    ```python
-   # 含空数据返回true，不含空数据返回false
+   # 含空数据返回 true，不含空数据返回 false
    df.isnull().any()
-   # 判断数据是否为nan，不能用==
+   # 判断数据是否为 nan，不能用==
    if df[] is np.nan
    ```
 
 2. 查看数据
 
      ```python
-     df.head()  # 顶部数据，个数可选，默认5行
+     df.head()  # 顶部数据，个数可选，默认 5 行
      df.tail()  # 尾部数据，个数可选
-     df.index  # 显示索引、列和底层numpy数据
+     df.index  # 显示索引、列和底层 numpy 数据
      df.info()  # 显示数据的类型
 
      df.describe()  # 显示数据的快速统计摘要
@@ -247,7 +247,7 @@
 
      # 按值排序，注意这个函数不操作自身
      new_df = df.sort_values(by='B')
-     # 除非使用inplace
+     # 除非使用 inplace
      df.sort_values(by='B', inplace=True)
 
      ```
@@ -256,19 +256,19 @@
 
      ```python
      # 获取
-     df['A']  # 获取A列数据
+     df['A']  # 获取 A 列数据
      df.A  # 同上
-     df['20130102':'20130104']  # 通过[]选择，对行切片
+     df['20130102':'20130104']  # 通过 [] 选择，对行切片
 
      # 按位置索引
      df.iloc[3]  # 显示第四行数据
-     df.iloc[0:3, 1:]  # 类似numpy
-     df.iloc[[1, 2, 4], [0, 2]]  # 类似numpy
+     df.iloc[0:3, 1:]  # 类似 numpy
+     df.iloc[[1, 2, 4], [0, 2]]  # 类似 numpy
 
-     # loc通过标签访问，iloc通过行列号访问
-     # 获取a，b列的数据
+     # loc 通过标签访问，iloc 通过行列号访问
+     # 获取 a，b 列的数据
      new_df = df.loc[:, ['a', 'b']]  # DataFrame
-     # 获取第1列的数
+     # 获取第 1 列的数
      new_df = df.iloc[:, 1]  # Series
      # 还可以直接访问列标签
      new_df = df['a'][0:3000]  # Series
@@ -285,11 +285,11 @@
 
      # 根据条件筛选多行数据
      list1 = ['a', 'b', 'c']
-     df2 = df[df['name'].isin(list1)]  # 选择name列=a,b,c的数据
-     df2 = df[~df['name'].isin(list1)]  # 选择name列非a,b,c的数据
+     df2 = df[df['name'].isin(list1)]  # 选择 name 列=a,b,c 的数据
+     df2 = df[~df['name'].isin(list1)]  # 选择 name 列非 a,b,c 的数据
 
      # 筛选含有指定字段的数据
-     df2 = df[df['name'].str.contains('a')]  # 选择name列包含字符a的数据
+     df2 = df[df['name'].str.contains('a')]  # 选择 name 列包含字符 a 的数据
      ```
 
 ### 3.5. 数据计算
@@ -299,7 +299,7 @@
      ```python
      df = pd.read_csv(path, dtype=float)
      # 求列平均值
-     df['A'].mean()  # 求A列平均值
+     df['A'].mean()  # 求 A 列平均值
      df.mean()  # 求每一列的平均值
      # 求行平均值
      df.mean(1)
@@ -323,7 +323,7 @@
         import pandas as pd
 
         df = pd.DataFrame({
-        '姓名': ['小明', '小红', '小刚', '小强, '张三', 李四'],
+        '姓名': ['小明', '小红', '小刚', '小强，'张三', 李四'],
         '年级': [1, 1, 1, 1, 2, 2],
         '班级': ['a', 'a', 'b', 'b', 'a', 'b'],
         '语文': [85, 93, 79, 97, 80, 75],
@@ -331,9 +331,9 @@
         '英语': [90, 91, 90, 96, 80, 69]
         })
 
-        # 分类统计，单个key
+        # 分类统计，单个 key
         group1 = df.groupby('年级')
-        # 分类统计，多个key
+        # 分类统计，多个 key
         group1 = df.groupby(['年级', '班级'])
 
         # 统计
@@ -341,7 +341,7 @@
         group1.mean()
         ```
 
-    2. 根据group将一个dataframe分成多个df
+    2. 根据 group 将一个 dataframe 分成多个 df
 
         ```python
         groups = df.groupby('年级')
@@ -404,7 +404,7 @@
      df.plot(x='tm', y='p', kind='scatter', title='scatter')
      ```
 
-3. 大部分matplotlib的设置都可以做为df.plot()的参数
+3. 大部分 matplotlib 的设置都可以做为 df.plot() 的参数
 
 ## 4. pandas 读写文件
 
@@ -413,14 +413,14 @@
 1. read_csv & read_excel
 
      ```python
-     # header:告诉pandas那些是数据的列名，没有则设为None
+     # header: 告诉 pandas 那些是数据的列名，没有则设为 None
      # encoding='gbk'防止出现乱码
 
-     # 读取csv文件，表头为第0行，文件gbk编码，指定字段的数据类型
+     # 读取 csv 文件，表头为第 0 行，文件 gbk 编码，指定字段的数据类型
      df = pd.read_csv('filename.csv', header=0, encoding='gbk', dtype={'id': int, 'name': string})
 
-     # 读取excel文件，表头第0行，表sheet1，选择第0，1列数据
-     # 依赖xlrd，需要安装
+     # 读取 excel 文件，表头第 0 行，表 sheet1，选择第 0，1 列数据
+     # 依赖 xlrd，需要安装
      # 读取‘sheet1’用 sheet_name=0 也可
      df1 = pd.read_excel('filename.xlsx', header=0, sheet_name='Sheet1', usecols=[0, 1])
 
@@ -430,20 +430,20 @@
 
    | 关键字                   | 功能                             |
    | ------------------------ | -------------------------------- |
-   | chunksize=4              | 每4行数据为一组                  |
-   | dtype = {'col' : str}    | 修改col类型到str                 |
-   | engine='python'          | 默认'c'，c更快，python功能更完善 |
-   | false_value=["no"]       | no被认为False                    |
+   | chunksize=4              | 每 4 行数据为一组                  |
+   | dtype = {'col' : str}    | 修改 col 类型到 str                 |
+   | engine='python'          | 默认'c'，c 更快，python 功能更完善 |
+   | false_value=["no"]       | no 被认为 False                    |
    | index_col=False          | 目录列，'False'表示没有目录      |
    | MultiIndex               | 支持双列目录                     |
-   | na_values=[5]            | 5和5.0会被认为是NaN              |
-   | na_valuede=["Na","0"]    | Na和0会被认为是NaN               |
+   | na_values=[5]            | 5 和 5.0 会被认为是 NaN              |
+   | na_valuede=["Na","0"]    | Na 和 0 会被认为是 NaN               |
    | nrows                    | 读取的行数                       |
-   | parse_dates=['tm']       | 将'tm'列读取成datetime格式       |
+   | parse_dates=['tm']       | 将'tm'列读取成 datetime 格式       |
    | sep=':'                  | 支持':'等符号作为分隔符的数据    |
-   | skiprows=[0,3]           | 跳过第0行和第3行                 |
-   | skip_blank_lines=True    | 是否跳过空行，默认True           |
-   | true_values=["yes"]      | yes被认为True                    |
+   | skiprows=[0,3]           | 跳过第 0 行和第 3 行                 |
+   | skip_blank_lines=True    | 是否跳过空行，默认 True           |
+   | true_values=["yes"]      | yes 被认为 True                    |
    | usecols=['col1', 'col2'] | 选择要读取的列                   |
 
 3. 使用设置
@@ -462,7 +462,7 @@
 1. to_csv 用法
 
      ```python
-     # 将df存储为csv，index表示是否显示行名
+     # 将 df 存储为 csv，index 表示是否显示行名
      df.to_csv('name.csv', index=False, sep=',', float_format='%.3f', columns=['col1', 'col2'])
      # 会给数据添加引号，尽量不要用
      df.to_csv('name.csv', index=False, delimiter=',')
@@ -483,9 +483,9 @@
 
 1. [`read_csv mixed types`问题](https://www.jianshu.com/p/a70554726f26)
 2. `cannot convert the series to <class 'float'>`问题
-   1. 原因：可能是某处变量调用忘了加限定，比如a[i]写成了a
+   1. 原因：可能是某处变量调用忘了加限定，比如 a[i] 写成了 a
 
 ## 6. 参考
 
-1. [pandas类SQL查询](https://juejin.im/post/5b5e5b2ee51d4517df1510c7)
-2. [Pandas分组](https://www.yiibai.com/pandas/python_pandas_groupby.html)
+1. [pandas 类 SQL 查询](https://juejin.im/post/5b5e5b2ee51d4517df1510c7)
+2. [Pandas 分组](https://www.yiibai.com/pandas/python_pandas_groupby.html)

@@ -14,7 +14,7 @@
     plt.show()
     ```
 
-2. plot设置，更多设置参考[官方文档](https://matplotlib.org/3.2.0/api/_as_gen/matplotlib.pyplot.plot.html)
+2. plot 设置，更多设置参考 [官方文档](https://matplotlib.org/3.2.0/api/_as_gen/matplotlib.pyplot.plot.html)
 
     ```python
     plt.plot([1, 2, 3], [1, 1, 1], 'b-', label='line 1', linewidth=2)  # 蓝色直线
@@ -66,7 +66,7 @@
 1. 坐标轴反向
 
     ```python
-    ax.invert_xaxis()  # x坐标轴反向
+    ax.invert_xaxis()  # x 坐标轴反向
     ```
 
 2. 设置坐标值
@@ -75,14 +75,14 @@
     # 按照需求设置坐标，坐标一定要有对应的数据
     x_axis = ['2018-09-01', '2018-10-01', '2018-11-01', '2018-12-01', '2018-12-31']
     plt.xticks(x_axis, rotation=15)  # 刻度倾斜
-    # 还可以对坐标重命名，并顺时针旋转坐标15°
+    # 还可以对坐标重命名，并顺时针旋转坐标 15°
     x_axis = ['2018-01-01 00:01:00', '2018-01-02 00:00:00', '2018-01-03 00:00:00']
-    plt.xticks(x_axis, ('a', 'b', 'c'), rotation=-15)  # 将横坐标值重命名为a,b,c
+    plt.xticks(x_axis, ('a', 'b', 'c'), rotation=-15)  # 将横坐标值重命名为 a,b,c
     ```
 
     ```python
     # 按照等间隔数值设置坐标
-    plt.xticks(np.arange(0, 25, 4))  # 范围0-25，分度值4
+    plt.xticks(np.arange(0, 25, 4))  # 范围 0-25，分度值 4
 
     # 不显示坐标
     plt.xticks([])
@@ -123,10 +123,10 @@
      plt.legend()
      ```
 
-2. legend参数，更多配置参考[官方文档](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
+2. legend 参数，更多配置参考 [官方文档](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
    1. 位置 `loc=string or code`
 
-         | 位置string     | 位置code | 位置           |
+         | 位置 string     | 位置 code | 位置           |
          | -------------- | -------- | -------------- |
          | 'best'         | 0        | 自适应         |
          | 'upper right'  | 1        | 右上↗          |
@@ -135,7 +135,7 @@
          | 'lower right'  | 4        | 右下↘          |
          | 'right'        | 5        | 右→            |
          | 'center left'  | 6        | 左←            |
-         | 'center right' | 7        | 右→（同rigth） |
+         | 'center right' | 7        | 右→（同 rigth） |
          | 'lower center' | 8        | 下↓            |
          | 'upper center' | 9        | 上↑            |
          | 'cneter'       | 10       | 中心           |
@@ -157,8 +157,8 @@
 2. subplots
 
     ```python
-    # 1. 类似subplot的分图功能
-    # 似乎只能2x2以上
+    # 1. 类似 subplot 的分图功能
+    # 似乎只能 2x2 以上
     fig, ax = plt.subplots(2, 2)
     ax[0, 0].plot(x1, y1)
     ax[1, 0].plot(x2, y2)
@@ -171,7 +171,7 @@
     ax1.plot(x1, y1, label='a')
     ax1.set_ylabel('a')
 
-    # 设置ax2与ax1公用横坐标
+    # 设置 ax2 与 ax1 公用横坐标
     ax2 = ax1.twinx()
     ax2.plot(x2, y2, c='r', label='b')
     ax2.set_ylim(0, 10)
@@ -186,14 +186,14 @@
 1. 水平线
 
     ```python
-    # 水平虚线，高度为y，从(xmin,y)到(xmax,y)
+    # 水平虚线，高度为 y，从 (xmin,y) 到 (xmax,y)
     plt.hlines(y, xmin, xmax, linestyle=':')
     ```
 
 2. 竖直线
 
     ```python
-    # 垂直虚线，从(x,ymin)到(x,ymax)
+    # 垂直虚线，从 (x,ymin) 到 (x,ymax)
     plt.vlines(x, ymin, ymax, linestyle=':')
     ```
 
@@ -202,7 +202,7 @@
 1. 中文编码问题
 
     ```python
-    plt.rcParams['font.sans-serif'] = ['SimHei']  # 解决plt中文乱码
+    plt.rcParams['font.sans-serif'] = ['SimHei']  # 解决 plt 中文乱码
     plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示坐标轴负号
     ```
 
@@ -215,7 +215,7 @@
 3. 图片保存
 
     ```python
-    # 放在plt.show()前面，不支持jpg
+    # 放在 plt.show() 前面，不支持 jpg
     plt.savefig("Picture.png")
     ```
 

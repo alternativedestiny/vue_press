@@ -10,10 +10,10 @@
         ```
 
    2. 参数
-      1. 滤波器阶数N
-      2. 归一化截至频率Wn=2*截止频率/采样频率
-      3. 滤波器类别btype(可选): 'lowpass' 'highpass' 'bandpass' 'bandstop'
-      4. 模拟/数字信号analog(可选): True / False(default)
+      1. 滤波器阶数 N
+      2. 归一化截至频率 Wn=2 *截止频率/采样频率
+      3. 滤波器类别 btype（可选）: 'lowpass' 'highpass' 'bandpass' 'bandstop'
+      4. 模拟/数字信号 analog（可选）: True / False(default)
 
    3. 代码
 
