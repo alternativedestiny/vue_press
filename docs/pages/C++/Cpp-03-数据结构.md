@@ -35,7 +35,7 @@
 3. 结构体排序
 
     ```cpp
-    // 先定义一个排序依据: 按照book_id升序排列
+    // 先定义一个排序依据：按照 book_id 升序排列
     bool comp(const Books &a, const Books &b) { return a.book_id < b.book_id; }
 
     // 然后在排序中使用
@@ -52,7 +52,7 @@
    1. 使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。
    2. 相比数组结构，对于元素的插入和删除操作来说，链表的效率要比数组高，因为每个节点都有链域存储指向下一个节点的指针，因此进行插入和删除的操作时不需要频繁的移动其他的元素，只需要修改对应位置附近节点的链域的值即可。
 4. 缺点
-   1. 查询链表只能通过指针顺序访问，效率相对低下，查询可能需要O(n)的时间复杂度。
+   1. 查询链表只能通过指针顺序访问，效率相对低下，查询可能需要 O(n) 的时间复杂度。
    2. 因为链表的每个节点都含有链域，所占用的空间较多。
 
 ### 2.2. 链表操作
@@ -71,12 +71,12 @@
         struct student *next;  // 链域
     } LinkList;
 
-    // 初始化链表，n为节点个数
+    // 初始化链表，n 为节点个数
     LinkList *creat(int n) {
         LinkList *head, *node, *end;  // 定义头节点，普通节点，尾节点
         head = (LinkList *) malloc(sizeof(LinkList));  // 分配地址
         end = head;  // 若是空链表则头尾节点一样
-        printf("请输入 %d 个链表值: \n", n);
+        printf("请输入 %d 个链表值：\n", n);
         for (int i = 0; i < n; i++) {
             node = (LinkList *) malloc(sizeof(LinkList));
             scanf("%d", &node->score);
@@ -88,7 +88,7 @@
     }
 
     int main() {
-        LinkList *li = creat(5);  // 创建5个长度的链表
+        LinkList *li = creat(5);  // 创建 5 个长度的链表
     }
     ```
 
@@ -107,8 +107,8 @@
             in = (LinkList *) malloc(sizeof(LinkList));
             puts("要插入的值");
             scanf("%d", &in->score);
-            in->next = t->next;  // 填充in节点的指针域指向下一个节点
-            t->next = in;  // t节点的指针域指向in
+            in->next = t->next;  // 填充 in 节点的指针域指向下一个节点
+            t->next = in;  // t 节点的指针域指向 in
         } else {
             puts("节点不存在");
         }
@@ -139,7 +139,7 @@
 4. 改
 
     ```cpp
-    // 修改链表节点值，n为第n个值
+    // 修改链表节点值，n 为第 n 个值
     void change(LinkList *list, int n) {
         LinkList *t = list;
         int i = 0;
@@ -212,7 +212,6 @@
 
         explicit Node(int x) : val(x), next(nullptr) {}
     };
-
 
     class List {
     private:
@@ -290,7 +289,6 @@
         }
     }
 
-
     // 删除元素
     void List::del(int a) {
         Node *h = new Node(-1);
@@ -355,7 +353,6 @@
         head = head->next;
     }
 
-
     int main() {
         vector<int> v{1, 1, 2, 3, 4, 2, 1};
         List l1;
@@ -375,10 +372,10 @@
 
 ## 3. 向量 Vector
 
-1. vector：可以简单的认为，向量是一个能够存放任意类型的动态数组，vector的元素不仅仅可以是int、double、string还可以是`结构体`，结构体要定义为`全局`的
+1. vector：可以简单的认为，向量是一个能够存放任意类型的动态数组，vector 的元素不仅仅可以是 int、double、string 还可以是`结构体`，结构体要定义为`全局`的
 2. 基本操作
    1. 头文件`#include<vector>`
-   2. 创建vector对象：`vector<int> vec`
+   2. 创建 vector 对象：`vector<int> vec`
 
         ```cpp
         vector<int> vec;
@@ -403,19 +400,19 @@
         }
         ```
 
-   6. 插入元素：`vec.insert(vec.begin()+i,a)`：在第i+1个元素前面插入a
+   6. 插入元素：`vec.insert(vec.begin()+i,a)`：在第 i+1 个元素前面插入 a
    7. 删除元素：`vec.erase(vec.begin()+2)`：删除第三个元素
    8. 向量大小：`vec.size()`
    9. 清空：`vec.clear`
 3. 算法
 
-- [参考链接1](https://blog.csdn.net/duan19920101/article/details/50617190)
-- [参考链接2](https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html)
+- [参考链接 1](https://blog.csdn.net/duan19920101/article/details/50617190)
+- [参考链接 2](https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html)
 
 ## 4. 映射 Map
 
-1. Map：map是一类关联式容器。它的特点是增加和删除节点对迭代器的影响很小，除了那个操作节点，对其他的节点都没有什么影响。对于迭代器来说，可以修改实值，而不能修改key。
-2. Map使用
+1. Map：map 是一类关联式容器。它的特点是增加和删除节点对迭代器的影响很小，除了那个操作节点，对其他的节点都没有什么影响。对于迭代器来说，可以修改实值，而不能修改 key。
+2. Map 使用
 
     ```cpp
     // 头文件
@@ -442,15 +439,15 @@
     map_name.clear();  // 清空
 
     // 修改
-    map_name["b"] = 10; // 将b的值修改成0
+    map_name["b"] = 10; // 将 b 的值修改成 0
 
     // 查询
     map_name["a"]
     map_name.at("a");  // 返回对应值
 
     // 查找
-    map_name.find();  // 返回的是被查找元素的位置，没有则返回map.end()
-    map_name.count();  // 返回的是被查找元素的个数。如果有，返回1；否则，返回0。注意，map中不存在相同元素，所以返回值只能是1或0。
+    map_name.find();  // 返回的是被查找元素的位置，没有则返回 map.end()
+    map_name.count();  // 返回的是被查找元素的个数。如果有，返回 1；否则，返回 0。注意，map 中不存在相同元素，所以返回值只能是 1 或 0。
 
     // 容量
     map_name.empty();  // 判断是否为空
@@ -474,39 +471,39 @@
 
     ```cpp
     // 顺序比较
-    map_name.key_comp("a","b")  // a在b前返回true
+    map_name.key_comp("a","b")  // a 在 b 前返回 true
     ```
 
-- [c++常见map用法](https://blog.csdn.net/shuzfan/article/details/53115922)
+- [c++常见 map 用法](https://blog.csdn.net/shuzfan/article/details/53115922)
 - [c++ STL hashmap](https://blog.csdn.net/u010025211/article/details/46653519)
-- [散列表类的C++实现(探测散列表)](https://blog.csdn.net/Linux_ever/article/details/51143042)
+- [散列表类的 C++实现（探测散列表）](https://blog.csdn.net/Linux_ever/article/details/51143042)
 
 ## 5. 哈希/散列 HashTable/HashMap
 
 1. 哈希表 hashmap
    1. 优点：大大减少数据存储和查询时间；缺点：消耗较多内存
-   2. 原理：使用一个下标范围比较大的数组来存储元素。可以设计一个函数（哈希函数，也叫做散列函数），使得每个元素的关键字都与一个函数值（即数组下标，hash值）相对应，于是用这个数组单元来存储这个元素；也可以简单的理解为，按照关键字为每一个元素“分类”，然后将这个元素存储在相应“类”所对应的地方，称为桶。
-   3. 插入值过程：首先分配一大片内存，形成许多桶。是利用hash函数，对key进行映射到不同区域（桶）进行保存。
-      1. 得到key
-      2. 通过hash函数计算hash值
+   2. 原理：使用一个下标范围比较大的数组来存储元素。可以设计一个函数（哈希函数，也叫做散列函数），使得每个元素的关键字都与一个函数值（即数组下标，hash 值）相对应，于是用这个数组单元来存储这个元素；也可以简单的理解为，按照关键字为每一个元素“分类”，然后将这个元素存储在相应“类”所对应的地方，称为桶。
+   3. 插入值过程：首先分配一大片内存，形成许多桶。是利用 hash 函数，对 key 进行映射到不同区域（桶）进行保存。
+      1. 得到 key
+      2. 通过 hash 函数计算 hash 值
       3. 得到桶号
-      4. 存放key和value到桶内
+      4. 存放 key 和 value 到桶内
    4. 取值过程
-      1. 得到key
-      2. 通过hash函数计算hash值
+      1. 得到 key
+      2. 通过 hash 函数计算 hash 值
       3. 得到桶号
-      4. 比较桶的内部元素是否与key相等，若都不相等，则没有找到
-      5. 取出相等的记录的value
-   5. 解决hash值冲突
+      4. 比较桶的内部元素是否与 key 相等，若都不相等，则没有找到
+      5. 取出相等的记录的 value
+   5. 解决 hash 值冲突
       1. 开放定址法，设 hi(x) = (x+f(i)) % TableSize
          1. 线性探测：f(i) = i, 发生冲突时尝试下一个单元
          2. 平方探测：f(i) = i^2, 发生冲突时尝试加平方
-         3. 双散列：f(i) = i*hash2(x), 这又涉及到第二个散列函数hash2(x)的选择，一般我们选择hash2(x) = R - (x % R)，其中R是小于TableSize的素数
+         3. 双散列：f(i) = i*hash2(x), 这又涉及到第二个散列函数 hash2(x) 的选择，一般我们选择 hash2(x) = R - (x % R)，其中 R 是小于 TableSize 的素数
       2. 分离链接法：思路是将散列到同一个值的所有元素保留到一个链表中
          1. 散列表结构：`vector<<list<hash>> name`
-2. 哈希表与Map的区别
-   1. Map对应的数据结构是红黑树，查询的时间复杂度为O(log n)
-   2. 哈希表在STL中对应unordered_map（无序映射），查询的时间复杂度为O(1)
+2. 哈希表与 Map 的区别
+   1. Map 对应的数据结构是红黑树，查询的时间复杂度为 O(log n)
+   2. 哈希表在 STL 中对应 unordered_map（无序映射），查询的时间复杂度为 O(1)
    3. 其他使用基本一样
 3. 使用
 
@@ -522,12 +519,12 @@
 
 ## 6. 树 Tree
 
-1. 树是一种抽象数据类型（ADT）或是实现这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n>0）个有限节点组成一个具有层次关系的集合
+1. 树是一种抽象数据类型（ADT）或是实现这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由 n（n>0）个有限节点组成一个具有层次关系的集合
    - 每个节点都只有有限个子节点或无子节点；
    - 没有父节点的节点称为根节点；
    - 每一个非根节点有且只有一个父节点；
    - 除了根节点外，每个子节点可以分为多个不相交的子树；
-   - 树里面没有环路(cycle)
+   - 树里面没有环路 (cycle)
 2. 二叉树遍历
    1. 深度优先遍历
       1. 前序遍历：根节点->左子树->右子树
@@ -542,7 +539,6 @@
     #include <string>
     #include <iostream>
     #include <vector>
-
 
     using namespace std;
 
@@ -597,7 +593,6 @@
         }
     }
 
-
     int main() {
         vector<int> vec = {1, 2, 3, 4};
         TreeNode *p;
@@ -610,7 +605,7 @@
 
 ## 7. 堆&栈 Heap&Stack
 
-1. 特点：堆，FIFO；栈FILO。
+1. 特点：堆，FIFO；栈 FILO。
 2. 操作
 
     ```c

@@ -6,7 +6,7 @@
 
     ```cpp
     class Box{
-        // 除了public还可以定义成private或protect
+        // 除了 public 还可以定义成 private 或 protect
         public:
             double length;
             double breadth;
@@ -17,9 +17,9 @@
 2. 访问数据成员
 
     ```cpp
-    Box Box1;  // 声明Box1，类型为Box
+    Box Box1;  // 声明 Box1，类型为 Box
 
-    // 定义box1的长宽高
+    // 定义 box1 的长宽高
     Box1.length = 10.0;  
     Box1.breadth = 12.0;
     Box1.height = 9.0；
@@ -73,9 +73,9 @@
 
 ## 3. 类访问修饰符
 
-1. public公有成员：类的外部可以访问
-2. private私有成员：类的外部不可访问，不可查看，默认情况下，类的所有成员都是私有的。可以使用成员函数对数据进行初始化。
-3. protected保护成员：与私有成员类似，但是保护成员在派生类（子类）中可以访问。
+1. public 公有成员：类的外部可以访问
+2. private 私有成员：类的外部不可访问，不可查看，默认情况下，类的所有成员都是私有的。可以使用成员函数对数据进行初始化。
+3. protected 保护成员：与私有成员类似，但是保护成员在派生类（子类）中可以访问。
 
 ## 4. 构造函数&析构函数
 

@@ -8,10 +8,10 @@
 
     | 整型      | 长度            |
     | --------- | --------------- |
-    | short     | 至少16位        |
-    | int       | 至少与short一样 |
-    | long      | 至少32位        |
-    | long long | 至少64位        |
+    | short     | 至少 16 位        |
+    | int       | 至少与 short 一样 |
+    | long      | 至少 32 位        |
+    | long long | 至少 64 位        |
     | unsigned  | 无符号整数      |
     | const     | 静态变量        |
 
@@ -46,9 +46,9 @@
 
     | 浮点        | 位数          |
     | ----------- | ------------- |
-    | float       | 至少32位      |
-    | double      | 至少64位      |
-    | long double | 80, 96或128位 |
+    | float       | 至少 32 位      |
+    | double      | 至少 64 位      |
+    | long double | 80, 96 或 128 位 |
 
 ### 1.2. 计算
 
@@ -156,8 +156,8 @@ cout << str_list[0] << endl;    // abc
 
 ## 3. Array
 
-1. array(c++11新增)：与数组一样，array对象的长度也是固定的，也是用栈（静态内存分配），而不是自由存储区，因此其效率与数组相同，但更方便，更安全。
-2. 创建array: `array<typeName, number> name = {};`
+1. array(c++11 新增）：与数组一样，array 对象的长度也是固定的，也是用栈（静态内存分配），而不是自由存储区，因此其效率与数组相同，但更方便，更安全。
+2. 创建 array: `array<typeName, number> name = {};`
 
     ```cpp
     #include <array>
@@ -176,19 +176,19 @@ cout << str_list[0] << endl;    // abc
 
 ## 4. Vector
 
-### 4.1. 创建Vector
+### 4.1. 创建 Vector
 
-1. 创建vecotr: 是一种动态数组, 使用new和delete来管理内存, 但这种工作是自动完成的.
+1. 创建 vecotr: 是一种动态数组，使用 new 和 delete 来管理内存，但这种工作是自动完成的。
 
     ```cpp
     #include <vector>
 
     using namespace std;
 
-    vector<int> v1;         // 创建空vector
-    vector<int> v2(5);      // 创建长度为5
-    vector<int> v3(5, 0);   // 创建长度为5,值全部为0的vector
-    vector<int> v4(v3);     // 创建v3的副本v4
+    vector<int> v1;         // 创建空 vector
+    vector<int> v2(5);      // 创建长度为 5
+    vector<int> v3(5, 0);   // 创建长度为 5, 值全部为 0 的 vector
+    vector<int> v4(v3);     // 创建 v3 的副本 v4
     ```
 
 2. 属性
@@ -207,8 +207,8 @@ cout << str_list[0] << endl;    // abc
     // 末尾增加
     vec.push_back(4);
     // 指定位置插入
-    vec.insert(vec.begin(), 10);      // 在初始位置插入10
-    vec.insert(vec.begin() + 2, 10);  // 在位置2插入10
+    vec.insert(vec.begin(), 10);      // 在初始位置插入 10
+    vec.insert(vec.begin() + 2, 10);  // 在位置 2 插入 10
     ```
 
 2. 删
@@ -217,7 +217,7 @@ cout << str_list[0] << endl;    // abc
     // 删除并返回最后一位
     vec.pop_back();
     // 删除指定位置的元素
-    vec.erase(vec.begin() + 3); // 删除第3个元素
+    vec.erase(vec.begin() + 3); // 删除第 3 个元素
     // 删除所有元素
     vec.clear();
     ```
@@ -226,12 +226,12 @@ cout << str_list[0] << endl;    // abc
 4. 查
 
     ```cpp
-    // 遍历: 普通方法
+    // 遍历：普通方法
     for (size_t i = 0; i < vec.size(); i++) {
         cout << vec[i] << endl;
-        // 注意: 即便i>vec.size(), vec[i]也是可以访问的
+        // 注意：即便 i>vec.size(), vec[i] 也是可以访问的
     }
-    // 遍历: 指针
+    // 遍历：指针
     for (size_t it = vec.begin(); it != vec.end(); it++){
         cout << *it << endl;
     }
@@ -250,7 +250,7 @@ cout << str_list[0] << endl;    // abc
 
      ```cpp
      char c1[] = "abc";
-     char c2[4] = "abc"; // 结尾有'\0', 所以占4字节
+     char c2[4] = "abc"; // 结尾有'\0', 所以占 4 字节
      char *c3 = "abc";
      ```
 
@@ -271,7 +271,7 @@ cout << str_list[0] << endl;    // abc
 
     ```cpp
     // 访问
-    cout << s1[1] << endl;  // char类型
+    cout << s1[1] << endl;  // char 类型
     ```
 
 2. 遍历
@@ -282,40 +282,40 @@ cout << str_list[0] << endl;    // abc
 
     ```cpp
     // 插入
-    s1.insert(int num, string s)  // 在num位置插入s
+    s1.insert(int num, string s)  // 在 num 位置插入 s
 
     // 追加
     s1.append(string s)  // 追加字符串
-    s1.append(int n, char c)  // 追加n个c字符
+    s1.append(int n, char c)  // 追加 n 个 c 字符
 
     // 拼接
     int i = 5;
     string s = "station: " + to_string(i);
 
     // 拷贝
-    strncpy(c1, c2+3, 5);   // 截取c2第3个字符后的5个字符到c1中
+    strncpy(c1, c2+3, 5);   // 截取 c2 第 3 个字符后的 5 个字符到 c1 中
     #include <string.h>
-    strcpy(s1, s2)  // 把s2拷贝到s1中
+    strcpy(s1, s2)  // 把 s2 拷贝到 s1 中
     ```
 
 2. 删
 
     ```cpp
     // 擦除
-    s1.erase(int a, int b)  // 删除a之后的b个字符
+    s1.erase(int a, int b)  // 删除 a 之后的 b 个字符
     ```
 
 3. 改
 
     ```cpp
     // 替换
-    s1.replace(int num1, int num2, string s)  // 用s替换num1后面的num2-1个字符
-    s1.replace(int num1, int num2, string s, int num3, int num4)  // 用s的第num3后面的num4-1个字符替换num1后面的num2-1个字符
+    s1.replace(int num1, int num2, string s)  // 用 s 替换 num1 后面的 num2-1 个字符
+    s1.replace(int num1, int num2, string s, int num3, int num4)  // 用 s 的第 num3 后面的 num4-1 个字符替换 num1 后面的 num2-1 个字符
 
     // 字符串截取
-    strncpy(c1, c2 + 3, 5);   // 截取c2第3个字符后的5个字符到c1中
-    s2 = s1.substr(int a, int b)  // 起始位a，长度b
-    s2 = s1.substr(int a)  // 截取第a个之后的字符串
+    strncpy(c1, c2 + 3, 5);         // 截取 c2 第 3 个字符后的 5 个字符到 c1 中
+    s2 = s1.substr(int a, int b)    // 起始位 a，长度 b
+    s2 = s1.substr(int a)           // 截取第 a 个之后的字符串
     ```
 
 4. 查
@@ -328,12 +328,12 @@ cout << str_list[0] << endl;    // abc
     }
     s1.rfind(s2);    // 从后往前查找，其他同上
 
-    s1.find_first_of(s2);      // 查找s2第一次出现的位置
-    s1.find_last_of(s2);       // 查找s2最后一次出现的位置
-    s1.find_first_not_of(s2);  // 在s1中查找第一个不再s2中的字符
+    s1.find_first_of(s2);      // 查找 s2 第一次出现的位置
+    s1.find_last_of(s2);       // 查找 s2 最后一次出现的位置
+    s1.find_first_not_of(s2);  // 在 s1 中查找第一个不再 s2 中的字符
     s1.find_last_not_of(s2);   // 与上面相似
 
-    p = strchr(s1, s2); // 查找s2在s1中第一次出现的位置
+    p = strchr(s1, s2);     // 查找 s2 在 s1 中第一次出现的位置
 
     // string 长度
     strlen(c1);
@@ -350,15 +350,15 @@ cout << str_list[0] << endl;    // abc
     s1.compare(s2)  // 大于：1；小于：-1；等于：0
     strcmp(s1, s2)  // 同上
 
-    // 比较两个字符串的前n个字符
+    // 比较两个字符串的前 n 个字符
     strncmp(c1, c2, n);
     ```
 
 2. 分割 split [参考](https://www.zhihu.com/question/36642771/answer/865135551)
 
     ```cpp
-    /* c++11以前没有通用的字符串分割程序 */
-    // 字符串分割函数: 要分割的字符串s_in, 分割结果s_out, 分隔符delimiter
+    /* c++11 以前没有通用的字符串分割程序 */
+    // 字符串分割函数：要分割的字符串 s_in, 分割结果 s_out, 分隔符 delimiter
     void split(const string &s_in, vector<string> &s_out, const string &delimiter = " ") {
         string::size_type lastPos = s_in.find_first_not_of(delimiter, 0);
         string::size_type pos = s_in.find_first_of(delimiter, lastPos);
@@ -374,11 +374,11 @@ cout << str_list[0] << endl;    // abc
 
 ### 6.1. 时间格式
 
-1. time_t: 本质为长整型(long)
+1. time_t: 本质为长整型 (long)
 
     ```cpp
-    #include <time.h>   // 或 ctime
-    time_t now = time(0);   // 获取系统当前时间, 0或NULL
+    #include <time.h>       // 或 ctime
+    time_t now = time(0);   // 获取系统当前时间，0 或 NULL
     ```
 
 2. tm 结构
@@ -417,12 +417,12 @@ cout << str_list[0] << endl;    // abc
 
     // string 转 time_t
     time_t str_to_time(const string &str) {
-        char *c = (char *)str.data();  // string转char*
+        char *c = (char *)str.data();  // string 转 char*
         tm tm1;
         int year, month, day, hour, minute, second;
         sscanf(c, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
-        tm1.tm_year = year - 1900;  // 年份, 从1900年开始
-        tm1.tm_mon = month - 1;     // 月份, 范围0-11
+        tm1.tm_year = year - 1900;  // 年份，从 1900 年开始
+        tm1.tm_mon = month - 1;     // 月份，范围 0-11
         tm1.tm_mday = day;
         tm1.tm_hour = hour;
         tm1.tm_min = minute;
@@ -504,12 +504,12 @@ char *c1 = (char*)str1.data();
 
     // string -> time_t
     time_t str_to_time(string &str) {
-        char *c = (char *)str.data();  // string转char*
+        char *c = (char *)str.data();  // string 转 char*
         tm tm1;
         int year, month, day, hour, minute, second;
         sscanf(c, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
-        tm1.tm_year = year - 1900;  // 年份, 从1900年开始
-        tm1.tm_mon = month - 1;     // 月份, 范围0-11
+        tm1.tm_year = year - 1900;  // 年份，从 1900 年开始
+        tm1.tm_mon = month - 1;     // 月份，范围 0-11
         tm1.tm_mday = day;
         tm1.tm_hour = hour;
         tm1.tm_min = minute;
@@ -535,7 +535,7 @@ char *c1 = (char*)str1.data();
 
 - [参考链接](https://blog.csdn.net/tengfei461807914/article/details/52203202)
 
-### 7.5. ASCII码转换
+### 7.5. ASCII 码转换
 
 1. 字符 <-> int
 
@@ -548,13 +548,13 @@ char *c1 = (char*)str1.data();
 
 ### 8.1. extern
 
-1. 声明extern关键字的全局变量和函数可以使得它们能够跨文件被访问
-2. extern "C": 在C++中使用C语言
+1. 声明 extern 关键字的全局变量和函数可以使得它们能够跨文件被访问
+2. extern "C": 在 C++中使用 C 语言
 
     ```cpp
     extern "C"
     {
-        #include "cExample.h" //C++中使用C的函数和变量
+        #include "cExample.h"   //C++中使用 C 的函数和变量
     }
     ```
 

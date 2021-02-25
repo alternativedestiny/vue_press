@@ -2,45 +2,45 @@
 
 ## 1. MinGW & Clion
 
-1. 安装好[Clion](https://www.jetbrains.com/clion/)
-2. 在Clion设置菜单`Toolchains`
-3. Environment下面选择MinGW，可以点击右上角的download直接进入MinGW下载页面
+1. 安装好 [Clion](https://www.jetbrains.com/clion/)
+2. 在 Clion 设置菜单`Toolchains`
+3. Environment 下面选择 MinGW，可以点击右上角的 download 直接进入 MinGW 下载页面
 
     <img src='../images/install.png' width=600>
 
-4. 在线安装MinGW(Minimalist GNU for Windows)
-   1. 从网站中下载[MinGW](http://mingw-w64.org/doku.php/download/mingw-builds)安装包
+4. 在线安装 MinGW(Minimalist GNU for Windows)
+   1. 从网站中下载 [MinGW](http://mingw-w64.org/doku.php/download/mingw-builds) 安装包
 
         <img src='../images/MinGW.png' width=600>
 
-   2. 这个是在线安装的安装包，根据设备选择架构，i686表示32位，x86_64是64位架构，要记住安装目录
+   2. 这个是在线安装的安装包，根据设备选择架构，i686 表示 32 位，x86_64 是 64 位架构，要记住安装目录
 
         <img src='../images/MinGW_install.png' width=600>
 
-   3. 在Clion设置选择MinGW的安装路径即可
+   3. 在 Clion 设置选择 MinGW 的安装路径即可
    4. 查看已安装的版本`gcc -v`
 
 5. 网络不好时可以选择离线安装
    1. [下载地址](https://sourceforge.net/projects/mingw-w64/files/mingw-w64/)
-   2. 根据系统选择版本，Windows建议x86_64-posix-seh
+   2. 根据系统选择版本，Windows 建议 x86_64-posix-seh
 
         <img src='../images/mingw_download.png'>
 
    3. 解压下载的压缩文件即可
-6. 根据自己的安装路径配置环境变量, 在系统变量中的path中添加mingw的路径, 最好重启一下使换进变量生效
+6. 根据自己的安装路径配置环境变量，在系统变量中的 path 中添加 mingw 的路径，最好重启一下使换进变量生效
    <img src='../images/Cpp-01-%E7%8E%AF%E5%A2%83-2021-02-23_39.png' width=600>
 
-7. 在命令行中输入`gcc -v`, 显示出gcc版本表示安装成功
+7. 在命令行中输入`gcc -v`, 显示出 gcc 版本表示安装成功
    <img src='../images/Cpp-01-%E7%8E%AF%E5%A2%83-2021-02-23_31.png' width=600>
 
 ## 2. VSCode 配置
 
 1. 安装 C/C++ 插件
 
-    <img src='../images/c++插件.png'>
+    <img src='../images/c++插件。png'>
 
-2. 配置方法，这里以C++为例, C的配置方法相同, 只不过生成的配置文件略有区别, `注意文件路径中不要使用中文, 不然会出现找不到文件的错误`
-   1. 先创建一个测试的cpp文件，比如
+2. 配置方法，这里以 C++为例，C 的配置方法相同，只不过生成的配置文件略有区别，`注意文件路径中不要使用中文，不然会出现找不到文件的错误`
+   1. 先创建一个测试的 cpp 文件，比如
 
         ```cpp
         #include <iostream>
@@ -57,33 +57,33 @@
 
         <img src='../images/c_vscode.gif' width=800>
 
-   3. Debug出现相对路径文件无法读取的问题时, 需要修改launch.json文件, 将`"cwd"`后面的路径修改成`"${fileDirname}"`, 即
+   3. Debug 出现相对路径文件无法读取的问题时，需要修改 launch.json 文件，将`"cwd"`后面的路径修改成`"${fileDirname}"`, 即
 
         ```json
         "cwd": "${fileDirname}",
         ```
 
-3. 也有不用配置的方法, 可以直接运行c++程序, 但是不能调试
+3. 也有不用配置的方法，可以直接运行 c++程序，但是不能调试
 
-   > 下载安装插件`C/C++ Compile Run`，只需安装下面的插件即可, `f6`直接运行
+   > 下载安装插件`C/C++ Compile Run`，只需安装下面的插件即可，`f6`直接运行
 
     <img src='../images/C++CompileRun.png'>
 
-    > 如果使用多种语言的话, 推荐`Code Runner`插件
+    > 如果使用多种语言的话，推荐`Code Runner`插件
 
     <img src='../images/coderunner.png'>
 
-## 3. Windows下命令行编译
+## 3. Windows 下命令行编译
 
-1. 编译成.o文件
+1. 编译成。o 文件
 
     ```bash
     g++ -c test.cpp
     ```
 
-2. 编译成exe执行文件
+2. 编译成 exe 执行文件
 
     ```bash
-    # 不命名的话会生成a.exe
+    # 不命名的话会生成 a.exe
     g++ test.cpp -o test
     ```
