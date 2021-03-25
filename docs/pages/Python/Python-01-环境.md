@@ -114,43 +114,7 @@
     conda --version     # 查看版本，或-V
     ```
 
-7. 配置 [清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)
-   1. linux
-
-        ```bash
-        # 清华源
-        # 任意目录下编辑。condarc 文件
-        vi ~/.condarc
-        ```
-
-   2. windows
-
-        ```bash
-        # 先创建。condarc 文件
-        # 文件一般在 C:\Users\username 目录下
-        conda config --set show_channel_urls yes
-        ```
-
-   3. 在。condarc 中写入以下内容，具体以 [清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/) 为准
-
-        ```bash
-        channels:
-        - defaults
-        show_channel_urls: true
-        default_channels:
-        - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
-        - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
-        - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
-        custom_channels:
-        conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-        msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-        bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-        menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-        pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-        simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-        ```
-
-8. 若出现 `conda:command not found` 问题
+7. 若出现 `conda:command not found` 问题
 
     ```bash
     # 编辑。bashrc 文件
@@ -160,7 +124,44 @@
     export PATH=$PATH:/home/username/anaconda3/bin
     ```
 
-### 2.2. conda 创建虚拟环境
+### 2.2. 配置 [清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)
+
+1. linux
+
+    ```bash
+    # 清华源
+    # 任意目录下编辑。condarc 文件
+    vi ~/.condarc
+    ```
+
+2. windows
+
+    ```bash
+    # 先创建。condarc 文件
+    # 文件一般在 C:\Users\username 目录下
+    conda config --set show_channel_urls yes
+    ```
+
+3. 在`.condarc`中写入以下内容，具体以 [清华源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/) 为准
+
+    ```bash
+    channels:
+    - defaults
+    show_channel_urls: true
+    default_channels:
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+    custom_channels:
+    conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    ```
+
+### 2.3. conda 虚拟环境
 
 1. 环境配置
 
@@ -175,6 +176,9 @@
 
     # 激活环境
     conda activate 环境名
+    # windows bat 脚本激活 conda
+    call activate 环境名
+
     # 退出环境
     conda deactivate
 
@@ -197,46 +201,47 @@
     pip install package-name
     ```
 
-4. 离线安装库文件
-   1. 下载离线包并创建需要安装的库文件列表 `requirements.txt`
+## 3. 离线安装库文件
 
-        > 最好把基础依赖包放在前面，避免某些包因缺少依赖包导致安装失败，`#`注释掉不需要安装的包
+1. 下载离线包并创建需要安装的库文件列表 `requirements.txt`
 
-        ```txt
-        six-1.15.0-py2.py3-none-any.whl
-        numpy-1.19.1-cp37-cp37m-manylinux1_x86_64.whl
-        scipy-1.5.2-cp37-cp37m-manylinux1_x86_64.whl
-        certifi-2020.6.20-py2.py3-none-any.whl
-        cycler-0.10.0-py2.py3-none-any.whl
-        pyparsing-2.4.7-py2.py3-none-any.whl
-        pytz-2020.1-py2.py3-none-any.whl
-        python_dateutil-2.8.1-py2.py3-none-any.whl
-        pandas-1.1.1-cp37-cp37m-manylinux1_x86_64.whl
+     > 最好把基础依赖包放在前面，避免某些包因缺少依赖包导致安装失败，`#`注释掉不需要安装的包
 
-        # Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl
-        # kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl
-        # matplotlib-3.3.1-cp37-cp37m-manylinux1_x86_64.whl
+     ```txt
+     six-1.15.0-py2.py3-none-any.whl
+     numpy-1.19.1-cp37-cp37m-manylinux1_x86_64.whl
+     scipy-1.5.2-cp37-cp37m-manylinux1_x86_64.whl
+     certifi-2020.6.20-py2.py3-none-any.whl
+     cycler-0.10.0-py2.py3-none-any.whl
+     pyparsing-2.4.7-py2.py3-none-any.whl
+     pytz-2020.1-py2.py3-none-any.whl
+     python_dateutil-2.8.1-py2.py3-none-any.whl
+     pandas-1.1.1-cp37-cp37m-manylinux1_x86_64.whl
 
-        pyDOE-0.3.8.zip
-        pwlf-2.0.4.tar.gz
-        ```
+     # Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl
+     # kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl
+     # matplotlib-3.3.1-cp37-cp37m-manylinux1_x86_64.whl
 
-   2. 批量安装库
+     pyDOE-0.3.8.zip
+     pwlf-2.0.4.tar.gz
+     ```
 
-        ```bash
-        # 批量安装
-        pip install -r requirements.txt
-        # 忽略目录批量安装
-        pip install --no-index -r requirements.txt
-        ```
+2. 批量安装库
 
-   3. 生成 requirements.txt 文件
+     ```bash
+     # 批量安装
+     pip install -r requirements.txt
+     # 忽略目录批量安装
+     pip install --no-index -r requirements.txt
+     ```
 
-        ```bash
-        pip3 freeze >requirements.txt
-        ```
+3. 生成 requirements.txt 文件
 
-## 3. VSCode 配置 Python 环境
+     ```bash
+     pip3 freeze >requirements.txt
+     ```
+
+## 4. VSCode 配置 Python 环境
 
 1. 安装 Python 插件
 
@@ -261,7 +266,7 @@
 
 5. 然后就可以开始调试运行了
 
-## 4. 备注
+## 5. 备注
 
 1. 常用库
 

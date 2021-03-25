@@ -1,4 +1,4 @@
-# Linux学习笔记
+# Linux 学习笔记
 
 ## 1. 系统安装及配置（Ubuntu）
 
@@ -6,13 +6,13 @@
 
 1. 备份原始源文件/etc/apt/sources.list
       `sudo cp sources.list sources_backup.list`
-2. 更换[清华源](https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/)
+2. 更换 [清华源](https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/)
 3. 更新软件列表
       `sudo apt-get update`
 
-### 1.2. 配置ssh
+### 1.2. 配置 ssh
 
-1. 查看有没有安装ssh, ubuntu默认安装了ssh-client
+1. 查看有没有安装 ssh, ubuntu 默认安装了 ssh-client
 
    ```bash
    dpkg -l | grep ssh
@@ -27,7 +27,7 @@
    sudo apty-get install openssh-server
    ```
 
-3. 查看ssh有没有开启
+3. 查看 ssh 有没有开启
 
    ```bash
    ps -e | grep ssh
@@ -40,10 +40,10 @@
 ## 3. 基础使用
 
 1. 文件操作
-   1. pwd(print name of current working directory)打印出当前工作目录名
-   2. cd(Change directory)更改目录
+   1. pwd(print name of current working directory) 打印出当前工作目录名
+   2. cd(Change directory) 更改目录
       1. 符号“.”指的是工作目录，“..”指的是工作目录的父目录
-   3. ls(List directory contents)列出目录内容
+   3. ls(List directory contents) 列出目录内容
       1. -a：add，显示全部文件（包括隐藏文件）
       2. -l：long，结果以长模式输出
       3. -t：按文件修改时间先后排序
@@ -64,17 +64,17 @@
       | PageUp   | 向上翻滚一页 |
       | PageDown | 向下翻滚一页 |
       | h        | 显示帮助     |
-      | q        | 退出less     |
+      | q        | 退出 less     |
 
 3. 使用命令
    1. type：说明怎样解释一个命令名
    2. which：显示会执行那个可执行程序
    3. man：显示命令手册页
    4. apropos：显示一系列适合的命令
-   5. info：显示命令info
+   5. info：显示命令 info
    6. whatis：显示一个命令的简洁描述
    7. alias：创建命令别名
-4. I/O重定向：允许我们改变输出地点和输入来源
+4. I/O 重定向：允许我们改变输出地点和输入来源
    1. 命令
       1. cat：连接文件
       2. sort：排序文本行
@@ -83,26 +83,26 @@
       5. wc：打印文件中的换行符，字，和字节个数
       6. head：输出文件第一部分（-n 调整打印行数）
       7. tail：输出文件的最后一部分（-n 调整打印行数）
-      8. tee：从标准输入Stdin读取数据，并同时写到标准输出Stdout和文件
+      8. tee：从标准输入 Stdin 读取数据，并同时写到标准输出 Stdout 和文件
    2. 管道
       1. command1 | command2 一个命令的标准输出可以通过管道送至另一个命令的标准输入
-5. shell命令
+5. shell 命令
    1. echo：
 6. 键盘高级操作技巧
    1. clear：清空屏幕
    2. history：显示历史列表内容
 
-## 4. vi用法
+## 4. vi 用法
 
-1. vi的模式
+1. vi 的模式
    - 一般模式（默认）：移动光标、粘贴、拷贝、存盘、退出等
    - 编辑模式：在一般模式中键入`i, o, a, r`可进入编辑模式，在此模式下可完成文本输入操作，“Esc”返回一般模式
    - 指令模式：在一般模式下键入`: / ?`进入指令模式，执行查找、读取、存盘、离开等命令
 
-2. vi退格和方向键不能使用的问题
+2. vi 退格和方向键不能使用的问题
 
    ```bash
-   # 编辑vimrc.tiny文件
+   # 编辑 vimrc.tiny 文件
    sudo vi /etc/vim/vimrc.tiny
    # 修改 set compatible 为
    set nocompatible
@@ -110,7 +110,7 @@
    set backspace=2
    ```
 
-3. vi指令
+3. vi 指令
 
    | 命令          | 应用模式 | 功能                                        |
    | ------------- | -------- | ------------------------------------------- |
@@ -128,14 +128,14 @@
    | Ctrl+f        | 一般模式 | 向下翻页                                    |
    | Ctrl+u        | 一般模式 | 向上翻半页                                  |
    | Ctrl+d        | 一般模式 | 向下翻半页                                  |
-   | x             | 一般模式 | 删除本文, 相当于Del                         |
-   | X             | 一般模式 | 删除本文, 相当于Backspace                   |
+   | x             | 一般模式 | 删除本文，相当于 Del                         |
+   | X             | 一般模式 | 删除本文，相当于 Backspace                   |
    | dd            | 一般模式 | 删除当前行                                  |
    | n dd          | 一般模式 | 删除指定行数                                |
-   | D             | 一般模式 | 删除光标后本行所有内容,包含光标所在的字符   |
-   | u             | 一般模式 | 撤销上一步操作, 相当于Ctrl+z                |
-   | d0            | 一般模式 | 删除光标前本行所有内容,不包含光标所在的字符 |
-   | dw            | 一般模式 | 删除光标开始位置的字,包含光标所在的字符     |
+   | D             | 一般模式 | 删除光标后本行所有内容，包含光标所在的字符   |
+   | u             | 一般模式 | 撤销上一步操作，相当于 Ctrl+z                |
+   | d0            | 一般模式 | 删除光标前本行所有内容，不包含光标所在的字符 |
+   | dw            | 一般模式 | 删除光标开始位置的字，包含光标所在的字符     |
    | Esc           | 编辑模式 | 退回到一般模式                              |
    | :w            | 指令模式 | 存盘                                        |
    | :w!           | 指令模式 | 强行存盘                                    |
@@ -146,14 +146,14 @@
    | /word         | 指令模式 | 向后寻找字符串“word”, n 继续查找下一个      |
    | ?word         | 指令模式 | 向前寻找字符串“word”, n 继续查找下一个      |
    | :set number   | 指令模式 | 打开行号显示                                |
-   | :set paste    | 指令模式 | 然后输入o进入复制模式, 避免复制缩进问题     |
-   | :n            | 指令模式 | 跳到第n行                                   |
+   | :set paste    | 指令模式 | 然后输入 o 进入复制模式，避免复制缩进问题     |
+   | :n            | 指令模式 | 跳到第 n 行                                   |
    | :0/$          | 指令模式 | 跳到第一行/最后一行                         |
-   | :a,bs/s1/s2/g | 指令模式 | 将a到b行的s1全部替换成s2, /g不询问直接替换  |
+   | :a,bs/s1/s2/g | 指令模式 | 将 a 到 b 行的 s1 全部替换成 s2, /g 不询问直接替换  |
 
-## 5. Shell脚本
+## 5. Shell 脚本
 
-1. 什么是Shell脚本：一个Shell脚本就是一个包含一系列命令的文件。
+1. 什么是 Shell 脚本：一个 Shell 脚本就是一个包含一系列命令的文件。
 2. 创建脚本文件
    1. 编写一个脚本
    2. 使脚本文件可执行（需要设置脚本文件的权限，使其可执行）
@@ -164,28 +164,28 @@
 
       - 常见权限设置：775——每个人都能执行，700——只有文件所有者能执行
 
-   3. 把脚本文件放置到shell能够到的地方，一般放在`/home/me/bin`下，因为这个文件默认在PATH配置中
+   3. 把脚本文件放置到 shell 能够到的地方，一般放在`/home/me/bin`下，因为这个文件默认在 PATH 配置中
 3. 执行脚本
    1. 工作目录执行 `./shell.sh`
    2. 绝对路径执行 `/home/user/Desktop/Project/shell.sh`
-   3. sh执行 `sh shell.sh` 或 `bash shell.sh`
-   4. shell环境执行 `. shell.sh` 或 `source shell.sh`
-   5. bash执行`bash xx.sh`
+   3. sh 执行 `sh shell.sh` 或 `bash shell.sh`
+   4. shell 环境执行 `. shell.sh` 或 `source shell.sh`
+   5. bash 执行`bash xx.sh`
 
-4. find指令：find -name "xx*"
-5. grep指令：grep 要查的字符 文件
-6. top指令: 查询系统资源使用情况
+4. find 指令：find -name "xx*"
+5. grep 指令：grep 要查的字符 文件
+6. top 指令：查询系统资源使用情况
 
 ## 6. 常用指令
 
 ### 6.1. 查询指令
 
-1. find指令：find -name "xx*"
-2. findcpp xxx：查询含有xxx的cpp文件, findh类似
-3. grep指令：grep 要查的字符 文件
+1. find 指令：find -name "xx*"
+2. findcpp xxx：查询含有 xxx 的 cpp 文件，findh 类似
+3. grep 指令：grep 要查的字符 文件
 
    ```bash
-   # 查找含print字符的cpp文件
+   # 查找含 print 字符的 cpp 文件
    grep print *cpp
    ```
 
@@ -196,22 +196,22 @@
       | 名称    | 描述                         |
       | ------- | ---------------------------- |
       | USER    | 启动该进程的账户名称         |
-      | PID     | 进程ID                       |
+      | PID     | 进程 ID                       |
       | TTY     | 表明该进程在那个终端上运行   |
       | STAT    | 进程状态                     |
       | START   | 启动该进程的时间             |
-      | TIME    | 该进程占用的CPU时间          |
+      | TIME    | 该进程占用的 CPU 时间          |
       | COMMAND | 启动该进程的命令的名称       |
-      | %CPU    | 占用CPU的百分比              |
+      | %CPU    | 占用 CPU 的百分比              |
       | %MEM    | 占用内存的百分比             |
-      | VSZ     | 占用虚拟内存(swap空间)的大小 |
-      | RSS     | 占用常驻内存(物理内存)的大小 |
+      | VSZ     | 占用虚拟内存 (swap 空间）的大小 |
+      | RSS     | 占用常驻内存（物理内存）的大小 |
 
       - > TTY：'?' 表示未知或不需要终端
-      - > STAT：S(休眠)、Z(僵死)、<(高优先级)、N(低优先级)、s(父进程)、+(前台进程)
+      - > STAT：S（休眠）、Z（僵死）、<（高优先级）、N（低优先级）、s（父进程）、+（前台进程）
 
 2. 查询进程
-   1. ps：查找与进程相关的PID号
+   1. ps：查找与进程相关的 PID 号
       | 命令   | 功能                         |
       | ------ | ---------------------------- |
       | a      | 列出所有进程                 |
@@ -224,16 +224,16 @@
       | --sort | 排序                         |
 
    2. 关闭进程
-      1. 当用户在前台执行某个进程时，可以按Ctrl+C组合键强制进行中断
+      1. 当用户在前台执行某个进程时，可以按 Ctrl+C 组合键强制进行中断
       2. kill PID
       3. kill -9 PID 强制终止
       4. killall 进程名
-   3. top命令：类似Windows资源管理器
-   4. pgrep命令：查询进程信息
+   3. top 命令：类似 Windows 资源管理器
+   4. pgrep 命令：查询进程信息
       1. pgreg -l "进程名"
-   5. pstree命令：查看进程树
-      1. pstree命令默认情况下只显示个进程的名称
-      2. 结合“-p”选项使用时可以同时列出对应的PID号
+   5. pstree 命令：查看进程树
+      1. pstree 命令默认情况下只显示个进程的名称
+      2. 结合“-p”选项使用时可以同时列出对应的 PID 号
       3. 结合“-u”选项可以列出对应的用户名
       4. 结合“-a”选项可以列出完整的命令信息
 
@@ -242,9 +242,9 @@
 1. 运行程序指令
 
    ```bash
-   # 后台运行程序: 关闭终端不影响程序运行
+   # 后台运行程序：关闭终端不影响程序运行
    ./app &
-   # 后台运行程序, 终端不显示输出
+   # 后台运行程序，终端不显示输出
    ./app > /dev/null &
    ```
 
@@ -254,26 +254,32 @@
 
     | 参数     | 功能                                     |
     | -------- | ---------------------------------------- |
-    | -a(all)  | 显示所有选项，默认不显示LISTEN相关       |
-    | -t(tcp)  | 仅显示tcp相关选项                        |
-    | -u (udp) | 仅显示udp相关选项                        |
+    | -a(all)  | 显示所有选项，默认不显示 LISTEN 相关       |
+    | -t(tcp)  | 仅显示 tcp 相关选项                        |
+    | -u (udp) | 仅显示 udp 相关选项                        |
     | -n       | 拒绝显示别名，能显示数字的全部转化成数字 |
-    | -l       | 仅列出有在 Listen (监听) 的服務状态      |
+    | -l       | 仅列出有在 Listen （监听） 的服務状态      |
     | -p       | 显示建立相关链接的程序名                 |
     | -r       | 显示路由信息，路由表                     |
-    | -e       | 显示扩展信息，例如uid等                  |
+    | -e       | 显示扩展信息，例如 uid 等                  |
     | -s       | 按各个协议进行统计                       |
-    | -c       | 每隔一个固定时间，执行该netstat命令      |
+    | -c       | 每隔一个固定时间，执行该 netstat 命令      |
 
-2. TCP状态
+2. TCP 状态
 
     | 状态        | 解释                                                          |
     | ----------- | ------------------------------------------------------------- |
     | LISTEN      | 等待接收连                                                    |
     | ESTABLISHED | 一个处于活跃状态的连接                                        |
-    | TIME_WAIT   | 一个刚被终止的连接。它只持续1至2分钟,然后就会变成 LISTEN 状态 |
+    | TIME_WAIT   | 一个刚被终止的连接。它只持续 1 至 2 分钟，然后就会变成 LISTEN 状态 |
 
-3. 参考链接[Linux netstat命令介绍](https://www.cnblogs.com/cheesezh/p/5169498.html)
+3. 参考链接 [Linux netstat 命令介绍](https://www.cnblogs.com/cheesezh/p/5169498.html)
+
+### 6.5. 其他指令
+
+| 指令 | 功能                 |
+| ---- | -------------------- |
+| h    | 查询历史指令输入记录 |
 
 ## 7. Linux & c++
 
@@ -284,7 +290,7 @@
 1. 静态库：静态库的代码在编译过程中已经被载入可执行程序，因此体积较大
 2. 动态库（共享库）：代码不会连接到目标文件之中，只有当动态库可访问时，应用程序才能正确执行动态库函数。执行动态库的方式有隐式调用和显式调用
    1. 隐式调用：也称共享库的静态加载，动态库在应用开始执行时会自动载入内存，进程结束时又自动卸载。隐式调用的编译方式与静态库一致
-   2. 显式调用：也称共享库的动态加载，编译时可以不显式的提供原动态库文件及名称，但是必须遵循dlopen等函数的规则实现调用
+   2. 显式调用：也称共享库的动态加载，编译时可以不显式的提供原动态库文件及名称，但是必须遵循 dlopen 等函数的规则实现调用
 
 #### 7.1.2. 静态库
 
@@ -303,23 +309,23 @@
 
 1. 动态库生成：
    1. 设计源码（exp：d1.c & d2.c）
-   2. Linux和其它使用gcc编译器的Unix
+   2. Linux 和其它使用 gcc 编译器的 Unix
 
      ```cpp
-     gcc -fpic -c d1.c d2.c /*编译.o为扩展名的中间目标文件*/
-     gcc -shared -o d1.so d1.o /*创建动态库文件d1.so*/
-     gcc -shared -o d2.so d2.o /*创建动态库文件d2.so*/
+     gcc -fpic -c d1.c d2.c /*编译。o 为扩展名的中间目标文件*/
+     gcc -shared -o d1.so d1.o /*创建动态库文件 d1.so*/
+     gcc -shared -o d2.so d2.o /*创建动态库文件 d2.so*/
      ```
 
      或者可以一步到位
 
      ```cpp
-     gcc -O -fpic -shared -o d1.so d1.c/*创建动态库文件d1.so*/
-     gcc -O -fpic -shared -o d2.so d2.c/*创建动态库文件d2.so*/
+     gcc -O -fpic -shared -o d1.so d1.c/*创建动态库文件 d1.so*/
+     gcc -O -fpic -shared -o d2.so d2.c/*创建动态库文件 d2.so*/
      ```
 
 2. 动态库的隐式调用
-   1. 调用库函数代码（main程序 main.c）
+   1. 调用库函数代码（main 程序 main.c）
    2. 编译链接选项
 
       ```bash
@@ -348,16 +354,16 @@
           - pathname：带路径的动态库名
           - mode：动态库加载方式
             - RTLD_LAZY：动态库的对象符号在被调用时解析
-            - RTLD_NOW：动态库对象的所有符号在函数dlopen返回前被解析
+            - RTLD_NOW：动态库对象的所有符号在函数 dlopen 返回前被解析
 
       2. 获取动态库对象地址
 
           ```c
           #include <dlfcn.h>
-          void *dlsym(const char *handle, const char *name);    //dlsym在动态库中搜索与字符串name同名的对象
+          void *dlsym(const char *handle, const char *name);    //dlsym 在动态库中搜索与字符串 name 同名的对象
           ```
 
-          - handle：由函数dlopen返回成功加载动态库的句柄
+          - handle：由函数 dlopen 返回成功加载动态库的句柄
           - name：待使用对象的名称（动态库中包含的函数名或变量名）
       3. 错误检查
 
@@ -394,7 +400,7 @@
 - type：打开文件的方式，由权限和类型两部分组成
 - stream：已经打开的文件指针
 
-1. fopen函数：打开或创建一个文本
+1. fopen 函数：打开或创建一个文本
 
     ```c
     fopen(const char *filename, const char *type)
@@ -410,33 +416,33 @@
     | a+   | 以读取和追加模式打开文件，全文读取，文末追加，若文件不存在创建新文件 |
     | b    | 以二进制模式打开或创建文件，否则以文本文件打开或创建文件             |
 
-2. freopen函数：实现文件流的替换。它首先关闭一个文件流，再创建新的文件流
+2. freopen 函数：实现文件流的替换。它首先关闭一个文件流，再创建新的文件流
 
     ```c
     FILE *freopen(const char *filename, const char *type, FILE *stream)
     ```
 
-    | FILE标识符 | 文件         |
+    | FILE 标识符 | 文件         |
     | ---------- | ------------ |
     | stdout     | 标准输出     |
     | stdin      | 标准输入     |
     | stderr     | 标准错误输出 |
 
-3. fclose函数
+3. fclose 函数
 
     ```c
-    // 关闭文件流，成功时返回0，否则返回EOF
+    // 关闭文件流，成功时返回 0，否则返回 EOF
     int fclose(FILE *stream);
     ```
 
-4. remove函数
+4. remove 函数
 
     ```c
     // 删除指定文件或目录
     int remove(const char *filename);
     ```
 
-5. rename函数
+5. rename 函数
 
     ```c
     // 重命名
@@ -444,8 +450,8 @@
     ```
 
 6. 二进制文件与文本文件
-   1. 文本文件又称为ASCII码文件，可以用vi等文本编辑器编辑其中任意字符，也可以直接操作以空额、制表符或换行符分割的单词和文本。C语言源代码是典型的文本文件。
-   2. 二进制文件中可以包含任意字符，没有固定格式，文本编辑器无法正常阅读，所有对文件的解析都由应用程序完成。C语言编译后的可执行文件就是二进制文件。
+   1. 文本文件又称为 ASCII 码文件，可以用 vi 等文本编辑器编辑其中任意字符，也可以直接操作以空额、制表符或换行符分割的单词和文本。C 语言源代码是典型的文本文件。
+   2. 二进制文件中可以包含任意字符，没有固定格式，文本编辑器无法正常阅读，所有对文件的解析都由应用程序完成。C 语言编译后的可执行文件就是二进制文件。
 
 #### 7.2.2. 文件的无格式读写
 
@@ -454,21 +460,21 @@
 
         ```c
         #include<stdio.h>
-        // getc以unsigned char类型读取文件输入流stream中的一个字符，并将该无符号字符转化为整型后返回，同时移动文件指针到下一个字符处
+        // getc 以 unsigned char 类型读取文件输入流 stream 中的一个字符，并将该无符号字符转化为整型后返回，同时移动文件指针到下一个字符处
         int getc(FILE *stream);
-        // getchar实际上是关于getc的宏定义“getc(stdin)”
+        // getchar 实际上是关于 getc 的宏定义“getc(stdin)”
         int getchar(void);
-        // fgetc功能类似于getc，但是执行速度远低于getc
+        // fgetc 功能类似于 getc，但是执行速度远低于 getc
         int fgetc(FILE *stream);
 
-        // 错误时都返回EOF，EOF一般定义为int型-1
+        // 错误时都返回 EOF，EOF 一般定义为 int 型-1
         ```
 
    2. 字符输出函数族
 
         ```c
         #include<stdio.h>
-        // 函数putc先将int型参数c自动转换为unsigned char类型，然后写入文件流stream中，同时移动文件指针到下一个字符处
+        // 函数 putc 先将 int 型参数 c 自动转换为 unsigned char 类型，然后写入文件流 stream 中，同时移动文件指针到下一个字符处
         int putc(int c, FILE *stream);
         int putchar(int c);
         int fputc(int c, FILE *stream);
@@ -485,14 +491,14 @@
 
         ```
 
-### 7.3. linux命令
+### 7.3. linux 命令
 
 1. grep 文件搜索
    1. 常用命令
-      1. grep：在没有参数的情况下，只输出符合RE（Regular Expression）字符。
-      2. egrep：等同于grep -E，和grep最大的区别就是表现在转义符上比如grep 做次数匹配时\{n,m\}egrep则不需要直接{n，m}。egrep方便，简介。
-      3. fgrep：等同于grep -f，但是不能使用正则表达式。所有的字符匹配功能均已消失。
-   2. 参数说明 `grep [OPTIONS] PATTERN(模式) [file]`
+      1. grep：在没有参数的情况下，只输出符合 RE（Regular Expression）字符。
+      2. egrep：等同于 grep -E，和 grep 最大的区别就是表现在转义符上比如 grep 做次数匹配时、{n,m\}egrep 则不需要直接{n，m}。egrep 方便，简介。
+      3. fgrep：等同于 grep -f，但是不能使用正则表达式。所有的字符匹配功能均已消失。
+   2. 参数说明 `grep [OPTIONS] PATTERN（模式） [file]`
 
 2. 压缩与解压
 
@@ -505,21 +511,27 @@
 
 ### 7.4. coredump
 
-1. coredump概念：程序调试
-2. coredump开启
-   1. 输入命令`ulimit -c`，结果为0表示未打开
-   2. 输入命令`ulimit -c unlimited`开启coredump
-3. gdb调试
-   1. 调试core文件`gdb program coredumpfile`
+1. coredump 概念：程序调试
+2. coredump 开启
+   1. 输入命令`ulimit -c`，结果为 0 表示未打开
+   2. 输入命令`ulimit -c unlimited`开启 coredump
+3. gdb 调试
+   1. 调试 core 文件`gdb program coredumpfile`
    2. 调试服务程序`gdb program PID`
+4. 多个 core 文件可以使用`file`命令查询 core 文件所属，比如
 
-- [linux下core dump](https://www.cnblogs.com/Anker/p/6079580.html)
+    ```bash
+    # 列出所有 core 文件所属
+    file core*
+    ```
+
+- [linux 下 core dump](https://www.cnblogs.com/Anker/p/6079580.html)
 
 ## 8. 用户和组
 
 ### 8.1. 创建用户和组
 
-1. 创建用户, 参考[添加删除用户和用户组](https://www.cnblogs.com/xd502djj/archive/2011/11/23/2260094.html)
+1. 创建用户，参考 [添加删除用户和用户组](https://www.cnblogs.com/xd502djj/archive/2011/11/23/2260094.html)
 
    ```bash
    # 创建用户
@@ -571,7 +583,7 @@
    ```bash
    # 查看用户
    cat /etc/passwd
-   # 查看组, 分四个字段 用户组:用户组密码:GID:用户列表
+   # 查看组，分四个字段 用户组：用户组密码：GID: 用户列表
    cat /etc/group
    ```
 

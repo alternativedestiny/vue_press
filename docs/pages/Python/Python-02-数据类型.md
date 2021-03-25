@@ -201,13 +201,17 @@
     ```python
     # 创建列表
     list1 = ['apple', 'banana', 123, 456]
+    
     # 创建空列表
     list2 = []
+    
     # 创建全 0 列表
     import numpy as np
     list1 = np.zeros(25, dtype=int)  # ndarray
     # 用 list 的写法
     list1 = [0 for t in range(3)]  # [0, 0, 0]
+    # 也可以
+    list1 = [0] * 5     # [0, 0, 0, 0, 0]
 
     # 创建序列数组：5,6,7,8,9
     list2 = [x for x in np.arange(5, 10, 1)]
@@ -416,18 +420,18 @@
 
     # 日期格式化
     t = arrow.now()
-    print(t)  # 2020-01-13T10:21:26.240147+08:00
+    print(t)            # 2020-01-13T10:21:26.240147+08:00
     print(t.timestamp)  # 1578882086
     print(t.format('YYYY-MM-DD HH:mm:ss'))  # 2020-01-13 10:21:26
 
     # 修改日期
-    t = t.replace(year=2019)  # 2019-01-13T10:26:26.484236+08:00
+    t = t.replace(year=2019)        # 2019-01-13T10:26:26.484236+08:00
     t = t.shift(months=1, days=-5)  # 2019-02-08T10:28:29.095138+08:00
 
     # 日期相减
     t1 = arrow.Arrow(2020, 3, 5)
     t2 = arrow.Arrow(2020, 1, 10)
-    print(t1 - t2)  # 55 days, 0:00:00
-    print((t1 - t2).days)  # 55
+    print(t1 - t2)          # 55 days, 0:00:00
+    print((t1 - t2).days)   # 55
 
     ```

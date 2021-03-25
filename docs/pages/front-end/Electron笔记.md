@@ -2,7 +2,7 @@
 
 ## 1. 创建项目
 
-1. 从github上面克隆最新的项目模板
+1. 从 github 上面克隆最新的项目模板
 
     ```bash
     // 在目标文件夹下
@@ -28,14 +28,14 @@
 
 ## 2. 基础配置
 
-1. 在main.js中增加全局使用nodejs
+1. 在 main.js 中增加全局使用 nodejs
 
     ```js
     const mainWindow = new BrowserWindow({
         width: w,
         height: h,
         webPreferences: {
-        nodeIntegration: true,  // 增加全局使用node.js
+        nodeIntegration: true,  // 增加全局使用 node.js
         preload: path.join(__dirname, 'preload.js')
         }
     })
@@ -94,7 +94,7 @@ save.onclick = function () {
 }
 ```
 
-### 3.3. 消息提示，类似于alert
+### 3.3. 消息提示，类似于 alert
 
 ```html
 <button id="message">show message</button>
@@ -117,7 +117,7 @@ message.onclick = function () {
 }
 ```
 
-### 3.4. 系统通知：win10通知栏
+### 3.4. 系统通知：win10 通知栏
 
 ```html
 <button id="notify">notify</button>
@@ -135,7 +135,7 @@ notify.onclick = function () {
 }
 ```
 
-### 3.5. 读取Json文件
+### 3.5. 读取 Json 文件
 
 ```html
 <button id="get">get info</button>
@@ -143,7 +143,7 @@ notify.onclick = function () {
 ```
 
 ```js
-// 读取json文件
+// 读取 json 文件
 let input = document.getElementById('get');
 let data1 = document.getElementById('data');
 input.onclick = function () {

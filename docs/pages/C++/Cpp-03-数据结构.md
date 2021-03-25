@@ -197,9 +197,9 @@
 
     ```
 
-    ```cpp
-    // 力扣编程及测试文件
+6. 面向对象的链表操作
 
+    ```cpp
     #include <iostream>
     #include <vector>
 
@@ -378,33 +378,85 @@
    2. 创建 vector 对象：`vector<int> vec`
 
         ```cpp
-        vector<int> vec;
-        vector<int> vec(10,0);
-        vector<int> vec = {1, 2, 3};
-        vector<int> vec {1, 2, 3};
+        vector<int> vec0;              // 定义空 vec
+        vector<int> vec1(10);          // 定义长度为 10 的 vec
+        vector<int> vec2(10, 0);       // 定义长度为 10, 初值为 0 的 vec
+        vector<int> vec3 = {1, 2, 3};  // 定义初值为 1,2,3 的 vec
+        vector<int> vec4{1, 2, 3};     // 定义初值为 1,2,3 的 vec
         ```
 
-   3. 尾部插入对象：`vec.push_back(a)`
-   4. 使用下标访问元素`cout<<vec[0]<<endl`
-   5. 访问元素
+   3. 使用下标访问元素`cout<<vec[0]<<endl`
+   4. 访问元素
 
         ```cpp
         vector<int>::iterator i;
         // 使用迭代器访问
-        for(it=vec.begin();it!=vec.end();it++){
-            cout<<*it<<endl;
+        for (it = vec.begin(); it != vec.end(); it++) {
+            cout << *it << endl;
         }
         // 普通访问方式
-        for(int i=0; i<vec.size(); i++){
-            cout<<vec[i]<<endl;
+        for (int i = 0; i < vec.size(); i++) {
+            cout << vec[i] << endl;
         }
         ```
 
-   6. 插入元素：`vec.insert(vec.begin()+i,a)`：在第 i+1 个元素前面插入 a
-   7. 删除元素：`vec.erase(vec.begin()+2)`：删除第三个元素
-   8. 向量大小：`vec.size()`
-   9. 清空：`vec.clear`
-3. 算法
+3. 增删改查
+   1. 增加
+
+        ```cpp
+        // 尾部插入元素
+        vec.push_back(a);
+
+        // 任意位置插入元素
+        vec.insert(vec.begin() + i, a);     // 在第 i+1 个元素前面插入 a
+
+        // 复制 vec
+        // 1. 在声明时复制
+        vector<int> vec2(vec1);
+        // 2. 其他时间复制
+        vec2.assign(vec1.begin(), vec1.end());
+        ```
+
+   2. 删除
+
+        ```cpp
+        // 删除元素
+        vec.erase(vec.begin() + 2);  // 删除第三个元素
+        // 清空
+        vec.clear();
+        ```
+
+   3. 修改
+
+        ```cpp
+        // 修改元素
+        vec[num] = 123; // 已知索引可以直接赋值
+
+        // 修改 size
+        vec.resize(num);
+        ```
+
+4. 计算
+   1. 求和
+
+        ```cpp
+        #include <numeric>  // 需要包含此包
+
+        // accumulate（起始位，终止位，累加初始值）
+        float sum = accumulate(vec.begin(), vec.end(), 0.0);
+        ```
+
+5. 二维 vector
+
+    ```cpp
+    // 定义二维 vec
+    vector<vector<int> > vec(6);    // 6 个 vector<int>
+
+    // 访问
+    vec[i][j];  // 第 i 个 vec 的第 j 个元素
+    ```
+
+6. 算法
 
 - [参考链接 1](https://blog.csdn.net/duan19920101/article/details/50617190)
 - [参考链接 2](https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html)
@@ -472,6 +524,44 @@
     ```cpp
     // 顺序比较
     map_name.key_comp("a","b")  // a 在 b 前返回 true
+    ```
+
+6. 按照值排序 (map 本身会按照 key 排序）
+
+    ```cpp
+    #include <algorithm>
+    #include <map>
+    #include <string>
+    #include <vector>
+
+    using namespace std;
+
+    // 定义排序规则：升序排列
+    bool cmp(pair<string, int> a, pair<string, int> b) { return a.second < b.second; }
+
+    // map 不能直接排序，故要借助 vector 实现
+    void sort_map(map<string, int> &mymap) {
+        vector<pair<string, int> > myvec;
+        vector<pair<string, int> >::iterator it;
+
+        map<string, int>::iterator iter;
+
+        for (iter = mymap.begin(); iter != mymap.end(); iter++) {
+            myvec.push_back(pair<string, int>(iter->first, iter->second));
+        }
+
+        sort(myvec.begin(), myvec.end(), cmp);  // 要加 algorithm 库
+
+        for (it = myvec.begin(); it != myvec.end(); ++it) {
+            printf("Key: %s  Val: %d\n", it->first.c_str(), it->second);
+        }
+    }
+
+    int main(int argc, char const *argv[]) {
+        map<string, int> mymap = {{"a", 1}, {"b", 2}, {"c", 3}};
+        sort_map(mymap);
+        return 0;
+    }
     ```
 
 - [c++常见 map 用法](https://blog.csdn.net/shuzfan/article/details/53115922)
