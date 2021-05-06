@@ -59,11 +59,11 @@
 
    3. python 字符串没有插入 (insert) 功能，可以通过字符串拼接实现
 
-    ```python
-    str1 = 'abc123'
-    str2 = f'{str1[:3]} | {str1[3:]}'
-    print(str2)     # abc | 123
-    ```
+        ```python
+        str1 = 'abc123'
+        str2 = f'{str1[:3]} | {str1[3:]}'
+        print(str2)     # abc | 123
+        ```
 
 3. 删
    1. 删除字符串指定字符

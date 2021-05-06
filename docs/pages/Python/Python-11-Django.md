@@ -1,4 +1,4 @@
-# 11. Django3
+# 11. Django
 
 ## 1. 简介
 
@@ -38,7 +38,7 @@ Django 是基于 Python 的一个开源 web 框架
     python manage.py runserver
     ```
 
-    <img src='../images/django_start.png' width=800>
+    <img src='../images/django_start.png' width=600>
 
 ## 3. 创建应用
 
@@ -194,7 +194,7 @@ Django 是基于 Python 的一个开源 web 框架
     <img src="{% static 'img/img1.jpg' %}" alt="hoppou">
     ```
 
-## 6. 模型创建与扩展
+## 6. 模型使用
 
 ### 6.1. 创建模型
 
@@ -273,29 +273,29 @@ Django 是基于 Python 的一个开源 web 框架
 
 6. 常用字段类型，[参考](https://blog.csdn.net/Ka_Ka314/article/details/80828309)
 
-    | 字段             | 类型                        |
-    | ---------------- | --------------------------- |
-    | AutoField        | 自增 ID                      |
-    | BooleanField     | bool 变量                    |
+    | 字段             | 类型                          |
+    | ---------------- | ----------------------------- |
+    | AutoField        | 自增 ID                       |
+    | BooleanField     | bool 变量                     |
     | NullBooleanField | 支持 null、true、false 三种值 |
-    | TextField        | 大段文字                    |
-    | CharField        | 字符串                      |
-    | FloatField       | 浮点                        |
-    | IntegerField     | 整数                        |
-    | DateTimeField    | 日期时间                    |
-    | TimeField        | 时间                        |
-    | DateField        | 日期                        |
-    | FileField        | 一个上传文件的字段          |
+    | TextField        | 大段文字                      |
+    | CharField        | 字符串                        |
+    | FloatField       | 浮点                          |
+    | IntegerField     | 整数                          |
+    | DateTimeField    | 日期时间                      |
+    | TimeField        | 时间                          |
+    | DateField        | 日期                          |
+    | FileField        | 一个上传文件的字段            |
 
 7. 字段设置
 
-    | 设置           | 功能                                |
-    | -------------- | ----------------------------------- |
-    | max_length=100 | 最大长度为 100                       |
-    | default=''     | 默认值                              |
-    | blank=True     | 允许空白，默认 False                 |
+    | 设置           | 功能                                   |
+    | -------------- | -------------------------------------- |
+    | max_length=100 | 最大长度为 100                         |
+    | default=''     | 默认值                                 |
+    | blank=True     | 允许空白，默认 False                   |
     | null=True      | 将空值以 NULL 存储到数据库，默认 False |
-    | unique=True    | 字段在表中拥有唯一值                |
+    | unique=True    | 字段在表中拥有唯一值                   |
 
 ### 6.2. makemigrations 和 migrate
 
@@ -357,6 +357,22 @@ Django 是基于 Python 的一个开源 web 框架
 
    - [django 用户认证系统——拓展 User 模型 2](https://www.cnblogs.com/AmilyWilly/p/8469851.html)
    - [Django-Model 操作数据库（增删改查、连表结构）](https://www.cnblogs.com/yangmv/p/5327477.html)
+
+### 6.4. 模型使用
+
+1. 模型搜索，假设模型名为 Mod, 其下有 id, name, type 等几个字段
+
+    ```python
+    from .models import Mod
+
+    # 获取模型中的所有条目
+    mod = Mod.objects.all()
+
+    # 根据条件筛选
+    mod = Mod.objects.filter(id=3)
+    ```
+
+2. 模型创建条目
 
 ## 7. 用户验证
 
@@ -443,7 +459,9 @@ Django 是基于 Python 的一个开源 web 框架
    - CSRF（Cross-site request forgery）跨站请求伪造。Django 为了防止 CSRF 攻击有一些保护措施，因此我们在使用 POST 时会出现 django csrf token missing or incorrect 的错误，因此需要在 POST 表单中加入 {% csrf_token %}，原理部分此时先不做深究，因为我也没有研究这方面
    - 关于 render 的一些问题，因为 render 本身自带一个 request 参数，这个参数其实包含有很多信息，其中就有用户信息，因此在使用 render 时，即便我们没有向网页传递任何参数，网页依然可以访问到用户信息，比如使用{{user}}就可以显示用户名，这就是 request 起到的作用
 
-## 8. 表单提交 GET&POST
+## 8. 前后端数据交互
+
+### 8.1. 表单提交 GET&POST
 
 1. GET&POST 都是 AJAX 函数的简写
    比如在 jQuery 使用 POST 时，POST 函数语法如下
@@ -500,11 +518,49 @@ Django 是基于 Python 的一个开源 web 框架
 
     这句后程序更加稳定。使用 POST 方法相同，只需把上面程序 GET 改成 POST 即可，但是需要注意 csrf 问题。
 
-## 9. 前后端数据传递
+### 8.2. 前端获取数据
 
-### 9.1. 后端数据传递到前端
+1. 后端传递全部变量到前端
+   1. 在`views.py`文件中使用`locals()`
 
-## 10. CSRF 认证的几种方法
+        ```python
+        def index(request):
+            x = 1
+            y = 2
+            return render(request, 'index.html', locals())
+        ```
+
+   2. html 中使用变量
+
+        ```html
+        <!-- 在文件头部引入 -->
+        {% load static %}
+
+        <!-- 在文件中就可以通过双大括号使用 -->
+        <div>x = {{ x }}</div>
+        <div>y = {{ y }}</div>
+        ```
+
+   3. 若要在 js 中使用，则需要用 safe 过滤器
+
+        ```js
+        let x = {{ x|safe }};
+        let y = {{ y|safe }};
+        ```
+
+2. 通过 json 传递数据到前端
+   1. 后端`views.py`中返回 json 数据
+
+       ```python
+       from django.http.response import JsonResponse
+
+       def get_data(request):
+           return JsonResponse({'x': 1, 'y': 2})
+       ```
+
+   2. 前端中需要用 ajax 获取数据
+
+## 9. CSRF 认证的几种方法
 
 1. 在登陆表单中添加 CSRF 方法：
 

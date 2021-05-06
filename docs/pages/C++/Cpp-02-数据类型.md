@@ -403,10 +403,10 @@ cout << str_list[0] << endl;    // abc
 
     ```cpp
     // time_t 转 tm
-    tm *ltm = localtime(&t);
+    tm *ltm = localtime(&t);    // 不能连续使用
 
     // tm 转 time_t
-    time_t t = mktime(&tm1);
+    time_t t = mktime(&tm1);    // 不能连续使用
     ```
 
 2. string 转 time_t
