@@ -95,20 +95,20 @@ print(perf_counter())
 
 1. 分辨系统为 Windows 或 linux
 
-```python
-import platform
+    ```python
+    import platform
 
-sys = platform.system()
+    sys = platform.system()
 
-if sys == "Windows":
-    # ...
-elif sys == "Linux":
-    # ...
-else:
-    # ...
+    if sys == "Windows":
+        # ...
+    elif sys == "Linux":
+        # ...
+    else:
+        # ...
 
-print(f"Using {sys} platform.")
-```
+    print(f"Using {sys} platform.")
+    ```
 
 ## 7. 排序算法
 

@@ -142,6 +142,14 @@
 
    2. 标题 `title='图例'`
    3. 标题大小 `title_fontsize='12'`
+   4. 设置图例的显示方式
+
+        ```python
+        # 图例显示位置 1, 6 列
+        plt.legend(loc=1, ncol=6)
+        # 图例显示到图外
+        plt.legend(loc=2, bbox_to_anchor=(1.05, 1.0), borderaxespad=0.)
+        ```
 
 ### 2.3. 多图设置
 

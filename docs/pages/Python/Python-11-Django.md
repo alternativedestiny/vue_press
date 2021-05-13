@@ -602,3 +602,23 @@ Django 是基于 Python 的一个开源 web 框架
         }
     )
     ```
+
+## 10. 部署相关
+
+### 10.1. 启动脚本
+
+1. Windows 启动脚本
+
+    ```bat
+    :: 激活 conda 环境
+    call activate 环境名
+    :: 启动服务
+    python.exe manage.py runserver 127.0.0.1:8000 &
+    ```
+
+2. Linux 启动脚本
+
+    ```sh
+    # 虚拟环境 python 路径/python manage.py runerver IP:Port &
+    python manage.py runserver 127.0.0.1:8000 &
+    ```

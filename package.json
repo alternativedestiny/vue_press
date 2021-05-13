@@ -13,8 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "node-sass": "^4.14.1",
-    "sass-loader": "^8.0.2",
-    "vuepress": "^1.5.2"
+    "sass-loader": "^8.0.2"
   },
   "dependencies": {
     "@vuepress/plugin-back-to-top": "^1.5.2",
@@ -22,6 +21,7 @@
     "element-ui": "^2.13.2",
     "express": "^4.17.1",
     "markdown-it-katex": "^2.0.3",
+    "npm-check-updates": "^11.5.11",
     "vuepress-plugin-cat": "^1.0.3"
   }
 }
