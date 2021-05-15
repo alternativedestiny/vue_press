@@ -9,32 +9,33 @@
 
 ## 2. 插件
 
-| 插件                                 | 功能                         | 推荐指数 |
-| ------------------------------------ | ---------------------------- | -------- |
-| Auto Close Tag                       | html标签自动补全             | `前端`   |
-| Auto Complete Tag                    | 配合上面的使用               | `前端`   |
-| background                           | 背景图片插件                 | `体验`   |
-| Beautify                             | 代码格式化插件               | `必备`   |
-| Code Runner                          | 代码运行                     | `推荐`   |
-| GitLens                              | git扩展                      | `必备`   |
-| LiveCode for python                  | 动态显示python变量的输出     | `推荐`   |
-| Markdown All in One                  | Markdown编辑                 | `必备`   |
-| markdown image                       | makrdown插入图片             | `推荐`   |
-| Markdown PDF                         | Markdown转pdf                | `一般`   |
-| Markdown Preview Enhanced            | Markdown预览                 | `必备`   |
-| markdown toc                         | 自动创建目录（需要设置eol）  | `一般`   |
-| markdown-formatter                   | markdown格式化工具           | `一般`   |
-| markdownlint                         | markdown格式检查工具         | `必备`   |
-| markmap                              | makrdown思维导图             | `推荐`   |
-| Open In Default Browser              | 调用浏览器打开html           | `前端`   |
-| Path Autocomplete                    | 路径自动补全                 | `一般`   |
-| Project Manager                      | 项目管理                     | `必备`   |
-| Seti                                 | 图标美化插件                 | `体验`   |
-| Excel Viewer                         | 查看excel、csv               | `一般`   |
-| SandDance for VSCode                 | 数据可视化工具               | `体验`   |
-| Markdown Navigation                  | markdown目录，与大纲功能重叠 | `一般`   |
-| Mermaid Markdown Syntax Highlighting | Markdown结构图代码高亮       | `一般`   |
-| Remote-SSH                           | ssh工具                      | `推荐`   |
+| 插件                                 | 功能                             | 推荐指数 |
+| ------------------------------------ | -------------------------------- | -------- |
+| Auto Close Tag                       | html 标签自动补全                | `前端`   |
+| Auto Complete Tag                    | 配合上面的使用                   | `前端`   |
+| background                           | 背景图片插件                     | `体验`   |
+| Beautify                             | 代码格式化插件                   | `必备`   |
+| Code Runner                          | 代码运行                         | `推荐`   |
+| GitLens                              | git 扩展                         | `必备`   |
+| LiveCode for python                  | 动态显示 python 变量的输出       | `推荐`   |
+| Markdown All in One                  | Markdown 编辑                    | `必备`   |
+| markdown image                       | makrdown 插入图片                | `推荐`   |
+| Markdown PDF                         | Markdown 转 pdf                  | `一般`   |
+| Markdown Preview Enhanced            | Markdown 预览                    | `必备`   |
+| markdown toc                         | 自动创建目录（需要设置 eol）     | `一般`   |
+| markdown-formatter                   | markdown 格式化工具              | `一般`   |
+| markdownlint                         | markdown 格式检查工具            | `必备`   |
+| markmap                              | makrdown 思维导图                | `推荐`   |
+| Open In Default Browser              | 调用浏览器打开 html              | `前端`   |
+| Pangu Markdown                       | 自动修改 markdown 中的空格和标点 | `推荐`   |
+| Path Autocomplete                    | 路径自动补全                     | `一般`   |
+| Project Manager                      | 项目管理                         | `必备`   |
+| Seti                                 | 图标美化插件                     | `体验`   |
+| Excel Viewer                         | 查看 excel、csv                  | `一般`   |
+| SandDance for VSCode                 | 数据可视化工具                   | `体验`   |
+| Markdown Navigation                  | markdown 目录，与大纲功能重叠    | `一般`   |
+| Mermaid Markdown Syntax Highlighting | Markdown 结构图代码高亮          | `一般`   |
+| Remote-SSH                           | ssh 工具                         | `推荐`   |
 
 ## 3. 快捷键
 
@@ -50,7 +51,7 @@
 
       ![md](../images/markdown.gif)
 
-   2. 设置补全内容，如cpp代码块
+   2. 设置补全内容，如 cpp 代码块
 
       ```json
       "cpp": {
@@ -65,7 +66,7 @@
       ```
 
 2. 打开自定义补全功能
-   1. 文件->首选项->设置->(右上角)打开设置，将下面这段设置写入setting.json文件
+   1. 文件->首选项->设置->（右上角）打开设置，将下面这段设置写入 setting.json 文件
 
       ```json
       "[markdown]":  {
@@ -78,7 +79,7 @@
 
    ![cpp](../images/cpp.gif)
 
-## 5. Remote-SSH配置
+## 5. Remote-SSH 配置
 
 1. 远程服务器配置
 
@@ -103,8 +104,29 @@
       cat id_rsa.pub
       ```
 
-   3. 上传密钥到服务器, 然后就可以实现免密登录
+   3. 上传密钥到服务器，然后就可以实现免密登录
 
       ```bash
       ssh-copy-id root@192.168.1.1
       ```
+
+## 6. 问题处理
+
+### 6.1. 因为在此系统上禁止运行脚本
+
+1. 现象：在 vscode 运行 yarn 或 npm 脚本时出现无法运行的情况
+2. 解决方法
+
+    ```bash
+    # 以管理员身份打开 vscode
+    # 执行 get-ExecutionPolicy, 显示 Restricted 表示状态被禁止
+    > get-ExecutionPolicy
+    Restricted
+    # 执行 set-ExecutionPolicy RemoteSigned, 允许运行脚本
+    > set-ExecutionPolicy RemoteSigned
+    # 再次执行 get-ExecutionPolicy, 显示 RemoteSigned
+    > get-ExecutionPolicy
+    RemoteSigned
+    ```
+
+3. 参考 [解决 VSCODE"因为在此系统上禁止运行脚本"报错](https://blog.csdn.net/larpland/article/details/101349586)

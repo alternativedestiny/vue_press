@@ -81,24 +81,25 @@
     bash miniconda3_xxx.sh
     ```
 
-   1. 配置环境变量，默认不需要配置
+4. 配置环境变量，默认不需要配置
 
-        ```bash
-        # 打开配置文件
-        ~/miniconda3/bin$ sudo gedit ~/.bashrc
-        # 在末尾添加
-        export PATH=~/anaconda3/bin:$PATH
-        # 生效
-        source ~/.bashrc
-        # 验证
-        conda --version    # 或 -V
-        pip --version
-        ```
+     ```bash
+     # 打开配置文件
+     ~/miniconda3/bin$ sudo gedit ~/.bashrc
+     # 在末尾添加
+     export PATH=~/anaconda3/bin:$PATH
+     # 生效
+     source ~/.bashrc
+     # 验证
+     conda --version    # 或 -V
+     pip --version
+     ```
 
-4. Windows 安装，默认下一步即可（默认不添加环境变量）, 可在安装过程中选择配置环境变量，也可以自行配置环境变量。根据安装路径添加环境变量，重启生效
+5. Windows 安装，默认下一步即可（默认不添加环境变量）, 可在安装过程中选择配置环境变量，也可以自行配置环境变量。根据安装路径添加环境变量，重启生效
+
    <img src='../images/Python-01-path.png' width=600>
 
-5. 避免一开始就激活 base 环境，可以设置
+6. 避免一开始就激活 base 环境，可以设置
 
     ```bash
     # 关闭 base 自动激活
@@ -107,14 +108,14 @@
     conda config --set auto_activate_base true
     ```
 
-6. 检测安装是否成功：配置完环境变量可在任意路径执行下列命令；未配置需要进入安装目录下 (Windows：`C:\ProgramData\Miniconda3\Scripts` Linux：`\miniconda3\bin`) 执行指令
+7. 检测安装是否成功：配置完环境变量可在任意路径执行下列命令；未配置需要进入安装目录下 (Windows：`C:\ProgramData\Miniconda3\Scripts` Linux：`\miniconda3\bin`) 执行指令
 
     ```bash
     conda list          # 查看已安装的包
     conda --version     # 查看版本，或-V
     ```
 
-7. 若出现 `conda:command not found` 问题
+8. 若出现 `conda:command not found` 问题
 
     ```bash
     # 编辑。bashrc 文件
