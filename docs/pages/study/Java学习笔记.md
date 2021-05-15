@@ -61,7 +61,7 @@
     sudo update-alternatives --config java
     ```
 
-    <img src='../images/java版本切换.png' width=800>
+    <img src='../images/java_ver.png' width=800>
 
 ## 2. 基本语法
 

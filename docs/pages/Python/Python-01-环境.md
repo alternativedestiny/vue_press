@@ -96,7 +96,7 @@
         ```
 
 4. Windows 安装，默认下一步即可（默认不添加环境变量）, 可在安装过程中选择配置环境变量，也可以自行配置环境变量。根据安装路径添加环境变量，重启生效
-   <img src='../images/Python-01-%E7%8E%AF%E5%A2%83-2021-02-24_24.png' width=600>
+   <img src='../images/Python-01-path.png' width=600>
 
 5. 避免一开始就激活 base 环境，可以设置
 
@@ -257,12 +257,12 @@
 
    4. 用全局环境可以选择已经列出的环境，否则选择`Enter interpreter path`，然后选`find`在弹出的窗口中选择已创建的虚拟环境
 
-        <img src='../images/interpreter path.png' width=600>
+        <img src='../images/interpreter_path.png' width=600>
         <img src='../images/find.png' width=600>
 
 4. 添加配置：可以根据自己的项目配置 Python、Django 等
 
-    <img src='../images/添加配置。gif' width=800>
+    <img src='../images/add_config.gif' width=800>
 
 5. 然后就可以开始调试运行了
 

@@ -1,7 +1,7 @@
 {
-  "name": "pressproject",
+  "name": "vuepress",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. 主要内容\r    - Python\r    - 机器学习内容\r    - 一些编程笔记\r    - 前端学习\r    - 软件使用",
   "main": "index.js",
   "scripts": {
     "dev": "vuepress dev docs",
@@ -9,11 +9,12 @@
     "deploy": "start deploy.sh"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "lg",
+  "license": "MIT",
   "devDependencies": {
     "node-sass": "^4.14.1",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vuepress": "^1.8.2"
   },
   "dependencies": {
     "@vuepress/plugin-back-to-top": "^1.5.2",
@@ -23,5 +24,13 @@
     "markdown-it-katex": "^2.0.3",
     "npm-check-updates": "^11.5.11",
     "vuepress-plugin-cat": "^1.0.3"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": "git+https://github.com/alternativedestiny/vue_press.git",
+  "bugs": {
+    "url": "https://github.com/alternativedestiny/vue_press/issues"
+  },
+  "homepage": "https://github.com/alternativedestiny/vue_press#readme"
 }

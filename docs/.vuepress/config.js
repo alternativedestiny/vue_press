@@ -54,9 +54,9 @@ module.exports = {
     },
     serviceWorker: true,
     plugins: [
-        '@vuepress/back-to-top', // 回到顶部按钮
+        // '@vuepress/back-to-top', // 回到顶部按钮
         'vuepress-plugin-cat', // 那只猫
-        ['@dovyp/vuepress-plugin-clipboard-copy', true],  // 复制到剪切板
+        // ['@dovyp/vuepress-plugin-clipboard-copy', true],  // 复制到剪切板
         // 'vuepress-plugin-nprogress', // 顶部进度条
     ],
     themeConfig: {

@@ -22,13 +22,13 @@
     npm config set registry https://registry.npm.taobao.org
     ```
 
-4. 安装cnpm
+4. 安装 cnpm
 
     ```bash
     npm install -g cnpm --registry=https://registry.npm.taobao.org
     ```
 
-### 1.2. 包(package)管理
+### 1.2. 包 (package) 管理
 
 1. 本地管理
 
@@ -64,27 +64,33 @@
 | 参数 | 全名            | 功能                                      |
 | ---- | --------------- | ----------------------------------------- |
 | -g   |                 | 全局安装                                  |
-| -S   | --save          | 安装到node_modules，添加到dependencies    |
-| -D   | --save-dev      | 安装到node_modules，添加到devDependencies |
-| -O   | --dave-optional | 添加到OptionalDependencies                |
+| -S   | --save          | 安装到 node_modules，添加到 dependencies    |
+| -D   | --save-dev      | 安装到 node_modules，添加到 devDependencies |
+| -O   | --dave-optional | 添加到 OptionalDependencies                |
 
 ## 2. yarn
 
 ### 2.1. 换源
 
-1. 查看源
+1. 安装
+
+    ```bash
+    cnpm i -g yarn
+    ```
+
+2. 查看源
 
     ```bash
     yarn config get registry
     ```
 
-2. 临时
+3. 临时
 
     ```bash
     yarn save <package> --registry https://registry.npm.taobao.org/
     ```
 
-3. 永久
+4. 永久
 
     ```bash
     yarn config set registry https://registry.npm.taobao.org/

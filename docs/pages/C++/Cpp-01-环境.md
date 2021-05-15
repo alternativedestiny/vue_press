@@ -28,16 +28,16 @@
 
    3. 解压下载的压缩文件即可
 6. 根据自己的安装路径配置环境变量，在系统变量中的 path 中添加 mingw 的路径，最好重启一下使换进变量生效
-   <img src='../images/Cpp-01-%E7%8E%AF%E5%A2%83-2021-02-23_39.png' width=600>
+   <img src='../images/Cpp-01-path.png' width=600>
 
 7. 在命令行中输入`gcc -v`, 显示出 gcc 版本表示安装成功
-   <img src='../images/Cpp-01-%E7%8E%AF%E5%A2%83-2021-02-23_31.png' width=600>
+   <img src='../images/Cpp-01-gcc-v.png' width=600>
 
 ## 2. VSCode 配置
 
 1. 安装 C/C++ 插件
 
-    <img src='../images/c++插件。png'>
+    <img src='../images/c++plug.png'>
 
 2. 配置方法，这里以 C++为例，C 的配置方法相同，只不过生成的配置文件略有区别，`注意文件路径中不要使用中文，不然会出现找不到文件的错误`
    1. 先创建一个测试的 cpp 文件，比如
