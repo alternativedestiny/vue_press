@@ -16,7 +16,7 @@ function getNav(folder) {
     let nav_text = [];
     for (let i = 0; i < file_list.length; i++) {
         // let name = file_list[i].split(/[.]|-/);
-        nav_text.push({ 
+        nav_text.push({
             text: file_list[i].slice(0, -3),
             link: '/pages/' + folder + '/' + file_list[i].slice(0, -3)
         });
@@ -54,9 +54,9 @@ module.exports = {
     },
     serviceWorker: true,
     plugins: [
-        // '@vuepress/back-to-top', // 回到顶部按钮
+        '@vuepress/back-to-top', // 回到顶部按钮
         'vuepress-plugin-cat', // 那只猫
-        // ['@dovyp/vuepress-plugin-clipboard-copy', true],  // 复制到剪切板
+        ['vuepress-plugin-code-copy', true],  // 代码块复制
         // 'vuepress-plugin-nprogress', // 顶部进度条
     ],
     themeConfig: {
