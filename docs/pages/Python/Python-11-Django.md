@@ -198,17 +198,28 @@ Django 是基于 Python 的一个开源 web 框架
 
 ### 6.1. 创建模型
 
-1. 创建方法：在`myapp/models.py`中
+1. 创建方法
+   1. 静态创建方法：在`myapp/models.py`中
 
-    ```python
-    from django.db import models
+        ```python
+        from django.db import models
 
-    # Create your models here.
-    class Model1(models.Model):  # 模型名：Model1
-        # 字段名 = 字符型（最大长度为 200，默认为空）
-        fields1 = models.CharField(max_length=200, default='')
+        # Create your models here.
+        class Model1(models.Model):  # 模型名：Model1
+            # 字段名 = 字符型（最大长度为 200，默认为空）
+            fields1 = models.CharField(max_length=200, default='')
 
-    ```
+        ```
+
+   2. 动态创建方法：使用`update_or_create`, 若字段不存在就创建，存在就更新。在 views 函数中
+
+        ```python
+        # 假设给模型 Model1 中增加字段
+        Model1.objects.update_or_create(
+            name='fields1',
+            defaults={value=None, 'types': 'basic'}
+        )
+        ```
 
 2. 注册模型：在`myapp/admin.py`中
 
