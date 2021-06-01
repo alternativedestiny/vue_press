@@ -209,6 +209,9 @@ cout << str_list[0] << endl;    // abc
     // 指定位置插入
     vec.insert(vec.begin(), 10);      // 在初始位置插入 10
     vec.insert(vec.begin() + 2, 10);  // 在位置 2 插入 10
+
+    // vector 拼接
+    vec.insert(vec.end(), vec2.begin(), vec2.end());
     ```
 
 2. 删
@@ -381,29 +384,52 @@ cout << str_list[0] << endl;    // abc
     time_t now = time(0);   // 获取系统当前时间，0 或 NULL
     ```
 
-2. tm 结构
+2. tm 格式
+   1. tm 结构
 
-    ```cpp
-    struct tm {
-        int tm_sec;   // 秒，正常范围从 0 到 59，但允许至 61
-        int tm_min;   // 分，范围从 0 到 59
-        int tm_hour;  // 小时，范围从 0 到 23
-        int tm_mday;  // 一月中的第几天，范围从 1 到 31
-        int tm_mon;   // 月，范围从 0 到 11
-        int tm_year;  // 自 1900 年起的年数
-        int tm_wday;  // 一周中的第几天，范围从 0 到 6，从星期日算起
-        int tm_yday;  // 一年中的第几天，范围从 0 到 365，从 1 月 1 日算起
-        int tm_isdst; // 夏令时
-    }
-    ```
+        ```cpp
+        struct tm {
+            int tm_sec;   // 秒，正常范围从 0 到 59，但允许至 61
+            int tm_min;   // 分，范围从 0 到 59
+            int tm_hour;  // 小时，范围从 0 到 23
+            int tm_mday;  // 一月中的第几天，范围从 1 到 31
+            int tm_mon;   // 月，范围从 0 到 11
+            int tm_year;  // 自 1900 年起的年数
+            int tm_wday;  // 一周中的第几天，范围从 0 到 6，从星期日算起
+            int tm_yday;  // 一年中的第几天，范围从 0 到 365，从 1 月 1 日算起
+            int tm_isdst; // 夏令时
+        }
+        ```
+
+   2. tm 参数传递
+
+        ```cpp
+        #include <time.h>
+
+        void use_tm(struct tm *now_tm){
+            // code here
+        }
+
+        int main(){
+            tm *now_tm;
+            time_t now = time(0);
+            now_tm = localtime(&now);
+            use_tm(now_tm);
+        }
+        ```
 
 ### 6.2. 时间转换
 
 1. time_t <-> tm
 
     ```cpp
+    time_t t = time(0);
     // time_t 转 tm
-    tm *ltm = localtime(&t);    // 不能连续使用
+    tm *tm1 = localtime(&t);    // 不能连续使用
+    // 连续使用需要用 localtime_s(Win) 或 localtime_r(Linux)
+    tm tm1;
+    localtime_s(&tm1, &t);  // Win
+    localtime_r(&t, &tm1);  // Linux
 
     // tm 转 time_t
     time_t t = mktime(&tm1);    // 不能连续使用

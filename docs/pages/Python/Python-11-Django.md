@@ -1,10 +1,6 @@
 # 11. Django
 
-## 1. 简介
-
-Django 是基于 Python 的一个开源 web 框架
-
-## 2. 创建项目
+## 1. 创建项目
 
 1. 安装 Django 包
 
@@ -40,7 +36,7 @@ Django 是基于 Python 的一个开源 web 框架
 
     <img src='../images/django_start.png' width=600>
 
-## 3. 创建应用
+## 2. 创建应用
 
 1. 创建应用
 
@@ -128,7 +124,7 @@ Django 是基于 Python 的一个开源 web 框架
 
    5. 启动项目后就可以在首页看到`Hello World!`
 
-## 4. 创建 HTML 模板
+## 3. 创建 HTML 模板
 
 1. 这里模板的意思是创建一个基础的 HTML 文件，将一些所有页面都需要的内容，比如 js 库、css 库、页面顶栏、侧边栏等内容，其余页面内容作为模块嵌入其中
 2. 在 templates 目录下创建模板 HTML 文件，假设命名为 base.html
@@ -148,7 +144,7 @@ Django 是基于 Python 的一个开源 web 框架
 
 6. 其效果相当于用。.... 处的内容替换{% block xxx %}{% endblock %}部分
 
-## 5. 配置静态文件路径
+## 4. 配置静态文件路径
 
 1. 在项目根目录创建静态文件夹
 
@@ -194,9 +190,9 @@ Django 是基于 Python 的一个开源 web 框架
     <img src="{% static 'img/img1.jpg' %}" alt="hoppou">
     ```
 
-## 6. 模型使用
+## 5. 模型使用
 
-### 6.1. 创建模型
+### 5.1. 创建模型
 
 1. 创建方法
    1. 静态创建方法：在`myapp/models.py`中
@@ -308,7 +304,7 @@ Django 是基于 Python 的一个开源 web 框架
     | null=True      | 将空值以 NULL 存储到数据库，默认 False |
     | unique=True    | 字段在表中拥有唯一值                   |
 
-### 6.2. makemigrations 和 migrate
+### 5.2. makemigrations 和 migrate
 
 1. makemigrations 会在当前目录下生成一个 migrations 文件夹，该文件夹的内容就是数据库要执行的内容
 
@@ -324,7 +320,7 @@ Django 是基于 Python 的一个开源 web 框架
 
 3. 备注：Django 每次更新模型都需要执行以上两步，需要注意的是 Django 模型增加内容需要设定变量的初始值，否则会在第一步出现问题
 
-### 6.3. 用户模型扩展
+### 5.3. 用户模型扩展
 
 1. 前言：Django 模型本身自带 User 模型，可以完成基本的用户功能，不过由于其自带属性较少（用户名，密码，姓，名，邮箱，权限），有时难以满足使用，因此需要涉及用户模型扩展。
     > 本方法思路是创建一个普通模型，使其与 Django 自带用户模型形成一一对应关系
@@ -369,7 +365,7 @@ Django 是基于 Python 的一个开源 web 框架
    - [django 用户认证系统——拓展 User 模型 2](https://www.cnblogs.com/AmilyWilly/p/8469851.html)
    - [Django-Model 操作数据库（增删改查、连表结构）](https://www.cnblogs.com/yangmv/p/5327477.html)
 
-### 6.4. 模型使用
+### 5.4. 模型使用
 
 1. 模型搜索，假设模型名为 Mod, 其下有 id, name, type 等几个字段
 
@@ -385,7 +381,29 @@ Django 是基于 Python 的一个开源 web 框架
 
 2. 模型创建条目
 
-## 7. 用户验证
+    ```python
+    # 创建一条新的数据记录
+    mod = Mod.objects.create(
+        id = 1,
+        name = 'tom',
+        type = 0
+    )
+    mod.save()
+    ```
+
+3. 模型更新数据
+
+    ```python
+    # 方法 1: 适合批量修改数据
+    Mod.objects.filter(id=10).update(type=1)
+
+    # 方法 2: 适合修改个别数据
+    mod = Mod.objects.get(id=10)
+    mod.type = 1
+    mod.save()
+    ```
+
+## 6. 用户验证
 
 1. 创建登陆页面，与普通 HTML 页面创建方法相同，比如下面这个最基本的登陆页面
 
@@ -470,9 +488,9 @@ Django 是基于 Python 的一个开源 web 框架
    - CSRF（Cross-site request forgery）跨站请求伪造。Django 为了防止 CSRF 攻击有一些保护措施，因此我们在使用 POST 时会出现 django csrf token missing or incorrect 的错误，因此需要在 POST 表单中加入 {% csrf_token %}，原理部分此时先不做深究，因为我也没有研究这方面
    - 关于 render 的一些问题，因为 render 本身自带一个 request 参数，这个参数其实包含有很多信息，其中就有用户信息，因此在使用 render 时，即便我们没有向网页传递任何参数，网页依然可以访问到用户信息，比如使用{{user}}就可以显示用户名，这就是 request 起到的作用
 
-## 8. 前后端数据交互
+## 7. 前后端数据交互
 
-### 8.1. 表单提交 GET&POST
+### 7.1. 表单提交 GET&POST
 
 1. GET&POST 都是 AJAX 函数的简写
    比如在 jQuery 使用 POST 时，POST 函数语法如下
@@ -529,7 +547,7 @@ Django 是基于 Python 的一个开源 web 框架
 
     这句后程序更加稳定。使用 POST 方法相同，只需把上面程序 GET 改成 POST 即可，但是需要注意 csrf 问题。
 
-### 8.2. 前端获取数据
+### 7.2. 前端获取数据
 
 1. 后端传递全部变量到前端
    1. 在`views.py`文件中使用`locals()`
@@ -571,7 +589,7 @@ Django 是基于 Python 的一个开源 web 框架
 
    2. 前端中需要用 ajax 获取数据
 
-## 9. CSRF 认证的几种方法
+## 8. CSRF 认证的几种方法
 
 1. 在登陆表单中添加 CSRF 方法：
 
@@ -614,16 +632,16 @@ Django 是基于 Python 的一个开源 web 框架
     )
     ```
 
-## 10. 部署相关
+## 9. 部署相关
 
-### 10.1. 启动脚本
+### 9.1. 启动脚本
 
 1. Windows 启动脚本
 
-    ```bat
-    :: 激活 conda 环境
+    ```sh
+    # 激活 conda 环境
     call activate 环境名
-    :: 启动服务
+    # 启动服务
     python.exe manage.py runserver 127.0.0.1:8000 &
     ```
 

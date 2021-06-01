@@ -246,3 +246,42 @@
     // 格式化
     sprintf(c1, "%s abc %d", c2, i);  // 字符串只能用 char 型
     ```
+
+## 4. 创建文件夹
+
+1. 创建单个文件夹
+
+    ```cpp
+    // linux 检测文件夹是否存在，不存在就创建
+    if (access(folder, F_OK) == 0) {
+        continue;
+    } else {
+        mkdir(folder, 0775);
+    }
+    ```
+
+2. 按照路径创建多级文件目录
+
+    ```cpp
+    // 创建多级文件目录
+    void create_folder(const char *path) {
+        printf("Create folder: %s\n", path);
+
+        string path_str = path;
+        vector<string> path_vec;
+        split(path_str, path_vec, "/");
+
+        char folder[256];
+        sprintf(folder, "/%s", path_vec[0].c_str());  // 首个路径是系统路径，无需创建
+
+        // 从根路径开始检测，如果不存在就创建
+        for (size_t i = 1; i < path_vec.size(); ++i) {
+            sprintf(folder, "%s/%s", folder, path_vec[i].c_str());
+            if (access(folder, F_OK) == 0) {
+                continue;
+            } else {
+                mkdir(folder, 0775);
+            }
+        }
+    }
+    ```
