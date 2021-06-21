@@ -379,7 +379,7 @@
 
         ```cpp
         vector<int> vec0;              // 定义空 vec
-        vector<int> vec1(10);          // 定义长度为 10 的 vec
+        vector<int> vec1(10);          // 定义长度为 10 的 vec, clear 会同时清空长度
         vector<int> vec2(10, 0);       // 定义长度为 10, 初值为 0 的 vec
         vector<int> vec3 = {1, 2, 3};  // 定义初值为 1,2,3 的 vec
         vector<int> vec4{1, 2, 3};     // 定义初值为 1,2,3 的 vec
@@ -423,7 +423,7 @@
         // 删除元素
         vec.erase(vec.begin() + 2);  // 删除第三个元素
         // 清空
-        vec.clear();
+        vec.clear();    // 会同时清空长度，需要用 resize 重新定义
         ```
 
    3. 修改

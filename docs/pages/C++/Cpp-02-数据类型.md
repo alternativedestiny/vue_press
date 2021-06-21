@@ -6,14 +6,14 @@
 
 1. 整型
 
-    | 整型      | 长度            |
-    | --------- | --------------- |
+    | 整型      | 长度              |
+    | --------- | ----------------- |
     | short     | 至少 16 位        |
     | int       | 至少与 short 一样 |
     | long      | 至少 32 位        |
     | long long | 至少 64 位        |
-    | unsigned  | 无符号整数      |
-    | const     | 静态变量        |
+    | unsigned  | 无符号整数        |
+    | const     | 静态变量          |
 
     ```cpp
     // 获取当前系统变量长度
@@ -44,10 +44,10 @@
 
 2. 浮点数
 
-    | 浮点        | 位数          |
-    | ----------- | ------------- |
-    | float       | 至少 32 位      |
-    | double      | 至少 64 位      |
+    | 浮点        | 位数             |
+    | ----------- | ---------------- |
+    | float       | 至少 32 位       |
+    | double      | 至少 64 位       |
     | long double | 80, 96 或 128 位 |
 
 ### 1.2. 计算
@@ -114,6 +114,7 @@
 ### 2.1. 数组定义
 
 ```cpp
+// 创建数组
 int num[] = {1, 2, 3};
 int num[3] = {1, 2, 3};
 float temperature[10];
@@ -350,8 +351,9 @@ cout << str_list[0] << endl;    // abc
 
     ```cpp
     // 比较
-    s1.compare(s2)  // 大于：1；小于：-1；等于：0
-    strcmp(s1, s2)  // 同上
+    s1.compare(s2);  // 大于：1；小于：-1；等于：0
+    strcmp(s1, s2);  // 同上
+    strcmp(c1, c2);  // 同上
 
     // 比较两个字符串的前 n 个字符
     strncmp(c1, c2, n);
@@ -362,7 +364,7 @@ cout << str_list[0] << endl;    // abc
     ```cpp
     /* c++11 以前没有通用的字符串分割程序 */
     // 字符串分割函数：要分割的字符串 s_in, 分割结果 s_out, 分隔符 delimiter
-    void split(const string &s_in, vector<string> &s_out, const string &delimiter = " ") {
+    void Split(const string &s_in, vector<string> &s_out, const string &delimiter = " ") {
         string::size_type lastPos = s_in.find_first_not_of(delimiter, 0);
         string::size_type pos = s_in.find_first_of(delimiter, lastPos);
         while (string::npos != pos || string::npos != lastPos) {
@@ -423,15 +425,18 @@ cout << str_list[0] << endl;    // abc
 1. time_t <-> tm
 
     ```cpp
+    /* time_t -> tm */
     time_t t = time(0);
-    // time_t 转 tm
     tm *tm1 = localtime(&t);    // 不能连续使用
+
     // 连续使用需要用 localtime_s(Win) 或 localtime_r(Linux)
     tm tm1;
     localtime_s(&tm1, &t);  // Win
     localtime_r(&t, &tm1);  // Linux
+    ```
 
-    // tm 转 time_t
+    ```cpp
+    /* tm -> time_t */
     time_t t = mktime(&tm1);    // 不能连续使用
     ```
 
@@ -471,6 +476,16 @@ cout << str_list[0] << endl;    // abc
         string str = c;
         return str;
     }
+    ```
+
+### 6.3. 时间使用
+
+1. 延时
+
+    ```cpp
+    // Linux
+    sleep(5);   // 延时 5 秒
+    usleep(5);  // 延时 5 微秒
     ```
 
 ## 7. 类型转换

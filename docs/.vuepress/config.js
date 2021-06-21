@@ -107,7 +107,11 @@ module.exports = {
             },
             {
                 text: 'Github',
-                link: 'https://github.com/alternativedestiny/vue_press'
+                link: 'https://alternativedestiny.github.io/'
+            },
+            {
+                text: 'Gitee',
+                link: 'https://hoppou.gitee.io/'
             },
         ],
         sidebar: {

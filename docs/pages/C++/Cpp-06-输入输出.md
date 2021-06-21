@@ -71,6 +71,14 @@
         printf("%10s abcd\n", "abcd");           //       abcd abcd
         ```
 
+### 1.4. 关闭缓冲区
+
+1. 正常的`printf`和`cout`不加换行符不会打印出来，需要关闭缓冲区
+
+    ```cpp
+    setbuf(stdout, NULL);
+    ```
+
 ## 2. 文件读写
 
 ### 2.1. 文件流 fstream

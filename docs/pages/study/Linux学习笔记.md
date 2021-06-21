@@ -294,6 +294,13 @@
     scp test.txt linuxName:/home/username/
     ```
 
+3. 创建快捷方式
+
+    ```bash
+    # ln -s 目标文件夹 快捷方式名
+    ls -s abc/def/g g   # 创建文件夹 g 的快捷方式
+    ```
+
 ## 7. Linux & c++
 
 ### 7.1. 库的使用
