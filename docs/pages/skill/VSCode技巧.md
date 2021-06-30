@@ -9,33 +9,34 @@
 
 ## 2. 插件
 
-| 插件                                 | 功能                             | 推荐指数 |
-| ------------------------------------ | -------------------------------- | -------- |
-| Auto Close Tag                       | html 标签自动补全                | `前端`   |
-| Auto Complete Tag                    | 配合上面的使用                   | `前端`   |
-| background                           | 背景图片插件                     | `体验`   |
-| Beautify                             | 代码格式化插件                   | `必备`   |
-| Code Runner                          | 代码运行                         | `推荐`   |
-| GitLens                              | git 扩展                         | `必备`   |
-| LiveCode for python                  | 动态显示 python 变量的输出       | `推荐`   |
-| Markdown All in One                  | Markdown 编辑                    | `必备`   |
-| markdown image                       | makrdown 插入图片                | `推荐`   |
-| Markdown PDF                         | Markdown 转 pdf                  | `一般`   |
-| Markdown Preview Enhanced            | Markdown 预览                    | `必备`   |
-| markdown toc                         | 自动创建目录（需要设置 eol）     | `一般`   |
-| markdown-formatter                   | markdown 格式化工具              | `一般`   |
-| markdownlint                         | markdown 格式检查工具            | `必备`   |
-| markmap                              | makrdown 思维导图                | `推荐`   |
-| Open In Default Browser              | 调用浏览器打开 html              | `前端`   |
-| Pangu Markdown                       | 自动修改 markdown 中的空格和标点 | `推荐`   |
-| Path Autocomplete                    | 路径自动补全                     | `一般`   |
-| Project Manager                      | 项目管理                         | `必备`   |
-| Seti                                 | 图标美化插件                     | `体验`   |
-| Excel Viewer                         | 查看 excel、csv                  | `一般`   |
-| SandDance for VSCode                 | 数据可视化工具                   | `体验`   |
-| Markdown Navigation                  | markdown 目录，与大纲功能重叠    | `一般`   |
-| Mermaid Markdown Syntax Highlighting | Markdown 结构图代码高亮          | `一般`   |
-| Remote-SSH                           | ssh 工具                         | `推荐`   |
+| 插件                                 | 功能                                            | 推荐指数 |
+| ------------------------------------ | ----------------------------------------------- | -------- |
+| Auto Close Tag                       | html 标签自动补全                               | `前端`   |
+| Auto Complete Tag                    | 配合上面的使用                                  | `前端`   |
+| background                           | 背景图片插件                                    | `体验`   |
+| Beautify                             | 代码格式化插件                                  | `必备`   |
+| Bracket Pair Colorizer 2             | 改变代码括号颜色（与 Markdown All in One 冲突） | `一般`   |
+| Code Runner                          | 代码运行                                        | `推荐`   |
+| GitLens                              | git 扩展                                        | `必备`   |
+| LiveCode for python                  | 动态显示 python 变量的输出                      | `推荐`   |
+| Markdown All in One                  | Markdown 编辑                                   | `必备`   |
+| markdown image                       | makrdown 插入图片                               | `推荐`   |
+| Markdown PDF                         | Markdown 转 pdf                                 | `一般`   |
+| Markdown Preview Enhanced            | Markdown 预览                                   | `必备`   |
+| markdown toc                         | 自动创建目录（需要设置 eol）                    | `一般`   |
+| markdown-formatter                   | markdown 格式化工具                             | `一般`   |
+| markdownlint                         | markdown 格式检查工具                           | `必备`   |
+| markmap                              | makrdown 思维导图                               | `推荐`   |
+| Open In Default Browser              | 调用浏览器打开 html                             | `前端`   |
+| Pangu Markdown                       | 自动修改 markdown 中的空格和标点                | `推荐`   |
+| Path Autocomplete                    | 路径自动补全                                    | `一般`   |
+| Project Manager                      | 项目管理                                        | `必备`   |
+| Seti                                 | 图标美化插件                                    | `体验`   |
+| Excel Viewer                         | 查看 excel、csv                                 | `一般`   |
+| SandDance for VSCode                 | 数据可视化工具                                  | `体验`   |
+| Markdown Navigation                  | markdown 目录，与大纲功能重叠                   | `一般`   |
+| Mermaid Markdown Syntax Highlighting | Markdown 结构图代码高亮                         | `一般`   |
+| Remote-SSH                           | ssh 工具                                        | `推荐`   |
 
 ## 3. 快捷键
 

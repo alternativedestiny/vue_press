@@ -82,6 +82,14 @@
         str1.replace('a', '')
         ```
 
+   2. 多字符删除（正则方法）
+
+        ```python
+        import re
+        # 删除{大括号}[中括号]"双引号"和空格
+        str1 = re.sub(r'[{}\[\]" ]', '', str1)
+        ```
+
 4. 改
    1. 字符串替换
 
@@ -142,12 +150,12 @@
     | .        | 匹配除了换行的任意字符             |
     | ^        | 匹配字符串的开头                   |
     | $        | 匹配字符串尾或着换行符的前一个字符 |
-    | *        | 对他前面的正则式匹配 0 到任意次      |
-    | +        | 对他前面的正则式匹配 1 到任意次      |
-    | ?        | 对他前面的正则式匹配 0 到 1 次         |
+    | *        | 对他前面的正则式匹配 0 到任意次    |
+    | +        | 对他前面的正则式匹配 1 到任意次    |
+    | ?        | 对他前面的正则式匹配 0 到 1 次     |
     | *? +? ?? | ‘非贪婪’方式                       |
-    | {m}      | 对他前面的正则式指定匹配 m 个重复    |
-    | {m,n}    | 对正则式进行 m 到 n 次匹配             |
+    | {m}      | 对他前面的正则式指定匹配 m 个重复  |
+    | {m,n}    | 对正则式进行 m 到 n 次匹配         |
     | \        | 转义字符                           |
     | []       | 用于表示一个字符集                 |
 
@@ -283,6 +291,13 @@
 
 ## 6. 元组 (Tupple)
 
+1. 元组与列表类似，但是其中的元素不能修改
+2. 创建元组
+
+```python
+
+```
+
 ## 7. 集合 (Set)
 
 ## 8. 字典 (Dictionary)
@@ -307,6 +322,14 @@
     # 查
     d['cherry']
     ```
+
+3. 应用
+   1. 判断key值是否存在
+
+        ```python
+        if key in dict:
+            # true or false
+        ```
 
 ## 9. 日期时间处理
 
@@ -435,3 +458,46 @@
     print((t1 - t2).days)   # 55
 
     ```
+
+## 10. JSON 处理
+
+1. JSON数据格式
+
+    ```json
+    [
+        {
+            "name": "tom",
+            "age": 13,
+            "hobby": [
+                {
+                    "sport": "football",
+                    "art": "dance"
+                }
+            ]
+        },
+        {
+            "name": "jerry",
+            "age": 12,
+            "hobby": {
+                "sport": "tennis",
+                "art": "sing"
+            }
+        }
+    ]
+    ```
+
+2. 读取JSON文件
+
+    ```python
+    import json
+
+    with open('test.json') as f:
+        data = json.load(f)
+        print(data[0]['name'])  # tom
+        print(data[0]['hobby'])  # [{'sport': 'football', 'art': 'dance'}]
+        print(data[0]['hobby'][0]['sport']) # football
+        print(data[1]['name'])  # jerry
+        print(data[1]['hobby']['art'])  # sing
+    ```
+
+3. 写入JSON

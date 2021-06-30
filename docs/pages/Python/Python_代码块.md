@@ -150,3 +150,33 @@ print(perf_counter())
         return nums
 
     ```
+
+## 8. 智能问答
+
+1. 简介：通过 Transformers 模型使用别人预训练好的模型
+2. 安装
+
+    ```python
+    pip install transformers
+    ```
+
+3. QA 模型：第一次运行需要下载预训练模型，所以运行较慢
+
+    ```python
+    from transformers import pipeline
+
+    # 英文 QA
+    # qa = pipeline("question-answering")
+    # 中文 QA
+    qa = pipeline("question-answering", model="mrm8488/bert-multi-cased-finetuned-xquadv1",
+                tokenizer="mrm8488/bert-multi-cased-finetuned-xquadv1")
+
+    question = "机器学习是什么的分支？"
+    context = """机器学习是一个很热门的专业，是人工智能的一个部分，图像识别是机器学习的一个部分。"""
+    result = qa(question=question, context=context)
+
+    print("Answer:", result['answer'])  # Answer: 人工智能
+    print("Score:", result['score'])    # Score: 0.9555357098579407
+    ```
+
+4. 参考 [用 PyTorch 和预训练的 Transformers 创建问答系统](https://blog.csdn.net/deephub/article/details/112857017)
