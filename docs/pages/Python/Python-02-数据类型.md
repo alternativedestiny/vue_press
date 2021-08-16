@@ -323,13 +323,22 @@
     d['cherry']
     ```
 
-3. 应用
-   1. 判断key值是否存在
+3. 判断 key 值是否存在
 
-        ```python
-        if key in dict:
-            # true or false
-        ```
+    ```python
+    if key in dict:
+        # true or false
+    ```
+
+4. Dict 复制
+
+    ```python
+    # dict 是一个 object, 使用 list.append(dict) 时，list 中的值依旧会随着 dict 的改变而改变
+    list1.append(dict1)
+    dict2 = dict1.copy()    # dict 拷贝
+    list2.append(dict2)
+    dict1[key] = val    # list1 会变化，list2 不变
+    ```
 
 ## 9. 日期时间处理
 
@@ -372,7 +381,16 @@
 
     ```
 
-3. 日期增减：timedelta & dateutil
+3. 修改日期
+
+    ```python
+    str1 = '2020-01-01 10:10:10'
+    t = datetime.strptime(str1, '%Y-%m-%d %H:%M:%S')
+    # 修改秒数
+    t = t.replace(second=30)    # 2020-01-01 10:10:30
+    ```
+
+4. 日期增减：timedelta & dateutil
    1. datetime.timedelta
       1. 参数：weeks, days, hours, minutes, seconds
 
@@ -461,7 +479,7 @@
 
 ## 10. JSON 处理
 
-1. JSON数据格式
+1. JSON 数据格式
 
     ```json
     [
@@ -486,7 +504,7 @@
     ]
     ```
 
-2. 读取JSON文件
+2. 读取 JSON 文件
 
     ```python
     import json
@@ -500,4 +518,4 @@
         print(data[1]['hobby']['art'])  # sing
     ```
 
-3. 写入JSON
+3. 写入 JSON

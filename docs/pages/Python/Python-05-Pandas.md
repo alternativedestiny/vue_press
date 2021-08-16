@@ -4,6 +4,8 @@
 
 ## 1. Pandas 数据结构
 
+### 1.1. 数据结构
+
 1. pandas 对象
 
     | 名称      | 维数 | 描述                               |
@@ -22,7 +24,7 @@
     | category       | 分类             |
     | object         | 对象，无明确类型 |
 
-## 2. Pandas 生成数据
+### 1.2. 生成数据
 
 1. 生成数据
 
@@ -44,11 +46,13 @@
     | d   | 0.98 | 0.21 | 0.74 | 1    |
     ```
 
+2. 生成 DataFrame 空结构
+
     ```python
     # 创建一个空 DataFrame，utf-8 编码
-    title = ['a', 'b', 'c']  # 列名
+    cols = ['a', 'b', 'c']  # 列名
     index = [1, 2, 3, 4]  # 行名
-    df = pd.DataFrame(index=index, columns=title)
+    df = pd.DataFrame(index=index, columns=cols)
 
     # 得到的数据表格为：
     |     | a   | b   | c   |
@@ -59,7 +63,7 @@
     | 4   | nan | nan | nan |
     ```
 
-2. date_range：生成等间隔时间序列
+3. date_range：生成等间隔时间序列
 
     ```python
     pd.date_range(start, end, pediods, freq)
@@ -78,7 +82,7 @@
     | periods | 生成日期数量 |
     | freq    | 日期间隔     |
 
-### 2.1. 数据格式转换
+### 1.3. 数据格式转换
 
    1. astype 转换成其他类型：数据格式不对可能会造成多种问题，比如计算、绘图（这些操作均不会改变原数据）
 
@@ -107,7 +111,7 @@
         list1 = Series.tolist()
         ```
 
-### 2.2. 行/列名操作
+### 1.4. 行/列名操作
 
 1. 行操作
 
@@ -156,15 +160,16 @@
     df.set_index('col', inplace=True)
     ```
 
-## 3. Pandas 数据处理
+## 2. Pandas 数据处理
 
-### 3.1. 增
+### 2.1. 增
 
 1. 增加一行、列数据
 
     ```python
     # 增加一行数据
     df.loc['0'] = [1, 2, 3]
+    df.loc[0] = [1, 2, 3]
     df = df.append({'a': 1, 'b': 2, 'c':3}, ignore_index=True)
     df['col'] = 'abc'    # 增加一列完全相同的值
 
@@ -172,7 +177,7 @@
     df['d'] = [1, 2, 3]
     ```
 
-### 3.2. 删
+### 2.2. 删
 
 1. 清理无效数据
 
@@ -192,7 +197,7 @@
 
     ```
 
-### 3.3. 改
+### 2.3. 改
 
 1. 排序
 
@@ -221,7 +226,7 @@
     df3 = pd.concat([df1, df2])
     ```
 
-### 3.4. 查
+### 2.4. 查
 
 1. 检测数据是否有空值 (Nan)
 
@@ -289,9 +294,12 @@
 
     # 筛选含有指定字段的数据
     df2 = df[df['name'].str.contains('a')]  # 选择 name 列包含字符 a 的数据
+    df2 = df[df['name'].str.contains('a')].idnex.to_list()  # 获取所在行数
+    # 如果 df 中有空行，需要指定空行的返回值
+    df2 = df[df['name'].str.contains('a', na=False)].idnex.to_list()  # 获取所在行数
     ```
 
-### 3.5. 数据计算
+### 2.5. 数据计算
 
 1. 求平均值
 
@@ -313,7 +321,7 @@
     df['a'].std()
     ```
 
-### 3.6. 分组统计
+### 2.6. 分组统计
 
 1. 分组 groupby
     1. groupby 基础应用
@@ -382,7 +390,7 @@
 4. 变换 transformation
 5. 综合 apply
 
-### 3.7. 画图
+### 2.7. 画图
 
 1. df.plot
 
@@ -405,9 +413,9 @@
 
 3. 大部分 matplotlib 的设置都可以做为 df.plot() 的参数
 
-## 4. pandas 读写文件
+## 3. pandas 读写文件
 
-### 4.1. 读文件
+### 3.1. 读文件
 
 1. read_csv & read_excel
 
@@ -427,23 +435,23 @@
 
 2. 读取设置，[官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
 
-   | 关键字                   | 功能                               |
-   | ------------------------ | ---------------------------------- |
-   | chunksize=4              | 每 4 行数据为一组                  |
-   | dtype = {'col' : str}    | 修改 col 类型到 str                |
-   | engine='python'          | 默认'c'，c 更快，python 功能更完善 |
-   | false_value=["no"]       | no 被认为 False                    |
-   | index_col=False          | 目录列，'False'表示没有目录        |
-   | MultiIndex               | 支持双列目录                       |
-   | na_values=[5]            | 5 和 5.0 会被认为是 NaN            |
-   | na_valuede=["Na","0"]    | Na 和 0 会被认为是 NaN             |
-   | nrows                    | 读取的行数                         |
-   | parse_dates=['tm']       | 将'tm'列读取成 datetime 格式       |
-   | sep=':'                  | 支持':'等符号作为分隔符的数据      |
-   | skiprows=[0,3]           | 跳过第 0 行和第 3 行               |
-   | skip_blank_lines=True    | 是否跳过空行，默认 True            |
-   | true_values=["yes"]      | yes 被认为 True                    |
-   | usecols=['col1', 'col2'] | 选择要读取的列                     |
+   | 关键字                   | 功能                                       |
+   | ------------------------ | ------------------------------------------ |
+   | chunksize=4              | 每 4 行数据为一组                          |
+   | dtype = {'col' : str}    | 修改 col 类型到 str                        |
+   | engine='python'          | 默认'c'，c 更快，python 功能更完善         |
+   | false_value=["no"]       | no 被认为 False                            |
+   | index_col=False          | 目录列，'False'表示没有目录                |
+   | MultiIndex               | 支持双列目录                               |
+   | na_values=[5]            | 5 和 5.0 会被认为是 NaN                    |
+   | na_valuede=["Na","0"]    | Na 和 0 会被认为是 NaN                     |
+   | nrows                    | 读取的行数                                 |
+   | parse_dates=['tm']       | 将'tm'列读取成 datetime 格式               |
+   | sep=':'                  | 分隔符,支持':'等符号,多空格或Tab用`'\\s+'` |
+   | skiprows=[0,3]           | 跳过第 0 行和第 3 行                       |
+   | skip_blank_lines=True    | 是否跳过空行，默认 True                    |
+   | true_values=["yes"]      | yes 被认为 True                            |
+   | usecols=['col1', 'col2'] | 选择要读取的列                             |
 
 3. 使用设置
 
@@ -456,7 +464,7 @@
 
     ```
 
-### 4.2. 写文件
+### 3.2. 写文件
 
 1. to_csv 用法
 
@@ -478,13 +486,13 @@
     | header       | 是否写入列名，默认'True'                        |
     | index        | 是否写入目录，默认'True'                        |
 
-## 5. Pandas 错误处理
+## 4. Pandas 错误处理
 
 1. [`read_csv mixed types`问题](https://www.jianshu.com/p/a70554726f26)
 2. `cannot convert the series to <class 'float'>`问题
    1. 原因：可能是某处变量调用忘了加限定，比如 a[i] 写成了 a
 
-## 6. 参考
+## 5. 参考
 
 1. [pandas 类 SQL 查询](https://juejin.im/post/5b5e5b2ee51d4517df1510c7)
 2. [Pandas 分组](https://www.yiibai.com/pandas/python_pandas_groupby.html)

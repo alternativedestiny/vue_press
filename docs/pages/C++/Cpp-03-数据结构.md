@@ -446,6 +446,8 @@
         float sum = accumulate(vec.begin(), vec.end(), 0.0);
         ```
 
+   2. 排序，参考本章结构体排序
+
 5. 二维 vector
 
     ```cpp

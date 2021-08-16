@@ -199,7 +199,144 @@
     fwrite(buffer, sizeof(char), sizeof(buffer) - 1, file);
     ```
 
-### 2.3. 参考
+### 2.3. ini文件解析
+
+1. 文件格式
+
+    ```ini
+    [class1]
+    a = 1
+    b = 2
+
+    [class2]
+    c = 3
+    d = 4
+
+    ```
+
+2. 解析
+
+    ```cpp
+    struct Conf {
+        int a;
+        int b;
+        int c;
+        int d;
+    }
+
+    // 读取配置文件
+    void GetConf(Conf &conf) {
+        char file[128] = "conf.ini";
+
+        FILE *fp = fopen(file, "r");
+
+        if (fp == NULL) {
+            cout << "Can't open conf.ini, please check config file!" << endl;
+            return;
+        }
+
+        map<string, int> conf_map;
+        char buffer[256];
+        while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+            string line = buffer;
+
+            if (line.find_first_not_of(" ") == "#") {
+                continue;  // 跳过注释行
+            }
+
+            char ckey[128], cval[128];
+
+            if (line.find('=') != string::npos) {
+                sscanf(buffer, "%s = %d", ckey, cval);
+                conf_map[ckey] = cval;
+            }
+        }
+
+        fclose(fp);
+
+        conf.a = conf_map.at("a");
+        conf.b = conf_map.at("b");
+    }
+    ```
+
+### 2.4. 文件列表
+
+1. 头文件
+
+    ```cpp
+    #include <sys/types.h>
+    #include <dirent.h>
+    #include <unistd.h>
+    ```
+
+2. 程序
+
+    ```cpp
+    // 获取文件列表
+    vector<string> file_vec;
+    DIR *dp;
+    struct dirent *ptr;
+    char path[128];  // 路径
+    char file[128];  // 路径+文件名
+
+    sprintf(path, "a/b/c");
+    dp = opendir(path);
+    if (dp == NULL) {
+        return;
+    }
+
+    while ((ptr = readdir(dp)) != 0) {
+        // 过滤掉.和..
+        if (strcmp(ptr->d_name, ".") != 0 && strcmp(ptr->d_name, "..") != 0) {
+            sprintf(file, "%s/%s", path, ptr->d_name);
+            printf("%s\n", file);
+            file_vec.push_back(file);
+        }
+    }
+
+    closedir(dp);
+    ```
+
+### 2.5. 文件信息
+
+1. 头文件
+
+    ```cpp
+    #include <sys/stat.h>
+    #include <unistd.h>
+    ```
+
+2. 程序
+
+    ```cpp
+    struct stat tmp;
+    stat(file_path, &tmp);
+
+    // 文件最后一次修改时间
+    time_t modify_time = tmp.st_mtime;
+    // 文件最后一次访问时间
+    time_t access_time = tmp.st_atime;
+    // 最后一次改变时间(指属性)
+    time_t change_time = tmp.st_ctime;
+    ```
+
+3. 参考[linux C++ 获取文件信息 stat函数详解](https://www.cnblogs.com/matthew-2013/p/4679425.html)
+
+### 2.6. 文件删除
+
+1. 头文件
+
+    ```cpp
+    #include <cstdio>
+    ```
+
+2. 程序
+
+    ```cpp
+    remove(file);
+    ```
+
+### 2.7. 参考
 
 - [c++文件读写详解](https://blog.csdn.net/kingstar158/article/details/6859379)
 

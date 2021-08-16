@@ -55,6 +55,8 @@
       | ---------------------- | -------------- | ---------------- | ------ | ---------------- | ------ |
       | 权限：用户、同组、其他 | 文件硬链接数目 | 文件所有者用户名 | 用户组 | 上次修改时间     | 文件名 |
 
+   4. ll 列出文件详细信息
+      1. -h: 显示文件大小
 2. 操作系统
    1. file：确定文件类型
    2. less：浏览文件内容
@@ -524,9 +526,11 @@
 
     ```bash
     # 压缩
-    tar -zcvf filename.tar dirname
-    # 解压
-    tar 
+    tar -zcvf filename.tar.gz dirname
+    # 解压 .tar
+    tar -xvf file.tar
+    # 解压 .tar.gz
+    tar -zxvf file.tar.gz
     ```
 
 ### 7.4. coredump

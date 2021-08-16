@@ -34,6 +34,35 @@
 
 ### 1.3. bar 柱状图
 
+1. 基础柱状图
+
+    ```python
+    import matplotlib.pyplot as plt
+
+    x = list('abcd')
+    y = [1, 2, 3, 4]
+
+    plt.figure()
+    plt.bar(x, y)
+    plt.show()
+    ```
+
+    <img src='../images/2021-08-12_15.png' width=600>
+
+2. 参数
+
+    ```python
+    bar(x, height, width=0.8, bottom=None, ***, align='center', data=None, **kwargs)
+    ```
+
+    | 参数   | 功能                                         |
+    | ------ | -------------------------------------------- |
+    | x      | x 坐标                                       |
+    | height | 高度，即 y 值                                |
+    | width  | 柱宽，取值在 0-1 之间，默认 0.8              |
+    | bottom | 柱状图的起始位置                             |
+    | align  | 柱状图的中心位置，'edge'左边缘，'center'中心 |
+
 ### 1.4. pie 饼图
 
 1. 代码
@@ -112,6 +141,15 @@
     plt.xticks(x_axis, rotation=15)  # 刻度倾斜
     ```
 
+6. 坐标轴偏移
+
+    ```python
+    import numpy as np
+
+    # 以柱状图为例，+图像右移，-图像左移
+    plt.bar(np.array(x_list) +- 偏移量，y)
+    ```
+
 ### 2.2. 图例
 
 1. plt.legend
@@ -123,33 +161,34 @@
      plt.legend()
      ```
 
-2. legend 参数，更多配置参考 [官方文档](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
-   1. 位置 `loc=string or code`
+2. 位置 `loc=string or code`
 
-         | 位置 string     | 位置 code | 位置           |
-         | -------------- | -------- | -------------- |
-         | 'best'         | 0        | 自适应         |
-         | 'upper right'  | 1        | 右上↗          |
-         | 'upper left'   | 2        | 左上↖          |
-         | 'lower left'   | 3        | 左下↙          |
-         | 'lower right'  | 4        | 右下↘          |
-         | 'right'        | 5        | 右→            |
-         | 'center left'  | 6        | 左←            |
-         | 'center right' | 7        | 右→（同 rigth） |
-         | 'lower center' | 8        | 下↓            |
-         | 'upper center' | 9        | 上↑            |
-         | 'cneter'       | 10       | 中心           |
+     | 位置 string    | 位置 code | 位置            |
+     | -------------- | --------- | --------------- |
+     | 'best'         | 0         | 自适应          |
+     | 'upper right'  | 1         | 右上↗           |
+     | 'upper left'   | 2         | 左上↖           |
+     | 'lower left'   | 3         | 左下↙           |
+     | 'lower right'  | 4         | 右下↘           |
+     | 'right'        | 5         | 右→             |
+     | 'center left'  | 6         | 左←             |
+     | 'center right' | 7         | 右→（同 rigth） |
+     | 'lower center' | 8         | 下↓             |
+     | 'upper center' | 9         | 上↑             |
+     | 'cneter'       | 10        | 中心            |
 
-   2. 标题 `title='图例'`
-   3. 标题大小 `title_fontsize='12'`
-   4. 设置图例的显示方式
+3. 标题 `title='图例'`
+4. 标题大小 `title_fontsize='12'`
+5. 设置图例的显示方式
 
-        ```python
-        # 图例显示位置 1, 6 列
-        plt.legend(loc=1, ncol=6)
-        # 图例显示到图外
-        plt.legend(loc=2, bbox_to_anchor=(1.05, 1.0), borderaxespad=0.)
-        ```
+     ```python
+     # 图例显示位置 1, 6 列
+     plt.legend(loc=1, ncol=6)
+     # 图例显示到图外
+     plt.legend(loc=2, bbox_to_anchor=(1.05, 1.0), borderaxespad=0.)
+     ```
+
+6. legend 参数，更多配置参考 [官方文档](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
 
 ### 2.3. 多图设置
 
@@ -166,30 +205,69 @@
 
     ```python
     # 1. 类似 subplot 的分图功能
-    # 似乎只能 2x2 以上
+    # 1xn 类型
+    fig, ax = plt.subplots(1, 2)
+    ax[0].plot(x1, y1)
+    ax[1].plot(x2, y2)
+
+    # 2x2 以上
     fig, ax = plt.subplots(2, 2)
     ax[0, 0].plot(x1, y1)
     ax[1, 0].plot(x2, y2)
     ```
 
+### 2.4. 多坐标轴
+
+1. 副坐标轴功能
+
     ```python
-    # 2. 副坐标轴功能
+    import matplotlib.pyplot as plt
+
+    x1 = list('abcd')
+    x2 = x1
+    y1 = [1, 2, 3, 4]
+    y2 = [4, 3, 2, 1]
+
     fig, ax1 = plt.subplots()
 
     ax1.plot(x1, y1, label='a')
-    ax1.set_ylabel('a')
-
     # 设置 ax2 与 ax1 公用横坐标
     ax2 = ax1.twinx()
     ax2.plot(x2, y2, c='r', label='b')
-    ax2.set_ylim(0, 10)
-    ax2.set_ylabel('b')
 
     plt.title('abc')
     plt.show()
     ```
 
-### 2.4. 辅助线
+2. 图例融合
+
+    ```python
+    import matplotlib.pyplot as plt
+
+    x1 = list('abcd')
+    x2 = x1
+    y1 = [1, 2, 3, 4]
+    y2 = [4, 3, 2, 1]
+
+    fig, ax1 = plt.subplots()
+
+    l1 = ax1.plot(x1, y1, label='a')
+    # 设置 ax2 与 ax1 公用横坐标
+    ax2 = ax1.twinx()
+    l2 = ax2.plot(x2, y2, c='r', label='b')
+
+    # 图例融合
+    lns = l1 + l2
+    labs = [ln.get_label() for ln in lns]
+    ax1.legend(lns, labs, loc=9)
+
+    plt.title('abc')
+    plt.show()
+    ```
+
+    <img src='../images/2021-08-13_70.png' width=600>
+
+### 2.5. 辅助线
 
 1. 水平线
 
