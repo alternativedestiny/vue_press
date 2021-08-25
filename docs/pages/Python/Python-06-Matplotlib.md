@@ -63,6 +63,20 @@
     | bottom | 柱状图的起始位置                             |
     | align  | 柱状图的中心位置，'edge'左边缘，'center'中心 |
 
+3. 动态柱宽
+
+    > 有时需要根据数据设置柱状图列宽和偏移量，下面给出推荐设置
+
+    ```python
+    def plot(x, y):
+        # 要求是等间距 x 坐标
+        delta = x[1] - x[0]
+
+        # 图像向右偏移半个坐标（柱状图位于两个坐标正中）
+        # 动态柱宽 0.9 * delta 比较好看，可以根据需求适当调整
+        plt.bar(np.array(x) + 0.5 * delta, y, width=0.9 * delta)
+    ```
+
 ### 1.4. pie 饼图
 
 1. 代码
@@ -77,8 +91,7 @@
     plt.subplots()
     # explode: 每个楔子偏离的距离
     # autopct: 自动显示饼图百分比
-    plt.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-            shadow=True, startangle=90)
+    plt.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
     plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
     plt.show()
@@ -131,17 +144,34 @@
 4. 设置轴标签
 
     ```python
+    plt.figure()
     plt.xlabel("x")
     plt.ylabel("y")
+
+    # 或
+    fig, ax = plt.subplots()
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
     ```
 
-5. 坐标轴坐标倾斜
+5. 坐标轴字体大小
+
+    ```python
+    plt.figure()
+    plt.tick_params(labelsize=14)
+
+    # 或
+    fig, ax = plt.subplots()
+    ax.tick_params(labelsize=14)
+    ```
+
+6. 坐标轴坐标倾斜
 
     ```python
     plt.xticks(x_axis, rotation=15)  # 刻度倾斜
     ```
 
-6. 坐标轴偏移
+7. 坐标轴偏移
 
     ```python
     import numpy as np
@@ -150,7 +180,7 @@
     plt.bar(np.array(x_list) +- 偏移量，y)
     ```
 
-### 2.2. 图例
+### 2.2. 图例 & 标题
 
 1. plt.legend
 
@@ -177,9 +207,13 @@
      | 'upper center' | 9         | 上↑             |
      | 'cneter'       | 10        | 中心            |
 
-3. 标题 `title='图例'`
-4. 标题大小 `title_fontsize='12'`
-5. 设置图例的显示方式
+3. 标题
+
+    ```python
+    plt.title('图例', size=16)
+    ```
+
+4. 设置图例的显示方式
 
      ```python
      # 图例显示位置 1, 6 列
@@ -188,7 +222,7 @@
      plt.legend(loc=2, bbox_to_anchor=(1.05, 1.0), borderaxespad=0.)
      ```
 
-6. legend 参数，更多配置参考 [官方文档](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
+5. legend 参数，更多配置参考 [官方文档](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
 
 ### 2.3. 多图设置
 
@@ -303,6 +337,8 @@
     ```python
     # 放在 plt.show() 前面，不支持 jpg
     plt.savefig("Picture.png")
+    # 批量保存图片为防止大量图片占用内存，需要关闭图片
+    plt.close()
     ```
 
 ## 4. 动态图

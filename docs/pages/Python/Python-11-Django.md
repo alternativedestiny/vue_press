@@ -62,13 +62,17 @@
             |_ views.py
     ```
 
-3. 设置中文：在 settings.py 文件内的 INSTALLED_APPS 中添加创建的 app 名称，将 LANGUAGE_CODE 中的内容改为 zh-hans，即设置中文，时区也可以一块设置好
+3. 设置中文和时区
+
+   > 在 settings.py 文件内的 INSTALLED_APPS 中添加创建的 app 名称，将 LANGUAGE_CODE 中的内容改为 zh-hans，即设置中文，时区也可以一块设置好
 
     ```python
     # 语言
     LANGUAGE_CODE = 'zh-hans'
     # 时区
     TIME_ZONE = 'Asia/Shanghai'
+    # 避免 django DateTimeField 字段写入 datetime 格式日期时的未添加时区警告
+    USE_TZ = False
     ```
 
 4. 设置 url 路径
