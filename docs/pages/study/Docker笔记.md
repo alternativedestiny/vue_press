@@ -10,7 +10,15 @@
 
     <img src='../images/docker_setting.png'>
 
-### 1.2. 配置容器
+### 1.2. Linux 安装
+
+1. 安装docker
+
+    ```bash
+    sudo apt install docker
+    ```
+
+### 1.3. 配置容器
 
 1. 拉取(下载)容器
 

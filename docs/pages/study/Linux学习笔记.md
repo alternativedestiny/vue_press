@@ -300,7 +300,27 @@
 
     ```bash
     # ln -s 目标文件夹 快捷方式名
-    ls -s abc/def/g g   # 创建文件夹 g 的快捷方式
+    ln -s abc/def/g g   # 创建文件夹 g 的快捷方式
+    ```
+
+4. 创建快捷指令
+
+    > 可以直接用alias指令添加(当此登录使用), 也可以在`~/.bashrc`配置文件中添加(每次登录都可使用)
+
+    ```bash
+    # 配置文件
+    vi ~/.bashrc
+
+    # 再在文件中添加指令
+    # alias 指令名='原命令 -选项/参数'
+    # 比如
+    alias base='conda activate base'
+
+    # 显示已设置的快捷指令
+    alias -p
+
+    # 删除快捷命令
+    unalias base
     ```
 
 ## 7. Linux & c++

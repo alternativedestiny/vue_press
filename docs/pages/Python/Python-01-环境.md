@@ -118,7 +118,7 @@
 8. 若出现 `conda:command not found` 问题
 
     ```bash
-    # 编辑。bashrc 文件
+    # 编辑'.bashrc'文件
     vi ~/.bashrc
 
     # 再文件末尾加入一下内容，根据需要改变路径
@@ -131,14 +131,14 @@
 
     ```bash
     # 清华源
-    # 任意目录下编辑。condarc 文件
+    # 任意目录下编辑'.condarc'文件
     vi ~/.condarc
     ```
 
 2. windows
 
     ```bash
-    # 先创建。condarc 文件
+    # 先创建'.condarc'文件
     # 文件一般在 C:\Users\username 目录下
     conda config --set show_channel_urls yes
     ```
@@ -185,6 +185,8 @@
 
     # 删除环境
     conda remove -n 环境名 --all
+
+    # 修改环境名：修改虚拟环境文件夹即可
     ```
 
    > 创建虚拟环境失败，出现`an unexpected error has occurred`问题，可能是源文件出现问题，需要删除`.condarc`文件

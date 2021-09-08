@@ -1,8 +1,48 @@
 # MATLAB 笔记
 
-## 1. MATPOWER
+## 1. 基础语法
 
-### 1.1. 安装
+1. 循环
+
+    ```matlab
+    % 普通循环
+    for i = 0:10
+        fprintf('i = %d\n', i);
+    end
+
+    % 等间隔循环
+    for i = 0:2:10
+        fprintf('i = %d\n', i);
+    end
+    ```
+
+2. 清理命令
+
+    | 命令      | 功能                                                 |
+    | --------- | ---------------------------------------------------- |
+    | clc       | 清除命令窗口的内容，对工作环境中的全部变量无任何影响 |
+    | close     | 关闭当前的Figure窗口                                 |
+    | close all | 关闭所有的Figure窗口                                 |
+    | clear     | 清除工作空间的所有变量                               |
+    | clear all | 清除工作空间的所有变量，函数，和MEX文件              |
+
+## 2. 读写文件
+
+1. 读取文件
+
+    ```matlab
+    load('data.mat')
+    ```
+
+2. 保存数据
+
+    ```matlab
+    save('data.mat')
+    ```
+
+## 3. MATPOWER
+
+### 3.1. 安装
 
 1. 在 [MATPOWER 的 GitHub 页面](https://github.com/MATPOWER/matpower) 下载安装的压缩包
 2. 将压缩包解压并放到 matlab 安装目录的 bin 目录下，即`../Matlab/bin`，也可以根据需求放到其他目录下
@@ -19,7 +59,7 @@
 
     ![图 2](../images/2021-08-23_97.png)
 
-### 1.2. 使用
+### 3.2. 使用
 
 1. 运行简单的牛顿潮流
 
@@ -40,7 +80,24 @@
     runuopf('case30')
     ```
 
-### 1.3. 数据说明
+3. 修改数据进行潮流计算
+
+    ```matlab
+    % 读取节点数据
+    mpc = loadcase('case33lg');
+    % 计算潮流
+    runpf(mpc);
+    % 计算最优潮流
+    runopf(mpc);
+
+    % 修改节点负载
+    mpc.bus(2,3) = 0.2;
+    disp(mpc.bus(2,3));
+    % 重新计算潮流
+    runopf(mpc);
+    ```
+
+### 3.3. 数据说明
 
 1. 以`case33bw`数据为例
 2. 节点名
@@ -115,7 +172,7 @@
 8. convert branch impedances from Ohms to p.u. 将支路阻抗从欧姆转换为 p.u.
 9. convert loads from kW to MW 负荷从 kW 转 MW
 
-### 1.4. 备注
+### 3.4. 备注
 
 1. 参考
 
