@@ -256,12 +256,13 @@
 
     ```
 
-3. 选择、查询数据
+3. 选择/查询数据
 
     ```python
     # 获取
-    df['A']  # 获取 A 列数据
-    df.A  # 同上
+    df['A']     # 获取 A 列数据
+    df.A        # 同上
+    df[0]       # 若 A 为第 1 列，则同上
     df['20130102':'20130104']  # 通过 [] 选择，对行切片
 
     # 按位置索引
@@ -285,7 +286,7 @@
     df[df.tm1 >= '2019-01-01 00:00:00']['tm1', 'hv']
     # 多条件筛选
     df[(df['a'] >= 10) & (df['b'] >= 10)]  # 与
-    df[(df.a >= 10) | (df.b >= 10)]  # 或
+    df[(df.a == 10) | (df.b > 20)]  # 或
 
     # 根据条件筛选多行数据
     list1 = ['a', 'b', 'c']
@@ -294,14 +295,31 @@
 
     # 筛选含有指定字段的数据
     df2 = df[df['name'].str.contains('a')]  # 选择 name 列包含字符 a 的数据
-    df2 = df[df['name'].str.contains('a')].idnex.to_list()  # 获取所在行数
+    ```
+
+4. 查询索引
+
+    ```python
+    # 获取所在行数
+    idx = df[df['name'].str.contains('a')].index.to_list()
     # 如果 df 中有空行，需要指定空行的返回值
-    df2 = df[df['name'].str.contains('a', na=False)].idnex.to_list()  # 获取所在行数
+    idx = df[df['name'].str.contains('a', na=False)].index.to_list()
     ```
 
 ### 2.5. 数据计算
 
-1. 求平均值
+1. 最大最小值
+
+    ```python
+    # 最小值
+    min_val = df[0].min()  # 第 1 列最小值
+    min_val = df.iloc[:, 0].min()   # 同上
+
+    # 最大值
+    max_val = df.iloc[0, :].max()   # 第 1 行最大值
+    ```
+
+2. 求平均值
 
     ```python
     df = pd.read_csv(path, dtype=float)
@@ -312,7 +330,7 @@
     df.mean(1)
     ```
 
-2. 求标准差
+3. 求标准差
 
     ```python
     # 计算每列数据标准差
@@ -447,7 +465,7 @@
    | na_valuede=["Na","0"]    | Na 和 0 会被认为是 NaN                     |
    | nrows                    | 读取的行数                                 |
    | parse_dates=['tm']       | 将'tm'列读取成 datetime 格式               |
-   | sep=':'                  | 分隔符,支持':'等符号,多空格或Tab用`'\\s+'` |
+   | sep=':'                  | 分隔符，支持':'等符号，多空格或 Tab 用`'\\s+'` |
    | skiprows=[0,3]           | 跳过第 0 行和第 3 行                       |
    | skip_blank_lines=True    | 是否跳过空行，默认 True                    |
    | true_values=["yes"]      | yes 被认为 True                            |

@@ -28,16 +28,27 @@
 
 ## 2. 读写文件
 
+### 读文件
+
 1. 读取文件
 
     ```matlab
     load('data.mat')
     ```
 
-2. 保存数据
+### 写文件
+
+1. 保存数据
 
     ```matlab
     save('data.mat')
+    ```
+
+2. 保存csv文件
+
+    ```matlab
+    % 文件会保存在matlab打开的当前目录下
+    csvwrite(file_name, data);
     ```
 
 ## 3. MATPOWER
