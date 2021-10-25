@@ -32,6 +32,15 @@
     x = [1 for t in range(3)]  # [1, 1, 1]
     ```
 
+3. 随机数
+
+    ```python
+    from numpy import random
+
+    # 生成0-100以内的5个随机整数
+    x = random.randint(100, size=(5))
+    ```
+
 ### 1.2. 读取数组
 
 1. 读取文件
@@ -93,7 +102,13 @@
     c = np.where(x == 4)  # (array([3, 4], dtype=int64),)
     ```
 
-6. Numpy math
+6. Clip
+
+    ```python
+    # 限制数据的最大最小值
+    ```
+
+7. Numpy math
 
     ```python
     import numpy as np

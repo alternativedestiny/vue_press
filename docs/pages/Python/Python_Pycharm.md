@@ -51,9 +51,9 @@
 
     ![设置](../images/2018-10-07-16-48-50.png)
 
-## 3. Django 运行配置
+## 3. 运行配置
 
-1. Pycharm 专业版会自动配置，这里介绍社区版配置方法
+1. 以 Django 为例 (Pycharm 专业版会自动配置）
 2. 点击右上角的`Add Configurations`
 
     ![图 1](../images/2021-05-15_49.png)

@@ -55,7 +55,12 @@
         a = 1
         b = 2
         print(f'{a} + {b} = {a + b}')  # 1 + 2 = 3
+
+        # 设置格式
+        print(f'pi={pi:.4f}')   # 保留 4 位小数
         ```
+
+        - 参考：[Python 格式化字符串 f-string 概览](https://blog.csdn.net/sunxb10/article/details/81036693)
 
    3. python 字符串没有插入 (insert) 功能，可以通过字符串拼接实现
 
@@ -125,7 +130,8 @@
    1. 查询字符位置
 
         ```python
-        str1.find('a')  # 返回 a 所在位置
+        # 返回 a 所在位置，找不到返回-1
+        str1.find('a')
         ```
 
    2. 查询字符出现个数
@@ -255,6 +261,7 @@
     ```python
     list1.pop()  # 移除列表中的一个元素，默认最后一个
     list1.remove('banana')  # 移除列表中第一个匹配项
+    list1.clear()   # 清空列表
     ```
 
 5. 改
@@ -342,15 +349,28 @@
 
 ## 9. 日期时间处理
 
+### time 库
+
+1. time 结构
+   1. time.time: long 型时间戳，1970-01-01 00:00:00 至今的秒数
+
+2. 应用
+
+    ```python
+    import time
+
+    print(time.time())
+    ```
+
 ### 9.1. datetime 库
 
-1. 日期类型 datetime
-   1. datetime.date——日期，属性：year，month，day
-   2. datetime.time——时间，属性：hour，minute，second，microsecond，tzinfo
-   3. datetime.datetime——日期时间
-   4. datetime.timedelta——时间间隔，精确到微秒
-   5. datetime.tzinfo——时区信息对象的抽象基类。 datetime 和 time 类使用它们来提供可自定义的时间调整概念（例如，考虑时区和/或夏时制）
-   6. datetime.timezone——一个实现了 tzinfo 抽象基类的子类，用于表示相对于 世界标准时间（UTC）的偏移量。
+1. datetime 结构
+   1. datetime.date: 日期，属性：year，month，day
+   2. datetime.time: 时间，属性：hour，minute，second，microsecond，tzinfo
+   3. datetime.datetime: 日期时间
+   4. datetime.timedelta: 时间间隔，精确到微秒
+   5. datetime.tzinfo: 时区信息对象的抽象基类。 datetime 和 time 类使用它们来提供可自定义的时间调整概念（例如，考虑时区和/或夏时制）
+   6. datetime.timezone: 一个实现了 tzinfo 抽象基类的子类，用于表示相对于 世界标准时间（UTC）的偏移量。
 
 2. 创建日期
 
@@ -477,7 +497,44 @@
 
     ```
 
-## 10. JSON 处理
+## 10. 容器 (Collections)
+
+1. 种类
+
+    | 名字         | 功能                                                               |
+    | ------------ | ------------------------------------------------------------------ |
+    | namedtuple() | 创建命名元组子类的工厂函数                                         |
+    | deque        | 类似列表 (list) 的容器，实现了在两端快速添加 (append) 和弹出 (pop) |
+    | ChainMap     | 类似字典 (dict) 的容器类，将多个映射集合到一个视图里面             |
+    | Counter      | 字典的子类，提供了可哈希对象的计数功能                             |
+    | OrderedDict  | 字典的子类，保存了他们被添加的顺序                                 |
+    | defaultdict  | 字典的子类，提供了一个工厂函数，为字典查询提供一个默认值           |
+    | UserDict     | 封装了字典对象，简化了字典子类化                                   |
+    | UserList     | 封装了列表对象，简化了列表子类化                                   |
+    | UserString   | 封装了字符串对象，简化了字符串子类化                               |
+
+2. 双向队列 deque
+
+   1. 定义
+
+       ```python
+       class collections.deque([iterable[, maxlen]])
+       ```
+
+       - Deque 支持线程安全，内存高效添加 (append) 和弹出 (pop)，从两端都可以，两个方向的大概开销都是 O(1) 复杂度。
+       - 如果 maxlen 没有指定或者是 None ，deques 可以增长到任意长度。否则，deque 就限定到指定最大长度。一旦限定长度的 deque 满了，当新项加入时，同样数量的项就从另一端弹出。
+
+   2. 操作
+
+       ```python
+       # 新建一个最大长度为 100 的队列
+       dq = collections.deque(maxlen=100)
+
+       # 增加
+       dq.append(data)
+       ```
+
+## 11. JSON 处理
 
 1. JSON 数据格式
 
