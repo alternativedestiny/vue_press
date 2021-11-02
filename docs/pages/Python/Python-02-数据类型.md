@@ -254,6 +254,7 @@
 
     # 两个 list 拼接
     list3 = list1.extend(list2)
+    list3 = list1 + list2
     ```
 
 4. 删
