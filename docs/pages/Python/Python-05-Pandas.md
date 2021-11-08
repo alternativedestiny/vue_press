@@ -295,6 +295,10 @@
 
     # 筛选含有指定字段的数据
     df2 = df[df['name'].str.contains('a')]  # 选择 name 列包含字符 a 的数据
+
+    # 根据值查询元素所在位置
+    x = 1
+    x_idx = df[df[0] == x].index.to_list()  # 查找 df 第 0 列值为 x 的元素位置
     ```
 
 4. 查询索引
@@ -308,7 +312,20 @@
 
 ### 2.5. 数据计算
 
-1. 最大最小值
+1. 求和
+
+    ```python
+    # 行求和
+    df['row_sum'] = df.apply(lambda x: x.sum(), axis=1)
+    # 部分行求和（前两列）
+    df['row_sum'] = df.iloc[:, :2].apply(lambda x: x.sum(), axis=1)
+
+    # 列求和
+    df.sum()    # 所有列求和
+    df['col_sum'] = df.apply(lambda x: x.sum(), axis=0)
+    ```
+
+2. 最大最小值
 
     ```python
     # 最小值
@@ -319,7 +336,7 @@
     max_val = df.iloc[0, :].max()   # 第 1 行最大值
     ```
 
-2. 求平均值
+3. 求平均值
 
     ```python
     df = pd.read_csv(path, dtype=float)
@@ -330,7 +347,7 @@
     df.mean(1)
     ```
 
-3. 求标准差
+4. 求标准差
 
     ```python
     # 计算每列数据标准差

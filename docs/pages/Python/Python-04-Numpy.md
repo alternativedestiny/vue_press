@@ -37,7 +37,7 @@
     ```python
     from numpy import random
 
-    # 生成0-100以内的5个随机整数
+    # 生成 0-100 以内的 5 个随机整数
     x = random.randint(100, size=(5))
     ```
 

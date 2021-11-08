@@ -350,7 +350,7 @@
 
 ## 9. 日期时间处理
 
-### time 库
+### 9.1. time 库
 
 1. time 结构
    1. time.time: long 型时间戳，1970-01-01 00:00:00 至今的秒数
@@ -363,7 +363,7 @@
     print(time.time())
     ```
 
-### 9.1. datetime 库
+### 9.2. datetime 库
 
 1. datetime 结构
    1. datetime.date: 日期，属性：year，month，day
@@ -456,7 +456,7 @@
         print((day2 - day1).seconds)  # 3600，与日期无关
         ```
 
-### 9.2. Arrow (pip)
+### 9.3. Arrow (pip)
 
 1. 创建日期
 
