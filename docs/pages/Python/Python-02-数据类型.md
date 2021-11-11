@@ -75,13 +75,13 @@
 
         ```python
         # strip 方法
-        str1.strip('a')
+        str1 = str1.strip('a')
         # 去处字符串头尾 \r,\t,\n, 空格 等字符
-        str1.strip()
+        str1 = str1.strip()
         # 去除字符串开头处指定字符
-        str1.lstrip()
+        str1 = str1.lstrip()
         # 去除字符串结尾处指定字符
-        str1.rstrip()
+        str1 = str1.rstrip()
 
         # replace 方法
         str1.replace('a', '')
@@ -535,7 +535,7 @@
        dq.append(data)
        ```
 
-## 11. JSON 处理
+## 11. JSON
 
 1. JSON 数据格式
 

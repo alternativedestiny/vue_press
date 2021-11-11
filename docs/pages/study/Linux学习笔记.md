@@ -642,6 +642,12 @@
    cat /etc/group
    ```
 
+2. 修改用户密码
+
+    ```bash
+    sudo passwd username
+    ```
+
 ## 9. 定时任务 crontab
 
 1. 指令
@@ -693,6 +699,40 @@
      0 5 * * 1-6 rm -rf filename_bak && cp -r filename filename_bak
      ```
 
-## 10. 备注
+## 10. 开启 ssh
+
+1. 开启 ssh
+
+    ```bash
+    # 卸载原有 ssh
+    sudo apt-get remove openssh-server
+
+    # 安装 ssh
+    sudo apt-get install openssh-server
+
+    # 修改配置文件，修改 Port
+    sudo vi /etc/ssh/sshd_config
+    # Port 1234
+    # PasswordAuthentication yes
+
+    # 重启 ssh 服务
+    sudo service ssh --full-restart
+    ```
+
+2. 启动 ssh 出现 `no hostkeys available— exiting` 错误，[解决方案](https://wangxianggit.github.io/sshd%20no%20hostkeys%20available/)
+
+    ```bash
+    # root 用户下
+    ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+    ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+
+    # 修改密钥权限
+    chmod 600 /etc/ssh/ssh_host_dsa_key
+    chmod 600 /etc/ssh/ssh_host_rsa_key
+
+    # 重启 ssh
+    ```
+
+## 11. 备注
 
 - [教程地址](http://billie66.github.io/TLCL/book/index.html)

@@ -111,9 +111,62 @@
       ssh-copy-id root@192.168.1.1
       ```
 
-## 6. 问题处理
+## 6. 设置脚本
 
-### 6.1. 因为在此系统上禁止运行脚本
+1. 安装插件
+
+    > 名称：macros
+    ID: ctf0.macros
+    说明：automate repetitive actions with custom macros
+    版本：0.0.4
+    发布者：ctf0
+    VS Marketplace 链接：<https://marketplace.visualstudio.com/items?itemName=ctf0.macros>
+
+2. 配置 settings.json
+
+    ```json
+    // settings.json
+    "macros.list": {
+        // 脚本名
+        "markdown_format":[
+            // 命令 1: 更新 markdown sections
+            "extension.updateMarkdownSections",
+            // 命令 2: 延时 50ms, 主要是和 pangu 冲突，所以要增加延时
+            {
+                "command": "$delay",
+                "args": {
+                    "delay": 50
+                }
+            },
+            // 命令 3:pangu 格式化
+            "pangu.format",
+            // 命令 4: 格式化文档
+            "editor.action.formatDocument",
+            // 命令 5: 保存工作区
+            "workbench.action.files.save",
+        ]
+    },
+    ```
+
+3. 配置快捷键，`ctrl+alt+p` 输入 `keyboard` 进入 keybindings.json 配置快快捷键
+
+   ![图 2](../images/2021-11-11_93.png)  
+
+   ```js
+   // keybings.json
+   {
+        // 快捷键
+        "key": "ctrl+s",
+        // 快捷键出发的脚本
+        "command": "macros.markdown_format",
+        // 触发条件：markdown 文件
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    }
+   ```
+
+## 7. 问题处理
+
+### 7.1. 因为在此系统上禁止运行脚本
 
 1. 现象：在 vscode 运行 yarn 或 npm 脚本时出现无法运行的情况
 2. 解决方法

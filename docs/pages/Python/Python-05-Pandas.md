@@ -140,8 +140,8 @@
     columns = df.columns.to_list()  
 
     # 列重命名
-    df.columns = ['new_col1', 'new_col2']
-    df.rename(columns={str1: str2}, inplace=True)
+    df.columns = ['new_col1', 'new_col2']   # 重命名所有列
+    df.rename(columns={str1: str2}, inplace=True)   # str1 重命名为 str2
 
     # 调整列的顺序
     df[['new_col2', 'new_col1']]
@@ -298,7 +298,7 @@
 
     # 根据值查询元素所在位置
     x = 1
-    x_idx = df[df[0] == x].index.to_list()  # 查找 df 第 0 列值为 x 的元素位置
+    df_x = df[df[0] == x]  # 查找 df 第 0 列值为 x 的元素
     ```
 
 4. 查询索引
@@ -308,6 +308,9 @@
     idx = df[df['name'].str.contains('a')].index.to_list()
     # 如果 df 中有空行，需要指定空行的返回值
     idx = df[df['name'].str.contains('a', na=False)].index.to_list()
+    # 根据值查询元素所在位置
+    x = 1
+    x_idx = df[df[0] == x].index.to_list()  # 查找 df 第 0 列值为 x 的元素位置
     ```
 
 ### 2.5. 数据计算
@@ -463,30 +466,30 @@
 
     # 读取 excel 文件，表头第 0 行，表 sheet1，选择第 0，1 列数据
     # 依赖 xlrd，需要安装
-    # 读取‘sheet1’用 sheet_name=0 也可
+    # 读取 sheet1 用 sheet_name=0 也可
     df1 = pd.read_excel('filename.xlsx', header=0, sheet_name='Sheet1', usecols=[0, 1])
 
     ```
 
 2. 读取设置，[官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
 
-   | 关键字                   | 功能                                       |
-   | ------------------------ | ------------------------------------------ |
-   | chunksize=4              | 每 4 行数据为一组                          |
-   | dtype = {'col' : str}    | 修改 col 类型到 str                        |
-   | engine='python'          | 默认'c'，c 更快，python 功能更完善         |
-   | false_value=["no"]       | no 被认为 False                            |
-   | index_col=False          | 目录列，'False'表示没有目录                |
-   | MultiIndex               | 支持双列目录                               |
-   | na_values=[5]            | 5 和 5.0 会被认为是 NaN                    |
-   | na_valuede=["Na","0"]    | Na 和 0 会被认为是 NaN                     |
-   | nrows                    | 读取的行数                                 |
-   | parse_dates=['tm']       | 将'tm'列读取成 datetime 格式               |
-   | sep=':'                  | 分隔符，支持':'等符号，多空格或 Tab 用`'\\s+'` |
-   | skiprows=[0,3]           | 跳过第 0 行和第 3 行                       |
-   | skip_blank_lines=True    | 是否跳过空行，默认 True                    |
-   | true_values=["yes"]      | yes 被认为 True                            |
-   | usecols=['col1', 'col2'] | 选择要读取的列                             |
+   | 关键字                   | 功能                                                                |
+   | ------------------------ | ------------------------------------------------------------------- |
+   | chunksize=4              | 每 4 行数据为一组                                                   |
+   | dtype = {'col' : str}    | 修改 col 类型到 str                                                 |
+   | engine='python'          | 默认'c'，c 更快，python 功能更完善                                  |
+   | false_value=["no"]       | no 被认为 False                                                     |
+   | index_col=False          | 目录列，'False'表示没有目录                                         |
+   | MultiIndex               | 支持双列目录                                                        |
+   | na_values=[5]            | 5 和 5.0 会被认为是 NaN                                             |
+   | na_valuede=["Na","0"]    | Na 和 0 会被认为是 NaN                                              |
+   | nrows                    | 读取的行数                                                          |
+   | parse_dates=['tm']       | 将'tm'列读取成 datetime 格式                                        |
+   | sep=':'                  | 分隔符，支持':'等符号，多空格或 Tab 用`'\\s+'`, 多种分隔符用`|`隔开 |
+   | skiprows=[0,3]           | 跳过第 0 行和第 3 行                                                |
+   | skip_blank_lines=True    | 是否跳过空行，默认 True                                             |
+   | true_values=["yes"]      | yes 被认为 True                                                     |
+   | usecols=['col1', 'col2'] | 选择要读取的列                                                      |
 
 3. 使用设置
 
@@ -520,6 +523,14 @@
     | columns      | 选择写入的列，比如：columns=['col1', 'col2']    |
     | header       | 是否写入列名，默认'True'                        |
     | index        | 是否写入目录，默认'True'                        |
+    | mode         | 写入模式，'a'追加，'w'写入，默认'w'             |
+    | encoding     | 文件编码，默认'utf-8'                           |
+
+3. to_excel 用法
+
+    ```python
+    df.to_excel('name.excel', sheet_name='Sheet1')
+    ```
 
 ## 4. Pandas 错误处理
 
