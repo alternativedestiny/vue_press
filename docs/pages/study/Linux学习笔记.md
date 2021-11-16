@@ -6,7 +6,9 @@
 
 1. 备份原始源文件/etc/apt/sources.list
       `sudo cp sources.list sources_backup.list`
-2. 更换 [清华源](https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/)
+2. 换源
+   1. [Ubuntu 清华源](https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/)
+   2. [树莓派使用 Ubuntu Ports 镜像](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu-ports/)
 3. 更新软件列表
       `sudo apt-get update`
 

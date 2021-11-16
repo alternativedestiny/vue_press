@@ -206,43 +206,58 @@
 
 ## 3. 离线安装库文件
 
+### 3.1. 安装 requirements
+
 1. 下载离线包并创建需要安装的库文件列表 `requirements.txt`
 
-     > 最好把基础依赖包放在前面，避免某些包因缺少依赖包导致安装失败，`#`注释掉不需要安装的包
+    > 最好把基础依赖包放在前面，避免某些包因缺少依赖包导致安装失败，`#`注释掉不需要安装的包
 
-     ```txt
-     six-1.15.0-py2.py3-none-any.whl
-     numpy-1.19.1-cp37-cp37m-manylinux1_x86_64.whl
-     scipy-1.5.2-cp37-cp37m-manylinux1_x86_64.whl
-     certifi-2020.6.20-py2.py3-none-any.whl
-     cycler-0.10.0-py2.py3-none-any.whl
-     pyparsing-2.4.7-py2.py3-none-any.whl
-     pytz-2020.1-py2.py3-none-any.whl
-     python_dateutil-2.8.1-py2.py3-none-any.whl
-     pandas-1.1.1-cp37-cp37m-manylinux1_x86_64.whl
+    ```python
+    six-1.15.0-py2.py3-none-any.whl
+    numpy-1.19.1-cp37-cp37m-manylinux1_x86_64.whl
+    scipy-1.5.2-cp37-cp37m-manylinux1_x86_64.whl
+    certifi-2020.6.20-py2.py3-none-any.whl
+    cycler-0.10.0-py2.py3-none-any.whl
+    pyparsing-2.4.7-py2.py3-none-any.whl
+    pytz-2020.1-py2.py3-none-any.whl
+    python_dateutil-2.8.1-py2.py3-none-any.whl
+    pandas-1.1.1-cp37-cp37m-manylinux1_x86_64.whl
 
-     # Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl
-     # kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl
-     # matplotlib-3.3.1-cp37-cp37m-manylinux1_x86_64.whl
+    # Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl
+    # kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl
+    # matplotlib-3.3.1-cp37-cp37m-manylinux1_x86_64.whl
 
-     pyDOE-0.3.8.zip
-     pwlf-2.0.4.tar.gz
-     ```
+    pyDOE-0.3.8.zip
+    pwlf-2.0.4.tar.gz
+    ```
 
 2. 批量安装库
 
-     ```bash
-     # 批量安装
-     pip install -r requirements.txt
-     # 忽略目录批量安装
-     pip install --no-index -r requirements.txt
-     ```
+    ```bash
+    # 批量安装
+    pip install -r requirements.txt
+    # 忽略目录批量安装
+    pip install --no-index -r requirements.txt
+    ```
 
-3. 生成 requirements.txt 文件
+### 3.2. 生成 requirements
 
-     ```bash
-     pip3 freeze >requirements.txt
-     ```
+1. 方法 1: 生成 requirements.txt 文件
+
+    ```bash
+    # 这个方法会包含当前环境下所有库，更推荐方法 2
+    pip3 freeze >requirements.txt
+    ```
+
+2. 方法 2: 只根据当前项目生成 requirements 文件
+
+    ```bash
+    # 安装库
+    pip install pipreqs
+
+    # 在项目根目录执行，生成 requirements 文件
+    pipreqs . --encoding=utf8 --force
+    ```
 
 ## 4. VSCode 配置 Python 环境
 

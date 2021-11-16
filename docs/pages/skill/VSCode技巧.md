@@ -116,11 +116,11 @@
 1. 安装插件
 
     > 名称：macros
-    ID: ctf0.macros
-    说明：automate repetitive actions with custom macros
-    版本：0.0.4
-    发布者：ctf0
-    VS Marketplace 链接：<https://marketplace.visualstudio.com/items?itemName=ctf0.macros>
+    > ID: ctf0.macros
+    > 说明：automate repetitive actions with custom macros
+    > 版本：0.0.4
+    > 发布者：ctf0
+    > VS Marketplace 链接：<https://marketplace.visualstudio.com/items?itemName=ctf0.macros>
 
 2. 配置 settings.json
 

@@ -130,7 +130,7 @@
     a = data[行起始：终止，列起始：终止]
     ```
 
-5. 用 pandas 读写 csv 文件，参考 [pandas 笔记](Python-05-Pandas.md)
+5. 用 pandas 读写 csv 文件，参考 [pandas 笔记](Python-05-Pandas.md##-3-pandas-读写文件)
 
 ### 2.2. Excel(xls/xlsx) 文件
 

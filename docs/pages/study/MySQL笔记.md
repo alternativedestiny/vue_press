@@ -216,7 +216,7 @@ db.close()
 
 1. 创建一个文本文件，比如abc.txt，写入下面的指令，新root密码为123456
 
-    ```txt
+    ```sql
     ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
     ```
 

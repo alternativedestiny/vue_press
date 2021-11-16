@@ -151,62 +151,82 @@
 
 1. 特殊字符，[参考链接](https://docs.python.org/zh-cn/3.8/library/re.html)
 
-    | 字符     | 匹配项                             |
-    | -------- | ---------------------------------- |
-    | .        | 匹配除了换行的任意字符             |
-    | ^        | 匹配字符串的开头                   |
-    | $        | 匹配字符串尾或着换行符的前一个字符 |
-    | *        | 对他前面的正则式匹配 0 到任意次    |
-    | +        | 对他前面的正则式匹配 1 到任意次    |
-    | ?        | 对他前面的正则式匹配 0 到 1 次     |
-    | *? +? ?? | ‘非贪婪’方式                       |
-    | {m}      | 对他前面的正则式指定匹配 m 个重复  |
-    | {m,n}    | 对正则式进行 m 到 n 次匹配         |
-    | \        | 转义字符                           |
-    | []       | 用于表示一个字符集                 |
+    | 字符     | 匹配项                                   |
+    | -------- | ---------------------------------------- |
+    | .        | 匹配除了换行的任意字符                   |
+    | ^        | 匹配字符串的开头                         |
+    | $        | 匹配字符串尾或着换行符的前一个字符       |
+    | *        | 对他前面的正则式匹配 0 到任意次          |
+    | +        | 对他前面的正则式匹配 1 到任意次          |
+    | ?        | 对他前面的正则式匹配 0 到 1 次           |
+    | *? +? ?? | ‘非贪婪’方式                             |
+    | {m}      | 对他前面的正则式指定匹配 m 个重复        |
+    | {m,n}    | 对正则式进行 m 到 n 次匹配               |
+    | []       | 用于表示一个字符集                       |
+    | \        | 转义字符                                 |
+    | \A       | 只匹配字符串开始                         |
+    | \b       | 匹配空字符串，但只在单词开始或结尾的位置 |
+    | \B       | 匹配空字符串，但 不 能在词的开头或者结尾 |
+    | \d       | 匹配任何 Unicode 十进制数                |
+    | \D       | 匹配任何非十进制数字的字符               |
+    | \s       | 匹配任何 Unicode 空白字符                |
+    | \S       | 匹配任何非空白字符                       |
 
-2. 使用
-   1. re.match(pattern, string, flags=0)：起始位置匹配
+2. re.match(pattern, string, flags=0)：起始位置匹配
 
-        | 参数    | 描述                       |
-        | ------- | -------------------------- |
-        | pattern | 正则表达式                 |
-        | string  | 要匹配的字符串             |
-        | flags   | 标志位，大小写、多行匹配等 |
+    | 参数    | 描述                       |
+    | ------- | -------------------------- |
+    | pattern | 正则表达式                 |
+    | string  | 要匹配的字符串             |
+    | flags   | 标志位，大小写、多行匹配等 |
 
-        ```python
-        import re
+    ```python
+    import re
 
-        # <re.Match object; span=(0, 2), match='ab'>
-        re.match(r'ab+', 'abc')
+    # <re.Match object; span=(0, 2), match='ab'>
+    re.match(r'ab+', 'abc')
 
-        # <re.Match object; span=(0, 3), match='abb'>
-        re.match(r'ab+', 'abbc')
+    # <re.Match object; span=(0, 3), match='abb'>
+    re.match(r'ab+', 'abbc')
 
-        # None
-        re.match(r'ab+', 'acbab')
-        ```
+    # None
+    re.match(r'ab+', 'acbab')
+    ```
 
-   2. re.search(pattern, string, flags=0)：匹配整个字符串
+3. re.search(pattern, string, flags=0)：匹配整个字符串
 
-        ```python
-        import re
+    ```python
+    import re
 
-        # <re.Match object; span=(0, 2), match='ab'>
-        re.search(r'ab+', 'abc')
+    # <re.Match object; span=(0, 2), match='ab'>
+    re.search(r'ab+', 'abc')
 
-        # <re.Match object; span=(0, 3), match='abb'>
-        re.search(r'ab+', 'abbc')
+    # <re.Match object; span=(0, 3), match='abb'>
+    re.search(r'ab+', 'abbc')
 
-        # <re.Match object; span=(3, 5), match='ab'>
-        re.search(r'ab+', 'acbab')
+    # <re.Match object; span=(3, 5), match='ab'>
+    re.search(r'ab+', 'acbab')
 
-        # 输出 span
-        re.search(r'ab+', 'acbab').span()
-        # 输出 match
-        re.search(r'ab+', 'acbab').group()
+    # 输出 span
+    re.search(r'ab+', 'acbab').span()
+    # 输出 match
+    re.search(r'ab+', 'acbab').group()
 
-        ```
+    ```
+
+4. 格式化输入
+
+    ```python
+    import re
+
+    s = "时间：2021-11-12 12:06:56, 数值：3.1415926, 标志：1"
+
+    pattern = re.compile(r"时间：(\d+-\d+-\d+ \d+:\d+:\d+), 数值：(\d+.\d+)?, 标志：(\d)")
+    match = pattern.match(s)
+
+    print(match.groups())   # ('2021-11-12 12:06:56', '3.1415926', '1')
+
+    ```
 
 ## 5. 列表 (List)
 
@@ -302,9 +322,43 @@
 1. 元组与列表类似，但是其中的元素不能修改
 2. 创建元组
 
-```python
+    ```python
+    # 元组用小括号，列表用方括号
+    tup1 = ('a', 'b', 'c', 1, 2, 3)
 
-```
+    # 空元组
+    tup2 = ()
+
+    # 元组中只包含一个元素时，需要在元素后面添加逗号
+    tup3 = (1,)
+    ```
+
+3. 访问
+
+    ```python
+    print(tup1[1])      # b
+    print(tup1[2:4])    # ('c', 1)
+    ```
+
+4. 操作
+
+    ```python
+    # 拼接
+    tup3 = tup1 + tup2
+
+    # 删除
+    del tup
+    ```
+
+5. 转换
+
+    ```python
+    # tuple 转 list
+    l1 = list(tup1)
+
+    # list 转 tuple
+    tup1 = tuple(l1)
+    ```
 
 ## 7. 集合 (Set)
 

@@ -16,7 +16,7 @@
 
 3. 项目目录，之后的路径默认在项目路径第一个`mysite/`之下
 
-    ```dir
+    ```python
     mysite/
         |_ mysite/
             |_ __init__.py      一个空文件，告诉 Python 这个目录应该被认为是一个 Python 包。
@@ -46,7 +46,7 @@
 
 2. 目录
 
-    ```dir
+    ```python
     mysite/
         |_ mysite/
         |_ templates/
@@ -152,7 +152,7 @@
 
 1. 在项目根目录创建静态文件夹
 
-    ```dir
+    ```python
     mysite/
         |_ mysite/
         |_ templates/
