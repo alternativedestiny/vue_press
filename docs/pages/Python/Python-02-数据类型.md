@@ -1,6 +1,6 @@
 # 2. 数据类型
 
-## 1. Python 命名规则
+## 1. Python 变量
 
 1. 命名约定
    1. 所谓“内部 (Internal)”表示仅模块内可用，或者，在类内是保护或私有的。
@@ -8,10 +8,32 @@
    3. 用双下划线 (__) 开头的实例变量或方法表示类内私有。
    4. 将相关的类和顶级函数放在同一个模块里。不像 Java, 没必要限制一个类一个模块。
    5. 对类名使用大写字母开头的单词（如 CapWords, 即 Pascal 风格）, 但是模块名应该用小写加下划线的方式（如 lower_with_under.py). 尽管已经有很多现存的模块使用类似于 CapWords.py 这样的命名，但现在已经不鼓励这样做，因为如果模块名碰巧和类名一致，这会让人困扰。
+
 2. 应避免的命名
    1. 单字符名称，除了计数器和迭代器。
    2. 包/模块名中的连字符 (-)
    3. 双下划线开头并结尾的名称 (Python 保留，例如__init__)
+
+3. 类型注解
+
+    ```python
+    from typing import List, Dict, Any
+
+    # 变量类型
+    a: int
+    b: float
+    c: list
+    d: bool
+    e = List[int]
+    f = Dict[str, int]
+    g: Any  # 任何类型
+
+    # 多类型定义
+
+    # 函数：返回值为 int
+    def sum(x: int, y: int) -> int:
+        return x + y
+    ```
 
 ## 2. 数字 (Number)
 
@@ -429,7 +451,7 @@
 
 2. 创建日期
 
-    批量生成日期数据参考 pandas 笔记
+    > 批量生成日期数据参考 [pandas 笔记](Python-05-Pandas.md###-1.2.-生成数据)
 
     ```python
     # 导入 datetime 包

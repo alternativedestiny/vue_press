@@ -1,8 +1,8 @@
 # 4. Numpy
 
-## 1. 数据类型 ndarray
+## 1. 数据类型
 
-### 1.1. 创建数组
+### 1.1. 数组
 
 1. 头文件
 
@@ -10,7 +10,7 @@
     import numpy as np
     ```
 
-2. ndarray & list
+2. array & list
 
     ```python
     # 创建一维 ndarray，默认 int 格式
@@ -80,8 +80,10 @@
 4. 改
 
     ```python
-    # 转换
+    # 转换 ndarray 转 list
     x = x.tolist()  # [1, 2, 3, 4, 5]
+    # 转换 list 转 ndarray
+    x = np.array(list1)
 
     # 修改值
     x[2] = 20  # [ 1  2 20  4  5]
@@ -117,7 +119,24 @@
     np.sin()  # sin
     ```
 
-## 2. 拟合
+## 2. 计算
+
+### 2.1. 算数函数
+
+1. 加 add
+
+    ```python
+    a = np.array([1, 2, 3])
+    b = np.array(4)
+    print(np.add(a, b)) # [5 6 7]
+
+    b = np.array([4, 2, 3])
+    print(np.add(a, b)) # [5 4 6]
+    ```
+
+### 2.2. 统计函数
+
+## 3. 拟合
 
 1. 多项式拟合
 

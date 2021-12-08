@@ -127,7 +127,8 @@
     plt.xticks(np.arange(0, 25, 4))  # 范围 0-25，分度值 4
 
     # 不显示坐标
-    plt.xticks([])
+    plt.xticks([])  # 不显示 x 轴坐标
+    plt.yticks([])  # 不显示 y 轴坐标
     ```
 
 3. 设置坐标限位
@@ -267,6 +268,7 @@
     ax1.plot(x1, y1, label='a')
     # 设置 ax2 与 ax1 公用横坐标
     ax2 = ax1.twinx()
+    # 第二条线必须指定其他颜色，不然都会显示成蓝色
     ax2.plot(x2, y2, c='r', label='b')
 
     plt.title('abc')

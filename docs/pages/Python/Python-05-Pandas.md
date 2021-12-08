@@ -226,6 +226,15 @@
     df3 = pd.concat([df1, df2])
     ```
 
+4. replace: 替换
+
+    ```python
+    import numpy as np
+
+    # 将数据中的 0 替换为 nan, 这样在进行统计计算时会自动忽略这些值
+    df = df.replace(0, np.NaN)
+    ```
+
 ### 2.4. 查
 
 1. 检测数据是否有空值 (Nan)
@@ -278,30 +287,40 @@
     # 还可以直接访问列标签
     new_df = df['a'][0:3000]  # Series
 
+    ```
+
+4. 条件筛选数据
+
+    ```python
     # 布尔索引
     df[df.A > 0]
     new_df = df[df['tm1'] >= '2018-01-01 00:00:00']
     # 选择并选取指定行
-    df.loc[df['tm1'] >= '2019-01-01 00:00:00', ['tm1', 'hv']]
-    df[df.tm1 >= '2019-01-01 00:00:00']['tm1', 'hv']
+    new_df = df.loc[df['tm1'] >= '2019-01-01 00:00:00', ['tm1', 'hv']]
+    new_df = df[df.tm1 >= '2019-01-01 00:00:00']['tm1', 'hv']
+    
+    # 根据具体时间筛选数据
+    new_df = df[df['time'].dt.hour = 10]    # 筛选所有 10 点钟的数据
+
+    
     # 多条件筛选
     df[(df['a'] >= 10) & (df['b'] >= 10)]  # 与
     df[(df.a == 10) | (df.b > 20)]  # 或
 
     # 根据条件筛选多行数据
-    list1 = ['a', 'b', 'c']
-    df2 = df[df['name'].isin(list1)]  # 选择 name 列=a,b,c 的数据
-    df2 = df[~df['name'].isin(list1)]  # 选择 name 列非 a,b,c 的数据
+    keys = ['a', 'b', 'c']
+    df = df[df['name'].isin(keys)]  # 选择 name 列=a,b,c 的数据
+    df = df[~df['name'].isin(keys)]  # 选择 name 列非 a,b,c 的数据
 
     # 筛选含有指定字段的数据
-    df2 = df[df['name'].str.contains('a')]  # 选择 name 列包含字符 a 的数据
+    df = df[df['name'].str.contains('a')]  # 选择 name 列包含字符 a 的数据
 
     # 根据值查询元素所在位置
     x = 1
     df_x = df[df[0] == x]  # 查找 df 第 0 列值为 x 的元素
     ```
 
-4. 查询索引
+5. 查询索引
 
     ```python
     # 获取所在行数
@@ -391,8 +410,17 @@
         ```python
         groups = df.groupby('年级')
         for name, group in groups:
-             print(name)
-             print(group)
+             print(name)    # 组名
+             print(group)   # 组内数据
+        ```
+
+    3. 时间分组
+
+        > 如果有一列数据为 datetime 格式，可以按照时间进行分组
+
+        ```python
+        # 比如按照小时分组
+        groups = df.groupby(df['time'].dt.hour)
         ```
 
 2. 聚合 aggregation

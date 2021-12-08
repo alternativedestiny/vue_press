@@ -1,39 +1,68 @@
-# Linux 学习笔记
+# Linux 学习笔记 (Ubuntu)
 
-## 1. 系统安装及配置（Ubuntu）
+## 1. 系统安装及配置
 
 ### 1.1. 更换软件源
 
-1. 备份原始源文件/etc/apt/sources.list
-      `sudo cp sources.list sources_backup.list`
-2. 换源
+1. 查看系统版本
+
+    ```bash
+    cat /etc/issue
+    ```
+
+2. 备份原始源文件/etc/apt/sources.list
+
+    ```bash
+    sudo cp sources.list sources_backup.list
+    ```
+
+3. 换源，选择对应的版本源
    1. [Ubuntu 清华源](https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/)
    2. [树莓派使用 Ubuntu Ports 镜像](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu-ports/)
-3. 更新软件列表
-      `sudo apt-get update`
+4. 更新软件列表
 
-### 1.2. 配置 ssh
+    ```bash
+    sudo apt-get update
+    sudo apt-get upgrade
+    ```
 
-1. 查看有没有安装 ssh, ubuntu 默认安装了 ssh-client
+### 1.2. 开启 SSH
 
-   ```bash
-   dpkg -l | grep ssh
-   ```
+1. 开启 ssh
 
-2. 如果没有安装
+    ```bash
+    # 检查系统有无安装 ssh
+    dpkg -l|grep ssh
 
-   ```bash
-   # 连接其他机器
-   sudo apt-get install openssh-client
-   # 被其他机器连接
-   sudo apty-get install openssh-server
-   ```
+    # 卸载原有 ssh
+    sudo apt-get remove openssh-server
 
-3. 查看 ssh 有没有开启
+    # 安装 ssh
+    sudo apt-get install openssh-server
 
-   ```bash
-   ps -e | grep ssh
-   ```
+    # 修改配置文件，修改 Port
+    sudo vi /etc/ssh/sshd_config
+    # Port 1234
+    # PasswordAuthentication yes
+
+    # 重启 ssh 服务
+    sudo service ssh --full-restart
+    ```
+
+2. 启动 ssh 出现 `no hostkeys available— exiting` 错误，[解决方案](https://wangxianggit.github.io/sshd%20no%20hostkeys%20available/)
+
+    ```bash
+    # root 用户下
+    ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+    ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+
+    # 修改密钥权限
+    chmod 600 /etc/ssh/ssh_host_dsa_key
+    chmod 600 /etc/ssh/ssh_host_rsa_key
+
+    # 重启 ssh
+    sudo service ssh --full-restart
+    ```
 
 ## 2. 概念
 
@@ -96,7 +125,34 @@
    1. clear：清空屏幕
    2. history：显示历史列表内容
 
-## 4. vi 用法
+## 4. Shell 脚本
+
+1. 什么是 Shell 脚本：一个 Shell 脚本就是一个包含一系列命令的文件。
+2. 创建脚本文件
+   1. 编写一个脚本
+   2. 使脚本文件可执行（需要设置脚本文件的权限，使其可执行）
+
+      ```shell
+      chmod 775 shell
+      ```
+
+      - 常见权限设置：775——每个人都能执行，700——只有文件所有者能执行
+
+   3. 把脚本文件放置到 shell 能够到的地方，一般放在`/home/me/bin`下，因为这个文件默认在 PATH 配置中
+3. 执行脚本
+   1. 工作目录执行 `./shell.sh`
+   2. 绝对路径执行 `/home/user/Desktop/Project/shell.sh`
+   3. sh 执行 `sh shell.sh` 或 `bash shell.sh`
+   4. shell 环境执行 `. shell.sh` 或 `source shell.sh`
+   5. bash 执行`bash xx.sh`
+
+4. find 指令：find -name "xx*"
+5. grep 指令：grep 要查的字符 文件
+6. top 指令：查询系统资源使用情况
+
+## 5. 常用指令
+
+### 5.1. 编辑指令 vi
 
 1. vi 的模式
    - 一般模式（默认）：移动光标、粘贴、拷贝、存盘、退出等
@@ -155,34 +211,7 @@
    | :0/$          | 指令模式 | 跳到第一行/最后一行                                |
    | :a,bs/s1/s2/g | 指令模式 | 将 a 到 b 行的 s1 全部替换成 s2, /g 不询问直接替换 |
 
-## 5. Shell 脚本
-
-1. 什么是 Shell 脚本：一个 Shell 脚本就是一个包含一系列命令的文件。
-2. 创建脚本文件
-   1. 编写一个脚本
-   2. 使脚本文件可执行（需要设置脚本文件的权限，使其可执行）
-
-      ```shell
-      chmod 775 shell
-      ```
-
-      - 常见权限设置：775——每个人都能执行，700——只有文件所有者能执行
-
-   3. 把脚本文件放置到 shell 能够到的地方，一般放在`/home/me/bin`下，因为这个文件默认在 PATH 配置中
-3. 执行脚本
-   1. 工作目录执行 `./shell.sh`
-   2. 绝对路径执行 `/home/user/Desktop/Project/shell.sh`
-   3. sh 执行 `sh shell.sh` 或 `bash shell.sh`
-   4. shell 环境执行 `. shell.sh` 或 `source shell.sh`
-   5. bash 执行`bash xx.sh`
-
-4. find 指令：find -name "xx*"
-5. grep 指令：grep 要查的字符 文件
-6. top 指令：查询系统资源使用情况
-
-## 6. 常用指令
-
-### 6.1. 查询指令
+### 5.2. 查询指令 find/grep
 
 1. find 指令：find -name "xx*"
 2. findcpp xxx：查询含有 xxx 的 cpp 文件，findh 类似
@@ -193,26 +222,26 @@
    grep print *cpp
    ```
 
-### 6.2. 进程指令
+### 5.3. 进程指令 ps
 
 1. 进程信息
 
-      | 名称    | 描述                            |
-      | ------- | ------------------------------- |
-      | USER    | 启动该进程的账户名称            |
-      | PID     | 进程 ID                         |
-      | TTY     | 表明该进程在那个终端上运行      |
-      | STAT    | 进程状态                        |
-      | START   | 启动该进程的时间                |
-      | TIME    | 该进程占用的 CPU 时间           |
-      | COMMAND | 启动该进程的命令的名称          |
-      | %CPU    | 占用 CPU 的百分比               |
-      | %MEM    | 占用内存的百分比                |
-      | VSZ     | 占用虚拟内存 (swap 空间）的大小 |
-      | RSS     | 占用常驻内存（物理内存）的大小  |
+    | 名称    | 描述                            |
+    | ------- | ------------------------------- |
+    | USER    | 启动该进程的账户名称            |
+    | PID     | 进程 ID                         |
+    | TTY     | 表明该进程在那个终端上运行      |
+    | STAT    | 进程状态                        |
+    | START   | 启动该进程的时间                |
+    | TIME    | 该进程占用的 CPU 时间           |
+    | COMMAND | 启动该进程的命令的名称          |
+    | %CPU    | 占用 CPU 的百分比               |
+    | %MEM    | 占用内存的百分比                |
+    | VSZ     | 占用虚拟内存 (swap 空间）的大小 |
+    | RSS     | 占用常驻内存（物理内存）的大小  |
 
-      - > TTY：'?' 表示未知或不需要终端
-      - > STAT：S（休眠）、Z（僵死）、<（高优先级）、N（低优先级）、s（父进程）、+（前台进程）
+    - > TTY：'?' 表示未知或不需要终端
+    - > STAT：S（休眠）、Z（僵死）、<（高优先级）、N（低优先级）、s（父进程）、+（前台进程）
 
 2. 查询进程
    1. ps：查找与进程相关的 PID 号
@@ -241,7 +270,7 @@
       3. 结合“-u”选项可以列出对应的用户名
       4. 结合“-a”选项可以列出完整的命令信息
 
-### 6.3. 运行程序
+### 5.4. 运行程序
 
 1. 运行程序指令
 
@@ -250,9 +279,11 @@
    ./app &
    # 后台运行程序，终端不显示输出
    ./app > /dev/null &
+   # 后台运行并输出日志
+   ./app > app.log &
    ```
 
-### 6.4. 网络指令
+### 5.5. 网络指令 netstat
 
 1. Netstat 参数
 
@@ -269,6 +300,11 @@
     | -s       | 按各个协议进行统计                       |
     | -c       | 每隔一个固定时间，执行该 netstat 命令    |
 
+    ```bash
+    # 检查占用 8000 端口的进程
+    netstat -anpt| grep 8000
+    ```
+
 2. TCP 状态
 
     | 状态        | 解释                                                               |
@@ -279,7 +315,7 @@
 
 3. 参考链接 [Linux netstat 命令介绍](https://www.cnblogs.com/cheesezh/p/5169498.html)
 
-### 6.5. 其他指令
+### 5.6. 其他指令
 
 | 指令 | 功能                 |
 | ---- | -------------------- |
@@ -336,66 +372,66 @@
     unalias base
     ```
 
-## 7. Linux & c++
+## 6. Linux & c++
 
-### 7.1. 库的使用
+### 6.1. 库的使用
 
-#### 7.1.1. 库分类
+#### 6.1.1. 库分类
 
 1. 静态库：静态库的代码在编译过程中已经被载入可执行程序，因此体积较大
 2. 动态库（共享库）：代码不会连接到目标文件之中，只有当动态库可访问时，应用程序才能正确执行动态库函数。执行动态库的方式有隐式调用和显式调用
    1. 隐式调用：也称共享库的静态加载，动态库在应用开始执行时会自动载入内存，进程结束时又自动卸载。隐式调用的编译方式与静态库一致
    2. 显式调用：也称共享库的动态加载，编译时可以不显式的提供原动态库文件及名称，但是必须遵循 dlopen 等函数的规则实现调用
 
-#### 7.1.2. 静态库
+#### 6.1.2. 静态库
 
 1. 静态库生成：设计源码->编译`.o`文件->链接静态库，命名规则`libxxx.a`
 2. 静态库的应用模型
    1. 调用库函数代码
    2. 编译链接选项
 
-     ```shell
-     # cc -O -o main.c ./libxxx.a
-     ```
+        ```shell
+        # cc -O -o main.c ./libxxx.a
+        ```
 
 3. 执行目标程序`# ./main`
 
-#### 7.1.3. 动态库
+#### 6.1.3. 动态库
 
 1. 动态库生成：
    1. 设计源码（exp：d1.c & d2.c）
    2. Linux 和其它使用 gcc 编译器的 Unix
 
-     ```cpp
-     gcc -fpic -c d1.c d2.c /*编译。o 为扩展名的中间目标文件*/
-     gcc -shared -o d1.so d1.o /*创建动态库文件 d1.so*/
-     gcc -shared -o d2.so d2.o /*创建动态库文件 d2.so*/
-     ```
+        ```cpp
+        gcc -fpic -c d1.c d2.c /*编译。o 为扩展名的中间目标文件*/
+        gcc -shared -o d1.so d1.o /*创建动态库文件 d1.so*/
+        gcc -shared -o d2.so d2.o /*创建动态库文件 d2.so*/
+        ```
 
-     或者可以一步到位
+        或者可以一步到位
 
-     ```cpp
-     gcc -O -fpic -shared -o d1.so d1.c/*创建动态库文件 d1.so*/
-     gcc -O -fpic -shared -o d2.so d2.c/*创建动态库文件 d2.so*/
-     ```
+        ```cpp
+        gcc -O -fpic -shared -o d1.so d1.c/*创建动态库文件 d1.so*/
+        gcc -O -fpic -shared -o d2.so d2.c/*创建动态库文件 d2.so*/
+        ```
 
 2. 动态库的隐式调用
    1. 调用库函数代码（main 程序 main.c）
    2. 编译链接选项
 
-      ```bash
-      # cp d1.so dll.so
-      # cc -O -o main main.c ./dll.so
-      # ./main  /*运行程序*/
-      ```
+        ```bash
+        # cp d1.so dll.so
+        # cc -O -o main main.c ./dll.so
+        # ./main  /*运行程序*/
+        ```
 
    3. 动态库查找：动态库文件变更位置后程序无法正常运行，解决方法：带路径编译或更改环境变量
    4. 动态库更换：动态链接库取代静态库的好处之一是随时升级库的内容
 
-      ```bash
-      # cp d2.so dll.so
-      # ./main
-      ```
+        ```bash
+        # cp d2.so dll.so
+        # ./main
+        ```
 
 3. 动态库的显式调用
    1. 函数族：显式调用动态库，编译时无需库文件，执行时动态库可存储于人艺文志，库里共享对象必须先申请后使用，不同版本的动态库，只要其共享对象接口相同，就可以直接动态加载。
@@ -436,7 +472,7 @@
 
    2. 应用模型：打开动态库->获取对象地址->执行动态对象（可回到上一步）->关闭动态库
 
-#### 7.1.4. 小结
+#### 6.1.4. 小结
 
 - 三种库调用对比
 
@@ -447,9 +483,9 @@
      | 库存储位置     | 不需要     | 特定位置   | 任意位置 |
      | 载入时间       | 进程启动   | 进程启动   | 任意时刻 |
 
-### 7.2. 标准文件编程库
+### 6.2. 标准文件编程库
 
-#### 7.2.1. 文件的创建、打开、关闭和删除
+#### 6.2.1. 文件的创建、打开、关闭和删除
 
 - filename：打开文件的名称（带路径）
 - type：打开文件的方式，由权限和类型两部分组成
@@ -508,7 +544,7 @@
    1. 文本文件又称为 ASCII 码文件，可以用 vi 等文本编辑器编辑其中任意字符，也可以直接操作以空额、制表符或换行符分割的单词和文本。C 语言源代码是典型的文本文件。
    2. 二进制文件中可以包含任意字符，没有固定格式，文本编辑器无法正常阅读，所有对文件的解析都由应用程序完成。C 语言编译后的可执行文件就是二进制文件。
 
-#### 7.2.2. 文件的无格式读写
+#### 6.2.2. 文件的无格式读写
 
 1. 字符读写：每次之操作一个字符
    1. 字符输入函数族
@@ -546,7 +582,7 @@
 
         ```
 
-### 7.3. linux 命令
+### 6.3. linux 命令
 
 1. grep 文件搜索
    1. 常用命令
@@ -566,7 +602,7 @@
     tar -zxvf file.tar.gz
     ```
 
-### 7.4. coredump
+### 6.4. coredump
 
 1. coredump 概念：程序调试
 2. coredump 开启
@@ -584,9 +620,9 @@
 
 - [linux 下 core dump](https://www.cnblogs.com/Anker/p/6079580.html)
 
-## 8. 用户和组
+## 7. 用户和组
 
-### 8.1. 创建用户和组
+### 7.1. 创建用户和组
 
 1. 创建用户，参考 [添加删除用户和用户组](https://www.cnblogs.com/xd502djj/archive/2011/11/23/2260094.html)
 
@@ -609,7 +645,7 @@
    usermod -a group username
    ```
 
-### 8.2. 删除用户和组
+### 7.2. 删除用户和组
 
 1. 关闭/释放用户
 
@@ -633,7 +669,7 @@
    gpasswd -d username group
    ```
 
-### 8.3. 操作用户和组
+### 7.3. 操作用户和组
 
 1. 查看用户/组列表
 
@@ -650,7 +686,7 @@
     sudo passwd username
     ```
 
-## 9. 定时任务 crontab
+## 8. 定时任务 crontab
 
 1. 指令
 
@@ -690,51 +726,17 @@
 
 5. 示例
 
-     ```bash
-     # 进入编辑
-     crontab -e
-
-     # 编写脚本：每 5min 输出一次 hello
-     */5 * * * * ehco 'hello'
-
-     # 备份文件：每周 1-6,05:00 删除旧文件，备份新文件
-     0 5 * * 1-6 rm -rf filename_bak && cp -r filename filename_bak
-     ```
-
-## 10. 开启 ssh
-
-1. 开启 ssh
-
     ```bash
-    # 卸载原有 ssh
-    sudo apt-get remove openssh-server
+    # 进入编辑
+    crontab -e
 
-    # 安装 ssh
-    sudo apt-get install openssh-server
+    # 编写脚本：每 5min 输出一次 hello
+    */5 * * * * ehco 'hello'
 
-    # 修改配置文件，修改 Port
-    sudo vi /etc/ssh/sshd_config
-    # Port 1234
-    # PasswordAuthentication yes
-
-    # 重启 ssh 服务
-    sudo service ssh --full-restart
+    # 备份文件：每周 1-6,05:00 删除旧文件，备份新文件
+    0 5 * * 1-6 rm -rf filename_bak && cp -r filename filename_bak
     ```
 
-2. 启动 ssh 出现 `no hostkeys available— exiting` 错误，[解决方案](https://wangxianggit.github.io/sshd%20no%20hostkeys%20available/)
-
-    ```bash
-    # root 用户下
-    ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
-    ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
-
-    # 修改密钥权限
-    chmod 600 /etc/ssh/ssh_host_dsa_key
-    chmod 600 /etc/ssh/ssh_host_rsa_key
-
-    # 重启 ssh
-    ```
-
-## 11. 备注
+## 9. 备注
 
 - [教程地址](http://billie66.github.io/TLCL/book/index.html)

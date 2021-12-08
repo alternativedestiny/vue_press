@@ -180,3 +180,61 @@ print(perf_counter())
     ```
 
 4. 参考 [用 PyTorch 和预训练的 Transformers 创建问答系统](https://blog.csdn.net/deephub/article/details/112857017)
+
+## 9. Python 脚本传入参数
+
+1. sys.argv
+
+    ```python
+    # test.py
+    import sys
+
+    if __name__ == '__main__':
+        v = sys.argv
+        print(v)
+    ```
+
+    运行结果
+
+    ```bash
+    # 命令
+    python test.py 1 2
+    # 运行结果
+    ['0_test.py', '1', '2']
+    ```
+
+2. argparse 可以用于显示 help
+
+    ```python
+    # test.py
+    import argparse
+
+    if __name__ == '__main__':
+        parser = argparse.ArgumentParser(description='This is a test program')
+        # 参数名，类型，默认值，help
+        parser.add_argument('--a', type=str, default=None, help='String type parameter')
+        args = parser.parse_args()
+        print(f'Para a = {args.a}')
+    ```
+
+    运行结果
+
+    ```bash
+    # 命令：带参数 a 运行
+    python test.py --a 1
+    # 运行结果
+    Para a = 1
+
+    # 命令：显示 help
+    python test.py -h
+    # 运行结果
+    usage: test.py [-h] [--a A]
+
+    This is a test program
+
+    optional arguments:
+    -h, --help  show this help message and exit
+    --a A       String type parameter
+    ```
+
+3. 参考连接 [命令行运行 Python 脚本时传入参数的三种方式](https://blog.csdn.net/weixin_35653315/article/details/72886718)

@@ -1,6 +1,22 @@
 # 9. 数据库
 
-## 1. MySQL
+## 1. SQLite
+
+### 安装
+
+1. SQLite 是 python 内置数据库，无需安装
+
+### 使用
+
+1. 连接数据库
+
+    ```python
+    import sqlite3
+
+    connection = sqlite3.connect('')
+    ```
+
+## 2. MySQL
 
 1. 安装 MySQL 数据库的 python 包
 
