@@ -4,6 +4,11 @@
 
 - python 3.7.2
 - sklearn（python机器学习库）
+
+    ```bash
+    pip install scikit-learn
+    ```
+
 - numpy（矩阵处理库）
 - matplotlib（绘图库）
 

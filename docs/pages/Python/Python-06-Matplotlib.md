@@ -185,28 +185,28 @@
 
 1. plt.legend
 
-     ```python
-     # 设置图例
-     plt.plot(x1, y1, label='a')
-     plt.plot(x2, y2, label='b')
-     plt.legend()
-     ```
+    ```python
+    # 设置图例
+    plt.plot(x1, y1, label='a')
+    plt.plot(x2, y2, label='b')
+    plt.legend()
+    ```
 
 2. 位置 `loc=string or code`
 
-     | 位置 string    | 位置 code | 位置            |
-     | -------------- | --------- | --------------- |
-     | 'best'         | 0         | 自适应          |
-     | 'upper right'  | 1         | 右上↗           |
-     | 'upper left'   | 2         | 左上↖           |
-     | 'lower left'   | 3         | 左下↙           |
-     | 'lower right'  | 4         | 右下↘           |
-     | 'right'        | 5         | 右→             |
-     | 'center left'  | 6         | 左←             |
-     | 'center right' | 7         | 右→（同 rigth） |
-     | 'lower center' | 8         | 下↓             |
-     | 'upper center' | 9         | 上↑             |
-     | 'cneter'       | 10        | 中心            |
+    | 位置 string    | 位置 code | 位置            |
+    | -------------- | --------- | --------------- |
+    | 'best'         | 0         | 自适应          |
+    | 'upper right'  | 1         | 右上↗           |
+    | 'upper left'   | 2         | 左上↖           |
+    | 'lower left'   | 3         | 左下↙           |
+    | 'lower right'  | 4         | 右下↘           |
+    | 'right'        | 5         | 右→             |
+    | 'center left'  | 6         | 左←             |
+    | 'center right' | 7         | 右→（同 rigth） |
+    | 'lower center' | 8         | 下↓             |
+    | 'upper center' | 9         | 上↑             |
+    | 'cneter'       | 10        | 中心            |
 
 3. 标题
 
@@ -216,12 +216,14 @@
 
 4. 设置图例的显示方式
 
-     ```python
-     # 图例显示位置 1, 6 列
-     plt.legend(loc=1, ncol=6)
-     # 图例显示到图外
-     plt.legend(loc=2, bbox_to_anchor=(1.05, 1.0), borderaxespad=0.)
-     ```
+    ```python
+    # 图例显示位置 1, 6 列
+    plt.legend(loc=1, ncol=6)
+
+    # 图例显示到图外：loc 此时表示定位点，bbox_to_anchor 表示定位点的位置
+    # 定位点为图例左上角，偏移位置 x=1.05,y=1.0
+    plt.legend(loc=2, bbox_to_anchor=(1.05, 1.0), borderaxespad=0.)
+    ```
 
 5. legend 参数，更多配置参考 [官方文档](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
 
@@ -230,9 +232,13 @@
 1. subplot(nrows, ncols, index, **kwargs)
 
     ```python
-    plt.subplot(2, 1, 1)  # 或 plt.subplot(211)
+    plt.subplot(2, 2, 1)  # 或 plt.subplot(221)
     plt.plot(x1, y1)
-    plt.subplot(2, 1, 2)  # 或 plt.subplot(212)
+    plt.subplot(2, 2, 2)  # 或 plt.subplot(222)
+    plt.plot(x2, y2)
+    plt.subplot(2, 2, 3)  # 或 plt.subplot(223)
+    plt.plot(x2, y2)
+    plt.subplot(2, 2, 4)  # 或 plt.subplot(224)
     plt.plot(x2, y2)
     ```
 

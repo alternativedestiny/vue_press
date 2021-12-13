@@ -252,22 +252,22 @@ cout << str_list[0] << endl;    // abc
 
 1. Char
 
-     ```cpp
-     char c1[] = "abc";
-     char c2[4] = "abc"; // 结尾有'\0', 所以占 4 字节
-     char *c3 = "abc";
-     ```
+    ```cpp
+    char c1[] = "abc";
+    char c2[4] = "abc"; // 结尾有'\0', 所以占 4 字节
+    char *c3 = "abc";
+    ```
 
 2. String
 
-     ```cpp
-     // 头文件
-     #include <string>
-     using namespace std;
+    ```cpp
+    // 头文件
+    #include <string>
+    using namespace std;
 
-     string s1 = "what is your name"
-     string s2 = "is"
-     ```
+    string s1 = "what is your name"
+    string s2 = "is"
+    ```
 
 ### 5.2. 访问
 
@@ -495,11 +495,11 @@ cout << str_list[0] << endl;    // abc
 1. `to_string(i)` (c++11)
 2. `sprintf`
 
-     ```cpp
-     char c[256];
-     float pi = 3.14;
-     sprintf(c, "Pi = %f", pi);  // 格式化字符串
-     ```
+    ```cpp
+    char c[256];
+    float pi = 3.14;
+    sprintf(c, "Pi = %f", pi);  // 格式化字符串
+    ```
 
 3. 常用
 
@@ -520,7 +520,7 @@ cout << str_list[0] << endl;    // abc
     string s1 = "123";
     char *c1 = "123.45";
     int i = atoi(s1.c_str());
-    int j = atof(c1);
+    float j = atof(c1);
     ```
 
 ### 7.3. char <-> string

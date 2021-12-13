@@ -64,6 +64,8 @@
     sudo service ssh --full-restart
     ```
 
+3. Xshell连接WSL的时候需要先重启ssh
+
 ## 2. 概念
 
 1. BASH（Bourne Again SHell）：bash 是最初 Unix 上由 Steve Bourne 写成 shell 程序 sh 的增强版

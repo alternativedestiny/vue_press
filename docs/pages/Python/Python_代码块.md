@@ -29,12 +29,18 @@ print(perf_counter())
 ## 3. 分段线性拟合 piecewise linear fit
 
 1. 使用到的包`pwlf`
+
+    ```bash
+    pip install pwlf
+    ```
+
 2. [官方文档](https://jekel.me/piecewise_linear_fit_py/)
 3. 代码
 
     ```python
     import pwlf
     import matplotlib.pyplot as plt
+
     # 对数据 x,y 进行分段拟合
     my_pwlf = pwlf.PiecewiseLinFit(x, y)
     # 转折点，segments 为分段数

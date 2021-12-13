@@ -202,10 +202,10 @@
 1. 排序
 
     ```python
-    # 升序排列，替换原 Series
+    # 升序排列，并替换原 Series
     sr = Series.sort_values(inplace=True)
 
-    # 降序排列，不替换原 df
+    # 降序排列，不替换原 df，替换可以增加 inplace 参数
     df = DataFrame.sort_values(by=['col1'], ascending=False)  
     ```
 
@@ -558,6 +558,25 @@
 
     ```python
     df.to_excel('name.excel', sheet_name='Sheet1')
+    ```
+
+## PandasGUI
+
+1. 简介：Pandasgui是一个开源的python模块，它为pandas创建了一个GUI界面，我们可以在其中使用pandas的功能分析数据和使用不同的功能，以便可视化和分析数据，并执行探索性数据分析。
+2. 安装
+
+    ```bash
+    pip install pandasgui
+    ```
+
+3. 使用
+
+    ```python
+    import pandas as pd
+    from pandasgui import show
+
+    df = pd.read_csv('')    # 打开一个数据集
+    show(df)    # 打开pandasGUI界面
     ```
 
 ## 4. Pandas 错误处理
