@@ -260,6 +260,7 @@
     
     # 创建空列表
     list2 = []
+    list3 = list()
     
     # 创建全 0 列表
     import numpy as np

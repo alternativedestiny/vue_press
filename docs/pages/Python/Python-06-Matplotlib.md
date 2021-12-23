@@ -10,6 +10,7 @@
     import matplotlib.pyplot as plt
 
     plt.figure()
+    # 两条曲线 (x1,x2) 和 (x2, y2)
     plt.plot(x1, y1, x2, y2)
     plt.show()
     ```
@@ -208,13 +209,7 @@
     | 'upper center' | 9         | 上↑             |
     | 'cneter'       | 10        | 中心            |
 
-3. 标题
-
-    ```python
-    plt.title('图例', size=16)
-    ```
-
-4. 设置图例的显示方式
+3. 设置图例的显示方式
 
     ```python
     # 图例显示位置 1, 6 列
@@ -225,7 +220,13 @@
     plt.legend(loc=2, bbox_to_anchor=(1.05, 1.0), borderaxespad=0.)
     ```
 
-5. legend 参数，更多配置参考 [官方文档](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
+4. 标题
+
+    ```python
+    plt.title('图名', size=16)
+    ```
+
+5. legend 参数，更多配置参考 [官方文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html)
 
 ### 2.3. 多图设置
 
@@ -324,6 +325,23 @@
     # 垂直虚线，从 (x,ymin) 到 (x,ymax)
     plt.vlines(x, ymin, ymax, linestyle=':')
     ```
+
+3. 图片方格
+
+    ```python
+    plt.grid(True)  # 开启方格
+    ```
+
+### 2.6. 注释
+
+1. plt.text() 使用
+
+    ```python
+    # 
+    plt.text()
+    ```
+
+2. plt.annotate()
 
 ## 3. 图片显示/输出设置
 

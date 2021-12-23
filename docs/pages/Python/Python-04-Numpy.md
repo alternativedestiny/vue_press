@@ -59,21 +59,24 @@
     ```python
     import numpy as np
     x = np.array([1, 2, 3, 4, 5])
+    # 以下操作均在此 x 上操作
     ```
 
 2. 增
 
     ```python
-    # 增
+    # 在尾部增加元素 6
     x = np.append(x, 6)  # [1 2 3 4 5 6]
+    # 在位置 idx=1 处增加元素 2
     x = np.insert(x, 1, [2])  # [1 2 2 3 4 5]
     ```
 
 3. 删
 
     ```python
-    # 删
+    # 删掉 idx=2 的元素
     x = np.delete(x, 2)  # [1 2 4 5]
+    # 删除 idx=2 和 4 的元素
     x = np.delete(x, [1, 3])  # [1 3 5]
     ```
 
@@ -117,6 +120,26 @@
 
     np.pi  # pi
     np.sin()  # sin
+    ```
+
+### 1.4. reshape
+
+1. 行列变换
+
+    ```python
+    import numpy as np
+
+    z = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])    # [[1 2 3 4], [5 6 7 8]]
+
+    # 变成一行
+    z = np.reshape(z, (-1))    # [1 2 3 4 5 6 7 8]
+
+    # 变成 n*1
+    z = np.reshape(z, (-1, 1))  # [[1], [2], [3], [4], [5], [6], [7], [8]]
+
+    # 变成 4*n
+    z = np.reshape(z, (4, -1))  # [[1 2], [3 4], [5 6], [7 8]]
+
     ```
 
 ## 2. 计算

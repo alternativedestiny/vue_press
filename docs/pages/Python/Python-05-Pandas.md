@@ -49,10 +49,11 @@
 2. 生成 DataFrame 空结构
 
     ```python
-    # 创建一个空 DataFrame，utf-8 编码
+    # 创建一个空 DataFrame，默认 utf-8 编码
     cols = ['a', 'b', 'c']  # 列名
     index = [1, 2, 3, 4]  # 行名
     df = pd.DataFrame(index=index, columns=cols)
+
 
     # 得到的数据表格为：
     |     | a   | b   | c   |
@@ -65,15 +66,7 @@
 
 3. date_range：生成等间隔时间序列
 
-    ```python
-    pd.date_range(start, end, pediods, freq)
-
-    # eg
-    import pandas as pd
-
-    start = '2020-01-01'
-    data = pd.date_range(start, periods=3, freq='4H').tolist()  # 转换成 list
-    ```
+    函数：`pd.date_range(start, end, pediods, freq)`
 
     | 参数    | 简介         |
     | ------- | ------------ |
@@ -81,6 +74,19 @@
     | end     | 结束日期     |
     | periods | 生成日期数量 |
     | freq    | 日期间隔     |
+
+    ```python
+    import pandas as pd
+
+    start = '2020-01-01'
+    data = pd.date_range(start, periods=3, freq='4H')
+    print(data)
+
+    # 输出
+    DatetimeIndex(['2020-01-01 00:00:00', '2020-01-01 04:00:00',
+                    '2020-01-01 08:00:00'],
+                    dtype='datetime64[ns]', freq='4H')
+    ```
 
 ### 1.3. 数据格式转换
 
@@ -560,9 +566,9 @@
     df.to_excel('name.excel', sheet_name='Sheet1')
     ```
 
-## PandasGUI
+## 4. PandasGUI
 
-1. 简介：Pandasgui是一个开源的python模块，它为pandas创建了一个GUI界面，我们可以在其中使用pandas的功能分析数据和使用不同的功能，以便可视化和分析数据，并执行探索性数据分析。
+1. 简介：Pandasgui 是一个开源的 python 模块，它为 pandas 创建了一个 GUI 界面，我们可以在其中使用 pandas 的功能分析数据和使用不同的功能，以便可视化和分析数据，并执行探索性数据分析。
 2. 安装
 
     ```bash
@@ -576,16 +582,16 @@
     from pandasgui import show
 
     df = pd.read_csv('')    # 打开一个数据集
-    show(df)    # 打开pandasGUI界面
+    show(df)    # 打开 pandasGUI 界面
     ```
 
-## 4. Pandas 错误处理
+## 5. Pandas 错误处理
 
 1. [`read_csv mixed types`问题](https://www.jianshu.com/p/a70554726f26)
 2. `cannot convert the series to <class 'float'>`问题
    1. 原因：可能是某处变量调用忘了加限定，比如 a[i] 写成了 a
 
-## 5. 参考
+## 6. 参考
 
 1. [pandas 类 SQL 查询](https://juejin.im/post/5b5e5b2ee51d4517df1510c7)
 2. [Pandas 分组](https://www.yiibai.com/pandas/python_pandas_groupby.html)
