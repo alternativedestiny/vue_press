@@ -37,6 +37,8 @@
 
 ## 2. 数字 (Number)
 
+### 2.1. 保留有效数字
+
 1. 保留 4 位小数位
 
     ```python
@@ -45,6 +47,66 @@
     # round
     num = round(num, 4)
     ```
+
+### 2.2. 算数运算
+
+1. 加
+
+    ```python
+    # 加
+    a = 1
+    b = 2
+    c = a + b   # c = 3
+    a += b  # a = 3
+
+    # 自增
+    i += 1  # python 没有++的用法 
+    ```
+
+2. 减
+
+    ```python
+    a = 1
+    b = 2
+    c = a - b   # c = -1
+    a -= b  # a = -1
+    ```
+
+3. 乘
+
+    ```python
+    a = 3
+    b = 2
+    c = a * b   # c = 6
+
+    # 乘方
+    c = a ** b  # c = 9
+    ```
+
+4. 除
+
+    ```python
+    a = 3
+    b = 2
+    c = a / b   # c = 1.5
+
+    # 整除
+    c = a // b  # c = 1
+    
+    # 取余
+    c = a % b   # c = 1
+    ```
+
+5. 开方
+
+    ```python
+    # math 是 python 内置库，无需安装
+    from math import sqrt
+
+    a = sqrt(4)  # 2.0
+    ```
+
+### 2.3. 逻辑运算
 
 ## 3. 字符串 (String)
 

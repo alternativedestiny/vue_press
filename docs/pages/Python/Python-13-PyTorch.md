@@ -2,7 +2,7 @@
 
 ## 1. 安装
 
-1. 安装包比较大，建议先配置清华源，参考第一章 [Python 环境](Python-01-环境。md)
+1. 安装包比较大，建议先配置清华源，参考第一章 [Python 环境](Python-01-环境.md)
 2. 进入 Pytorch 官网的 [安装页面](https://pytorch.org/get-started/locally/), 根据需要选择环境和安装版本
 
     ![图 1](../images/2021-06-26_92.png)  
@@ -80,10 +80,49 @@
     model = torch.load('model_name')
     ```
 
-### 2.3. 激活（激励）函数 Activation Function
+### 2.3. [Torch 模型](https://pytorch.org/docs/stable/nn.html)
 
-1. relu
-2. sigmoid
-3. tanh
+1. 卷积层：conv2d 二维卷积，[卷积动画](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md)
+
+    ```python
+    import torch nn as nn
+    import torch.nn.functional as F
+
+    nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
+    # in_channels: 输入维度
+    # out_channels: 输出维度
+    # kernel_size: 内核维度
+    # stride: 偏移量
+    # padding: 填充（矩阵边缘填充的维度）
+
+    F.conv2d(input, weight, bias=None, stride=1, padding=0)
+    # input: 输入
+    # weight: 卷积核
+    # bias: 偏置（相当于加一个常量）
+    # stride: 偏移量
+    # padding: 填充（矩阵边缘填充的维度）
+
+    ```
+
+2. 池化层：maxpool2d 二维最大池化，减小数据维数，加快训练速度
+
+    ```python
+    nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)
+    # kernel_size: 池化维度
+    # stride: 偏移量，默认值=kernel_size
+    # padding: 填充
+    # dilation: 空洞卷积
+    # ceil_mode: True=ceil 模式，false=floor 模式
+    ```
+
+3. 非线性激活
+
+    ```python
+    nn.ReLU(inplace=False)   # 0 if x < 0 else x
+    nn.Sigmoid()
+    nn.Tanh()
+    ```
+
+4. 线性层
 
 ## 3. 并行计算

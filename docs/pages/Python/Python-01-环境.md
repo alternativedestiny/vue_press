@@ -284,7 +284,54 @@
 
 5. 然后就可以开始调试运行了
 
-## 5. 备注
+## 5. CUDA 安装
+
+1. 如果需要安装 pytorch, 建议根据 pytorch 的版本选择安装对应的 CUDA 版本，教程当前时间 pytorch 最高支持 cuda 11.3, 因此本文以 11.3 版本为例
+2. 检查显卡驱动版本是否兼容 [CUDA 版本列表](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html), 一般自动更新的驱动都可以兼容（过于老旧的 Nvidia 卡和所有的 AMD 显卡不支持）
+3. 在网上搜索对应版本的 cuda 下载地址，比如 [CUDA 11.3](https://developer.nvidia.com/cuda-11.3.0-download-archive)
+4. 安装 CUDA
+   1. 执行完安装程序后，在 Path 环境变量中添加以下几条，根据自己的版本和位置修改，如果已经有了就不用添加
+
+        ```bash
+        C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.3\bin
+        C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.3\lib
+        C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.3\libnvvp
+        ```
+
+   2. 测试 cuda, 在 cmd 中输入`nvcc -V`指令，出现类似下图内容表示安装成功
+
+        ![图 3](../images/2022-01-17_44.png)  
+
+   3. 测试带宽
+
+        ![图 1](../images/2022-01-17_67.png)  
+
+5. 下载安装 [cudnn](https://developer.nvidia.cn/rdp/cudnn-archive), 注意要跟 cuda 版本匹配，需要 nvidia 账号。将解压后的文件放入 cuda 的安装目录(`\CUDA\v11.3\`)即可
+6. 安装测试 tensorflow
+   1. python 安装 tensorflow-gpu
+
+        ```bash
+        pip install tensorflow-gpu
+        ```
+
+   2. 测试
+
+        ```python
+        # 测试 GPU 配置是否成功
+        import tensorflow as tf
+
+        # 显示 1 及以上数字说明配置成功
+        print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+        ```
+
+        ```bash
+        # 表示有 1 块 gpu 可以使用
+        Num GPUs Available:  1
+        ```
+
+7. [参考教程](https://blog.csdn.net/XunCiy/article/details/89070315)
+
+## 6. 备注
 
 1. 常用库
 

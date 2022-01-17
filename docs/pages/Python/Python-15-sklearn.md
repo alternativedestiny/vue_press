@@ -30,3 +30,34 @@
     # 接续上述代码
     data = scaler.inverse_transform(data)   # [[1.], [2.], [3.], [4.], [5.]]
     ```
+
+## 3. 聚类 Cluster
+
+### 3.1. 层次聚类 AgglomerativeClustering
+
+1. 聚类
+
+    ```python
+    from sklearn.cluster import AgglomerativeClustering
+
+    zones = 10  # 聚类个数，即聚成几类
+    data = pd.read_csv()    # 聚类数据，比如 Pearson 相关性系数
+    
+    # 聚类器（聚类个数，聚类方法）
+    sk = AgglomerativeClustering(zones, linkage='ward')
+    # 聚类
+    sk.fit(data)
+
+    # 输出结果
+    out = sk.labels_    # 每个数据的类别编号
+    ```
+
+2. 参数
+
+    | linkage  | 中文名 | 说明     |
+    | -------- | ------ | -------- |
+    | ward     | 单链接 | 最小距离 |
+    | complete | 全链接 | 最大距离 |
+    | average  | 均链接 | 平均距离 |
+
+### 3.2. k 均值聚类 k-means

@@ -5,7 +5,7 @@
 1. pip 安装
 
     ```bash
-    # 安装 cpu 版的 tensorflow
+    # 安装 cpu 版的 tensorflow, 最新版本的 python 不一定支持，不建议 python 版本太新
     pip install tensorflow
     # 或者安装 gpu 版的 tensorflow（需要 CUDA 支持）
     pip install tensorflow-gpu
@@ -42,7 +42,7 @@
 
 4. keras 结构
 
-    ![图 1](../images/2021-12-16_88.png)  
+    ![图 1](../images/2021-12-16_88.png)
 
 ## 2. 核心层
 
@@ -97,6 +97,7 @@
    ```python
    # poll_size：长度为 2 的整数 tuple，表示在横向和纵向的下采样因子，一维则为纵向下采样因子
    MaxPolling(poll_size=(2,2), strides=None, padding='valid')
+   # 上面的代码表示
    ```
 
 8. 循环层：循环神经网络中的 RNN、LSTM 和 GRU 都继承本层，所以该父类的参数同样使用于对应的子类 SimpleRNN、LSTM 和 GRU
@@ -114,6 +115,8 @@
    # input_length：当输入序列的长度固定时，该值为其长度。如果要在该层后接 Flatten 层，然后接 Dense 层，则必须指定该参数，否则 Dense 层的输出维度无法自动推断
    Embedding(input_dim, output_dim, input_length)
    ```
+
+10. [视频教程](https://www.bilibili.com/video/BV1hE411t7RN?p=18)
 
 ## 3. 模型搭建
 

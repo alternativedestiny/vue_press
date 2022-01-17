@@ -52,7 +52,7 @@
     a = data[行起始：终止，列起始：终止]
     ```
 
-### 1.3. 增删改查，[参考](https://blog.csdn.net/Tyro_java/article/details/81052638)
+### 1.3. 增删改查
 
 1. 定义数据
 
@@ -122,6 +122,8 @@
     np.sin()  # sin
     ```
 
+8. [参考](https://blog.csdn.net/Tyro_java/article/details/81052638)
+
 ### 1.4. reshape
 
 1. 行列变换
@@ -134,7 +136,7 @@
     # 变成一行
     z = np.reshape(z, (-1))    # [1 2 3 4 5 6 7 8]
 
-    # 变成 n*1
+    # 变成 n*1, -1 表示任意值
     z = np.reshape(z, (-1, 1))  # [[1], [2], [3], [4], [5], [6], [7], [8]]
 
     # 变成 4*n
