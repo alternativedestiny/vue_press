@@ -288,9 +288,9 @@
 
 1. 如果需要安装 pytorch, 建议根据 pytorch 的版本选择安装对应的 CUDA 版本，教程当前时间 pytorch 最高支持 cuda 11.3, 因此本文以 11.3 版本为例
 2. 检查显卡驱动版本是否兼容 [CUDA 版本列表](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html), 一般自动更新的驱动都可以兼容（过于老旧的 Nvidia 卡和所有的 AMD 显卡不支持）
-3. 在网上搜索对应版本的 cuda 下载地址，比如 [CUDA 11.3](https://developer.nvidia.com/cuda-11.3.0-download-archive)
+3. 在网上搜索对应版本的 cuda 下载地址（官网不好找版本，直接搜索更方便），比如 [CUDA 11.3](https://developer.nvidia.com/cuda-11.3.0-download-archive)
 4. 安装 CUDA
-   1. 执行完安装程序后，在 Path 环境变量中添加以下几条，根据自己的版本和位置修改，如果已经有了就不用添加
+   1. 执行完安装程序后，在 `Path` 环境变量中添加以下几条，根据自己的版本和位置修改，如果已经有了就不用添加
 
         ```bash
         C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.3\bin
@@ -306,7 +306,7 @@
 
         ![图 1](../images/2022-01-17_67.png)  
 
-5. 下载安装 [cudnn](https://developer.nvidia.cn/rdp/cudnn-archive), 注意要跟 cuda 版本匹配，需要 nvidia 账号。将解压后的文件放入 cuda 的安装目录(`\CUDA\v11.3\`)即可
+5. 下载安装 [cudnn](https://developer.nvidia.cn/rdp/cudnn-archive), 注意要跟 cuda 版本匹配，CUDA11.3 对应 cudnn8.2.1，需要 nvidia 账号。将解压后的文件放入 cuda 的安装目录 (`\CUDA\v11.3\`) 即可
 6. 安装测试 tensorflow
    1. python 安装 tensorflow-gpu
 
@@ -335,22 +335,23 @@
 
 1. 常用库
 
-    | 库          | 功能                           |
-    | ----------- | ------------------------------ |
-    | altair      | 数据可视化工具                 |
-    | django      | django 网站框架                |
-    | jaydebeapi  | 通过 java 的 jdbc 来连接数据库 |
-    | matplotlib  | 绘图                           |
-    | nuitka      | python 程序打包                |
-    | pandas      | 数据分析工具                   |
-    | paramiko    | ssh 工具                       |
-    | pillow->PIL | 图片处理                       |
-    | psutil      | 电脑监控信息读取               |
-    | pyserial    | 串口                           |
-    | pymysql     | MySQL 数据库                   |
-    | pulp        | 线性求解                       |
-    | pwlf        | 分段线性拟合                   |
-    | pyecharts   | python + echarts               |
-    | scipy       | 科学计算库                     |
-    | sympy       | 科学（符号）计算库             |
-    | virtualenv  | 虚拟环境                       |
+    | 库            | 功能                           |
+    | ------------- | ------------------------------ |
+    | altair        | 数据可视化工具                 |
+    | django        | django 网站框架                |
+    | jaydebeapi    | 通过 java 的 jdbc 来连接数据库 |
+    | matplotlib    | 绘图                           |
+    | nuitka        | python 程序打包                |
+    | pandas        | 数据分析工具                   |
+    | paramiko      | ssh 工具                       |
+    | pillow->PIL   | 图片处理                       |
+    | pretty_errors | python 优化错误显示            |
+    | psutil        | 电脑监控信息读取               |
+    | pulp          | 线性求解                       |
+    | pwlf          | 分段线性拟合                   |
+    | pyecharts     | python + echarts               |
+    | pymysql       | MySQL 数据库                   |
+    | pyserial      | 串口                           |
+    | scipy         | 科学计算库                     |
+    | sympy         | 科学（符号）计算库             |
+    | virtualenv    | 虚拟环境                       |

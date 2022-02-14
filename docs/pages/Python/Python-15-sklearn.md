@@ -9,7 +9,11 @@
     pip install sklearn
     ```
 
-## 2. 归一化
+3. 官方 [中文文档](https://sklearn.apachecn.org/#/)
+
+## 2. 常用函数
+
+### 2.1. 归一化
 
 1. 归一化
 
@@ -31,9 +35,23 @@
     data = scaler.inverse_transform(data)   # [[1.], [2.], [3.], [4.], [5.]]
     ```
 
-## 3. 聚类 Cluster
+### 2.2. 分配训练集和测试集
 
-### 3.1. 层次聚类 AgglomerativeClustering
+1. train_test_split
+
+    ```python
+    from sklearn.model_selection import train_test_split
+
+    x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.1, random_state=42)
+    # x_data: 要划分的样本特征集
+    # y_data: 要划分的样本结果
+    # test_size: 样本占比，如果是整数的话就是样本的数量
+    # random_state: 随机数的种子
+    ```
+
+## 3. 聚类 Clustering
+
+### 3.1. 层次聚类 Hierarchical clustering
 
 1. 聚类
 

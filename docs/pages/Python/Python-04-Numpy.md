@@ -18,6 +18,9 @@
 
     # 从数值范围创建数组：起始值，截止值，间隔
     x = np.arange(0, 5, 1)  # ndarray [0 1 2 3 4]
+    # 也可以简写为
+    x = np.arange(5)
+
     # 用 list 的写法
     x = [t for t in range(5)]  # [0 1 2 3 4]
 
@@ -30,6 +33,12 @@
     # 用 list 的写法
     x = [0 for t in range(3)]  # [0, 0, 0]
     x = [1 for t in range(3)]  # [1, 1, 1]
+    ```
+
+    ```python
+    # 创建多维 ndarray, 注意是两层括号
+    x = np.zeros((3, 3))    # [[0. 0. 0.] [0. 0. 0.] [0. 0. 0.]]
+    
     ```
 
 3. 随机数
@@ -126,7 +135,7 @@
 
 ### 1.4. reshape
 
-1. 行列变换
+1. 行列变换（转置）
 
     ```python
     import numpy as np

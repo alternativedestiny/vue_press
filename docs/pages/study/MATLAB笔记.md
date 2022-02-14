@@ -21,22 +21,33 @@
     | 命令      | 功能                                                 |
     | --------- | ---------------------------------------------------- |
     | clc       | 清除命令窗口的内容，对工作环境中的全部变量无任何影响 |
-    | close     | 关闭当前的Figure窗口                                 |
-    | close all | 关闭所有的Figure窗口                                 |
+    | close     | 关闭当前的 Figure 窗口                               |
+    | close all | 关闭所有的 Figure 窗口                               |
     | clear     | 清除工作空间的所有变量                               |
-    | clear all | 清除工作空间的所有变量，函数，和MEX文件              |
+    | clear all | 清除工作空间的所有变量，函数，和 MEX 文件            |
 
 ## 2. 读写文件
 
-### 读文件
+### 2.1. 读文件
 
-1. 读取文件
+1. 读取 mat 文件
 
     ```matlab
-    load('data.mat')
+    data = load('data.mat');
     ```
 
-### 写文件
+2. 读取 csv 文件
+
+    ```matlab
+    % 只能读取纯数字，不推荐，可以通过参数跳过
+    data = csvread('file_name.csv', row=0, col=0);
+
+    % 可以读取带表头文件
+    A = importdata('file_name.csv');
+    data = A.data;
+    ```
+
+### 2.2. 写文件
 
 1. 保存数据
 
@@ -44,10 +55,10 @@
     save('data.mat')
     ```
 
-2. 保存csv文件
+2. 保存 csv 文件
 
     ```matlab
-    % 文件会保存在matlab打开的当前目录下
+    % 文件会保存在 matlab 打开的当前目录下
     csvwrite(file_name, data);
     ```
 

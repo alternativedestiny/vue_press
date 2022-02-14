@@ -15,10 +15,10 @@
     pip3 install torch torchvision torchaudio
     ```
 
-4. 检测 GPU 是否可用
+4. 使用 gpu 进行训练需要配置 cuda 环境，参考 [CUDA 安装](Python-01-环境.md##-5.-CUDA-安装)
 
-    - gpu 版本需要先 NVIDIA 显卡并安装 CUDA，最好先根据列出的版本安装对应的 CUDA 版本，比如上图要安装 CUDA11.1，然后复制对应的指令安装相应版本的 torch
-    - 安装包比较大，可以通过 pip 指令列出的地址下载好安装包后，从本地安装
+    - Tips1: gpu 版本需要先 NVIDIA 显卡并安装 CUDA，最好先根据列出的版本安装对应的 CUDA 版本，比如上图要安装 CUDA11.1，然后复制对应的指令安装相应版本的 torch
+    - Tips2: 安装包比较大，可以通过 pip 指令列出的地址下载好安装包后，从本地安装
 
     ```python
     import torch

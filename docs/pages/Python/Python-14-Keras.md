@@ -14,22 +14,7 @@
     pip install keras
     ```
 
-2. 此外还需要安装 cuDnn，参考 [tensorflow GPU 支持](https://www.tensorflow.org/install/gpu#windows_setup)
-   1. 配置 cuda 环境变量
-   2. 下载 [cudnn](https://developer.nvidia.cn/rdp/cudnn-archive), 需要 nvidia 账号
-   3. 测试 cuda，在`C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`目录下打开 powershell，运行`.\bandwidthTest.exe`, 显示下面的效果表示配置成功
-
-        ![图 2](../images/2021-12-16_24.png)  
-
-   4. 在代码中测试
-
-        ```python
-        # 测试 GPU 配置是否成功
-        import tensorflow as tf
-
-        # 显示 1 及以上数字说明配置成功
-        print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
-        ```
+2. 使用 gpu 进行训练需要配置 cuda 环境，参考 [CUDA 安装](Python-01-环境.md##-5.-CUDA-安装)
 
 3. 使用 gpu 进行训练
 
@@ -144,14 +129,15 @@
     # 使用均方差损失函数，优化器 Adam，评估标准
     model.compile(loss=losses.mean_squared_error,  # 损失函数
                 optimizer='adam',  # 优化器
-                metrics=['mae', 'acc'])  # 评估标准
+                metrics=['mae'])  # 评估标准
 
     # 模型将会进行 30 个 epochs（回合）的训练，每个回合将数据分成 batch=100 的组进行训练
     # 比如有 1000 条训练数据，batch_size=100 表示将 1000 条数据分成 10 组，每组 100 条数据，重复进行 epochs 次训练
     history = model.fit(x_train, y_train, epochs=30, batch_size=100,
                         validation_data=(x_test, y_test),   # 验证集
                         callbacks=[EarlyStopping(monitor='val_loss', patience=10)], # 当被检测值不再提升，提前结束训练
-                        verbose=1, shuffle=True)   # shuffle=False 不打乱数据顺序，一般设置为 True 训练结果会好一些
+                        verbose=1,  # 日志显示（默认 1): 0-不在标准输出流输出日志信息；1-输出进度条记录；2-每个 epoch 输出一行记录
+                        shuffle=True)   # shuffle=False 不打乱数据顺序，一般设置为 True 训练结果会好一些
     model.summary() # 打印模型信息
 
     # 做出预测
@@ -179,7 +165,7 @@
         # 使用均方差损失函数，优化器 Adam，评估标准
         model.compile(loss=losses.mean_squared_error,  # 损失函数
                     optimizer='adam',  # 优化器
-                    metrics=['mae', 'acc'])  # 评估标准
+                    metrics=['mae'])  # 评估标准
 
         model.summary()
 
@@ -189,6 +175,7 @@
 3. attention-lstm
 
     ```bash
+    # 安装 attention 包
     pip install attention
     ```
 
@@ -208,12 +195,25 @@
         # 使用均方差损失函数，优化器 Adam，评估标准
         model.compile(loss=losses.mean_squared_error,  # 损失函数
                     optimizer='adam',  # 优化器
-                    metrics=['mae', 'acc'])  # 评估标准
+                    metrics=['mae'])  # 评估标准
 
         model.summary()  # 显示模型信息
 
         return model
     ```
+
+4. 训练结果
+
+    | history  | 备注                             |
+    | -------- | -------------------------------- |
+    | loss     | 训练集损失（根据设置的损失函数） |
+    | mae      | 训练集平均绝对误差               |
+    | acc      | 训练集准确率（用于分类问题）     |
+    | val_loss | 验证集损失（根据设置的损失函数） |
+    | val_mae  | 验证集平均绝对误差               |
+    | val_acc  | 验证集准确率（用于分类问题）     |
+
+    - [keras 中 LSTM 能用 accuracy 进行评价么？](https://www.zhihu.com/question/432212136)
 
 ## 4. 模型保存与加载
 
@@ -234,3 +234,4 @@
 ## 5. 备注
 
 - [Keras 入门](http://www.tensorflownews.com/2018/03/15/%e4%bd%bf%e7%94%a8keras%e8%bf%9b%e8%a1%8c%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%ef%bc%9a%ef%bc%88%e4%b8%80%ef%bc%89keras-%e5%85%a5%e9%97%a8/)
+- [Keras 中文文档](https://keras.io/zh/)

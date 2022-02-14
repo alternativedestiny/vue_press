@@ -118,44 +118,44 @@ print(perf_counter())
 
 ## 7. 排序算法
 
-1. 算法复杂度
+### 7.1. 算法复杂度
 
-    | 算法     | 最优时间复杂度 | 平均时间复杂度 | 最差时间复杂度 | 最坏空间复杂度 |
-    | -------- | -------------- | -------------- | -------------- | -------------- |
-    | 快速排序 | O(n log n)     | O(n log n)     | O(n²)          | 不定           |
-    | 冒泡排序 | O(n)           | O(n²)          | O(n²)          | O(n)           |
-    | 归并排序 | O(n log n)     | O(n log n)     | O(n log n)     | O(n)           |
+| 算法     | 最优时间复杂度 | 平均时间复杂度 | 最差时间复杂度 | 最坏空间复杂度 |
+| -------- | -------------- | -------------- | -------------- | -------------- |
+| 快速排序 | O(n log n)     | O(n log n)     | O(n²)          | 不定           |
+| 冒泡排序 | O(n)           | O(n²)          | O(n²)          | O(n)           |
+| 归并排序 | O(n log n)     | O(n log n)     | O(n log n)     | O(n)           |
 
-2. 快速排序 (python)
+### 7.2. 快速排序 (python)
 
-    ```python
-    def quick_sort(nums):
-        if len(nums) <= 1:
-            return nums
-
-        left = []
-        right = []
-        base = nums.pop()
-        for x in nums:
-            if x < base:
-                left.append(x)
-            else:
-                right.append(x)
-
-        return quick_sort(left) + [base] + quick_sort(right)
-    ```
-
-3. 冒泡排序 (python)
-
-    ```python
-    def bubble_sort(nums):
-        for j in range(len(nums) - 1):
-            for i in range(len(nums) - 1):
-                if nums[i] > nums[i+1]:
-                    nums[i], nums[i+1] = nums[i+1], nums[i]
+```python
+def quick_sort(nums):
+    if len(nums) <= 1:
         return nums
 
-    ```
+    left = []
+    right = []
+    base = nums.pop()
+    for x in nums:
+        if x < base:
+            left.append(x)
+        else:
+            right.append(x)
+
+    return quick_sort(left) + [base] + quick_sort(right)
+```
+
+### 7.3. 冒泡排序 (python)
+
+```python
+def bubble_sort(nums):
+    for j in range(len(nums) - 1):
+        for i in range(len(nums) - 1):
+            if nums[i] > nums[i+1]:
+                nums[i], nums[i+1] = nums[i+1], nums[i]
+    return nums
+
+```
 
 ## 8. 智能问答
 
@@ -206,7 +206,7 @@ print(perf_counter())
     # 命令
     python test.py 1 2
     # 运行结果
-    ['0_test.py', '1', '2']
+    ['test.py', '1', '2']
     ```
 
 2. argparse 可以用于显示 help
