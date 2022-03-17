@@ -95,6 +95,7 @@
             double getLength( void );
             Line();   // 这是构造函数声明
             ~Line();  // 这是析构函数声明
+            int Cal();  // 普通类内函数
     };
 
     // 成员函数定义，包括构造函数
@@ -107,6 +108,8 @@
     {
         cout << "Object is being deleted" << endl;
     }
+
+    int Line::Cal(){}
     ```
 
 ## 3. 类访问修饰符

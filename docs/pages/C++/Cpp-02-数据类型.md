@@ -375,6 +375,15 @@ cout << str_list[0] << endl;    // abc
     }
     ```
 
+3. 格式化读取 sscanf
+
+    ```cpp
+    char c[64] = "2022-02-28 16:47:00";
+
+    int year, month, day, hour, minute, second;
+    sscanf(c, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
+    ```
+
 ## 6. 日期时间
 
 ### 6.1. 时间格式

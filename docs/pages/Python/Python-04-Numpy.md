@@ -4,7 +4,7 @@
 
 ### 1.1. 数组
 
-1. 头文件
+1. 引用
 
     ```python
     import numpy as np
@@ -16,11 +16,6 @@
     # 创建一维 ndarray，默认 int 格式
     x = np.array([1, 2, 3, 4, 5])  # ndarray [1 2 3 4 5]
 
-    # 从数值范围创建数组：起始值，截止值，间隔
-    x = np.arange(0, 5, 1)  # ndarray [0 1 2 3 4]
-    # 也可以简写为
-    x = np.arange(5)
-
     # 用 list 的写法
     x = [t for t in range(5)]  # [0 1 2 3 4]
 
@@ -31,8 +26,8 @@
     x = np.zeros(3)  # ndarray [0, 0, 0]
     x = np.ones(3)  # ndarray [1.000, 1.000, 1.000]
     # 用 list 的写法
-    x = [0 for t in range(3)]  # [0, 0, 0]
-    x = [1 for t in range(3)]  # [1, 1, 1]
+    x = [0] * 3  # [0, 0, 0]
+    x = [1] * 3  # [1, 1, 1]
     ```
 
     ```python
@@ -41,7 +36,21 @@
     
     ```
 
-3. 随机数
+3. arange
+
+    ```python
+    # 起始值（默认 0, 包含，间隔为 1 时可以省略）
+    # 截止值（不包含）
+    # 间隔（默认 1, 可以省略）
+    x = np.arange(0, 5, 1)  # ndarray [0 1 2 3 4]
+    # 也可以简写为
+    x = np.arange(5)
+
+    # 间隔可以为负数
+    x = np.arange(5, 2, -1) # ndarray [5 4 3]
+    ```
+
+4. 随机数
 
     ```python
     from numpy import random
@@ -153,7 +162,7 @@
 
     ```
 
-## 2. 计算
+## 2. 函数
 
 ### 2.1. 算数函数
 
@@ -169,6 +178,20 @@
     ```
 
 ### 2.2. 统计函数
+
+### 2.3. 逻辑函数
+
+1. where
+
+    ```python
+    # 条件，满足条件输出 x, 不满足输出 y
+    y = np.where(condition, x, y)
+    ```
+
+    ```python
+    x = np.arange(-2, 2)    # [-2 -1 0 1]
+    y = np.where(x < 0, -x, x)  # [2 1 0 1]
+    ```
 
 ## 3. 拟合
 

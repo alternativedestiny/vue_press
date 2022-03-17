@@ -164,9 +164,33 @@
     }
    ```
 
-## 7. 问题处理
+## 7. SFTP 插件使用方法
 
-### 7.1. 因为在此系统上禁止运行脚本
+1. 安装
+
+   ![图 1](../images/2022-03-15_93.png)  
+
+2. `Ctrl+Shift+P` 选择 `SFTP: Config` 打开配置文件 `sftp.json`
+
+    ```json
+    {
+        "name": "名字随便起",
+        "host": "IP 地址 127.0.0.1",
+        "protocol": "sftp",
+        "port": 22,
+        "username": "用户名",
+        "password": "密码",
+        "remotePath": "远程路径，从/home/开始",
+        "uploadOnSave": true,   // 保存后自动上传
+        "connectTimeout":50000,
+        "useTempFile": false,
+        "openSsh": false
+    }
+    ```
+
+## 8. 问题处理
+
+### 8.1. 因为在此系统上禁止运行脚本
 
 1. 现象：在 vscode 运行 yarn 或 npm 脚本时出现无法运行的情况
 2. 解决方法

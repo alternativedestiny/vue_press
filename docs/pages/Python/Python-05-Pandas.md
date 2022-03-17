@@ -239,6 +239,8 @@
 
     # 将数据中的 0 替换为 nan, 这样在进行统计计算时会自动忽略这些值
     df = df.replace(0, np.NaN)
+    # 或
+    df.replace(0, np.NaN, inplace=True)
     ```
 
 ### 2.4. 查
@@ -499,7 +501,7 @@
     df = pd.read_csv('filename.csv', header=0, encoding='gbk', dtype={'id': int, 'name': string})
 
     # 读取 excel 文件，表头第 0 行，表 sheet1，选择第 0，1 列数据
-    # 依赖 xlrd，需要安装
+    # 依赖 openpyxl, pip install openpyxl
     # 读取 sheet1 用 sheet_name=0 也可
     df1 = pd.read_excel('filename.xlsx', header=0, sheet_name='Sheet1', usecols=[0, 1])
 

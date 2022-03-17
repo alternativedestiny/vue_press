@@ -328,9 +328,9 @@
     import numpy as np
     list1 = np.zeros(25, dtype=int)  # ndarray
     # 用 list 的写法
-    list1 = [0 for t in range(3)]  # [0, 0, 0]
+    list1 = [0 for t in range(5)]  # list:5 [0, 0, 0, 0, 0]
     # 也可以
-    list1 = [0] * 5     # [0, 0, 0, 0, 0]
+    list1 = [0] * 5     # list:5 [0, 0, 0, 0, 0]
 
     # 创建序列数组：5,6,7,8,9
     list2 = [x for x in np.arange(5, 10, 1)]

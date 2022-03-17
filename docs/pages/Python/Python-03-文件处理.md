@@ -134,7 +134,7 @@
 
 ### 2.2. Excel(xls/xlsx) 文件
 
-1. 使用 xlrd/xlwt
+1. 使用 xlrd/xlwt(v2.0 以上不支持 xlsx, 请使用 openpyxl)
 
    1. 安装库文件
 
@@ -185,6 +185,7 @@
 
        ```bash
        pip install openpyxl
+       # pandas read_excel 函数也会调用 openpyxl
        ```
 
    2. 读取文件
