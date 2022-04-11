@@ -54,7 +54,6 @@
     index = [1, 2, 3, 4]  # 行名
     df = pd.DataFrame(index=index, columns=cols)
 
-
     # 得到的数据表格为：
     |     | a   | b   | c   |
     | --- | --- | --- | --- |
@@ -464,7 +463,30 @@
 4. 变换 transformation
 5. 综合 apply
 
-### 2.7. 画图
+### 2.7. 日期时间处理
+
+1. 读取数据
+
+    ```python
+    import pandas as pd
+
+    df = pd.read_csv(path, parse_dates=['time'])    # time 列数据读取成 Timestep 格式
+    ```
+
+2. 根据具体时间筛选数据
+
+    ```python
+    from datetime import datetime, timedelta
+    # 筛选 1 天的数据
+    date = datetime(2020, 1, 1)
+    tomorrow = date + timedelta(days=1)
+    data = df[(df['time'] >= date.date()) & (df['time'] < tomorrow)]
+
+    # 方法2
+    data = df[(df['time'].dt.month == date.month) & (df['time'].dt.day == date.day)]
+    ```
+
+### 2.8. 画图
 
 1. df.plot
 

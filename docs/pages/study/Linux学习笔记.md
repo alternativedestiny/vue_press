@@ -64,7 +64,7 @@
     sudo service ssh --full-restart
     ```
 
-3. Xshell连接WSL的时候需要先重启ssh
+3. Xshell 连接 WSL 的时候需要先重启 ssh
 
 ## 2. 概念
 
@@ -317,7 +317,20 @@
 
 3. 参考链接 [Linux netstat 命令介绍](https://www.cnblogs.com/cheesezh/p/5169498.html)
 
-### 5.6. 其他指令
+### 5.6. 日期时间指令
+
+1. 设定日期时间
+
+    ```bash
+    # root 账户下
+
+    # 月/日/年
+    date -s 01/01/22    # 2022 年 1 月 1 日
+    # 时/分/秒
+    date -s 00:00:00
+    ```
+
+### 5.7. 其他指令
 
 | 指令 | 功能                 |
 | ---- | -------------------- |
@@ -334,6 +347,10 @@
     ```bash
     # scp 文件名 对端路径
     scp test.txt linuxName:/home/username/
+
+    # 带密码 (-p xxx), 带端口号 (-P 22)
+    sshpass -p xxx scp -P 22 test.txt linuxName:/home/username/
+    # 显示 manpath... 可以不管，拷贝是成功的
     ```
 
 3. 创建快捷方式

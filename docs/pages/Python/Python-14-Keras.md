@@ -14,7 +14,7 @@
     pip install keras
     ```
 
-2. 使用 gpu 进行训练需要配置 cuda 环境，参考 [CUDA 安装](Python-01-环境.md##-5.-CUDA-安装)
+2. 使用 gpu 进行训练需要配置 cuda 环境，参考 [CUDA 安装](Python-01-环境_Env.md##-5.-CUDA-安装)
 
 3. 使用 gpu 进行训练
 

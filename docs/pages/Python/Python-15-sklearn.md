@@ -53,7 +53,30 @@
 
 ### 3.1. 层次聚类 Hierarchical clustering
 
-1. 聚类
+1. 使用 sklearn 中的 AgglomerativeClustering，其过程为
+   1. 将每一个元素定为一类
+   2. 每一轮都合并指定距离最小的一类
+   3. 直到所有的元素都归为同一类
+
+2. 聚类参数
+
+    | 参数               | 默认值    | 简介               |
+    | ------------------ | --------- | ------------------ |
+    | n_clusters         | 2         | 聚类个数           |
+    | affinity           | euclidean | 距离的类型         |
+    | memory             | none      | 用于缓存输出的结果 |
+    | connectivity       | none      | 连接矩阵           |
+    | compute_full_tree  | auto      | 是否生成完整的树   |
+    | linkage            | ward      | 指定距离           |
+    | distance_threshold | none      | 距离阈值           |
+
+   1. compute_full_tree：为`auto`时在满足 n_clusters 时训练停止，为`true`时会继续训练从而生成一颗完整的树
+   2. 指定距离：
+      - ward：最小化正在合并的集群的方差
+      - complete：使用两个集合的每个观测距离的平均值。
+      - average：使用两个集合的所有观测值之间的最大距离。
+      - single：两个集合的所有观测值之间的距离的最小值。
+   3. distance_threshold：链接距离阈值，超过该阈值，集群将不被合并。如果该值不为 0，n_clusters 必须为 0，compute_full_tree 必须为 true
 
     ```python
     from sklearn.cluster import AgglomerativeClustering
@@ -70,7 +93,7 @@
     out = sk.labels_    # 每个数据的类别编号
     ```
 
-2. 参数
+3. 参数
 
     | linkage  | 中文名 | 说明     |
     | -------- | ------ | -------- |
@@ -78,11 +101,44 @@
     | complete | 全链接 | 最大距离 |
     | average  | 均链接 | 平均距离 |
 
-### 3.2. k 均值聚类 k-means
+4. 示例：以相关性系数作为聚类依据，其数据格式如下
 
-## 4. 随机森林 Random Forest
+    | Pear | a    | b    | c    | d    |
+    | ---- | ---- | ---- | ---- | ---- |
+    | a    | 1    | 0.53 | 0.67 | 0.98 |
+    | b    | 0.53 | 1    | 0.89 | 0.21 |
+    | c    | 0.67 | 0.89 | 1    | 0.74 |
+    | d    | 0.98 | 0.21 | 0.74 | 1    |
 
-### 4.1. 简介
+    ```python
+    import pandas as pd
+    from sklearn.cluster import AgglomerativeClustering
+
+    data = pd.DataFrame({'a': [1.0, 0.53, 0.67, 0.98],
+                        'b': [0.53, 1.0, 0.89, 0.21],
+                        'c': [0.67, 0.89, 1.0, 0.74],
+                        'd': [0.98, 0.21, 0.74, 1.0]},
+                        index=list('abcd'))
+
+    # linkage：ward-单链接（最小距离），complete-全链接（最大距离），average-均链接（平均距离）
+    sk = AgglomerativeClustering(2, linkage='ward')  # 分 2 个类
+    sk.fit(data)
+    index = data.index  # [a,b,c,d]
+    # 分类结果
+    out = sk.labels_  # [1 0 0 1]
+    ```
+
+    > 对应的结果：两个区域分别为 [a, d] 和 [b, c]
+
+## 4. 参考
+
+- [Agglomerative 层次聚类](https://blog.csdn.net/Haiyang_Duan/article/details/77995665)
+
+### 4.1. k 均值聚类 k-means
+
+## 5. 随机森林 Random Forest
+
+### 5.1. 简介
 
 1. 简介
 

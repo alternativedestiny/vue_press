@@ -10,10 +10,10 @@
 
     ```bash
     # 安装
-    npm install -g vuepress  # 可以使用cnpm
+    npm install -g vuepress  # 可以使用 cnpm
     ```
 
-    > 如果 back-to-top 插件出现问题，尝试本地安装vuepress，不要用`-g`全局
+    > 如果 back-to-top 插件出现问题，尝试本地安装 vuepress，不要用`-g`全局
 
 ## 2. 创建项目
 
@@ -23,7 +23,7 @@
     npm run dev
     ```
 
-2. 推送到github
+2. 推送到 github
    1. deploy.sh 文件配置
 
         ```bash
@@ -46,7 +46,7 @@
         git add -A
         git commit -m 'deploy'
 
-        # 如果发布到 https://<USERNAME>.github.io，-f强制推送，选择性使用
+        # 如果发布到 https://<USERNAME>.github.io，-f 强制推送，选择性使用
         git push -f https://gitee.com/hoppou/hoppou master
         git push -f https://github.com/alternativedestiny/alternativedestiny.github.io master
 
@@ -63,7 +63,7 @@
 
 ## 3. 自动导航栏和侧边栏
 
-1. 用js代码生成导航栏和目录栏列表
+1. 用 js 代码生成导航栏和目录栏列表
 2. 文件目录
 
     ```bash
@@ -73,10 +73,10 @@
                 |_config.js
             |_pages/
                 |_Python/
-                    |_Python-01-环境.md
+                    |_Python-01-环境_Env.md
     ```
 
-3. 源码：可以直接放在config.js文件，也可以单独放到一个js文件中然后导入。
+3. 源码：可以直接放在 config.js 文件，也可以单独放到一个 js 文件中然后导入。
 
     ```js
     const fs = require('fs');
@@ -107,7 +107,7 @@
     }
     ```
 
-4. 使用：在config.js文件中设置nav和sidebar
+4. 使用：在 config.js 文件中设置 nav 和 sidebar
 
     ```js
     module.exports = {
@@ -130,10 +130,10 @@
 
 ## 4. 调整显示宽度
 
-1. 修改 docs->styles->palette.styl 文件, 增加如下内容
+1. 修改 docs->styles->palette.styl 文件，增加如下内容
 
     ```stylus
-    // 显示宽度由百分比调整, 根据需求修改
+    // 显示宽度由百分比调整，根据需求修改
     $contentWidth = 80%
     ```
 
@@ -141,5 +141,5 @@
 
 ## 6. 参考
 
-- [VuePress中文官网](https://vuepress.vuejs.org/zh/)
-- [1小时搞定vuepress快速制作vue文档/博客+免费部署预览](https://juejin.im/post/5dce1e0e5188254eda3936c5#heading-9)
+- [VuePress 中文官网](https://vuepress.vuejs.org/zh/)
+- [1 小时搞定 vuepress 快速制作 vue 文档/博客+免费部署预览](https://juejin.im/post/5dce1e0e5188254eda3936c5#heading-9)
