@@ -9,34 +9,105 @@
 
 ## 2. 插件
 
-| 插件                                 | 功能                                            | 推荐指数 |
-| ------------------------------------ | ----------------------------------------------- | -------- |
-| Auto Close Tag                       | html 标签自动补全                               | `前端`   |
-| Auto Complete Tag                    | 配合上面的使用                                  | `前端`   |
-| background                           | 背景图片插件                                    | `体验`   |
-| Beautify                             | 代码格式化插件                                  | `必备`   |
-| Bracket Pair Colorizer 2             | 改变代码括号颜色（与 Markdown All in One 冲突） | `一般`   |
-| Code Runner                          | 代码运行                                        | `推荐`   |
-| GitLens                              | git 扩展                                        | `必备`   |
-| LiveCode for python                  | 动态显示 python 变量的输出                      | `推荐`   |
-| Markdown All in One                  | Markdown 编辑                                   | `必备`   |
-| markdown image                       | makrdown 插入图片                               | `推荐`   |
-| Markdown PDF                         | Markdown 转 pdf                                 | `一般`   |
-| Markdown Preview Enhanced            | Markdown 预览                                   | `必备`   |
-| markdown toc                         | 自动创建目录（需要设置 eol）                    | `一般`   |
-| markdown-formatter                   | markdown 格式化工具                             | `一般`   |
-| markdownlint                         | markdown 格式检查工具                           | `必备`   |
-| markmap                              | makrdown 思维导图                               | `推荐`   |
-| Open In Default Browser              | 调用浏览器打开 html                             | `前端`   |
-| Pangu Markdown                       | 自动修改 markdown 中的空格和标点                | `推荐`   |
-| Path Autocomplete                    | 路径自动补全                                    | `一般`   |
-| Project Manager                      | 项目管理                                        | `必备`   |
-| Seti                                 | 图标美化插件                                    | `体验`   |
-| Excel Viewer                         | 查看 excel、csv                                 | `一般`   |
-| SandDance for VSCode                 | 数据可视化工具                                  | `体验`   |
-| Markdown Navigation                  | markdown 目录，与大纲功能重叠                   | `一般`   |
-| Mermaid Markdown Syntax Highlighting | Markdown 结构图代码高亮                         | `一般`   |
-| Remote-SSH                           | ssh 工具                                        | `推荐`   |
+| 插件                                 | ID                                  | 功能                                            | 推荐指数 |
+| ------------------------------------ | ----------------------------------- | ----------------------------------------------- | -------- |
+| Auto Complete Tag                    | formulahendry.auto-complete-tag     | 配合上面 Auto Close Tag 的使用                  | `前端`   |
+| background                           | shalldie.background                 | 背景图片插件                                    | `体验`   |
+| Beautify                             | HookyQR.beautify                    | 代码格式化插件                                  | `必备`   |
+| Bracket Pair Colorizer 2             |                                     | 改变代码括号颜色（与 Markdown All in One 冲突） | `一般`   |
+| C/C++                                | ms-vscode.cpptools                  | C/C++开发基础工具                               | `C/C++`  |
+| Code Runner                          | formulahendry.code-runner           | 代码运行                                        | `推荐`   |
+| Excel Viewer                         |                                     | 查看 excel、csv                                 | `一般`   |
+| GitLens                              | eamodio.gitlens                     | git 扩展                                        | `必备`   |
+| Git Graph                            | mhutchie.git-graph                  | git 可视化                                      | `一般`   |
+| LiveCode for python                  | xirider.livecode                    | 动态显示 python 变量的输出（复杂的不太行）      | `一般`   |
+| Markdown All in One                  | yzhang.markdown-all-in-one          | Markdown 编辑                                   | `必备`   |
+| markdown image                       | hancel.markdown-image               | makrdown 插入图片                               | `推荐`   |
+| Markdown Navigation                  |                                     | markdown 目录，与大纲功能重叠                   | `一般`   |
+| Markdown PDF                         |                                     | Markdown 转 pdf                                 | `一般`   |
+| Markdown Preview Enhanced            | shd101wyy.markdown-preview-enhanced | Markdown 预览                                   | `必备`   |
+| markdown toc                         | AlanWalk.markdown-toc               | 自动创建目录（需要设置 eol）                    | `一般`   |
+| markdown-formatter                   |                                     | markdown 格式化工具                             | `一般`   |
+| markdownlint                         |                                     | markdown 格式检查工具                           | `必备`   |
+| markmap                              |                                     | makrdown 思维导图                               | `推荐`   |
+| Mermaid Markdown Syntax Highlighting |                                     | Markdown 结构图代码高亮                         | `一般`   |
+| Open In Default Browser              |                                     | 调用浏览器打开 html                             | `前端`   |
+| Pangu Markdown                       | xlthu.Pangu-Markdown                | 自动修改 markdown 中的空格和标点                | `推荐`   |
+| Path Autocomplete                    |                                     | 路径自动补全                                    | `一般`   |
+| Project Manager                      |                                     | 项目管理                                        | `必备`   |
+| SandDance for VSCode                 |                                     | 数据可视化工具                                  | `体验`   |
+| Seti-icons                           | qinjia.seti-icons                   | 图标美化插件                                    | `体验`   |
+| SFTP                                 | Natizyskunk.sftp                    | 远程同步工具                                    | `推荐`   |
+| Remote-SSH                           | ms-vscode-remote.remote-ssh         | ssh 工具                                        | `推荐`   |
+
+### 2.1. Remote-SSH 配置
+
+1. 远程服务器配置
+
+   ```bash
+   Host 虚拟机  # 服务器名
+   HostName 192.168.1.1  # IP
+   User root  # 用户名
+   ```
+
+2. 远程服务器需要关闭配置中的`Use Local Server`
+3. 配置免密登录
+   1. 本地打开`Git bash`, 用下面的命令生成密钥
+
+      ```bash
+      ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+      ```
+
+   2. 查看密钥
+
+      ```bash
+      cd ~/.ssh
+      cat id_rsa.pub
+      ```
+
+   3. 上传密钥到服务器，然后就可以实现免密登录
+
+      ```bash
+      ssh-copy-id root@192.168.1.1
+      ```
+
+### 2.2. SFTP 插件使用方法
+
+1. 安装
+
+   ![图 1](../images/2022-03-15_93.png)  
+
+2. `Ctrl+Shift+P` 选择 `SFTP: Config` 打开配置文件 `sftp.json`
+
+    ```json
+    {
+        "name": "名字随便起",   // 服务器名
+        "host": "127.0.0.1",    // IP 地址
+        "protocol": "sftp",
+        "port": 22,     // 端口号
+        "username": "用户名",
+        "password": "密码",
+        "context": "本地路径，不设置的话就是当前目录",  // 可以不配
+        "remotePath": "远程路径，从/home/开始",
+        "uploadOnSave": true,   // 保存后自动上传，可以不配
+        "connectTimeout":50000, // 可以不配
+        "useTempFile": false,   // 可以不配
+        "openSsh": false    // 可以不配
+    }
+    ```
+
+3. 多路径配置
+
+    ```json
+    [
+        {
+            // 第一个配置
+        },
+        {
+            // 第二个配置
+        }
+    ]
+    ```
 
 ## 3. 快捷键
 
@@ -80,38 +151,7 @@
 
    ![cpp](../images/cpp.gif)
 
-## 5. Remote-SSH 配置
-
-1. 远程服务器配置
-
-   ```bash
-   Host 虚拟机  # 服务器名
-   HostName 192.168.1.1  # IP
-   User root  # 用户名
-   ```
-
-2. 远程服务器需要关闭配置中的`Use Local Server`
-3. 配置免密登录
-   1. 本地打开`Git bash`, 用下面的命令生成密钥
-
-      ```bash
-      ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
-      ```
-
-   2. 查看密钥
-
-      ```bash
-      cd ~/.ssh
-      cat id_rsa.pub
-      ```
-
-   3. 上传密钥到服务器，然后就可以实现免密登录
-
-      ```bash
-      ssh-copy-id root@192.168.1.1
-      ```
-
-## 6. 设置脚本
+## 5. 设置脚本
 
 1. 安装插件
 
@@ -164,33 +204,9 @@
     }
    ```
 
-## 7. SFTP 插件使用方法
+## 6. 问题处理
 
-1. 安装
-
-   ![图 1](../images/2022-03-15_93.png)  
-
-2. `Ctrl+Shift+P` 选择 `SFTP: Config` 打开配置文件 `sftp.json`
-
-    ```json
-    {
-        "name": "名字随便起",
-        "host": "IP 地址 127.0.0.1",
-        "protocol": "sftp",
-        "port": 22,
-        "username": "用户名",
-        "password": "密码",
-        "remotePath": "远程路径，从/home/开始",
-        "uploadOnSave": true,   // 保存后自动上传
-        "connectTimeout":50000,
-        "useTempFile": false,
-        "openSsh": false
-    }
-    ```
-
-## 8. 问题处理
-
-### 8.1. 因为在此系统上禁止运行脚本
+### 6.1. 因为在此系统上禁止运行脚本
 
 1. 现象：在 vscode 运行 yarn 或 npm 脚本时出现无法运行的情况
 2. 解决方法

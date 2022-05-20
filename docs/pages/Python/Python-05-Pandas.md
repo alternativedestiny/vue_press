@@ -182,6 +182,23 @@
     df['d'] = [1, 2, 3]
     ```
 
+2. merge：合并，列增加
+
+    ```python
+    # 数据左右合并，合并依据为 key
+    # how = inner, outer, left, right 默认 inner
+    # 需要注意，有时合并数据会造成意外的重复
+    df3 = pd.merge(df1, df2, how='left', on='key1')  # 单个 key
+    df3 = pd.merge(df1, df2, how='left', on=['key1','key2'])  # 多 key
+    ```
+
+3. concat：拼接，行增加
+
+    ```python
+    # 数据拼接，列不变，行叠加
+    df3 = pd.concat([df1, df2])
+    ```
+
 ### 2.2. 删
 
 1. 清理无效数据
@@ -214,24 +231,7 @@
     df = DataFrame.sort_values(by=['col1'], ascending=False)  
     ```
 
-2. merge：合并，列增加
-
-    ```python
-    # 数据左右合并，合并依据为 key
-    # how = inner, outer, left, right 默认 inner
-    # 需要注意，有时合并数据会造成意外的重复
-    df3 = pd.merge(df1, df2, how='left', on='key1')  # 单个 key
-    df3 = pd.merge(df1, df2, how='left', on=['key1','key2'])  # 多 key
-    ```
-
-3. concat：拼接，行增加
-
-    ```python
-    # 数据拼接，列不变，行叠加
-    df3 = pd.concat([df1, df2])
-    ```
-
-4. replace: 替换
+2. replace: 替换
 
     ```python
     import numpy as np

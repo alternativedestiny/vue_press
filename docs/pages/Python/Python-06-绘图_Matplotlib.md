@@ -207,7 +207,9 @@
     | 'center right' | 7         | 右→（同 rigth） |
     | 'lower center' | 8         | 下↓             |
     | 'upper center' | 9         | 上↑             |
-    | 'cneter'       | 10        | 中心            |
+    | 'center'       | 10        | 中心            |
+
+    ![图例位置](../images/2022-04-29_58.png)  
 
 3. 设置图例的显示方式
 

@@ -109,6 +109,33 @@
     long labs(long n);
     ```
 
+### 1.3. 枚举 ENUM
+
+1. 语法
+
+    ```cpp
+    enum <类型名> {<枚举常量表>};
+    ```
+
+2. 示例
+
+    ```cpp
+    enum week {
+        sun=10, // 不设的话默认 0
+        mon,
+        tue
+    };
+
+    int main(int argc, char const *argv[]) {
+        printf("%d\n", sun);    // 10
+        printf("%d\n", mon);    // 11
+        printf("%d\n", tue);    // 12
+
+        return 0;
+    }
+
+    ```
+
 ## 2. 数组
 
 ### 2.1. 数组定义
@@ -280,49 +307,86 @@ cout << str_list[0] << endl;    // abc
 
 2. 遍历
 
-### 5.3. 增删改查
+### 5.3. 增
 
-1. 增
+1. 插入
 
     ```cpp
-    // 插入
     s1.insert(int num, string s)  // 在 num 位置插入 s
+    ```
 
-    // 追加
+2. 追加
+
+    ```cpp
     s1.append(string s)  // 追加字符串
     s1.append(int n, char c)  // 追加 n 个 c 字符
+    ```
 
-    // 拼接
+3. 拼接
+
+    ```cpp
     int i = 5;
     string s = "station: " + to_string(i);
+    ```
 
-    // 拷贝
+4. 拷贝
+
+    ```cpp
     strncpy(c1, c2+3, 5);   // 截取 c2 第 3 个字符后的 5 个字符到 c1 中
     #include <string.h>
     strcpy(s1, s2)  // 把 s2 拷贝到 s1 中
     ```
 
-2. 删
+### 5.4. 删
+
+1. 删除
 
     ```cpp
-    // 擦除
     s1.erase(int a, int b)  // 删除 a 之后的 b 个字符
     ```
 
-3. 改
+### 5.5. 改
+
+1. 替换
 
     ```cpp
-    // 替换
     s1.replace(int num1, int num2, string s)  // 用 s 替换 num1 后面的 num2-1 个字符
     s1.replace(int num1, int num2, string s, int num3, int num4)  // 用 s 的第 num3 后面的 num4-1 个字符替换 num1 后面的 num2-1 个字符
+    ```
 
-    // 字符串截取
+2. 截取
+
+    ```cpp
     strncpy(c1, c2 + 3, 5);         // 截取 c2 第 3 个字符后的 5 个字符到 c1 中
     s2 = s1.substr(int a, int b)    // 起始位 a，长度 b
     s2 = s1.substr(int a)           // 截取第 a 个之后的字符串
     ```
 
-4. 查
+3. 大小写转换
+
+    ```cpp
+    // char
+    char c1[64], C1[64];
+    C1 = strupr(c1);    // 转大写 win
+    c1 = strlwr(C1);    // 转小写 win
+
+    for (char *ptr = c1; *c1; ptr++) {
+        *ptr = toupper(*ptr);   // 转大写 linux
+        *ptr = tolower(*ptr);   // 转小写 linux
+    }
+
+    // string
+    transform(str.begin(), str.end(), str.begin(), (int (*)(int))tolower);  // 转小写
+    transform(str.begin(), str.end(), str.begin(), (int (*)(int))toupper);  // 转大写
+    // 或
+    transform(str.begin(), str.end(), str.begin(), ::tolower);  // 转小写
+    transform(str.begin(), str.end(), str.begin(), ::toupper);  // 转大写
+
+    ```
+
+### 5.6. 查
+
+1. 字符查询
 
     ```cpp
     // 查找
@@ -338,14 +402,16 @@ cout << str_list[0] << endl;    // abc
     s1.find_last_not_of(s2);   // 与上面相似
 
     p = strchr(s1, s2);     // 查找 s2 在 s1 中第一次出现的位置
-
-    // string 长度
-    strlen(c1);
-    s1.length();
-
     ```
 
-### 5.4. 其他操作
+2. 长度查询
+
+    ```cpp
+    strlen(c1);     // char
+    s1.length();    // string
+    ```
+
+### 5.7. 其他操作
 
 1. 比较
 
@@ -487,6 +553,22 @@ cout << str_list[0] << endl;    // abc
     }
     ```
 
+4. time_t 转 Char
+
+    ```cpp
+    // time_t 转 char
+    char *Time2Char(time_t t) {
+        static char t_str[64];
+        tm t_tm;
+        localtime_r(&t, &t_tm);
+
+        sprintf(t_str, "%04d-%02d-%02d %02d:%02d:%02d", t_tm.tm_year + 1900, t_tm.tm_mon + 1, t_tm.tm_mday, t_tm.tm_hour,
+                t_tm.tm_min, t_tm.tm_sec);
+
+        return t_str;
+    }
+    ```
+
 ### 6.3. 时间使用
 
 1. 延时
@@ -522,7 +604,7 @@ cout << str_list[0] << endl;    // abc
     float f = stof(str);
     ```
 
-2. `atoi`和`atof`
+2. c++11 以下
 
     ```cpp
     // c++11 以下
@@ -530,6 +612,7 @@ cout << str_list[0] << endl;    // abc
     char *c1 = "123.45";
     int i = atoi(s1.c_str());
     float j = atof(c1);
+    long k = atol(c1);
     ```
 
 ### 7.3. char <-> string

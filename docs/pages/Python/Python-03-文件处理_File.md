@@ -57,7 +57,7 @@
 
 ## 2. 文件读写
 
-### 2.1. Open
+### 2.1. 通用文件处理 Open
 
 1. 读取文件文件
 
@@ -134,7 +134,7 @@
 
 ### 2.2. Excel(xls/xlsx) 文件
 
-1. 使用 xlrd/xlwt(v2.0 以上不支持 xlsx, 请使用 openpyxl)
+1. 使用 `xlrd/xlwt`(v2.0 以上不支持 xlsx, 请使用 openpyxl)
 
    1. 安装库文件
 
@@ -179,7 +179,7 @@
    - 参考 [python xlrd 模块处理 excel 日期变成浮点型的解决方法](https://my.oschina.net/zhangyangyang/blog/737072)
    - 参考 [用 python 读写 excel（xlrd、xlwt）](https://www.cnblogs.com/MrLJC/p/3715783.html)
 
-2. 使用 openpyxl
+2. 使用 `openpyxl`
 
    1. 安装库文件
 
@@ -210,3 +210,11 @@
        ```
 
    - 参考 [Python 玩转 Excel](https://mp.weixin.qq.com/s?__biz=MjM5NjMyMjUzNg==&mid=2448130701&idx=1&sn=10919f10f4006a18579d6bbc13a3f15c&chksm=b2f42f0a8583a61c9421711b7a542f2a1c8cfe114ace3ea1ba8cefc26bdde8eb36755a7404ae&scene=0#rd)
+
+### 音频文件
+
+1. 安装 `mutagen`
+
+    ```python
+    pip install mutagen
+    ```

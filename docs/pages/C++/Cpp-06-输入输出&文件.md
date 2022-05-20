@@ -30,7 +30,7 @@
 
 > cerr 流对象是标准错误流，指定为和显示器关联，和 cout 作用差不多，有点不同就是 cout, 通常是传到显示器输出，但可以被重定向输出到文件，而 cerr 流中的信息只能在显示器输出
 
-### 1.3. printf
+### 1.3. printf 格式化&彩色
 
 1. printf 语法
 
@@ -71,11 +71,13 @@
         printf("%10s abcd\n", "abcd");           //       abcd abcd
         ```
 
-5. 修改输出颜色(Linux)
+5. 修改输出颜色 (Linux)
 
     ```cpp
-    // 输出内容为红字, 31表示红色, 1m高亮, 0m关闭所有属性
-    printf("\033[31;1m%s\033[0m", msg);
+    // 输出内容为红字，31 表示红色，1m 高亮，0m 关闭所有属性
+    printf("\033[31;1m%s\033[0m", msg); // 红色高亮
+    printf("\033[32;1m%s\033[0m", msg); // 绿色高亮
+    printf("\033[33;1m%s\033[0m", msg); // 黄色高亮
     ```
 
     | 样式配置 | 样式         |
@@ -91,20 +93,33 @@
     | \033[8m  | 消隐         |
     | \033[9m  | 中间一道横线 |
 
-    | 前景色 | 背景色 | 备注                                      |
-    | ------ | ------ | ----------------------------------------- |
-    | 30     | 40     | 黑                                        |
-    | 31     | 41     | 红                                        |
-    | 32     | 42     | 绿                                        |
-    | 33     | 43     | 黄                                        |
-    | 34     | 44     | 蓝色                                      |
-    | 35     | 45     | 紫色                                      |
-    | 36     | 46     | 深绿                                      |
-    | 37     | 47     | 白色                                      |
-    | 38     | 48     | 打开下划线,设置默认前景色/无              |
-    | 39     | 49     | 关闭下划线,设置默认前景色/设置,默认背景色 |
+    | 前景色 | 背景色 | 备注                                        |
+    | ------ | ------ | ------------------------------------------- |
+    | 30     | 40     | 黑                                          |
+    | 31     | 41     | 红                                          |
+    | 32     | 42     | 绿                                          |
+    | 33     | 43     | 黄                                          |
+    | 34     | 44     | 蓝色                                        |
+    | 35     | 45     | 紫色                                        |
+    | 36     | 46     | 深绿                                        |
+    | 37     | 47     | 白色                                        |
+    | 38     | 48     | 打开下划线，设置默认前景色/无               |
+    | 39     | 49     | 关闭下划线，设置默认前景色/设置，默认背景色 |
 
-    - 参考[C/C++改变终端（cout ）(printf)输出不同颜色的字体](https://www.codeleading.com/article/1816945688/)
+    - 参考 [C/C++改变终端（cout ）(printf) 输出不同颜色的字体](https://www.codeleading.com/article/1816945688/)
+
+6. printf 彩色输出封装
+
+    ```cpp
+    // 红色高亮输出
+    #define printr(format, args...) (printf("\033[31;1m" format "\033[0m", ##args))
+
+    int main(int argc, char const *argv[]) {
+        printr("%s %d", "avc", 1);
+        return 0;
+    }
+
+    ```
 
 ### 1.4. 关闭缓冲区
 
@@ -234,7 +249,13 @@
     fwrite(buffer, sizeof(char), sizeof(buffer) - 1, file);
     ```
 
-### 2.3. ini文件解析
+5. 清除文件缓冲区
+
+    ```cpp
+    fflush(file);   // 清除文件缓冲区
+    ```
+
+### 2.3. ini 文件解析
 
 1. 文件格式
 
@@ -321,7 +342,7 @@
     }
 
     while ((ptr = readdir(dp)) != 0) {
-        // 过滤掉.和..
+        // 过滤掉`.`和`..`
         if (strcmp(ptr->d_name, ".") != 0 && strcmp(ptr->d_name, "..") != 0) {
             sprintf(file, "%s/%s", path, ptr->d_name);
             printf("%s\n", file);
@@ -345,17 +366,20 @@
 
     ```cpp
     struct stat tmp;
-    stat(file_path, &tmp);
+    stat(file_path, &tmp);  // 文件不存在返回-1, 否则返回 0
 
     // 文件最后一次修改时间
     time_t modify_time = tmp.st_mtime;
     // 文件最后一次访问时间
     time_t access_time = tmp.st_atime;
-    // 最后一次改变时间(指属性)
+    // 最后一次改变时间（指属性）
     time_t change_time = tmp.st_ctime;
+
+    // 文件大小
+    int size = tmp.st_size; // 字节 Bytes
     ```
 
-3. 参考[linux C++ 获取文件信息 stat函数详解](https://www.cnblogs.com/matthew-2013/p/4679425.html)
+3. 参考 [linux C++ 获取文件信息 stat 函数详解](https://www.cnblogs.com/matthew-2013/p/4679425.html)
 
 ### 2.6. 文件删除
 
