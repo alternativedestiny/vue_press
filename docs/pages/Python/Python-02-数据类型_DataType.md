@@ -190,18 +190,19 @@
 
         ```python
         # 根据指定字符分割，比如','
-        str2 = str1.split(',')
+        list1 = str1.split(',')
 
         # 多个空格分隔
-        str2 = str1.split()
+        list1 = str1.split()
 
         # 多个分隔符分割，不同分隔符用‘|’隔开
         import re
-        str2 = re.split(',|!', str1)
+        list1 = re.split(',|!', str1)
         # 或者用 r'[]'，不需要用‘|’隔开
-        str2 = re.split(r'[,!]', str1)
+        list1 = re.split(r'[,!]', str1)
         # 多字符匹配可以使用正则，比如多空格分割
-        str2 = re.split(' *', str1)
+        list1 = re.split('\\s+', line)  # 多个空格分隔
+        list1 = re.split(' *', str1)    # 全字符分割
         ```
 
    3. 字符串截取：

@@ -210,11 +210,3 @@
        ```
 
    - 参考 [Python 玩转 Excel](https://mp.weixin.qq.com/s?__biz=MjM5NjMyMjUzNg==&mid=2448130701&idx=1&sn=10919f10f4006a18579d6bbc13a3f15c&chksm=b2f42f0a8583a61c9421711b7a542f2a1c8cfe114ace3ea1ba8cefc26bdde8eb36755a7404ae&scene=0#rd)
-
-### 音频文件
-
-1. 安装 `mutagen`
-
-    ```python
-    pip install mutagen
-    ```

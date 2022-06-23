@@ -119,11 +119,10 @@
     x_axis = ['2018-09-01', '2018-10-01', '2018-11-01', '2018-12-01', '2018-12-31']
     plt.xticks(x_axis, rotation=15)  # 刻度倾斜
     # 还可以对坐标重命名，并顺时针旋转坐标 15°
-    x_axis = ['2018-01-01 00:01:00', '2018-01-02 00:00:00', '2018-01-03 00:00:00']
+    x_axis = ['2018-01-01 00:00:00', '2018-01-02 00:00:00', '2018-01-03 00:00:00']
     plt.xticks(x_axis, ('a', 'b', 'c'), rotation=-15)  # 将横坐标值重命名为 a,b,c
-    ```
+    # 如果是多图的话需要用 set_sticks, 参考本章 2.3 多图设置
 
-    ```python
     # 按照等间隔数值设置坐标
     plt.xticks(np.arange(0, 25, 4))  # 范围 0-25，分度值 4
 
@@ -252,7 +251,11 @@
     # 1xn 类型
     fig, ax = plt.subplots(1, 2)
     ax[0].plot(x1, y1)
-    ax[1].plot(x2, y2)
+    ax[0].set_xticks(x_axis, ('0', '12', '24'))  # 修改坐标轴显示
+    ax[0].set_xlabel('x')  # 设置 x 轴标签
+    ax[0].set_ylabel('y')  # 设置 y 轴标签
+    
+    ax[1].plot(x2, y2)  # 其他设置同上
 
     # 2x2 以上
     fig, ax = plt.subplots(2, 2)
@@ -298,8 +301,8 @@
 
     fig, ax1 = plt.subplots()
 
-    l1 = ax1.plot(x1, y1, label='a')
     # 设置 ax2 与 ax1 公用横坐标
+    l1 = ax1.plot(x1, y1, label='a')
     ax2 = ax1.twinx()
     l2 = ax2.plot(x2, y2, c='r', label='b')
 
@@ -313,6 +316,8 @@
     ```
 
     <img src='../images/2021-08-13_70.png' width=600>
+
+3. 还有一种方法是不同位置分别显示
 
 ### 2.5. 辅助线
 

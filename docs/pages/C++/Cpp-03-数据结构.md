@@ -389,8 +389,8 @@
    4. 访问元素
 
         ```cpp
-        vector<int>::iterator i;
         // 使用迭代器访问
+        vector<int>::iterator it;
         for (it = vec.begin(); it != vec.end(); it++) {
             cout << *it << endl;
         }
@@ -424,6 +424,18 @@
         vec.erase(vec.begin() + 2);  // 删除第三个元素
         // 清空
         vec.clear();    // 会同时清空长度，需要用 resize 重新定义
+
+        // 删除多个元素
+        vector<int> m_vec = {1, 2, 3, 3, 2, 4, 3};
+        vector<int>::iterator iter;
+
+        for (iter = m_vec.begin(); iter != m_vec.end();) {  // 注意end()后面有分号
+            if (*iter == 3) {
+                iter = m_vec.erase(iter);
+            } else {
+                iter++;
+            }
+        }
         ```
 
    3. 修改
