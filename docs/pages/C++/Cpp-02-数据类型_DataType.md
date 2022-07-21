@@ -320,6 +320,11 @@ cout << str_list[0] << endl;    // abc
     ```cpp
     s1.append(string s)  // 追加字符串
     s1.append(int n, char c)  // 追加 n 个 c 字符
+
+    // strcat
+    char a[10] = "abc";
+    char b[5] = "fbs";
+    strcat(a, b);   // a = "abcfbs"
     ```
 
 3. 拼接
@@ -558,7 +563,7 @@ cout << str_list[0] << endl;    // abc
     ```cpp
     // time_t 转 char
     char *Time2Char(time_t t) {
-        static char t_str[64];
+        static char t_str[64];  // static 必须
         tm t_tm;
         localtime_r(&t, &t_tm);
 
