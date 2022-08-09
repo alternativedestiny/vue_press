@@ -551,8 +551,7 @@ cout << str_list[0] << endl;    // abc
     string time_to_string(const time_t t) {
         tm *ltm = localtime(&t);
         char c[256];
-        sprintf(c, "%04d-%02d-%02d %02d:%02d:%02d", ltm->tm_year + 1900, ltm->tm_mon + 1, ltm->tm_mday, ltm->tm_hour,
-                ltm->tm_min, ltm->tm_sec);
+        sprintf(c, "%04d-%02d-%02d %02d:%02d:%02d", ltm->tm_year + 1900, ltm->tm_mon + 1, ltm->tm_mday, ltm->tm_hour, ltm->tm_min, ltm->tm_sec);
         string str = c;
         return str;
     }
@@ -567,12 +566,48 @@ cout << str_list[0] << endl;    // abc
         tm t_tm;
         localtime_r(&t, &t_tm);
 
-        sprintf(t_str, "%04d-%02d-%02d %02d:%02d:%02d", t_tm.tm_year + 1900, t_tm.tm_mon + 1, t_tm.tm_mday, t_tm.tm_hour,
-                t_tm.tm_min, t_tm.tm_sec);
+        sprintf(t_str, "%04d-%02d-%02d %02d:%02d:%02d", t_tm.tm_year + 1900, t_tm.tm_mon + 1, t_tm.tm_mday, t_tm.tm_hour, t_tm.tm_min, t_tm.tm_sec);
 
         return t_str;
     }
     ```
+
+5. 日期格式化 `strftime`, [参考链接](https://www.twle.cn/l/yufei/cplusplus/cplusplus-basic-ctime-strftime.html)
+
+    ```cpp
+    #include <ctime>
+
+    time_t now = time(0);
+    char tm_str[32];
+
+    // 字符串，复制最大字符数，format, 指向 tm 结构的指针
+    strftime(tm_str, 32, "%Y-%m-%d %H:%M:%S", localtime(&now));
+    ```
+
+    | 符号 | 说明                                                    | 示例                     |
+    | ---- | ------------------------------------------------------- | ------------------------ |
+    | %a   | 缩写的星期几名称                                        | Sun                      |
+    | %A   | 完整的星期几名称                                        | Sunday                   |
+    | %b   | 缩写的月份名称                                          | Mar                      |
+    | %B   | 完整的月份名称                                          | March                    |
+    | %c   | 日期和时间表示法                                        | Sun Aug 19 02:56:02 2012 |
+    | %d   | 一月中的第几天（01-31）                                 | 19                       |
+    | %H   | 24 小时格式的小时（00-23）                              | 14                       |
+    | %I   | 12 小时格式的小时（01-12）                              | 05                       |
+    | %j   | 一年中的第几天（001-366）                               | 231                      |
+    | %m   | 十进制数表示的月份（01-12）                             | 08                       |
+    | %M   | 分（00-59）                                             | 55                       |
+    | %p   | AM 或 PM 名称                                           | PM                       |
+    | %S   | 秒（00-61）                                             | 02                       |
+    | %U   | 一年中的第几周以第一个星期日作为第一周的第一天（00-53） | 33                       |
+    | %w   | 十进制数表示的星期几，星期日表示为 0（0-6）             | 4                        |
+    | %W   | 一年中的第几周以第一个星期一作为第一周的第一天（00-53） | 34                       |
+    | %x   | 日期表示法                                              | 08/19/12                 |
+    | %X   | 时间表示法                                              | 02:50:06                 |
+    | %y   | 年份，最后两个数字（00-99）                             | 01                       |
+    | %Y   | 年份                                                    | 2012                     |
+    | %Z   | 时区的名称或缩写                                        | CDT                      |
+    | %%   | 一个 % 符号                                             | %                        |
 
 ### 6.3. 时间使用
 
@@ -631,47 +666,6 @@ char *c1 = str1.c_str();
 // string -> char*
 char *c1 = (char*)str1.data();
 ```
-
-### 7.4. string <-> time_t
-
-1. str_to_time, [参考](https://blog.csdn.net/qq_34645629/article/details/84783092)
-
-    ```cpp
-    #include <string>
-    #include <ctime>
-
-    // string -> time_t
-    time_t str_to_time(string &str) {
-        char *c = (char *)str.data();  // string 转 char*
-        tm tm1;
-        int year, month, day, hour, minute, second;
-        sscanf(c, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
-        tm1.tm_year = year - 1900;  // 年份，从 1900 年开始
-        tm1.tm_mon = month - 1;     // 月份，范围 0-11
-        tm1.tm_mday = day;
-        tm1.tm_hour = hour;
-        tm1.tm_min = minute;
-        tm1.tm_sec = second;
-        tm1.tm_isdst = 0;
-        time_t t = mktime(&tm1);
-        return t;
-    }
-    ```
-
-2. time_to_str
-
-    ```cpp
-    string time_to_string(const time_t t) {
-        tm *ltm = localtime(&t);
-        char *c;
-        sprintf(c, "%04d-%02d-%02d %02d:%02d:%02d", ltm->tm_year + 1900, ltm->tm_mon + 1, ltm->tm_mday,
-                ltm->tm_hour, ltm->tm_min, ltm->tm_sec);
-        string str = c;
-        return str;
-    }
-    ```
-
-- [参考链接](https://blog.csdn.net/tengfei461807914/article/details/52203202)
 
 ### 7.5. ASCII 码转换
 

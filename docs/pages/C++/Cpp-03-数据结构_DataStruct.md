@@ -429,7 +429,7 @@
         vector<int> m_vec = {1, 2, 3, 3, 2, 4, 3};
         vector<int>::iterator iter;
 
-        for (iter = m_vec.begin(); iter != m_vec.end();) {  // 注意end()后面有分号
+        for (iter = m_vec.begin(); iter != m_vec.end();) {  // 注意 end() 后面有分号
             if (*iter == 3) {
                 iter = m_vec.erase(iter);
             } else {
@@ -476,6 +476,8 @@
 - [参考链接 2](https://www.runoob.com/w3cnote/cpp-vector-container-analysis.html)
 
 ## 4. 映射 Map
+
+### 4.1. Map 基础使用
 
 1. Map：map 是一类关联式容器。它的特点是增加和删除节点对迭代器的影响很小，除了那个操作节点，对其他的节点都没有什么影响。对于迭代器来说，可以修改实值，而不能修改 key。
 2. Map 使用
@@ -581,6 +583,10 @@
 - [c++常见 map 用法](https://blog.csdn.net/shuzfan/article/details/53115922)
 - [c++ STL hashmap](https://blog.csdn.net/u010025211/article/details/46653519)
 - [散列表类的 C++实现（探测散列表）](https://blog.csdn.net/Linux_ever/article/details/51143042)
+
+### 4.2. Map 含结构体使用
+
+1. Map 创建
 
 ## 5. 哈希/散列 HashTable/HashMap
 

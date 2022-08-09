@@ -433,6 +433,7 @@
         char str[] = "pi = 3.14";
         char variable[10];
         float num;
+        // 成功则返回参数数目，失败则返回-1，错误原因存于errno中
         sscanf(str, "%s = %f", variable, num);
         cout << variable << endl; 
         cout << num << endl; 
