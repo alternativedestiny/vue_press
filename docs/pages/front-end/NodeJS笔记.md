@@ -61,12 +61,12 @@
 
 3. 参数
 
-| 参数 | 全名            | 功能                                      |
-| ---- | --------------- | ----------------------------------------- |
-| -g   |                 | 全局安装                                  |
-| -S   | --save          | 安装到 node_modules，添加到 dependencies    |
-| -D   | --save-dev      | 安装到 node_modules，添加到 devDependencies |
-| -O   | --dave-optional | 添加到 OptionalDependencies                |
+    | 参数 | 全名            | 功能                                      |
+    | ---- | --------------- | ----------------------------------------- |
+    | -g   |                 | 全局安装                                  |
+    | -S   | --save          | 安装到 node_modules，添加到 dependencies    |
+    | -D   | --save-dev      | 安装到 node_modules，添加到 devDependencies |
+    | -O   | --dave-optional | 添加到 OptionalDependencies                |
 
 ## 2. yarn
 

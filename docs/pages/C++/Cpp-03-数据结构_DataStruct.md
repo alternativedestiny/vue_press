@@ -501,6 +501,8 @@
     map_name["d"] = 4;
     map_name.insert(pair<string,int> ("d",4));
     map_name.insert(map<string,int>::value_type("d",4));
+    // 如果map的值为vector可以用push_back
+    map_name["d"].push_back(4);
 
     // 删除
     map_name.erase("b");

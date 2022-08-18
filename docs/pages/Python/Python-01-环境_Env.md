@@ -202,6 +202,7 @@
     ```bash
     conda install package-name
     pip install package-name
+    # 本地包只能用pip, 但是得用环境下的pip
     ```
 
 ## 3. 离线安装库文件
@@ -249,7 +250,7 @@
     pip3 freeze >requirements.txt
     ```
 
-2. 方法 2: 只根据当前项目生成 requirements 文件
+2. 方法 2: 只根据当前项目生成 requirements 文件（推荐）
 
     ```bash
     # 安装库

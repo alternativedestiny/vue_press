@@ -36,7 +36,7 @@
 
             将下边几行添加到文件中
 
-            ```bashrc
+            ```bash
             export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_271
             export JRE_HOME=${JAVA_HOME}/lib:${JRE_HOME}/lib
             export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib

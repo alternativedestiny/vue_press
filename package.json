@@ -12,6 +12,7 @@
   "author": "lg",
   "license": "MIT",
   "devDependencies": {
+    "babel-plugin-polyfill-corejs2": "^0.3.2",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "vuepress": "^1.8.2"

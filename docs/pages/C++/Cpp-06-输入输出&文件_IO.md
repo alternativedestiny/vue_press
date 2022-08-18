@@ -78,6 +78,11 @@
     printf("\033[31;1m%s\033[0m", msg); // 红色高亮
     printf("\033[32;1m%s\033[0m", msg); // 绿色高亮
     printf("\033[33;1m%s\033[0m", msg); // 黄色高亮
+
+    // 也可以通过宏定义
+    #define printr(format, args...) (printf("\033[31;21m" format "\033[0m", ##args))    // red
+    #define printg(format, args...) (printf("\033[32;21m" format "\033[0m", ##args))    // green
+    #define printy(format, args...) (printf("\033[33;21m" format "\033[0m", ##args))    // yellow
     ```
 
     | 样式配置 | 样式         |
@@ -123,10 +128,37 @@
 
 ### 1.4. 关闭缓冲区
 
-1. 正常的`printf`和`cout`不加换行符不会打印出来，需要关闭缓冲区
+1. 正常的`printf`和`cout`不加换行符不会打印出来，需要关闭缓冲区，也可以使用清空缓冲区的方法
 
     ```cpp
-    setbuf(stdout, NULL);
+    setbuf(stdout, NULL);   // 关闭缓冲区
+    fflush(stdout);         // 清空缓冲区
+    ```
+
+2. 实现进度条的方法，[参考链接](https://blog.csdn.net/u014311125/article/details/102798699)
+
+    ```cpp
+    #include <Windows.h>
+
+    #include <iostream>
+
+    int main() {
+        int all_block_num = 1000;
+        for (int i = 0; i < all_block_num; i++) {
+            if (i < all_block_num - 1) {
+                printf("\r 读取中 [%.2lf%%]:", i * 100.0 / (all_block_num - 1));
+            } else {
+                printf("\r 读取完成 [%.2lf%%]:", i * 100.0 / (all_block_num - 1));
+            }
+            int show_num = i * 20 / all_block_num;
+            for (int j = 1; j <= show_num; j++) {
+                std::cout << "█";
+                Sleep(20);
+            }
+        }
+        std::cout << std::endl;
+        return 1;
+    }
     ```
 
 ## 2. 文件读写
@@ -433,7 +465,7 @@
         char str[] = "pi = 3.14";
         char variable[10];
         float num;
-        // 成功则返回参数数目，失败则返回-1，错误原因存于errno中
+        // 成功则返回参数数目，失败则返回-1，错误原因存于 errno 中
         sscanf(str, "%s = %f", variable, num);
         cout << variable << endl; 
         cout << num << endl; 
