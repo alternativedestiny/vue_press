@@ -40,7 +40,7 @@
     # 安装 ssh
     sudo apt-get install openssh-server
 
-    # 修改配置文件，修改 Port
+    # 修改配置文件，修改 Port（这一步可以忽略，默认 22 端口）
     sudo vi /etc/ssh/sshd_config
     # Port 1234
     # PasswordAuthentication yes
@@ -65,6 +65,10 @@
     ```
 
 3. Xshell 连接 WSL 的时候需要先重启 ssh
+
+### 1.3. 安装 docker
+
+1. 通过 curl 安装
 
 ## 2. 概念
 

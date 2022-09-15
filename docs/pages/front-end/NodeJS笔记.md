@@ -44,6 +44,9 @@
 
     # 卸载
     npm uninstall <package>
+
+    # 查看依赖包
+    npm list
     ```
 
 2. 全局管理

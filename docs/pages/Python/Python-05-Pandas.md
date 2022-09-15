@@ -482,7 +482,7 @@
     tomorrow = date + timedelta(days=1)
     data = df[(df['time'] >= date.date()) & (df['time'] < tomorrow)]
 
-    # 方法2
+    # 方法 2
     data = df[(df['time'].dt.month == date.month) & (df['time'].dt.day == date.day)]
     ```
 
@@ -531,23 +531,24 @@
 
 2. 读取设置，[官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
 
-   | 关键字                   | 功能                                                                |
-   | ------------------------ | ------------------------------------------------------------------- |
-   | chunksize=4              | 每 4 行数据为一组                                                   |
-   | dtype = {'col' : str}    | 修改 col 类型到 str                                                 |
-   | engine='python'          | 默认'c'，c 更快，python 功能更完善                                  |
-   | false_value=["no"]       | no 被认为 False                                                     |
-   | index_col=False          | 目录列，'False'表示没有目录                                         |
-   | MultiIndex               | 支持双列目录                                                        |
-   | na_values=[5]            | 5 和 5.0 会被认为是 NaN                                             |
-   | na_valuede=["Na","0"]    | Na 和 0 会被认为是 NaN                                              |
-   | nrows                    | 读取的行数                                                          |
-   | parse_dates=['tm']       | 将'tm'列读取成 datetime 格式                                        |
-   | sep=':'                  | 分隔符，支持':'等符号，多空格或 Tab 用`'\\s+'`, 多种分隔符用`|`隔开 |
-   | skiprows=[0,3]           | 跳过第 0 行和第 3 行                                                |
-   | skip_blank_lines=True    | 是否跳过空行，默认 True                                             |
-   | true_values=["yes"]      | yes 被认为 True                                                     |
-   | usecols=['col1', 'col2'] | 选择要读取的列                                                      |
+    | 关键字                   | 功能                                                          |
+    | ------------------------ | ------------------------------------------------------------- |
+    | chunksize=4              | 每 4 行数据为一组                                             |
+    | dtype = {'col' : str}    | 修改 col 类型到 str                                           |
+    | engine='python'          | 默认'c'，c 更快，python 功能更完善                            |
+    | false_value=["no"]       | no 被认为 False                                               |
+    | hearder=0                | 默认第 0 行为 header, 没有则设为 None                         |
+    | index_col=False          | 目录列，'False'表示没有目录                                   |
+    | MultiIndex               | 支持双列目录                                                  |
+    | na_values=[5]            | 5 和 5.0 会被认为是 NaN                                       |
+    | na_valuede=["Na","0"]    | Na 和 0 会被认为是 NaN                                        |
+    | nrows                    | 读取的行数                                                    |
+    | parse_dates=['tm']       | 将'tm'列读取成 datetime 格式，也可以用列号                    |
+    | sep=':'                  | 分隔符，支持':'等符号，多空格或 Tab 用`'\\s+'`, 多种分隔符用` | `隔开 |
+    | skiprows=[0,3]           | 跳过第 0 行和第 3 行                                          |
+    | skip_blank_lines=True    | 是否跳过空行，默认 True                                       |
+    | true_values=["yes"]      | yes 被认为 True                                               |
+    | usecols=['col1', 'col2'] | 选择要读取的列                                                |
 
 3. 使用设置
 

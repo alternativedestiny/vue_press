@@ -108,6 +108,30 @@
 
 ### 2.3. 逻辑运算
 
+### 2.4. 随机数 random
+
+1. 生成随机数
+
+    ```python
+    import random
+
+    # 生成整数随机数
+    random.randint(-10, 10) # 在-10 到 10 的范围内生成一个随机整数
+
+    # 生成随机浮点数
+    random.random() # 生成 0-1 之间的随机浮点数
+    random.uniform(1.1, 2.2)    # 生成 1.1-2.2 之间的随机浮点数
+
+    # 生成随机字符
+    random.choice('jdldjfglkjalsherhbgdnfbs')   # 字符也可以换成数组之类的
+    ```
+
+2. 生成随机数组
+
+    ```python
+    random.sample(range(0, 20), 12) # 生成 0-20 之间的 12 个随机整数
+    ```
+
 ## 3. 字符串 (String)
 
 1. 类型转换：`str2 = str(str1)`
@@ -315,6 +339,8 @@
 
 ## 5. 列表 (List)
 
+### 5.1. List 使用
+
 1. 创建列表
 
     ```python
@@ -396,11 +422,20 @@
         print(i, item)
     ```
 
-8. 转换
+### 5.2. 转换
+
+1. list 转 string
 
     ```python
     # list 转 string
     str1 = ",".join(list1)  # list1 转字符串，中间用','隔开，也可使用空格等其他字符
+    ```
+
+2. list（字符串） 转 list（数字）
+
+    ```python
+    list1 = ['1', '2', '3']
+    list1 = list(map(float, list1))
     ```
 
 ## 6. 元组 (Tupple)
@@ -500,7 +535,16 @@
     ```python
     import time
 
-    print(time.time())
+    print(time.time())  # 当前时刻
+    ```
+
+3. 时间戳 (time) 转 时间 (datetime)
+
+    ```python
+    from datetime import datetime
+
+    now = time.time()   # 时间戳 time
+    tm = datetime.fromtimestamp(now) # 时间 datetime
     ```
 
 ### 9.2. datetime 库
@@ -520,6 +564,8 @@
     ```python
     # 导入 datetime 包
     from datetime import datetime
+
+    now = datetime.now()    # 当前时刻
 
     date1 = datetime(2016, 2, 28, 0, 0, 0)
     # 时间为 00:00:00 时，可以省略时间，即
@@ -549,6 +595,8 @@
     t = datetime.strptime(str1, '%Y-%m-%d %H:%M:%S')
     # 修改秒数
     t = t.replace(second=30)    # 2020-01-01 10:10:30
+    # 去除小数点
+    t = t.replace(microsecond=0)
     ```
 
 4. 日期增减：timedelta & dateutil

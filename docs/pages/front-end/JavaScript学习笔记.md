@@ -10,7 +10,7 @@
 | Boolean   | 布尔值                 |
 | String    | 字符串                 |
 | Number    | 数值                   |
-| Object    | 对象或 null             |
+| Object    | 对象或 null            |
 | Function  | 函数                   |
 
 - 布尔值转换为 True 的值：`true`, `非空字符串`, `非零数字`, `对象`, `N/A`

@@ -121,8 +121,8 @@
         from django.urls import path, include
 
         urlpatterns = [
-            path('admin/', admin.site.urls),
-            path('', include('anime.urls'))
+            path('admin/', admin.site.urls),    # 模板中原有的
+            path('', include('myapp.urls'))     # 新增加的 app 路由
         ]
         ```
 
@@ -150,7 +150,7 @@
 
 ## 4. 配置静态文件路径
 
-1. 在项目根目录创建静态文件夹
+1. 在项目根目录创建静态文件夹，我的目录如下所示，可以根据各自项目结构修改相应路径即可
 
     ```python
     mysite/
@@ -167,7 +167,11 @@
 2. 添加路径：在`settings.py`最底部添加
 
     ```python
-    STATIC_URL = '/static/'
+    # 头部增加
+    import os
+
+    # 在 STATIC_URL 后面添加
+    STATIC_URL = 'static/'  # 这句已经有了，添加下面内容即可
     STATIC_ROOT = os.path.join(BASE_DIR, 'static').replace('\\', '/')
     STATICFILES_DIRS = (
         ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
@@ -181,25 +185,25 @@
 
     ```html
     <!-- 导入 css -->
-    <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 
     <!-- 导入 js -->
-    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src=static/js/jquery-1.11.1.min.js"></script>
 
     <!-- 插图 -->
-    <img src="/static/img/img1.jpg" alt=" " class="img-responsive" />
+    <img src="static/img/img1.jpg" alt=" " class="img-responsive" />
     <!-- 或 -->
     {% load static %}
     <img src="{% static 'img/img1.jpg' %}" alt="hoppou">
     ```
 
-## 5. 模型使用
+## 5. 模型
 
 ### 5.1. 创建模型
 
 1. 创建方法
-   1. 静态创建方法：在`myapp/models.py`中
+    1. 静态创建方法：在`myapp/models.py`中
 
         ```python
         from django.db import models
@@ -211,7 +215,7 @@
 
         ```
 
-   2. 动态创建方法：使用`update_or_create`, 若字段不存在就创建，存在就更新。在 views 函数中
+    2. 动态创建方法（非必要步骤，根据需求使用）：使用`update_or_create`, 若字段不存在就创建，存在就更新。在 views 函数中
 
         ```python
         # 假设给模型 Model1 中增加字段
@@ -221,7 +225,7 @@
         )
         ```
 
-2. 注册模型：在`myapp/admin.py`中
+2. 注册模型：在`myapp/admin.py`中（这一步用于 Django 自带后台管理显示数据，非必要步骤）
 
     ```python
     from django.contrib import admin
@@ -229,9 +233,9 @@
 
     # Register your models here.
     class Model1Admin(admin.ModelAdmin):
-        list_display = ('fields1')
+        list_display = ('fields1', 'fields2')
 
-    admin.site.register(Model1)
+    admin.site.register(Model1, Model1Admin)
     ```
 
 3. 激活模型：在`mysite/settings.py`中的`INSTALLED_APPS`字段添加 app
@@ -248,7 +252,7 @@
     ]
     ```
 
-4. 写入数据库
+4. 生成数据库
    1. makemigrations 会在当前目录下生成一个 migrations 文件夹，该文件夹的内容就是数据库要执行的内容
 
         ```bash
@@ -275,6 +279,11 @@
         `Applying myapp.0001_initial... OK`
 
    3. 备注：Django 每次更新模型都需要执行以上两步，需要注意的是 Django 模型增加内容需要设定变量的初始值，否则会在第一步出现问题
+   4. 如果运行 `python manage.py makemigrations` 出现 `No changes detected`, 需要带上 app 名执行，migrate 同理
+
+        ```bash
+        python manage.py makemigrations myapp
+        ```
 
 5. 创建超级用户，在命令行输入下面的指令，根据提示进行账号密码等设置即可
 
@@ -282,7 +291,77 @@
     python manage.py createsuperuser
     ```
 
-6. 常用字段类型，[参考](https://blog.csdn.net/Ka_Ka314/article/details/80828309)
+### 5.2. 模型使用
+
+1. 模型搜索，假设模型名为 Mod, 其下有 id, name, type 等几个字段
+
+    ```python
+    from .models import Mod
+
+    # 获取模型中的所有条目
+    mod = Mod.objects.all()
+
+    # 单条数据获取
+    mod = Mod.objects.get(id=3)
+
+    # 根据条件筛选
+    mod = Mod.objects.filter(id=3)
+    if mod.count() == 0:
+        print('未查询到数据')
+    ```
+
+2. 模型创建条目
+
+    ```python
+    # 创建一条新的数据记录
+    mod = Mod.objects.create(
+        id = 1,
+        name = 'tom',
+        type = 0
+    )
+    mod.save()
+    ```
+
+3. 模型批量创建数据 `bulk_create`, 速度会快很多
+
+    ```python
+    # models.py
+    class Mod(models.Model):
+        name = models.CharField(max_length=30, default='')
+
+    # views.py
+    model_list = list()
+    for i in range(len(name_list)):
+        model_list.append(mod(name=name_list[i]))
+
+    Mod.objects.bulk_create(model_list)
+    ```
+
+4. 模型更新数据
+
+    ```python
+    # 方法 1: 适合批量修改数据
+    Mod.objects.filter(id=10).update(type=1)
+
+    # 方法 2: 适合修改个别数据
+    mod = Mod.objects.get(id=10)
+    mod.type = 1
+    mod.save()
+    ```
+
+5. 批量更新数据 `bulk_update`, [参考链接](https://blog.51cto.com/u_15069490/4401252)
+
+6. 模型删除数据
+
+    ```python
+    # 删除全部数据
+    mod = Mod.objects.all()
+    mod.delete()
+    ```
+
+### 5.3. 模型字段
+
+1. 常用字段类型，[参考](https://blog.csdn.net/Ka_Ka314/article/details/80828309)
 
     | 字段             | 类型                          |
     | ---------------- | ----------------------------- |
@@ -298,33 +377,29 @@
     | DateField        | 日期                          |
     | FileField        | 一个上传文件的字段            |
 
-7. 字段设置
+2. 通用字段设置
 
-    | 设置           | 功能                                   |
-    | -------------- | -------------------------------------- |
-    | max_length=100 | 最大长度为 100                         |
-    | default=''     | 默认值                                 |
-    | blank=True     | 允许空白，默认 False                   |
-    | null=True      | 将空值以 NULL 存储到数据库，默认 False |
-    | unique=True    | 字段在表中拥有唯一值                   |
+    | 设置            | 功能                                   |
+    | --------------- | -------------------------------------- |
+    | max_length=100  | 最大长度为 100                         |
+    | default=''      | 默认值                                 |
+    | blank=True      | 允许空白，默认 False                   |
+    | null=True       | 将空值以 NULL 存储到数据库，默认 False |
+    | unique=True     | 字段在表中拥有唯一值                   |
+    | verbose_name='' | 用于后台显示字段名                     |
 
-### 5.2. makemigrations 和 migrate
+3. 时间字段 DateTimeField
 
-1. makemigrations 会在当前目录下生成一个 migrations 文件夹，该文件夹的内容就是数据库要执行的内容
-
-    ```bash
-    python manage.py makemigrations
+    ```python
+    tm = models.DateTimeField(auto_now=True, verbose_name='更新时间')   # 相当于 python 里的 datetime 格式
     ```
 
-2. migrate 就是执行之前生成的 migrations 文件，这一步才是操作数据库的一步
+    | 参数         | 值         | 介绍                                                         |
+    | ------------ | ---------- | ------------------------------------------------------------ |
+    | auto_now     | True/False | 自动填充时间，并在模型修改后自动更新                         |
+    | auto_now_add | True/False | 自动填充时间，只有模型第一次创建的时候赋值，后续修改不会更新 |
 
-    ```bash
-    python manage.py migrate
-    ```
-
-3. 备注：Django 每次更新模型都需要执行以上两步，需要注意的是 Django 模型增加内容需要设定变量的初始值，否则会在第一步出现问题
-
-### 5.3. 用户模型扩展
+### 5.4. 用户模型扩展
 
 1. 前言：Django 模型本身自带 User 模型，可以完成基本的用户功能，不过由于其自带属性较少（用户名，密码，姓，名，邮箱，权限），有时难以满足使用，因此需要涉及用户模型扩展。
     > 本方法思路是创建一个普通模型，使其与 Django 自带用户模型形成一一对应关系
@@ -368,44 +443,6 @@
 
    - [django 用户认证系统——拓展 User 模型 2](https://www.cnblogs.com/AmilyWilly/p/8469851.html)
    - [Django-Model 操作数据库（增删改查、连表结构）](https://www.cnblogs.com/yangmv/p/5327477.html)
-
-### 5.4. 模型使用
-
-1. 模型搜索，假设模型名为 Mod, 其下有 id, name, type 等几个字段
-
-    ```python
-    from .models import Mod
-
-    # 获取模型中的所有条目
-    mod = Mod.objects.all()
-
-    # 根据条件筛选
-    mod = Mod.objects.filter(id=3)
-    ```
-
-2. 模型创建条目
-
-    ```python
-    # 创建一条新的数据记录
-    mod = Mod.objects.create(
-        id = 1,
-        name = 'tom',
-        type = 0
-    )
-    mod.save()
-    ```
-
-3. 模型更新数据
-
-    ```python
-    # 方法 1: 适合批量修改数据
-    Mod.objects.filter(id=10).update(type=1)
-
-    # 方法 2: 适合修改个别数据
-    mod = Mod.objects.get(id=10)
-    mod.type = 1
-    mod.save()
-    ```
 
 ## 6. 用户验证
 
@@ -494,7 +531,52 @@
 
 ## 7. 前后端数据交互
 
-### 7.1. 表单提交 GET&POST
+### 7.1. 返回 Json 数据
+
+1. 后端查询函数
+
+    ```python
+    from django.http.response import JsonResponse
+
+    def get_data(request):
+        data = Model1.objects.all() # 获取全部数据
+        json_data = {}  # 创建空的 json
+
+        # 给 json 赋值
+        for i in range(len(data)):
+            json_data[i] = {"id": data[i].id,
+                        "name": data[i].nm}
+
+        return JsonResponse(json_data)  # 返回 json 到前端
+    ```
+
+2. 将函数添加到 urls.py 中
+
+    ```python
+    path('get_data', views.get_data, name='get_data')
+    ```
+
+3. 前端调用函数
+
+    ```js
+    // 页面加载完成后调用函数
+    $(document).ready(function () {
+        $.getJSON("get_data", function (json_data) {
+            // 这部之前先要向 html 文件中被插入表格的 <tbody> 加入 id, 变成 <tbody id="tbody">
+            $("#tbody").empty();    // 先清空表格中原有内容
+
+            // 向表格中插入新的内容
+            for (let i = 0; i < 3; i++) {
+                let id = $("<td></td>").text(json_data[i].id);
+                let name = $("<td></td>").text(json_data[i].name);
+                var tr = $("<tr></tr>").append(id, name);
+                $("#tbody").append(tr);
+            }
+        })
+    });
+    ```
+
+### 7.2. 表单提交 GET&POST
 
 1. GET&POST 都是 AJAX 函数的简写
    比如在 jQuery 使用 POST 时，POST 函数语法如下
@@ -551,7 +633,7 @@
 
     这句后程序更加稳定。使用 POST 方法相同，只需把上面程序 GET 改成 POST 即可，但是需要注意 csrf 问题。
 
-### 7.2. 前端获取数据
+### 7.3. 前端获取数据
 
 1. 后端传递全部变量到前端
    1. 在`views.py`文件中使用`locals()`

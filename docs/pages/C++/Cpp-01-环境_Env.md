@@ -22,12 +22,12 @@
 
 5. 网络不好时可以选择离线安装
    1. [下载地址](https://sourceforge.net/projects/mingw-w64/files/mingw-w64/)
-   2. 根据系统选择版本，Windows 建议 x86_64-posix-seh
+   2. 下载界面往下拉，根据系统选择版本，Windows 建议 x86_64-posix-seh
 
         <img src='../images/mingw_download.png'>
 
    3. 解压下载的压缩文件即可
-6. 根据自己的安装路径配置环境变量，在系统变量中的 path 中添加 mingw 的路径，最好重启一下使换进变量生效
+6. 根据自己的安装路径配置环境变量，在系统变量中的 path 中添加 mingw 的路径，最好重启一下使环境变量生效
    <img src='../images/Cpp-01-path.png' width=600>
 
 7. 在命令行中输入`gcc -v`, 显示出 gcc 版本表示安装成功
