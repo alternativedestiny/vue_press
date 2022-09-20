@@ -1,4 +1,4 @@
-# 6. 绘图 Matplotlib
+# 6. Matplotlib 绘图
 
 ## 1. 绘图种类
 

@@ -1,4 +1,4 @@
-# pygal
+# Pygal
 
 ## 1. 简介
 
