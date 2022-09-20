@@ -129,7 +129,13 @@
 2. 生成随机数组
 
     ```python
-    random.sample(range(0, 20), 12) # 生成 0-20 之间的 12 个随机整数
+    random.sample(range(0, 20), 12) # 生成 0-20 之间的 12 个不重复随机整数
+    ```
+
+3. 分布随机数
+
+    ```python
+    random.gauss(6, 1)  # 均值为 6, 标准差为 1
     ```
 
 ## 3. 字符串 (String)

@@ -181,6 +181,9 @@ Git分区：工作区—暂存区—Git仓库
     ```git
     git remote rm origin
     git remote add origin 地址
+
+    # 也可以直接用下述指令
+    git remote set-url origin 地址
     ```
 
 ## 6. 老瓶装新酒（新设备在已有项目的基础上继续更新）

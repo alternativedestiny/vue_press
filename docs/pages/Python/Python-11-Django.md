@@ -148,20 +148,30 @@
 
 6. 其效果相当于用。.... 处的内容替换{% block xxx %}{% endblock %}部分
 
-## 4. 配置静态文件路径
+## 4. 项目文件结构
+
+### 4.1. 配置静态文件路径
 
 1. 在项目根目录创建静态文件夹，我的目录如下所示，可以根据各自项目结构修改相应路径即可
 
     ```python
-    mysite/
-        |_ mysite/
-        |_ templates/
+    mysite/ # 项目根目录
+        |_ mysite/  # 项目配置文件
+            |_ asgi.py
+            |_ settings.py   # 用于项目的基础文件配置
+            |_ urls.py       # 整个项目的路由
+            |_ wsgi.py
+        |_ templates/   # html 文件
+            |_ templete.html
+            |_ index.html
         |_ manage.py
-        |_ myapp/
-        |_ static/
+        |_ myapp/   # app 文件
+            |_ views.py     # app 中的各种后端函数
+        |_ static/  # 静态文件
             |_ css/
             |_ js/
             |_ img/
+            |_ fonts/
     ```
 
 2. 添加路径：在`settings.py`最底部添加
@@ -170,7 +180,7 @@
     # 头部增加
     import os
 
-    # 在 STATIC_URL 后面添加
+    # 在 STATIC_URL 后面添加（较老版本的 Django 需要在 static 前加斜杠，不然找不到静态文件
     STATIC_URL = 'static/'  # 这句已经有了，添加下面内容即可
     STATIC_ROOT = os.path.join(BASE_DIR, 'static').replace('\\', '/')
     STATICFILES_DIRS = (
@@ -196,6 +206,16 @@
     <!-- 或 -->
     {% load static %}
     <img src="{% static 'img/img1.jpg' %}" alt="hoppou">
+    ```
+
+### 4.2. py 文件路径问题
+
+1. django 项目中 python 程序中的路径不是以 python 文件所在路径为基础的，而是以 manage.py 所在目录即项目的根目录为基础
+2. 比如 myapp/views.py 中需要访问 template 中的文件，相对路径如下
+
+    ```python
+    index = "./templates/index.html" # √
+    index = "../templates/index.html"   # ×
     ```
 
 ## 5. 模型
@@ -736,4 +756,17 @@
     ```sh
     # 虚拟环境 python 路径/python manage.py runerver IP:Port &
     python manage.py runserver 127.0.0.1:8000 &
+    ```
+
+### 9.2. 错误处理
+
+1. 出现错误 TypeError: argument of type 'PosixPath' is not iterable, 与 Django 版本相关，解决方法是将 setting.py 中的 DATABASE 部分路径转换成字符串
+
+    ```python
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': str(BASE_DIR / 'db.sqlite3'),   # 修改此行
+        }
+    }
     ```

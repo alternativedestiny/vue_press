@@ -174,7 +174,7 @@
     ```python
     # 增加一行数据
     df.loc['0'] = [1, 2, 3]
-    df.loc[0] = [1, 2, 3]
+    df.loc[len(df.index)] = [1, 2, 3]   # 最后一行增加新数据
     df = df.append({'a': 1, 'b': 2, 'c':3}, ignore_index=True)
     df['col'] = 'abc'    # 增加一列完全相同的值
 
@@ -310,7 +310,7 @@
     new_df = df[df['time'].dt.hour = 10]    # 筛选所有 10 点钟的数据
 
     
-    # 多条件筛选
+    # 多条件筛选，小括号不能缺
     df[(df['a'] >= 10) & (df['b'] >= 10)]  # 与
     df[(df.a == 10) | (df.b > 20)]  # 或
 
@@ -348,6 +348,8 @@
     df['row_sum'] = df.apply(lambda x: x.sum(), axis=1)
     # 部分行求和（前两列）
     df['row_sum'] = df.iloc[:, :2].apply(lambda x: x.sum(), axis=1)
+    # 也可以直接用列名
+    df['row_sum'] = df['a'] + df['b']
 
     # 列求和
     df.sum()    # 所有列求和
