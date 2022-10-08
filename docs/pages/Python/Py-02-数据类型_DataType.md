@@ -1,4 +1,4 @@
-# 2. 数据类型
+# 2. Python 数据类型
 
 ## 1. Python 变量
 
@@ -435,13 +435,21 @@
     ```python
     # list 转 string
     str1 = ",".join(list1)  # list1 转字符串，中间用','隔开，也可使用空格等其他字符
+
+    # 如果 list 是数组
+    str1 = ','.join(str(x) for x in list1)
     ```
 
 2. list（字符串） 转 list（数字）
 
     ```python
+    # 字符串列表
     list1 = ['1', '2', '3']
     list1 = list(map(float, list1))
+
+    # 列表字符串
+    str1 = "[0, 1, 2, 3, 4, 5, 6, 7, 8]"
+    list2 = [int(x) for x in str1.strip('[]').split(', ')]
     ```
 
 ## 6. 元组 (Tupple)
@@ -771,3 +779,7 @@
     ```
 
 3. 写入 JSON
+
+## 12. 未完待续
+
+- 最新笔记参考通过我的 [github 个人主页](https://alternativedestiny.github.io/) 或 [gitee 个人主页](https://hoppou.gitee.io/) 来查看

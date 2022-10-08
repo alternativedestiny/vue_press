@@ -1,8 +1,22 @@
-# 6. Matplotlib 绘图
+# 6. Matplotlib, Pyecharts 绘图
 
-## 1. 绘图种类
+## 1. 安装
 
-### 1.1. plot 折线绘图
+1. 安装 Matplotlib
+
+    ```bash
+    pip install matplotlib
+    ```
+
+2. 安装 Pyecharts, Pyecharts 绘图会保存成 HTML 文件，需要用浏览器打开
+
+    ```bash
+    pip install pyecharts
+    ```
+
+## 2. 绘图种类
+
+### 2.1. plot 折线绘图
 
 1. 代码
 
@@ -29,11 +43,24 @@
 
     <img src='../images/plot.png' width=600>
 
-### 1.2. scatter 散点图
+### 2.2. scatter 散点图
 
 1. 带颜色区分的散点图
+2. 三维散点图
 
-### 1.3. bar 柱状图
+    ```python
+    fig = plt.figure()
+
+    ax = fig.add_subplot(projection='3d')
+    ax.scatter(x, y, z, c=y_pred)
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_zlabel('z')
+
+    plt.show()
+    ```
+
+### 2.3. bar 柱状图
 
 1. 基础柱状图
 
@@ -50,7 +77,57 @@
 
     <img src='../images/2021-08-12_15.png' width=600>
 
-2. 参数
+2. 分组柱状图
+
+    ```python
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    fig, ax = plt.subplots()
+    width = 0.1
+    x = np.arange(0, 3)
+    y1 = [1, 2, 3]
+    y2 = [3, 2, 1]
+
+    # 用偏移量设置多组柱状图
+    b1 = ax.bar(np.add(x, -width / 2), y1, width, label='1')
+    b2 = ax.bar(np.add(x, width / 2), y2, width, label='2')
+
+    ax.legend() # 显示图例
+
+    ax.bar_label(b1, padding=3) # 柱状图显示数值
+    ax.bar_label(b2, padding=3) # 柱状图显示数值
+    fig.tight_layout()  # 减小图片边框
+
+    # x 轴间隔设置为 1
+    x_locator = plt.MultipleLocator(1)
+    ax.xaxis.set_major_locator(x_locator)
+
+    plt.show()
+    ```
+
+    ![图 1](../images/2022-09-22_66.png)  
+
+3. 堆叠柱状图
+
+    ```python
+    import numpy as np
+    from matplotlib import pyplot as plt
+
+    x = [1, 2, 3]
+    y1 = [1, 2, 3]
+    y2 = [3, 2, 1]
+
+    fig, ax = plt.subplots()
+    ax.bar(x, y1, label='a')
+    ax.bar(x, y2, bottom=y1, label='b')
+    ax.legend()
+    plt.show()
+    ```
+
+    ![图 2](../images/2022-09-23_43.png)  
+
+4. 参数
 
     ```python
     bar(x, height, width=0.8, bottom=None, ***, align='center', data=None, **kwargs)
@@ -64,7 +141,7 @@
     | bottom | 柱状图的起始位置                             |
     | align  | 柱状图的中心位置，'edge'左边缘，'center'中心 |
 
-3. 动态柱宽
+5. 动态柱宽
 
     > 有时需要根据数据设置柱状图列宽和偏移量，下面给出推荐设置
 
@@ -78,7 +155,7 @@
         plt.bar(np.array(x) + 0.5 * delta, y, width=0.9 * delta)
     ```
 
-### 1.4. pie 饼图
+### 2.4. pie 饼图
 
 1. 代码
 
@@ -100,11 +177,69 @@
 
     <img src='../images/plt_pie.png' width=512>
 
-2. step 阶梯图
+### 2.5. stackplot 堆叠面积图
 
-## 2. 图片设置
+1. 堆叠面积曲线
 
-### 2.1. 坐标轴
+    ```python
+    x = [1, 2, 3]
+    stacks = {
+        'A': [1, 2, 3],
+        'B': [2, 2, 1],
+        'C': [2, 1, 2]
+    }
+
+    fig, ax = plt.subplots()
+    ax.stackplot(x, stacks.values(), labels=stacks.keys())
+    ax.legend()
+    plt.show()
+    ```
+
+    ![图 1](../images/2022-09-23_49.png)
+
+### 2.6. 盒须图/箱形图
+
+1. violinplot 提琴图
+
+    ```python
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    # Random test data
+    np.random.seed(19680801)
+    all_data = [np.random.normal(0, std, size=100) for std in range(1, 4)]  # [100]*3 数组
+    labels = ['x1', 'x2', 'x3']
+
+    plt.violinplot(all_data,
+                   showmeans=True,  # 显示均值
+                   showmedians=False)  # 不显示中位数
+    plt.xticks([x + 1 for x in range(len(all_data))], labels=labels)
+    plt.show()
+    ```
+
+    ![图 5](../images/2022-09-26_30.png)  
+
+2. 盒须图
+
+    ```python
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    # Random test data
+    np.random.seed(19680801)
+    all_data = [np.random.normal(0, std, size=100) for std in range(1, 4)]
+    labels = ['x1', 'x2', 'x3']
+
+    plt.boxplot(all_data)
+    plt.xticks([x + 1 for x in range(len(all_data))], labels=labels)
+    plt.show()
+    ```
+
+    ![图 6](../images/2022-09-26_37.png)  
+
+## 3. 图片设置
+
+### 3.1. 坐标轴
 
 1. 坐标轴反向
 
@@ -131,7 +266,15 @@
     plt.yticks([])  # 不显示 y 轴坐标
     ```
 
-3. 设置坐标限位
+3. 调整坐标轴间隔
+
+    ```python
+    # x 轴间隔设置为 1
+    x_locator = plt.MultipleLocator(1)
+    ax.xaxis.set_major_locator(x_locator)
+    ```
+
+4. 设置坐标限位
 
     ```python
     # 数值型
@@ -142,7 +285,7 @@
     plt.xlim(datetime.strptime('2019-05-12', '%Y-%m-%d'), datetime.strptime('2019-05-15', '%Y-%m-%d'))
     ```
 
-4. 设置轴标签
+5. 设置轴标签
 
     ```python
     plt.figure()
@@ -155,7 +298,7 @@
     ax.set_ylabel('y')
     ```
 
-5. 坐标轴字体大小
+6. 坐标轴字体大小
 
     ```python
     plt.figure()
@@ -166,13 +309,15 @@
     ax.tick_params(labelsize=14)
     ```
 
-6. 坐标轴坐标倾斜
+7. 坐标轴坐标倾斜
 
     ```python
     plt.xticks(x_axis, rotation=15)  # 刻度倾斜
+    # 或
+    ax.set_xticklabels(labels=x, rotation=-45)
     ```
 
-7. 坐标轴偏移
+8. 坐标轴偏移
 
     ```python
     import numpy as np
@@ -181,7 +326,7 @@
     plt.bar(np.array(x_list) +- 偏移量，y)
     ```
 
-### 2.2. 图例 & 标题
+### 3.2. 图例 & 标题
 
 1. plt.legend
 
@@ -229,7 +374,7 @@
 
 5. legend 参数，更多配置参考 [官方文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html)
 
-### 2.3. 多图设置
+### 3.3. 多图设置
 
 1. subplot(nrows, ncols, index, **kwargs)
 
@@ -263,7 +408,7 @@
     ax[1, 0].plot(x2, y2)
     ```
 
-### 2.4. 多坐标轴（副坐标轴）
+### 3.4. 多坐标轴（副坐标轴）
 
 1. 副坐标轴功能
 
@@ -319,7 +464,7 @@
 
 3. 还有一种方法是不同位置分别显示
 
-### 2.5. 辅助线
+### 3.5. 辅助线
 
 1. 水平线
 
@@ -341,7 +486,7 @@
     plt.grid(True)  # 开启方格
     ```
 
-### 2.6. 注释
+### 3.6. 注释
 
 1. plt.text() 使用
 
@@ -352,7 +497,7 @@
 
 2. plt.annotate()
 
-## 3. 图片显示/输出设置
+### 3.7. 图片显示/输出设置
 
 1. 中文编码问题
 
@@ -370,10 +515,16 @@
 3. 图片保存
 
     ```python
-    # 放在 plt.show() 前面，不支持 jpg
+    # 要放在 plt.show() 前面，不然会变成空白
     plt.savefig("Picture.png")
     # 批量保存图片为防止大量图片占用内存，需要关闭图片
     plt.close()
+    ```
+
+4. 图片边框修改
+
+    ```python
+    plt.tight_layout()  # 缩小边框空白
     ```
 
 ## 4. 动态图
@@ -384,3 +535,42 @@
     import matplotlib.animation as ani
 
     ```
+
+## 5. Pyecharts
+
+### 5.1. Bar 柱状图
+
+```python
+from pyecharts.charts import Bar
+from pyecharts import options as opts
+
+bar = (
+    Bar()
+    .add_xaxis(["衬衫", "毛衣", "领带", "裤子", "风衣", "高跟鞋", "袜子"])
+    .add_yaxis("商家 A", [114, 55, 27, 101, 125, 27, 105])
+    .add_yaxis("商家 B", [57, 134, 137, 129, 145, 60, 49])
+    .set_global_opts(title_opts=opts.TitleOpts(title="某商场销售情况"))
+    .render('render.html')
+)
+```
+
+![图 2](../images/2022-09-26_16.png)  
+
+### 5.2. Pie 饼图
+
+```python
+from pyecharts.charts import Pie
+from pyecharts import options as opts
+
+x = ["衬衫", "毛衣", "领带", "裤子", "风衣", "高跟鞋", "袜子"]
+y = [114, 55, 27, 101, 125, 27, 105]
+pie = (
+    Pie()
+    .add("", [list(x) for x in zip(x, y)])
+    .set_colors(["blue", "green", "yellow", "red", "pink", "orange", "purple"])
+    .set_series_opts(label_opts=opts.LabelOpts(formatter="{b}: {c} ({d}%)"))
+    .render('render.html')
+)
+```
+
+![图 4](../images/2022-09-26_83.png)  

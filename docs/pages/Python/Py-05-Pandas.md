@@ -89,32 +89,41 @@
 
 ### 1.3. 数据格式转换
 
-   1. astype 转换成其他类型：数据格式不对可能会造成多种问题，比如计算、绘图（这些操作均不会改变原数据）
+1. astype 转换成其他类型：数据格式不对可能会造成多种问题，比如计算、绘图（这些操作均不会改变原数据）
 
-        ```python
-        # 由其他类型转换成 float
-        a = df.iloc[:, 0].astype('float')
-        ```
+    ```python
+    # 由其他类型转换成 float
+    a = df.iloc[:, 0].astype('float')
 
-   2. to_numeric 转换成数字
+    # 将一列数据格式设为 datetime
+    m_df['tm'] = m_df['tm'].astype('datetime64[ns]')
+    ```
 
-        ```python
-        s = pd.Series(['1.0', '2', -3])
-        s = pd.to_numeric(s)
-        ```
+2. to_numeric 转换成数字
 
-   3. to_datetime 转换成日期
+    ```python
+    s = pd.Series(['1.0', '2', -3])
+    s = pd.to_numeric(s)
+    ```
 
-        ```python
-        tm = pd.to_datetime(df.iloc[:, 0])
-        ```
+3. to_datetime 转换成日期
 
-   4. to_timedelta 相对日期
-   5. tolist() Series 转 list(DataFram)
+    ```python
+    tm = pd.to_datetime(df.iloc[:, 0])
+    ```
 
-        ```python
-        list1 = Series.tolist()
-        ```
+4. to_timedelta 相对日期
+5. tolist() Series 转 list(DataFram)
+
+    ```python
+    list1 = Series.tolist()
+    ```
+
+6. pandas 的 datetime 格式转 python datetime
+
+    ```python
+    moment = data['时间'][0].to_pydatetime()
+    ```
 
 ### 1.4. 行/列名操作
 
@@ -152,6 +161,8 @@
     df[['new_col2', 'new_col1']]
 
     # 重置 index，让 index 变成 0，1，2....
+    # drop=True: 避免在 dataframe 中插入 index 列
+    # inplace=True: 用修改后的 df 替换掉原本的 df
     df.reset_index(drop=True, inplace=True)
     ```
 
@@ -165,6 +176,13 @@
     df.set_index('col', inplace=True)
     ```
 
+4. MultiIndex 多索引
+
+```python
+# 创建多索引
+
+```
+
 ## 2. Pandas 数据处理
 
 ### 2.1. 增
@@ -174,7 +192,7 @@
     ```python
     # 增加一行数据
     df.loc['0'] = [1, 2, 3]
-    df.loc[len(df.index)] = [1, 2, 3]   # 最后一行增加新数据
+    df.loc[len(df.index)] = [1, 2, 3]   # 最后一行增加新数据，推荐用法
     df = df.append({'a': 1, 'b': 2, 'c':3}, ignore_index=True)
     df['col'] = 'abc'    # 增加一列完全相同的值
 
@@ -197,6 +215,19 @@
     ```python
     # 数据拼接，列不变，行叠加
     df3 = pd.concat([df1, df2])
+    # 去掉重复行
+    df = df..drop_duplicates()
+    ```
+
+4. copy 拷贝，复制
+
+    ```python
+    # 浅拷贝
+    df2 = df1
+    df2 = df1.copy(deep=False)
+
+    # 深拷贝，deep 默认为 True
+    df2 = df1.copy(deep=True)
     ```
 
 ### 2.2. 删
@@ -246,12 +277,17 @@
 
 1. 检测数据是否有空值 (Nan)
 
-   ```python
-   # 含空数据返回 true，不含空数据返回 false
-   df.isnull().any()
-   # 判断数据是否为 nan，不能用==
-   if df[] is np.nan
-   ```
+    ```python
+    # 含空数据返回 true，不含空数据返回 false
+    df.isnull().any()
+    # 判断数据是否为 nan，不能用==
+    if df[] is np.nan
+
+    # 查询 nan 所在位置
+    na_idx = np.where(np.isnan(df))
+    for i, j in zip(na_idx[0], na_idx[1]):
+        print(i, j) # 行，列
+    ```
 
 2. 查看数据
 
@@ -307,12 +343,16 @@
     new_df = df[df.tm1 >= '2019-01-01 00:00:00']['tm1', 'hv']
     
     # 根据具体时间筛选数据
-    new_df = df[df['time'].dt.hour = 10]    # 筛选所有 10 点钟的数据
+    new_df = df[df['time'].dt.hour == 10]   # 筛选所有 10 点钟的数据
+    new_df = df[df['time'].dt.date == tm.date()]    # 按照日期筛选数据
 
     
     # 多条件筛选，小括号不能缺
     df[(df['a'] >= 10) & (df['b'] >= 10)]  # 与
     df[(df.a == 10) | (df.b > 20)]  # 或
+    # 还可以进行范围筛选
+    new_df = df[df['date'].dt.date.between(start, end)] # 时间范围
+    new_df = df[df.a.between(10, 20)]   # 值范围
 
     # 根据条件筛选多行数据
     keys = ['a', 'b', 'c']
@@ -396,7 +436,7 @@
         import pandas as pd
 
         df = pd.DataFrame({
-            '姓名': ['小明', '小红', '小刚', '小强，'张三', 李四'],
+            '姓名': ['小明', '小红', '小刚', '小强', '张三', '李四'],
             '年级': [1, 1, 1, 1, 2, 2],
             '班级': ['a', 'a', 'b', 'b', 'a', 'b'],
             '语文': [85, 93, 79, 97, 80, 75],
@@ -464,6 +504,12 @@
 
 4. 变换 transformation
 5. 综合 apply
+6. 保存结果
+
+    ```python
+    df = pd.DataFrame(group1.agg({'数学': ['mean', 'max']}))
+    df.to_csv(path)
+    ```
 
 ### 2.7. 日期时间处理
 
@@ -533,24 +579,27 @@
 
 2. 读取设置，[官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
 
-    | 关键字                   | 功能                                                          |
-    | ------------------------ | ------------------------------------------------------------- |
-    | chunksize=4              | 每 4 行数据为一组                                             |
-    | dtype = {'col' : str}    | 修改 col 类型到 str                                           |
-    | engine='python'          | 默认'c'，c 更快，python 功能更完善                            |
-    | false_value=["no"]       | no 被认为 False                                               |
-    | hearder=0                | 默认第 0 行为 header, 没有则设为 None                         |
-    | index_col=False          | 目录列，'False'表示没有目录                                   |
-    | MultiIndex               | 支持双列目录                                                  |
-    | na_values=[5]            | 5 和 5.0 会被认为是 NaN                                       |
-    | na_valuede=["Na","0"]    | Na 和 0 会被认为是 NaN                                        |
-    | nrows                    | 读取的行数                                                    |
-    | parse_dates=['tm']       | 将'tm'列读取成 datetime 格式，也可以用列号                    |
-    | sep=':'                  | 分隔符，支持':'等符号，多空格或 Tab 用`'\\s+'`, 多种分隔符用` | `隔开 |
-    | skiprows=[0,3]           | 跳过第 0 行和第 3 行                                          |
-    | skip_blank_lines=True    | 是否跳过空行，默认 True                                       |
-    | true_values=["yes"]      | yes 被认为 True                                               |
-    | usecols=['col1', 'col2'] | 选择要读取的列                                                |
+    | 常用关键字                | 功能                                                                         |
+    | ------------------------- | ---------------------------------------------------------------------------- |
+    | chunksize=4               | 每 4 行数据为一组                                                            |
+    | comment='<'               | 如果行首字符为`<`, 则跳过该行                                                |
+    | delim_whitespacebool=True | 将单个或多个空格视为分隔符，等同于 `sep='\s+'` , 默认 False                  |
+    | dtype = {'col' : str}     | 修改 col 类型到 str                                                          |
+    | engine='python'           | 默认'c'，c 更快，python 功能更完善                                           |
+    | false_value=["no"]        | no 被认为 False                                                              |
+    | hearder=0                 | 默认第 0 行为 header, 没有则设为 None                                        |
+    | index_col=False           | 目录列，'False'表示没有目录                                                  |
+    | MultiIndex                | 支持双列目录                                                                 |
+    | na_values=[5]             | 5 和 5.0 会被认为是 NaN                                                      |
+    | na_valuede=["Na","0"]     | Na 和 0 会被认为是 NaN                                                       |
+    | nrows                     | 读取的行数                                                                   |
+    | parse_dates=['tm']        | 将'tm'列读取成 datetime 格式，也可以用列号                                   |
+    | sep=':'                   | 分隔符，支持`':'`等符号，默认为`','`，多空格或 Tab 用`'\\s+'`, 多种分隔符用` | `隔开 |
+    | skiprows=[0,3]            | 跳过第 0 行和第 3 行                                                         |
+    | skipfooter=2              | 跳过最后两行，只支持 int 型，默认 0                                          |
+    | skip_blank_lines=True     | 是否跳过空行，默认 True                                                      |
+    | true_values=["yes"]       | yes 被认为 True                                                              |
+    | usecols=['col1', 'col2']  | 选择要读取的列，列名列号都可以                                               |
 
 3. 使用设置
 
@@ -579,7 +628,7 @@
     | 关键字       | 功能                                            |
     | ------------ | ----------------------------------------------- |
     | sep          | 分隔符，默认','                                 |
-    | na_rep       | 缺失数据表示，默认空                            |
+    | na_rep       | 缺失数据表示，默认空，比如：na_rep='0'          |
     | float_format | 浮点格式，保留小数位，比如：float_format='%.3f' |
     | columns      | 选择写入的列，比如：columns=['col1', 'col2']    |
     | header       | 是否写入列名，默认'True'                        |
