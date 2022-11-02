@@ -80,6 +80,7 @@
 2. `Ctrl+Shift+P` 选择 `SFTP: Config` 打开配置文件 `sftp.json`
 
     ```json
+    // 原始配置文件没有的选项可以自行添加
     {
         "name": "名字随便起",   // 服务器名
         "host": "127.0.0.1",    // IP 地址
@@ -153,7 +154,12 @@
 
 ## 5. 设置脚本
 
-1. 安装插件
+1. 功能说明：为方便编辑 markdown 文档，实现一键格式化，包括如下功能：
+   - 实现自动更新 markdown 文件目录编号（通过插件：Markdown TOC)
+   - 实现自动切换文档中的中英文符号（通过插件：Pangu-Markdown)
+   - 实现自动格式化 markdown 文档（通过插件：Markdown All in One)
+   - 保存文档
+2. 安装插件
 
     > 名称：macros
     > ID: ctf0.macros
@@ -162,7 +168,7 @@
     > 发布者：ctf0
     > VS Marketplace 链接：<https://marketplace.visualstudio.com/items?itemName=ctf0.macros>
 
-2. 配置 settings.json
+3. 配置 settings.json
 
     ```json
     // settings.json
@@ -188,7 +194,7 @@
     },
     ```
 
-3. 配置快捷键，`ctrl+alt+p` 输入 `keyboard` 进入 keybindings.json 配置快快捷键
+4. 配置快捷键，`ctrl+alt+p` 输入 `keyboard` 进入 keybindings.json 配置快快捷键
 
    ![图 2](../images/2021-11-11_93.png)  
 

@@ -434,6 +434,15 @@
     scim -d
     ```
 
+7. 关机指令
+
+    ```bash
+    sudo poweroff   # 立刻关机
+    sudo shutdown   # 延时关机
+    sudo shutdown -h now    # 立刻关机
+    sudo shutdown -h 10     # 10min 后关机
+    ```
+
 ## 6. Linux & c++
 
 ### 6.1. 库的使用

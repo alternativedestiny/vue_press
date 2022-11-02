@@ -109,7 +109,9 @@
     long labs(long n);
     ```
 
-### 1.3. 枚举 ENUM
+### 1.3. 位操作&逻辑运算
+
+### 1.4. 枚举 ENUM
 
 1. 语法
 
@@ -667,7 +669,7 @@ char *c1 = str1.c_str();
 char *c1 = (char*)str1.data();
 ```
 
-### 7.5. ASCII 码转换
+### 7.4. ASCII 码转换
 
 1. 字符 <-> int
 

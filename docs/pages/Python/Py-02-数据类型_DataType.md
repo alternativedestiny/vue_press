@@ -419,6 +419,20 @@
     print(list1[0:2])  # [0,2) 的元素
     print(list1[1:])  # 第 2 个及以后元素
     print(list1.index('banana'))  # 查询列表元素位置
+
+    # 判断字符传中是否包含列表中的某个元素
+    list1 = ['a', 'b', 'c']
+    str1 = 'apple'
+    str2 = 'phone'
+    print(any(x in str1 for x in list1))  # True
+    print(any(x in str2 for x in list1))  # False
+
+    # 判断字符传中是否包含列表中的所有元素
+    list1 = ['a', 'b', 'c']
+    str1 = 'apple'
+    str2 = 'abc'
+    print(all(x in str1 for x in list1))  # False
+    print(all(x in str2 for x in list1))  # True
     ```
 
 7. 枚举：同时遍历索引和元素

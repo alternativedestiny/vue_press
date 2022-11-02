@@ -551,7 +551,32 @@
 
 ## 7. 前后端数据交互
 
-### 7.1. 返回 Json 数据
+### 7.1. 返回页面时带数据
+
+1. 后端返回页面的同时生成数据
+
+    ```python
+    def index(request):
+        json_data = {}
+        for i in range(len(m_data)):
+            json_data[i] = {
+                "key1": val1,
+                "key2": val2,
+                "key3": val3
+            }
+
+        # 使用 locals 可以返回当前函数的所有变量
+        return render(request, 'index.html', locals())
+    ```
+
+2. 前端使用变量
+
+    ```js
+    let json_data = {{ json_data|safe }};
+    console.log(json_data[0].key1);     // val1
+    ```
+
+### 7.2. 返回 Json 数据
 
 1. 后端查询函数
 
@@ -559,6 +584,10 @@
     from django.http.response import JsonResponse
 
     def get_data(request):
+        # 如果需要前端传回参数可以用下面的函数获取 request
+        # para1 = request.GET.get("para1", "")
+        # para2 = int(request.GET.get("para2", ""))
+
         data = Model1.objects.all() # 获取全部数据
         json_data = {}  # 创建空的 json
 
@@ -573,7 +602,7 @@
 2. 将函数添加到 urls.py 中
 
     ```python
-    path('get_data', views.get_data, name='get_data')
+    path('get_data', views.get_data, name='get_data')   # 带不带参数与 urls 无关，不用改动
     ```
 
 3. 前端调用函数
@@ -581,6 +610,8 @@
     ```js
     // 页面加载完成后调用函数
     $(document).ready(function () {
+        // 带参数调用后台函数用下面注释的这行，可以带单个或多个参数
+        // $.getJSON("get_data", {"para1": "string", "para2": 123}, function (json_data) {
         $.getJSON("get_data", function (json_data) {
             // 这部之前先要向 html 文件中被插入表格的 <tbody> 加入 id, 变成 <tbody id="tbody">
             $("#tbody").empty();    // 先清空表格中原有内容
@@ -596,7 +627,7 @@
     });
     ```
 
-### 7.2. 表单提交 GET&POST
+### 7.3. 表单提交 GET&POST
 
 1. GET&POST 都是 AJAX 函数的简写
    比如在 jQuery 使用 POST 时，POST 函数语法如下
@@ -653,7 +684,7 @@
 
     这句后程序更加稳定。使用 POST 方法相同，只需把上面程序 GET 改成 POST 即可，但是需要注意 csrf 问题。
 
-### 7.3. 前端获取数据
+### 7.4. 前端获取数据
 
 1. 后端传递全部变量到前端
    1. 在`views.py`文件中使用`locals()`

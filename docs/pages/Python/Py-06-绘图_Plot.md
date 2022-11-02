@@ -2,13 +2,21 @@
 
 ## 1. 安装
 
-1. 安装 Matplotlib
+1. 本篇主要是 Python 绘图方法的笔记，以 matplotlib 为主，还包含 seaborn,pyecharts 等模块
+
+2. 安装 [Matplotlib](https://matplotlib.org/stable/index.html)
 
     ```bash
     pip install matplotlib
     ```
 
-2. 安装 Pyecharts, Pyecharts 绘图会保存成 HTML 文件，需要用浏览器打开
+3. 安装 [seaborn](https://seaborn.pydata.org/)
+
+    ```bash
+    pip install seabron
+    ```
+
+4. 安装 Pyecharts, Pyecharts 绘图会保存成 HTML 文件，需要用浏览器打开
 
     ```bash
     pip install pyecharts
@@ -52,7 +60,7 @@
     fig = plt.figure()
 
     ax = fig.add_subplot(projection='3d')
-    ax.scatter(x, y, z, c=y_pred)
+    ax.scatter(x, y, z)
     ax.set_xlabel('x')
     ax.set_ylabel('y')
     ax.set_zlabel('z')
@@ -210,6 +218,7 @@
     all_data = [np.random.normal(0, std, size=100) for std in range(1, 4)]  # [100]*3 数组
     labels = ['x1', 'x2', 'x3']
 
+    # 均值和中位数只能二选一，False 可以不设置
     plt.violinplot(all_data,
                    showmeans=True,  # 显示均值
                    showmedians=False)  # 不显示中位数
@@ -236,6 +245,41 @@
     ```
 
     ![图 6](../images/2022-09-26_37.png)  
+
+### 2.7. heatmap 热力图
+
+1. 代码
+
+    ```python
+    # 热力图
+    fig, ax = plt.subplots()
+    im = ax.imshow(df)
+    ax.set_xticks(np.arange(len(df.columns)), labels=df.columns)  # 坐标显示成文字
+    ax.set_yticks(np.arange(len(df.index)), labels=df.index)  # 坐标显示成文字
+
+    # 热力图中显示数值
+    for i in range(len(df.index)):
+        for j in range(len(df.columns)):
+            ax.text(j, i, df.iloc[i, j], ha="center", va="center", color="w")
+
+    # color bar
+    cbar = ax.figure.colorbar(im, ax=ax)
+    cbar.ax.set_ylabel('Pearson 相关性', rotation=-90, va="bottom")  # color bar 标题
+
+    fig.tight_layout()
+    plt.show()
+    ```
+
+2. 推荐 seaborn 的用法，更加简洁
+
+    ```python
+    import seaborn as sns
+
+    fig, ax = plt.subplots()
+    sns.heatmap(data=df, annot=True)
+    plt.setp(ax.get_xticklabels(), rotation=30, ha="right", rotation_mode="anchor")
+    plt.show()
+    ```
 
 ## 3. 图片设置
 
@@ -384,9 +428,21 @@
     plt.subplot(2, 2, 2)  # 或 plt.subplot(222)
     plt.plot(x2, y2)
     plt.subplot(2, 2, 3)  # 或 plt.subplot(223)
-    plt.plot(x2, y2)
+    plt.plot(x3, y3)
     plt.subplot(2, 2, 4)  # 或 plt.subplot(224)
-    plt.plot(x2, y2)
+    plt.plot(x4, y4)
+
+    # 如果还需要设置副坐标轴
+    ax1 = plt.subplot(221)
+    ax1.plot(x1, y1)    # 图 1 主坐标
+    ax1b = ax1.twinx()
+    ax1b.plot(x2, y2)   # 图 1 副坐标
+
+    ax2 = plt.subplot(222)
+    ax2.plot(x3, y3)    # 图 2 主坐标
+    ax2b = ax2.twinx()
+    ax2b.plot(x4, y4)   # 图 2 副坐标
+    ...
     ```
 
 2. subplots
@@ -574,3 +630,40 @@ pie = (
 ```
 
 ![图 4](../images/2022-09-26_83.png)  
+
+## 6. Pygal
+
+### 6.1. 简介
+
+1. pygal 是一款动态图表绘制库
+2. 安装
+
+    ```python
+    pip install pygal
+    ```
+
+### 6.2. line
+
+1. demo
+
+    ```python
+    # 官方示例
+    import pygal
+
+    line_chart = pygal.Line()
+    line_chart.title = 'Browser usage evolution (in %)'
+    line_chart.x_labels = map(str, range(2002, 2013))
+    line_chart.add('Firefox', [None, None, 0, 16.6, 25, 31, 36.4, 45.5, 46.3, 42.8, 37.1])
+    line_chart.add('Chrome', [None, None, None, None, None, None, 0, 3.9, 10.8, 23.8, 35.3])
+    line_chart.add('IE', [85.8, 84.6, 84.7, 74.5, 66, 58.6, 54.7, 44.8, 36.2, 26.6, 20.1])
+    line_chart.add('Others', [14.2, 15.4, 15.3, 8.9, 9, 10.4, 8.9, 5.8, 6.7, 6.8, 7.5])
+    line_chart.render_to_file('line.svg')
+    ```
+
+2. 结果：输出的图片用浏览器打开
+
+    ![图 1](../images/2022-04-15_7.png)  
+
+### 6.3. 备注
+
+-[官方文档](https://www.pygal.org/en/stable/documentation/index.html)

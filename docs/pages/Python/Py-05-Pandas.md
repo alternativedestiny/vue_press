@@ -61,9 +61,14 @@
     | 2   | nan | nan | nan |
     | 3   | nan | nan | nan |
     | 4   | nan | nan | nan |
+
+    # 先生成空的 df 再赋值行列名是错误的做法
+    df = pd.DataFrame()
+    df.columns = cols   # 错误
+    df.index = index    # 错误
     ```
 
-3. date_range：生成等间隔时间序列
+3. date_range：生成等间隔时间序列，[官方文档](https://pandas.pydata.org/docs/reference/api/pandas.date_range.html)
 
     函数：`pd.date_range(start, end, pediods, freq)`
 
@@ -85,6 +90,9 @@
     DatetimeIndex(['2020-01-01 00:00:00', '2020-01-01 04:00:00',
                     '2020-01-01 08:00:00'],
                     dtype='datetime64[ns]', freq='4H')
+
+    # 也可以通过开始和结束时间生成时间序列，间隔 1day
+    date = pd.date_range('2020-01-01 12:00:00', '2022-12-31 12:00:00', freq='1D')
     ```
 
 ### 1.3. 数据格式转换
@@ -113,7 +121,7 @@
     ```
 
 4. to_timedelta 相对日期
-5. tolist() Series 转 list(DataFram)
+5. tolist() Series 转 list(DataFrame)
 
     ```python
     list1 = Series.tolist()
@@ -122,10 +130,11 @@
 6. pandas 的 datetime 格式转 python datetime
 
     ```python
+    # 不能对 Series 操作
     moment = data['时间'][0].to_pydatetime()
     ```
 
-### 1.4. 行/列名操作
+### 1.4. 行/列操作
 
 1. 行操作
 
@@ -155,7 +164,7 @@
 
     # 列重命名
     df.columns = ['new_col1', 'new_col2']   # 重命名所有列
-    df.rename(columns={str1: str2}, inplace=True)   # str1 重命名为 str2
+    df.rename(columns={'a': 'A', 'b': 'B'}, inplace=True)   # a 重命名为 A, b 重命名为 B
 
     # 调整列的顺序
     df[['new_col2', 'new_col1']]
@@ -174,14 +183,17 @@
 
     # column->index
     df.set_index('col', inplace=True)
+
+    # 转置（行列转换）
+    df = df.T
     ```
 
 4. MultiIndex 多索引
 
-```python
-# 创建多索引
+    ```python
+    # 创建多索引
 
-```
+    ```
 
 ## 2. Pandas 数据处理
 
@@ -214,15 +226,15 @@
 
     ```python
     # 数据拼接，列不变，行叠加
-    df3 = pd.concat([df1, df2])
+    df3 = pd.concat([df1, df2]).reset_index(drop=True)
     # 去掉重复行
-    df = df..drop_duplicates()
+    df = df.drop_duplicates()
     ```
 
 4. copy 拷贝，复制
 
     ```python
-    # 浅拷贝
+    # 浅拷贝，df1 和 df2 同步改变
     df2 = df1
     df2 = df1.copy(deep=False)
 
@@ -242,13 +254,29 @@
 2. 删除指定的行/列
 
     ```python
-    # 删除行
+    # 删除行，axis=0 默认删除行
     df = df.drop([0, 1])  # 删除第 0，1 行
 
     # 删除列
     df = df.drop(['col1'], axis=1)  # 删除'col1'列
 
     ```
+
+3. 删除重复行
+
+    ```python
+    # 去掉重复行
+    df = df.drop_duplicates(subset=None, keep='first', inplace=False, ignore_index=False)
+    # 或
+    df.drop_duplicates(inplace=True)
+    ```
+
+    | 参数         | 简介                                                              |
+    | ------------ | ----------------------------------------------------------------- |
+    | subset       | 根据列判断重复，默认所有列                                        |
+    | keep         | 'first'保留重复的首行，'last'保留重复的末行，False 删除所有重复行 |
+    | inplace      | True 直接修改源数据                                               |
+    | ignore_index | True 去重后重排 index                                             |
 
 ### 2.3. 改
 
@@ -259,7 +287,7 @@
     sr = Series.sort_values(inplace=True)
 
     # 降序排列，不替换原 df，替换可以增加 inplace 参数
-    df = DataFrame.sort_values(by=['col1'], ascending=False)  
+    df = df.sort_values(by=['col1'], ascending=False)  
     ```
 
 2. replace: 替换
@@ -271,6 +299,26 @@
     df = df.replace(0, np.NaN)
     # 或
     df.replace(0, np.NaN, inplace=True)
+
+    # 将 nan 替换为其他值
+    df = df.replace(np.nan, 0)  # 将 na 修改为 0
+    df = df.fillna(0)           # 同上
+    df.fillna(0, inplace=True)  # 同上
+
+    ```
+
+3. 修改值
+
+    ```python
+    df['col1'][i] = 0   # ×, 会出现警告：A value is trying to be set on a copy of a slice from a DataFrame
+    df.loc[i, 'col1'] = 0   # √
+    ```
+
+4. 保留小数位
+
+    ```python
+    # round-四舍五入，decimals 保留小数位
+    m_df = m_df.round(decimals=3)
     ```
 
 ### 2.4. 查
@@ -324,7 +372,7 @@
 
     # loc 通过标签访问，iloc 通过行列号访问
     # 获取 a，b 列的数据
-    new_df = df.loc[:, ['a', 'b']]  # DataFrame
+    new_df = df.loc[:, ['a', 'b']]  # DataFrame, 注意两层方括号
     # 获取第 1 列的数
     new_df = df.iloc[:, 1]  # Series
     # 还可以直接访问列标签
@@ -359,7 +407,7 @@
     df = df[df['name'].isin(keys)]  # 选择 name 列=a,b,c 的数据
     df = df[~df['name'].isin(keys)]  # 选择 name 列非 a,b,c 的数据
 
-    # 筛选含有指定字段的数据
+    # 筛选含有指定字段的数据（模糊匹配）
     df = df[df['name'].str.contains('a')]  # 选择 name 列包含字符 a 的数据
 
     # 根据值查询元素所在位置
@@ -621,6 +669,9 @@
     df.to_csv('name.csv', index=False, sep=',', float_format='%.3f', columns=['col1', 'col2'])
     # 会给数据添加引号，尽量不要用
     df.to_csv('name.csv', index=False, delimiter=',')
+
+    # 遇到 float_format 不起作用是因为数据格式问题，转换方法如下：
+    df = pd.DataFrame(df, dtype='float')    # 数据格式转换成 float
     ```
 
 2. to_csv 部分配置

@@ -202,7 +202,19 @@
     ```bash
     conda install package-name
     pip install package-name
-    # 本地包只能用pip, 但是得用环境下的pip
+    # 本地包只能用 pip, 但是得用环境下的 pip
+    ```
+
+### 2.4. conda 升级
+
+1. conda 版本升级，打开 Anaconda Powershell Prompt(xxx)
+
+    ```bash
+    # 如果初始环境不在 base 环境下首先要退出当前虚拟环境
+    conda deactivate
+
+    # 然后输入升级指令
+    conda update conda
     ```
 
 ## 3. 离线安装库文件
