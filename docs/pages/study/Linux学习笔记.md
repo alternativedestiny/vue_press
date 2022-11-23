@@ -223,12 +223,20 @@
 ### 5.2. 查询指令 find/grep/which
 
 1. find 指令：find -name "xx*"
+
+    ```bash
+    # 找到 log 开头的文件，引号不能缺
+    find -name "log*"
+    ```
+
 2. findcpp xxx：查询含有 xxx 的 cpp 文件，findh 类似
 3. grep 指令：grep 要查的字符 文件
 
    ```bash
    # 查找含 print 字符的 cpp 文件
-   grep print *cpp
+   grep "print" *cpp
+   # 递归查找(包含文件夹下的子文件)
+   grep -rn "print"
    ```
 
 4. which 指令：查找可执行文件位置 `which 文件名`
@@ -432,7 +440,12 @@
     ```bash
     pkill scim
     scim -d
+    # 然后按 Ctrl+空格就可以调出输入法
     ```
+
+    ![图 1](../images/2022-11-04_93.png)  
+
+    > 默认输入法的模式不对，可以通过点击输输入法的`贰 Erbi` > `简体中文` > `智能拼音`
 
 7. 关机指令
 

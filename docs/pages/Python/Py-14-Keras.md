@@ -105,7 +105,133 @@
 
 ## 3. 模型搭建
 
-### 3.1. LSTM
+### 3.1. 手写数字识别，[原文链接](https://cloud.tencent.com/developer/article/1829972)
+
+1. 加载数据，第一次运行会联网下载数据
+
+    ```python
+    from keras.datasets import mnist
+    import matplotlib.pyplot as plt
+
+    # （训练集输入，训练集输出）, （测试集输入，测试集输出） = 从 mnist 中加载数据集
+    (trainX, trainY), (testX, testY) = mnist.load_data()
+    # 训练集 60000 个 28*28 像素个手写数字图片
+    print('Train: X=%s, Y=%s' % (trainX.shape, trainY.shape))   # Train: X=(60000, 28, 28), Y=(60000,)
+    # 测试集 10000 个 28*28 像素个手写数字图片
+    print('Test: X=%s, Y=%s' % (testX.shape, testY.shape))      # Test: X=(10000, 28, 28), Y=(10000,)
+    # 画出一些图
+    for i in range(9):
+        plt.subplot(330 + 1 + i)
+        plt.imshow(trainX[i])
+    plt.show()
+    ```
+
+    ![图 1](../images/2022-11-21_45.png)  
+
+2. 神经网络模型创建 & 训练
+
+    ```python
+    from keras.datasets import mnist
+    from keras import Sequential
+    from keras.layers import Dense, Dropout, Activation, Flatten  # 常用层
+    from keras.layers import Conv2D, MaxPool2D  # 卷积层，池化层
+    from keras.utils import np_utils
+
+    # （训练集输入，训练集输出）, （测试集输入，测试集输出） = 从 mnist 中加载数据集
+    (trainX, trainY), (testX, testY) = mnist.load_data()
+
+    # 数据集从形状（n，宽度，高度）转换为（n，宽度，高度，深度）
+    X_train = trainX.reshape(trainX.shape[0], 28, 28, 1)
+    X_test = testX.reshape(testX.shape[0], 28, 28, 1)
+    print(X_train.shape)  # (60000, 28, 28, 1)
+
+    # 将 1 维类数组转换为 10 维类矩阵
+    Y_train = np_utils.to_categorical(trainY, 10)
+    Y_test = np_utils.to_categorical(testY, 10)
+    print(Y_train.shape)  # (60000, 10), 除了对应位是 1 以外都是 0
+
+    # 模型结构
+    model = Sequential()
+    # 卷积层：32 个卷积核，卷积核 3*3, 激活函数 relu, 模型输入 (28, 28, 1)
+    model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)))
+    model.add(Conv2D(32, kernel_size=(3, 3), activation='relu'))  # 第二层卷积层
+    model.add(MaxPool2D(pool_size=(2, 2)))  # 池化层
+    model.add(Dropout(0.25))  # Dropout 层
+    model.add(Flatten())  # Flatten 层：将高位矩阵压缩成 2 维矩阵
+    model.add(Dense(128, activation='relu'))  # 中间层：全链接，输出维度 (128)
+    model.add(Dropout(0.5))  # Dropout 层
+    model.add(Dense(10, activation='softmax'))  # 输出层：全链接，输出维度 (10)
+
+    model.summary()  # 打印模型信息
+
+    model.compile(loss='categorical_crossentropy',
+                optimizer='adam',
+                metrics=['accuracy'])
+
+    # 模型训练
+    # X_train: 训练集输入
+    # Y_train: 训练集输出
+    # batch_size: 每组训练 32 个数据，60000 数据就要训练 60000/32=1875 组
+    # epochs: 训练 5 回合
+    # verbose: 1-训练过程可视；0-训练结果不可视
+    model.fit(X_train, Y_train, batch_size=32, epochs=5, verbose=1)
+
+    # 模型评估
+    # X_test: 测试集输入
+    # Y_test: 测试集输出
+    # batch_size: 默认 32
+    score = model.evaluate(X_test, Y_test, verbose=0)
+    print(score)
+    ```
+
+3. 模型信息，model.summary() 打印结果
+
+    ```bash
+    Model: "sequential"
+    _________________________________________________________________
+    # 层                        输出维度                   参数个数
+    Layer (type)                 Output Shape              Param #    
+    =================================================================
+    conv2d (Conv2D)              (None, 26, 26, 32)        320       
+    _________________________________________________________________
+    conv2d_1 (Conv2D)            (None, 24, 24, 32)        9248      
+    _________________________________________________________________
+    max_pooling2d (MaxPooling2D) (None, 12, 12, 32)        0         
+    _________________________________________________________________
+    dropout (Dropout)            (None, 12, 12, 32)        0         
+    _________________________________________________________________
+    flatten (Flatten)            (None, 4608)              0         
+    _________________________________________________________________
+    dense (Dense)                (None, 128)               589952    
+    _________________________________________________________________
+    dropout_1 (Dropout)          (None, 128)               0         
+    _________________________________________________________________
+    dense_1 (Dense)              (None, 10)                1290      
+    =================================================================
+
+    Total params: 600,810       # 总参数个数
+    Trainable params: 600,810   # 可训练参数
+    Non-trainable params: 0     # 不可训练参数
+    _________________________________________________________________
+    ```
+
+4. 模型训练信息
+
+    ```bash
+    Epoch 1/5   # 第 1 回合
+    # 训练集 60000, 32 个数据为一组训练，训练 60000/32=1875 组；回合耗时，每组耗时；损失；精度
+    1875/1875 [==============================] - 55s 29ms/step - loss: 0.4725 - accuracy: 0.8922
+    Epoch 2/5   # 第 2 回合
+    1875/1875 [==============================] - 64s 34ms/step - loss: 0.1421 - accuracy: 0.9591
+    Epoch 3/5   # 第 3 回合
+    1875/1875 [==============================] - 62s 33ms/step - loss: 0.1103 - accuracy: 0.9685
+    Epoch 4/5   # 第 4 回合
+    1875/1875 [==============================] - 65s 35ms/step - loss: 0.0964 - accuracy: 0.9719
+    Epoch 5/5   # 第 5 回合
+    1875/1875 [==============================] - 61s 33ms/step - loss: 0.0841 - accuracy: 0.9749
+    ```
+
+### 3.2. LSTM
 
 1. 单层 lstm 预测模型
 

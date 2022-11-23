@@ -87,14 +87,14 @@
         ```markdown
         - 跳转到本文档的 [标题](##-1.-标题)
 
-        - 跳转到 [Pandas 笔记的数据处理章节](../Python/Python-05-Pandas.md##-2.-Pandas-数据处理)
+        - 跳转到 [Pandas 笔记的数据处理章节](../Python/Py-05-Pandas.md##-2.-Pandas-数据处理)
         ```
 
    2. 效果如下
 
        - 跳转到本文档的 [标题](##-1.-标题)
 
-       - 跳转到 [Pandas 笔记的数据处理章节](../Python/Python-05-Pandas.md##-2-Pandas-数据处理)
+       - 跳转到 [Pandas 笔记的数据处理章节](../Python/Py-05-Pandas.md##-2-Pandas-数据处理)
 
 4. 图片其实就是一种链接，其语法为`![图片名，可留空](图片地址)`, 图片名不会显示在最终效果中，但是当图片连接失效时会显示，比如
    1. 代码

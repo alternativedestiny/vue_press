@@ -28,6 +28,12 @@
     npm install -g cnpm --registry=https://registry.npm.taobao.org
     ```
 
+5. 如果出现 Windows `因为在此系统上禁止运行脚本。有关详细信息，请参阅 xxx`的问题，打开 cmd（管理员）输入下面的指令
+
+    ```bash
+    set-executionpolicy remotesigned
+    ```
+
 ### 1.2. 包 (package) 管理
 
 1. 本地管理
@@ -64,12 +70,12 @@
 
 3. 参数
 
-    | 参数 | 全名            | 功能                                      |
-    | ---- | --------------- | ----------------------------------------- |
-    | -g   |                 | 全局安装                                  |
+    | 参数 | 全名            | 功能                                        |
+    | ---- | --------------- | ------------------------------------------- |
+    | -g   |                 | 全局安装                                    |
     | -S   | --save          | 安装到 node_modules，添加到 dependencies    |
     | -D   | --save-dev      | 安装到 node_modules，添加到 devDependencies |
-    | -O   | --dave-optional | 添加到 OptionalDependencies                |
+    | -O   | --dave-optional | 添加到 OptionalDependencies                 |
 
 ## 2. yarn
 

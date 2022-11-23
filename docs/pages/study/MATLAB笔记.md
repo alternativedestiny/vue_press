@@ -1,6 +1,8 @@
-# MATLAB 笔记
+# MATLAB & Matpower 笔记
 
-## 1. 基础语法
+## 1. 语法
+
+### 1.1. 基础语法
 
 1. 循环
 
@@ -26,9 +28,20 @@
     | clear     | 清除工作空间的所有变量                               |
     | clear all | 清除工作空间的所有变量，函数，和 MEX 文件            |
 
-## 2. 读写文件
+3. 程序计时
 
-### 2.1. 读文件
+    ```matlab
+    tic;    % 开始计时
+
+    % 代码
+
+    toc;    % 结束计时并显示从 tic 到 toc 的时间
+
+    ```
+
+### 1.2. 读写文件
+
+### 1.3. 读文件
 
 1. 读取 mat 文件
 
@@ -47,7 +60,7 @@
     data = A.data;
     ```
 
-### 2.2. 写文件
+### 1.4. 写文件
 
 1. 保存数据
 
@@ -62,11 +75,11 @@
     csvwrite(file_name, data);
     ```
 
-## 3. MATPOWER
+## 2. MATPOWER
 
-### 3.1. 安装
+### 2.1. 安装
 
-1. 在 [MATPOWER 的 GitHub 页面](https://github.com/MATPOWER/matpower) 下载安装的压缩包
+1. 在 [MATPOWER 的 GitHub 页面](https://github.com/MATPOWER/matpower) 的 Releases 页面下载安装的压缩包
 2. 将压缩包解压并放到 matlab 安装目录的 bin 目录下，即`../Matlab/bin`，也可以根据需求放到其他目录下
 3. 添加 matpower 路径
    1. 点击主页`设置路径`
@@ -77,13 +90,14 @@
 
 4. 在命令窗口输入`test_matpower`
 
-   > 有许多 ok 输出表示安装成功，失败不用在意
+   > 有许多 ok 输出表示安装成功，有部分失败不用在意
 
     ![图 2](../images/2021-08-23_97.png)
 
-### 3.2. 使用
+### 2.2. 算例使用
 
-1. 运行简单的牛顿潮流
+1. Matpower 自带英文手册，在`matpower7.1/docs`目录下
+2. 运行简单的牛顿潮流，新建 m 文件，并输入下列指令运行
 
     ```matlab
     %% 默认 9 节点 case9
@@ -93,7 +107,7 @@
     runpf('case5')
     ```
 
-2. 计算最优潮流
+3. 计算最优潮流
 
     ```matlab
     %% 30 节点
@@ -102,7 +116,7 @@
     runuopf('case30')
     ```
 
-3. 修改数据进行潮流计算
+4. 修改数据进行潮流计算
 
     ```matlab
     % 读取节点数据
@@ -119,9 +133,9 @@
     runopf(mpc);
     ```
 
-### 3.3. 数据说明
+### 2.3. 数据说明
 
-1. 以`case33bw`数据为例
+1. 数据文件在`matpower7.1/data`路径下，以`case33bw`数据为例
 2. 节点名
 
     ```matlab
@@ -194,7 +208,17 @@
 8. convert branch impedances from Ohms to p.u. 将支路阻抗从欧姆转换为 p.u.
 9. convert loads from kW to MW 负荷从 kW 转 MW
 
-### 3.4. 备注
+### 2.4. 使用方法
+
+1. 加载&保存模型
+
+    ```matlab
+    mpc = loadcase('case30lg'); % 加载电网模型
+
+    savecase('./file.m', mpc);  % 保存模型到 file.m 文件
+    ```
+
+## 3. 备注
 
 1. 参考
 

@@ -172,9 +172,11 @@
 
         # 设置格式
         print(f'pi={pi:.4f}')   # 保留 4 位小数
+        print(f'pi={pi:02}')    # 显示 2 位，不足补 0
         ```
 
         - 参考：[Python 格式化字符串 f-string 概览](https://blog.csdn.net/sunxb10/article/details/81036693)
+        - 参考：[Python 格式化字符串](https://www.cnblogs.com/insane-Mr-Li/p/12973941.html)
 
    3. python 字符串没有插入 (insert) 功能，可以通过字符串拼接实现
 

@@ -162,6 +162,8 @@
     simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
     ```
 
+4. 注意上述步骤配置的是 conda 源，如果要使用 pip，还是需要根据 [本文 1.1](###-1.1.-下载及安装)配置 pip 源
+
 ### 2.3. conda 虚拟环境
 
 1. 环境配置
@@ -414,6 +416,12 @@
 
 5. 接下来就可以用 Pycharm 右上角的快捷键运行 Django 项目
 6. 也可以利用此方法添加 makemigratiosn 和 migrate
+
+### 6.4. Terminal 自动激活虚拟环境
+
+1. 打开`File->Settings->Tools->Terminal`, Shell path 选择 cmd
+
+    ![图 1](../images/2022-11-21_91.png)  
 
 ## 7. 备注
 

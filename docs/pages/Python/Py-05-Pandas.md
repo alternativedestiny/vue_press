@@ -388,18 +388,21 @@
     new_df = df[df['tm1'] >= '2018-01-01 00:00:00']
     # 选择并选取指定行
     new_df = df.loc[df['tm1'] >= '2019-01-01 00:00:00', ['tm1', 'hv']]
-    new_df = df[df.tm1 >= '2019-01-01 00:00:00']['tm1', 'hv']
+    new_df = df[df.tm1 >= '2019-01-01 00:00:00'][['tm1', 'hv']] # 列号单引号出错的话可以用双引号
     
     # 根据具体时间筛选数据
     new_df = df[df['time'].dt.hour == 10]   # 筛选所有 10 点钟的数据
-    new_df = df[df['time'].dt.date == tm.date()]    # 按照日期筛选数据
+    new_df = df[df['time'].dt.date == tm.date()]    # 按照日期筛选数据（年月日）
+    new_df = df[df['time'].dt.time == tm.time()]    # 按照时间筛选数据（时分秒）
 
     
     # 多条件筛选，小括号不能缺
     df[(df['a'] >= 10) & (df['b'] >= 10)]  # 与
     df[(df.a == 10) | (df.b > 20)]  # 或
     # 还可以进行范围筛选
-    new_df = df[df['date'].dt.date.between(start, end)] # 时间范围
+    new_df = df[df['date'].dt.date.between(start.date(), end.date())] # 日期范围
+    new_df = df[df['date'].dt.time.between(start.time(), end.time())] # 时间范围
+    new_df = df[(df['tm'] >= start) & (df['tm'] < end)] # 日期时间范围
     new_df = df[df.a.between(10, 20)]   # 值范围
 
     # 根据条件筛选多行数据
@@ -407,8 +410,10 @@
     df = df[df['name'].isin(keys)]  # 选择 name 列=a,b,c 的数据
     df = df[~df['name'].isin(keys)]  # 选择 name 列非 a,b,c 的数据
 
-    # 筛选含有指定字段的数据（模糊匹配）
-    df = df[df['name'].str.contains('a')]  # 选择 name 列包含字符 a 的数据
+    # 筛选含有指定字段的数据，支持正则（模糊匹配）
+    df = df[df['name'].str.contains('a')]   # 选择 name 列包含字符 a 的数据
+    df = df[df['name'].str.contains('a|b')] # 选择 name 列包含字符 a 或 b 的数据
+    df = df[df['name'].str.contains('a') | df['name'].str.contains('b')]    # 等同于上面
 
     # 根据值查询元素所在位置
     x = 1
@@ -444,7 +449,13 @@
     df['col_sum'] = df.apply(lambda x: x.sum(), axis=0)
     ```
 
-2. 最大最小值
+2. 乘除
+
+    ```python
+    df['val'] = df['val'].map(lambda x: x / num)    # 除法
+    ```
+
+3. 最大最小值
 
     ```python
     # 最小值
@@ -455,7 +466,7 @@
     max_val = df.iloc[0, :].max()   # 第 1 行最大值
     ```
 
-3. 求平均值
+4. 求平均值
 
     ```python
     df = pd.read_csv(path, dtype=float)
@@ -466,7 +477,7 @@
     df.mean(1)
     ```
 
-4. 求标准差
+5. 求标准差
 
     ```python
     # 计算每列数据标准差
@@ -623,6 +634,9 @@
     # 读取 sheet1 用 sheet_name=0 也可
     df1 = pd.read_excel('filename.xlsx', header=0, sheet_name='Sheet1', usecols=[0, 1])
 
+    # 读取 excel 还有一种方法
+    data = pd.ExcelFile('filename.xlsx')
+    df2 = pd.read_excel(data, sheet_name=0, parse_cols=[0], skiprows=[0], names=['Country'])
     ```
 
 2. 读取设置，[官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)

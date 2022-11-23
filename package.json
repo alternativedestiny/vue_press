@@ -31,7 +31,10 @@
   "directories": {
     "doc": "docs"
   },
-  "repository": "git+https://github.com/alternativedestiny/vue_press.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alternativedestiny/vue_press.git"
+  },
   "bugs": {
     "url": "https://github.com/alternativedestiny/vue_press/issues"
   },
