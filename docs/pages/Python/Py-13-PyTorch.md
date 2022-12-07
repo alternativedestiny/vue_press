@@ -54,6 +54,26 @@
     torch.squeeze(input, dim=None, out=None)
     ```
 
+3. numpy 转 tensor
+
+    ```python
+    x = torch.from_numpy(x)  # numpy 转 tensor
+    ```
+
+4. DataLoader 用法
+
+    ```python
+    import torch.utils.data as Data
+    
+    torch_dataset = Data.TensorDataset(x, y)  # 转换成 Torch 能识别的 Dataset
+    loader = Data.DataLoader(
+        dataset=torch_dataset,
+        batch_size=batch_size,
+        shuffle=True,  # 是否打乱数据
+        num_workers=2,  # 多线程读取数据
+    )
+    ```
+
 ### 2.2. 模型保存与加载
 
 1. 保存模型
@@ -80,7 +100,11 @@
     model = torch.load('model_name')
     ```
 
-### 2.3. [Torch 模型](https://pytorch.org/docs/stable/nn.html)
+## 3. Torch 模型
+
+1. [官方文档](https://pytorch.org/docs/stable/nn.html)
+
+### 3.1. 卷积层 Convolution Layers
 
 1. 卷积层：conv2d 二维卷积，[卷积动画](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md)
 
@@ -104,7 +128,9 @@
 
     ```
 
-2. 池化层：maxpool2d 二维最大池化，减小数据维数，加快训练速度
+### 3.2. 池化层 Pooling Layers
+
+1. 池化层：maxpool2d 二维最大池化，减小数据维数，加快训练速度
 
     ```python
     nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)
@@ -115,7 +141,20 @@
     # ceil_mode: True=ceil 模式，false=floor 模式
     ```
 
-3. 非线性激活
+### 3.3. 线性层 Liner Layers
+
+1. 线性层（全链接）
+
+    ```python
+    # in_features: 输入维数
+    # out_features: 输出维数
+    # bias: 是否学习偏置量
+    nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)
+    ```
+
+### 3.4. 激活函数 Non-liner Activations
+
+1. 非线性激活
 
     ```python
     nn.ReLU(inplace=False)   # 0 if x < 0 else x
@@ -123,6 +162,6 @@
     nn.Tanh()
     ```
 
-4. 线性层
+    ![图 2](../images/2022-11-23_12.png)  
 
-## 3. 并行计算
+## 4. 并行计算

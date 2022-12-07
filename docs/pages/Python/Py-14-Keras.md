@@ -29,16 +29,29 @@
 
     ![图 1](../images/2021-12-16_88.png)
 
-## 2. 核心层
+## 2. keras 层
+
+### 2.1. 核心层
 
 1. 全连接层：神经网络中最常用的，实现对神经网络里的神经元激活
 
-   ```python
-   # units：全连接层输出的维度，即下一层神经元的个数
-   # activation：激活函数，默认使用 Relu
-   # use_bias：是否使用 bias 偏置
-   Dense(units, activation='relu', use_base=True)
-   ```
+    ```python
+    # units：全连接层输出的维度，即下一层神经元的个数
+    # activation：激活函数，默认使用 Relu
+    # use_bias：是否使用 bias 偏置
+    Dense(units, activation='relu', use_base=True)
+
+    # 作为输入层：输入为 60*1 维数据，激活函数 relu
+    model.add(Dense(200, input_shape=(60,), activation='relu'))
+
+    # 作为中间层（隐含层）
+    model.add(Dense(200, activation='relu'))
+
+    # 作为输出层，units = 输出维数
+    model.add(Dense(60))
+    ```
+
+   [全连接层用法](https://blog.csdn.net/weixin_44551646/article/details/112911215)
 
 2. 激活层：对上一层的
 
@@ -46,6 +59,8 @@
    # 激活函数，relu、tanh、sigmoid 等
    Activation(activation)
    ```
+
+   ![图 2](../images/2022-11-23_12.png)  
 
 3. Dropout 层：对上一层的神经元随机选取一定比例的失活，不更新，但是权重仍然保留，防止过拟合
 
@@ -103,6 +118,79 @@
 
 10. [视频教程](https://www.bilibili.com/video/BV1hE411t7RN?p=18)
 
+### 2.2. 求解 compile
+
+1. 创建求解
+
+    ```python
+    model.compile(loss='mean_squared_error',  # 损失函数
+                  optimizer='adam',  # 优化器
+                  metrics=['accuracy'])  # 准确率标准
+    ```
+
+2. 损失函数 loss
+
+    | 函数                           | 中文名                   |
+    | ------------------------------ | ------------------------ |
+    | mean_squared_error             | 均方误差                 |
+    | mean_absolute_error            | 平均绝对误差             |
+    | mean_absolute_percentage_error | 平均绝对百分比误差       |
+    | mean_squared_logarithmic_error | 均方对数误差             |
+    | squared_hinge                  | 平方合页（铰链）         |
+    | hinge                          | 合页（铰链）             |
+    | categorical_hinge              | 分类合页（铰链）         |
+    | logcosh                        | 预测误差的双曲余弦的对数 |
+    | categorical_crossentropy       | 分类交叉熵               |
+
+3. 优化器 optimizer
+
+    | 函数     | 备注                                                                                       |
+    | -------- | ------------------------------------------------------------------------------------------ |
+    | SGD      | 随机梯度下降                                                                               |
+    | RMSprop  | RMSProp 优化器，MSProp 优化算法是 AdaGrad 算法的一种改进。将梯度除以最近幅度的移动平均值。 |
+    | Adagrad  | Adagrad 是一种具有特定参数学习率的优化器，它根据参数在训练期间的更新频率进行自适应调整。   |
+    | Adadelta | Adadelta 是 Adagrad 的一个具有更强鲁棒性的的扩展版本                                       |
+    | Adam     | Adam 本质上是 RMSProp 与动量 momentum 的结合                                               |
+    | Adamax   | Adam 算法基于无穷范数（infinity norm）的变种                                               |
+    | Nadam    | Nesterov 版本 Adam 优化器                                                                  |
+
+4. 评价函数 metrics：同损失函数相似，但是评价函数不会用于训练
+
+5. 参考链接
+    1. [compile 参数详解](https://www.jianshu.com/p/f9c6f7c94533)
+
+### 2.3. 训练 fit
+
+1. 创建训练
+
+    ```python
+    # 模型训练
+    # x_train: 训练集输入
+    # y_train: 训练集输出
+    # validation_split: 交叉验证
+    # batch_size: 每组训练 32 个数据，60000 数据就要训练 60000/32=1875 组
+    # epochs: 训练 5 回合
+    # verbose: 1-训练过程可视；0-训练结果不可视
+    model.fit(x_train, y_train, validation_split=0.5, batch_size=100, epochs=100, verbose=1)
+    # 如果有专门的验证集
+    # x_test: 验证集输入
+    # y_test: 验证集输出
+    model.fit(x_train, y_train, validation_data=[x_test, y_test], batch_size=100, epochs=100, verbose=1)
+    ```
+
+2. 参数设置
+
+    | 参数             | 配置        | 备注                                                               |
+    | ---------------- | ----------- | ------------------------------------------------------------------ |
+    | validation_split | 0~1         | 默认不进行交叉验证，交叉验证比例：0.1 表示每次保留 10%数据进行验证 |
+    | batch_size       | 整数        | 表示每次进行训练的数据个数，数字越大内存（或显存）占用越大         |
+    | epochs           | 整数        | 最大训练回合数，如果没有设置提前截至条件则就是训练回合数           |
+    | verbose          | 0/1，默认 0 | 1-训练过程可视；0-训练结果不可视                                   |
+
+3. 参数关系
+
+    $$ 每个 epoch 训练的组数 = \frac{x\_train.size() * (1-validation\_split)}{batch\_size} $$
+
 ## 3. 模型搭建
 
 ### 3.1. 手写数字识别，[原文链接](https://cloud.tencent.com/developer/article/1829972)
@@ -151,7 +239,7 @@
     print(Y_train.shape)  # (60000, 10), 除了对应位是 1 以外都是 0
 
     # 模型结构
-    model = Sequential()
+    model = Sequential()  # 创建一个序列
     # 卷积层：32 个卷积核，卷积核 3*3, 激活函数 relu, 模型输入 (28, 28, 1)
     model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)))
     model.add(Conv2D(32, kernel_size=(3, 3), activation='relu'))  # 第二层卷积层
@@ -165,8 +253,8 @@
     model.summary()  # 打印模型信息
 
     model.compile(loss='categorical_crossentropy',
-                optimizer='adam',
-                metrics=['accuracy'])
+                  optimizer='adam',
+                  metrics=['accuracy'])
 
     # 模型训练
     # X_train: 训练集输入
@@ -355,6 +443,16 @@
     from keras.models import load_model
 
     model = load_model('./model/model_name.h5')
+
+    # 还可以继续训练，参数与训练时的参数相同
+    model.fit(x_train, y_train, ...)
+    ```
+
+3. 模型使用
+
+    ```python
+    # 模型输出
+    y_pre = model.predict(x_input)
     ```
 
 ## 5. 备注

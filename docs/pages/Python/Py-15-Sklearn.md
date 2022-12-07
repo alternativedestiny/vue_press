@@ -6,7 +6,7 @@
 2. 安装
 
     ```bash
-    pip install sklearn
+    pip install scikit-learn
     ```
 
 3. 官方 [中文文档](https://sklearn.apachecn.org/#/)
@@ -18,7 +18,21 @@
 
 ### 2.1. 归一化
 
-1. 归一化
+1. z-score 归一化
+
+    ```python
+    from sklearn.preprocessing import StandardScaler
+    import numpy as np
+
+    data = np.array([1, 2, 3, 4, 5])  # [1 2 3 4 5]
+    scaler = StandardScaler()  # 创建缩放器
+    data = np.reshape(data, (-1, 1))  # 数据变成 n*1 [[1], [2], [3], [4], [5]]
+    # 需要输入列数据，
+    data = scaler.fit_transform(data)  # [[-1.41421356] [-0.70710678] [ 0.        ] [ 0.70710678] [ 1.41421356]]
+    print(scaler.mean_)  # [3.]
+    ```
+
+2. min_max 归一化
 
     ```python
     from sklearn.preprocessing import MinMaxScaler
@@ -31,7 +45,7 @@
     data = scaler.fit_transform(data)  # [[0.  ], [0.25], [0.5 ], [0.75], [1.  ]]
     ```
 
-2. 归一化还原
+3. 归一化还原
 
     ```python
     # 接续上述代码

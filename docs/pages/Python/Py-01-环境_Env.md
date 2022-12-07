@@ -385,7 +385,7 @@
 
 ### 6.2. 补全
 
-1. 打开 File->Settings->Editor->Live Templates
+1. 打开 File->Settings->Editor->Live Templates（文件->设置->编辑器->实时模板）
 
 2. 打开需要创建的程序下拉菜单，然后点击右侧“+”号并选择 Live Template
 

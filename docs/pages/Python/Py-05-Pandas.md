@@ -134,6 +134,12 @@
     moment = data['时间'][0].to_pydatetime()
     ```
 
+7. pandas 转 numpy
+
+    ```python
+    np_data = df_data.values
+    ```
+
 ### 1.4. 行/列操作
 
 1. 行操作
@@ -222,13 +228,16 @@
     df3 = pd.merge(df1, df2, how='left', on=['key1','key2'])  # 多 key
     ```
 
-3. concat：拼接，行增加
+3. concat：拼接
 
     ```python
     # 数据拼接，列不变，行叠加
     df3 = pd.concat([df1, df2]).reset_index(drop=True)
     # 去掉重复行
     df = df.drop_duplicates()
+
+    # 数据拼接，列增加，行不变
+    df4 = pd.concat([df1, df2, df3], axis=1)
     ```
 
 4. copy 拷贝，复制
@@ -277,6 +286,12 @@
     | keep         | 'first'保留重复的首行，'last'保留重复的末行，False 删除所有重复行 |
     | inplace      | True 直接修改源数据                                               |
     | ignore_index | True 去重后重排 index                                             |
+
+4. 删除全 0 行
+
+    ```python
+    df = df.loc[~(df == 0).all(axis=1)]
+    ```
 
 ### 2.3. 改
 

@@ -96,6 +96,14 @@
     x = np.delete(x, 2)  # [1 2 4 5]
     # 删除 idx=2 和 4 的元素
     x = np.delete(x, [1, 3])  # [1 3 5]
+
+    # 删除一列
+    x = np.delete(x, 1, axis=1) # 删除第 2 列
+    # 删除多列
+    x = np.delete(x, [0,-1], axis=1) # 删除第一列和最后一列
+
+    # 删除一行
+    x = np.delete(x, 1, axis=0)  # 删除第二行，axis 不能省略
     ```
 
 4. 改
@@ -142,7 +150,23 @@
 
 8. [参考](https://blog.csdn.net/Tyro_java/article/details/81052638)
 
-### 1.4. reshape
+### 1.4. 拼接
+
+1. 水平拼接：行不变，列增加
+
+    ```python
+    np.hstack((a, b))   # 水平拼接 a,b
+    np.concatenate((a, b), axis=1)  # 同上
+    ```
+
+2. 垂直拼接：行增加，列不变
+
+    ```python
+    np.vstack((a, b))   # 垂直拼接 a,b
+    np.concatenate((a, b), axis=0)  # 同上
+    ```
+
+### 1.5. reshape
 
 1. 行列变换（转置）
 
