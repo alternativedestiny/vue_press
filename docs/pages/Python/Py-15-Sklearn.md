@@ -6,6 +6,7 @@
 2. 安装
 
     ```bash
+    # 必须用 scikit-learn，用 sklearn 安装的是错误的
     pip install scikit-learn
     ```
 

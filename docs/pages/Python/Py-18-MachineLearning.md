@@ -130,11 +130,22 @@
 
 ### 3.4. 循环神经网络 RNN
 
-### 3.5. 图神经网络 GCN
+## 4. 图神经网络 GNN
 
-1. 图神经网络（Graph Neural Network）
+1. 图神经网络（Graph Neural Network）: 包括图卷积网络 (Graph Convolution Network, GCN), 图注意力神经网络 (Graph Attention Network, GAN), 图自编码器 (Graph Autoencoders), 图生成网络 (Graph Generative Network), 图时空网络 (Graph Spatial-temporal Network)
+2. 优点
+    1. 半监督学习
+    2. 不需要全部标签
+    3. 用少量标签也能训练
+    4. 计算损失时也只有有标签的
 
-## 4. 模型评估
+### 4.1. 图卷积网络 GCN
+
+### 4.2. 图注意力神经网络 GAT
+
+## 5. 强化学习
+
+## 6. 模型评估
 
 1. **模型泛化能力**：泛化能力指的是训练得到的模型对未知数据的预测能力。建模的目的是让模型不仅对已知数据，而且对未知数据都能有较好的预测能力。
 

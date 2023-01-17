@@ -30,7 +30,7 @@
 
     ```
 
-### 3. 随机数
+### 1.2. 随机数
 
 1. 基本随机数
 
@@ -55,9 +55,9 @@
     normrnd(μ, σ)   % 均值μ，方差σ
     ```
 
-3. 参考[MATLAB随机数生成](https://blog.csdn.net/MALSIS/article/details/82025281)
+3. 参考 [MATLAB 随机数生成](https://blog.csdn.net/MALSIS/article/details/82025281)
 
-### 1.2. 矩阵操作
+### 1.3. 矩阵操作
 
 1. 增加行/列
 
@@ -76,7 +76,7 @@
     B = transpose(A)
     ```
 
-### 1.3. 命令行指令
+### 1.4. 命令行指令
 
 1. 清理命令
 
@@ -88,9 +88,9 @@
     | clear     | 清除工作空间的所有变量                               |
     | clear all | 清除工作空间的所有变量，函数，和 MEX 文件            |
 
-### 1.4. 读写文件
+### 1.5. 读写文件
 
-#### 1.4.1. 读文件
+#### 1.5.1. 读文件
 
 1. 读取 mat 文件
 
@@ -109,7 +109,7 @@
     data = A.data;
     ```
 
-#### 1.4.2. 写文件
+#### 1.5.2. 写文件
 
 1. 保存数据
 
@@ -169,7 +169,7 @@
 
     ```matlab
     % 读取节点数据
-    mpc = loadcase('case33lg');
+    mpc = loadcase('case33');
     % 计算潮流
     runpf(mpc);
     % 计算最优潮流
@@ -262,7 +262,11 @@
 1. 加载&保存模型
 
     ```matlab
-    mpc = loadcase('case30lg'); % 加载电网模型
+    mpc = loadcase('case30'); % 加载电网模型
+
+    % 修改模型参数（举例）
+    mpc.bus(j, 3) = 1; % 修改节点负荷 P
+    mpc.bus(j, 4) = 1; % 修改节点负荷 Q
 
     savecase('./file.m', mpc);  % 保存模型到 file.m 文件
     ```

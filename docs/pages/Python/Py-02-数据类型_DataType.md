@@ -421,6 +421,7 @@
     print(list1[0:2])  # [0,2) 的元素
     print(list1[1:])  # 第 2 个及以后元素
     print(list1.index('banana'))  # 查询列表元素位置
+    
 
     # 判断字符传中是否包含列表中的某个元素
     list1 = ['a', 'b', 'c']

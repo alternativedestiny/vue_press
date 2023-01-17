@@ -55,8 +55,14 @@
     ```python
     from numpy import random
 
+    # 生成 10 个 0-1 的随机数
+    x = random.random(10)
+
     # 生成 0-100 以内的 5 个随机整数
     x = random.randint(100, size=(5))
+
+    # 生成 10 个服从正态分布的随机数
+    x = random.randn(10)
     ```
 
 ### 1.2. 读取数组
@@ -166,9 +172,9 @@
     np.concatenate((a, b), axis=0)  # 同上
     ```
 
-### 1.5. reshape
+### 1.5. 行列变换
 
-1. 行列变换（转置）
+1. 行列变换
 
     ```python
     import numpy as np
@@ -184,6 +190,8 @@
     # 变成 4*n
     z = np.reshape(z, (4, -1))  # [[1 2], [3 4], [5 6], [7 8]]
 
+    # 转置
+    z = z.T
     ```
 
 ## 2. 函数

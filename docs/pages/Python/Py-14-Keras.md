@@ -191,11 +191,104 @@
 
     $$ 每个 epoch 训练的组数 = \frac{x\_train.size() * (1-validation\_split)}{batch\_size} $$
 
+4. 早停法
+
+    ```python
+    from keras import callbacks
+
+    # monitor: loss/accuracy/val_loss/val_accuracy
+    # patience: 
+    callback = callbacks.EarlyStopping(monitor='loss', patience=20)
+    model.fit(x_train, y_train, validation_split=0.05, batch_size=500, epochs=300, verbose=1, callbacks=[callback])
+    ```
+
+### 2.4. 模型保存与加载
+
+1. 保存模型
+
+    ```python
+    model.save('./model/model_name.h5')
+    ```
+
+2. 加载模型
+
+    ```python
+    from keras.models import load_model
+
+    model = load_model('./model/model_name.h5')
+
+    # 还可以继续训练，参数与训练时的参数相同
+    model.fit(x_train, y_train, ...)
+    ```
+
+3. 模型使用
+
+    ```python
+    # 模型输出
+    y_pre = model.predict(x_input)
+    ```
+
 ## 3. 模型搭建
 
-### 3.1. 手写数字识别，[原文链接](https://cloud.tencent.com/developer/article/1829972)
+### 3.1. 多层感知机（全链接/DNN) MLP
 
-1. 加载数据，第一次运行会联网下载数据
+1. 模型搭建
+
+    ```python
+    def build_model(self):  # 创建模型
+        units = 500  # 神经元
+        model = Sequential()
+        # 输入层
+        model.add(Dense(1000, input_shape=(60,), activation='relu'))
+        # 隐含层
+        model.add(Dense(4 * units, activation='relu'))
+        model.add(Dropout(0.2))
+        model.add(Dense(2 * units, activation='relu'))
+        model.add(Dropout(0.2))
+        model.add(Dense(units, activation='tanh'))
+        model.add(Dropout(0.1))
+        # 输出层
+        model.add(Dense(60))
+
+        # 显示模型
+        model.summary()
+
+        self.model = model  # 在类中时将模型赋给类变量
+    ```
+
+2. 模型训练
+
+    ```python
+    def train(self):  # 模型训练
+        model = self.model
+
+        model.compile(loss='mse',  # 损失函数
+                        optimizer='adam',  # 优化器
+                        metrics=['accuracy', 'mae'])  # 准确率标准
+
+        x_train, y_train = self.x_data, self.y_data
+
+        # 训练模型
+        callback = callbacks.EarlyStopping(monitor='accuracy', patience=5)
+        model.fit(x_train, y_train, validation_split=0.05, batch_size=500, epochs=300, verbose=1, callbacks=[callback])
+
+        # 保存训练过程
+        df_his = pd.DataFrame({
+            'loss': model.history.history['loss'],
+            'acc': model.history.history['accuracy'],
+            'val_loss': model.history.history['val_loss'],
+            'val_acc': model.history.history['val_accuracy']
+        })
+        df_his.to_csv('../data/model_his.csv', index=False)
+
+        # 保存模型
+        model.save(self.model_name)
+        print('保存模型：', self.model_name)
+    ```
+
+### 3.2. 手写数字识别，[原文链接](https://cloud.tencent.com/developer/article/1829972)
+
+1. 加载数据，第一次运行会联网下载数据（可复制运行）
 
     ```python
     from keras.datasets import mnist
@@ -216,7 +309,7 @@
 
     ![图 1](../images/2022-11-21_45.png)  
 
-2. 神经网络模型创建 & 训练
+2. 神经网络模型创建 & 训练（可复制运行）
 
     ```python
     from keras.datasets import mnist
@@ -319,7 +412,7 @@
     1875/1875 [==============================] - 61s 33ms/step - loss: 0.0841 - accuracy: 0.9749
     ```
 
-### 3.2. LSTM
+### 3.3. 长短期记忆 LSTM
 
 1. 单层 lstm 预测模型
 
@@ -429,33 +522,7 @@
 
     - [keras 中 LSTM 能用 accuracy 进行评价么？](https://www.zhihu.com/question/432212136)
 
-## 4. 模型保存与加载
-
-1. 保存模型
-
-    ```python
-    model.save('./model/model_name.h5')
-    ```
-
-2. 加载模型
-
-    ```python
-    from keras.models import load_model
-
-    model = load_model('./model/model_name.h5')
-
-    # 还可以继续训练，参数与训练时的参数相同
-    model.fit(x_train, y_train, ...)
-    ```
-
-3. 模型使用
-
-    ```python
-    # 模型输出
-    y_pre = model.predict(x_input)
-    ```
-
-## 5. 备注
+## 4. 备注
 
 - [Keras 入门](http://www.tensorflownews.com/2018/03/15/%e4%bd%bf%e7%94%a8keras%e8%bf%9b%e8%a1%8c%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%ef%bc%9a%ef%bc%88%e4%b8%80%ef%bc%89keras-%e5%85%a5%e9%97%a8/)
 - [Keras 中文文档](https://keras.io/zh/)

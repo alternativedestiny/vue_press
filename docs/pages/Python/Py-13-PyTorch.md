@@ -30,6 +30,14 @@
     print(torch.cuda.current_device())  # 0 表示当前在第一块显卡上
     # 显示显卡名
     print(torch.cuda.get_device_name(0))    # NVIDIA GeForce MX150
+
+    # 实际使用 GPU 进行训练的方法
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")  # 有 GPU 就用 GPU, 否则用 CPU
+    
+    model.to(device)  # 移动模型到 GPU
+    x_data = x_data.to(device) # 将训练数据放入 GPU
+    y_data = y_data.to(device) # 将训练数据放入 GPU
+    out = model(x_data)    # 进行训练
     ```
 
 ## 2. 基础使用方法
@@ -45,7 +53,7 @@
     # numpy 转 torch
     torch_data = torch.FloatTensor(np_data).to(device)
     # 或
-    torch_daat = torch.tensor(np_data, dtype=torch.float32, device=device)
+    torch_data = torch.tensor(np_data, dtype=torch.float32, device=device)
     ```
 
 2. 降维
@@ -64,6 +72,10 @@
 
     ```python
     import torch.utils.data as Data
+
+    # x, y 分别为数据集的输入和输出
+    x = torch.from_numpy(x.astype(np.float32))  # numpy 转 tensor.float32
+    y = torch.from_numpy(y.astype(np.float32))  # numpy 转 tensor.float32
     
     torch_dataset = Data.TensorDataset(x, y)  # 转换成 Torch 能识别的 Dataset
     loader = Data.DataLoader(
@@ -74,7 +86,91 @@
     )
     ```
 
-### 2.2. 模型保存与加载
+### 2.2. 创建模型（以全链接为例）
+
+1. 创建模型方法 1：神经网络层与其他层分开写
+
+    ```python
+    class MLP(nn.Module):  # 模型
+        def __init__(self):
+            super(MLP, self).__init__()  # 继承 nn.Module.__init__()
+            # super().__init__()  # 与上面一句等效
+            self.nn1 = nn.Linear(10, 100)  # 第一层线性层，输入 10 维，输出 100 维
+            self.nn2 = nn.Linear(100, 100)  # 第二层线性层
+            self.nn3 = nn.Linear(100, 10)  # 第三层线性层
+
+        def forward(self, x):
+            # 第一层
+            x = self.nn1(x)  # 线性
+            x = torch.relu(x)  # 激活函数
+            x = F.dropout(x, p=0.1, training=self.training)  # dropout
+            # 第二层
+            x = torch.relu(self.nn2(x))  # 另一种写法：线性+激活函数
+            x = torch.dropout(x, p=0.1, train=self.training)  # dropout
+            # 第三层
+            x = torch.dropout(torch.tanh(self.nn3(x)), p=0.1, train=self.training)  # 线性+激活+dropout
+
+            return x
+
+    model = MLP()
+    print(model)
+    """
+    MLP(
+    (nn1): Linear(in_features=10, out_features=100, bias=True)
+    (nn2): Linear(in_features=100, out_features=100, bias=True)
+    (nn3): Linear(in_features=100, out_features=10, bias=True)
+    )
+    """
+    ```
+
+2. 创建模型方法 2：神经网络层与其他层写到一起
+
+    ```python
+    import torch.nn as nn
+
+    class MLP(nn.Module):  # 模型
+        def __init__(self):
+            super(MLP, self).__init__()  # 继承 nn.Module.__init__()
+            # super().__init__()  # 与上面一句等效
+
+            self.model = nn.Sequential(  # 序列
+                nn.Linear(10, 100),  # 第一层线性层，输入 10 维，输出 100 维
+                nn.ReLU(),  # 激活函数
+                nn.Dropout(0.1),
+                nn.Linear(100, 100),  # 第二层线性层
+                nn.ReLU(),  # 激活函数
+                nn.Dropout(0.1),
+                nn.Linear(100, 10),  # 第三层线性层
+                nn.ReLU(),  # 激活函数
+                nn.Dropout(0.1),
+            )
+
+        def forward(self, x):
+            x = self.model(x)
+
+            return x
+
+    model = MLP()   # 创建模型
+    print(model)    # 打印模型结构，结果如下：
+
+    """
+    MLP(
+    (model): Sequential(
+        (0): Linear(in_features=10, out_features=100, bias=True)
+        (1): ReLU()
+        (2): Dropout(p=0.1, inplace=False)
+        (3): Linear(in_features=100, out_features=100, bias=True)
+        (4): ReLU()
+        (5): Dropout(p=0.1, inplace=False)
+        (6): Linear(in_features=100, out_features=10, bias=True)
+        (7): ReLU()
+        (8): Dropout(p=0.1, inplace=False)
+    )
+    """
+
+    ```
+
+### 2.3. 模型保存与加载
 
 1. 保存模型
 
@@ -98,6 +194,7 @@
 
     # 加载整个模型
     model = torch.load('model_name')
+    model = torch.load('model_name', map_location=torch.device('cpu'))   # 加载模型到 cpu
     ```
 
 ## 3. Torch 模型
@@ -164,4 +261,228 @@
 
     ![图 2](../images/2022-11-23_12.png)  
 
-## 4. 并行计算
+### 3.5. 早停法 EarlyStopping
+
+1. 早停类定义
+
+    ```python
+    class EarlyStopping:
+        """
+        Early stopping to stop the training when the loss does not improve after
+        certain epochs.
+        """
+
+        def __init__(self, patience=5, min_delta=0):
+            """
+            :param patience: how many epochs to wait before stopping when loss is
+                not improving
+            :param min_delta: minimum difference between new loss and old loss for
+                new loss to be considered as an improvement
+            """
+            self.patience = patience
+            self.min_delta = min_delta
+            self.counter = 0
+            self.best_loss = None
+            self.early_stop = False
+
+        def __call__(self, val_loss):
+            if self.best_loss is None:
+                self.best_loss = val_loss
+            elif self.best_loss - val_loss > self.min_delta:
+                self.best_loss = val_loss
+                # reset counter if validation loss improves
+                self.counter = 0
+            elif self.best_loss - val_loss < self.min_delta:
+                self.counter += 1
+                print(f"INFO: Early stopping counter {self.counter} of {self.patience}")
+                if self.counter >= self.patience:
+                    print('INFO: Early stopping')
+                    self.early_stop = True
+    ```
+
+2. 使用
+
+    ```python
+    # 首先在外部定义早停类
+    early_stopping = EarlyStopping()
+
+    # 在 epoch 训练的循环内根据 loss 进行早停，也可以将 loss 换成其他观测值
+    early_stopping(train_loss)
+    if early_stopping.early_stop:
+        break
+    ```
+
+## 4. 实例
+
+### 4.1. 全链接神经网络
+
+1. 基础 MLP
+
+    ```python
+    import torch
+    import torch.nn as nn
+    # import torch.nn.functional as F
+    import torch.utils.data as Data
+    import pandas as pd
+    import numpy as np
+    from sklearn import preprocessing
+
+    class MLP(nn.Module):  # 创建 MLP 模型
+
+        def __init__(self):
+            super(MLP, self).__init__()  # 继承 nn.Module.__init__()
+
+            self.model = nn.Sequential(  # 序列
+                nn.Linear(60, 1000),  # 第一层线性层，输入 60 维，输出 100 维
+                nn.ReLU(),  # 激活函数
+                nn.Dropout(0.2),
+                nn.Linear(1000, 2000),  # 第二层线性层
+                nn.ReLU(),  # 激活函数
+                nn.Dropout(0.2),
+                nn.Linear(2000, 1000),  # 第三层线性层
+                nn.ReLU(),  # 激活函数
+                nn.Dropout(0.1),
+                nn.Linear(1000, 500),  # 第四层线性层
+                nn.Tanh(),  # 激活函数
+                nn.Linear(500, 60)  # 第五层输出层
+            )
+
+        def forward(self, x):
+            output = self.model(x)
+
+            return output
+
+    def train():
+        m_model = MLP()
+        m_model.to(device)  # 移动模型到 GPU
+        print(m_model)
+        lossfunc = nn.MSELoss()  # 损失函数
+        optimizer = torch.optim.Adam(m_model.parameters(), learning_rate)  # 优化器
+
+        x, y, y_o = get_data()
+        x = torch.from_numpy(x.astype(np.float32))  # numpy 转 tensor
+        y = torch.from_numpy(y.astype(np.float32))  # numpy 转 tensor
+        torch_dataset = Data.TensorDataset(x, y)  # 转换成 Torch 能识别的 Dataset
+        loader = Data.DataLoader(
+            dataset=torch_dataset,
+            batch_size=batch_size,
+            shuffle=True,  # 是否打乱数据
+            num_workers=2,  # 多线程读取数据
+        )
+
+        for epoch in range(epochs):
+            train_loss = 0
+            for i, (batch_x, batch_y) in enumerate(loader):
+                train_x = batch_x.cuda()
+                train_y = batch_y.cuda()
+                # print(batch_x.size())
+                optimizer.zero_grad()  # 清空上一步的残余更新参数值
+                out = m_model(train_x)
+                loss = lossfunc(out, train_y)  # 计算误差
+                loss.backward()  # 误差反向传播，计算参数更新值
+                optimizer.step()  # 将参数更新值施加到 net 的 parameters 上
+                train_loss += loss.data
+
+            train_loss = train_loss / len(loader)
+            print(f"Epoch {epoch + 1} : Train_loss = {train_loss:.6f}")
+    ```
+
+## 5. 图神经网络 GCN
+
+### 5.1. 图神经网络库 PYG 安装
+
+1. 打开 [PYG 官网](https://pytorch-geometric.readthedocs.io/en/latest/)
+2. 简易方法 [推荐]，根据 `Quick Start` 选择相应的版本和系统，复制下面的 pip 指令安装即可，如果没有列出合适的版本，也可以自行修改 pip 指令中的版本号进行安装
+   ![图 3](../images/2022-12-09_72.png)  
+
+3. 如果在 `Quick Start` 没有找到对应版本可以用如下方法
+    1. 找到 Installation 界面，点击图片中的`here`
+    ![图 1](../images/2022-12-09_17.png)  
+    2. 根据自己的 torch 版本和系统选择相应的文件夹，比如要安装 CPU 版本，torch=1.13.0, 就点击相应的 `torch-1.13.0+cpu` 版本
+    ![图 2](../images/2022-12-09_61.png)  
+    3. 根据 python 版本下载相应的 whl 文件，比如`Windows 平台，python=3.9`要找到 `cp39-win_amd64.whl` 后缀的文件，需要安装的文件有 4 个：`torch_cluster`, `torch_scatter`, `torch_sparse`, `torch_spline_conv`, 不过缺少`torch-geometric`包，还是需要通过一方法的 pip 安装
+    4. 下载完成后，在要安装的 python 环境中用 pip 指令安装
+
+### 5.2. PYG 使用
+
+1. 数据示例
+
+    ```python
+    from torch_geometric.datasets import KarateClub # 引入数据集 
+
+    dataset = KarateClub()
+    data = dataset[0]
+
+    # x = [样本，每个样本的特征维度], edge_index=[样本关系，关系个数], y=[标签], train_mask=[有无标签]
+    # 即 [点数，点的特征], [边，边数]
+    print(data) # Data(x=[34, 34], edge_index=[2, 156], y=[34], train_mask=[34])
+    ```
+
+2. 论文分类实例（可直接运行，需要下载数据集，数据集无法下载时可手动下载然后放入对应目录）
+
+    ```python
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+    import torch_geometric.nn as gnn
+    from torch_geometric.datasets import Planetoid
+    from torch_geometric.transforms import NormalizeFeatures
+
+    class GCN(nn.Module):  # 模型
+        def __init__(self, hidden):
+            super().__init__()
+            self.conv1 = gnn.GCNConv(dataset.num_features, hidden)  # 第一层 GCNConv(1433, 16)
+            self.conv2 = gnn.GCNConv(hidden, dataset.num_classes)  # 第二层 GCNConv(16, 7)
+
+        def forward(self, x, edge_index):
+            x = self.conv1(x, edge_index)
+            x = x.relu()
+            x = F.dropout(x, p=0.5, training=self.training)
+            x = self.conv2(x, edge_index)
+
+            return x
+
+    def train():  # 训练
+        model.train()
+        optimizer.zero_grad()
+        out = model(data.x, data.edge_index)
+        loss = criterion(out[data.train_mask], data.y[data.train_mask])
+        loss.backward()
+        optimizer.step()
+
+        return loss
+
+    def test():  # 测试
+        model.eval()
+        out = model(data.x, data.edge_index)
+        pred = out.argmax(dim=1)
+        test_correct = pred[data.test_mask] == data.y[data.test_mask]
+        test_acc = int(test_correct.sum()) / int(data.test_mask.sum())
+        return test_acc
+
+    if __name__ == '__main__':
+        # 数据集：2708 个节点，每个节点 1433 个特征，10556 条边
+        dataset = Planetoid(root='../data/Planetoid', name='Cora', transform=NormalizeFeatures())
+        data = dataset.data
+        print(f"data_x shape = {data.x.shape}")  # torch.Size([2708, 1433])
+        print(f"edge_index shape = {data.edge_index.shape}")  # torch.Size([2, 10556])
+
+        model = GCN(hidden=16)
+        print(model)
+
+        optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=5e-4)
+        criterion = torch.nn.CrossEntropyLoss()
+
+        for epoch in range(100):
+            los = train()
+            print(f"Epoch {epoch}, Loss={los:.4f}")
+
+        test_out = test()
+        print(f"Test out accuracy: {test_out:.4f}")
+    ```
+
+## 6. 强化学习 ReinforcementLearning
+
+### 6.1. DQN（Deep Q Network）
+
+## 7. 并行计算
